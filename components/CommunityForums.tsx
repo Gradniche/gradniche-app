@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+// FIX: Import User interface and threads data model which now includes authorId and likes.
 import { categories, Thread, User, Category, Reply, threads as initialThreads, generateAvatarUrl } from '../data/forums';
 
 interface CommunityForumsProps {
@@ -30,6 +31,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
         document.getElementById(scriptId)?.remove();
 
         if (view === 'thread' && selectedThread) {
+            // FIX: Use authorId to find the author object.
             const author = getUser(selectedThread.authorId);
             const structuredData = {
                 "@context": "https://schema.org",
@@ -39,21 +41,26 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                     "name": selectedThread.title,
                     "text": selectedThread.content,
                     "answerCount": selectedThread.replies.length,
+                    // FIX: Use the 'likes' property from replies.
                     "upvoteCount": selectedThread.replies.reduce((sum, r) => sum + r.likes, 0),
                     "dateCreated": new Date().toISOString(),
                     "author": { "@type": "Person", "name": author?.name },
                     "acceptedAnswer": selectedThread.replies.length > 0 ? {
                         "@type": "Answer",
                         "text": selectedThread.replies[0].content,
+                        // FIX: Use the 'likes' property from replies.
                         "upvoteCount": selectedThread.replies[0].likes,
                         "dateCreated": new Date().toISOString(),
+                        // FIX: Use authorId to find the author object.
                         "author": { "@type": "Person", "name": getUser(selectedThread.replies[0].authorId)?.name }
                     } : undefined,
                     "suggestedAnswer": selectedThread.replies.slice(1).map(reply => {
+                        // FIX: Use authorId to find the author object.
                         const replyAuthor = getUser(reply.authorId);
                         return {
                             "@type": "Answer",
                             "text": reply.content,
+                            // FIX: Use the 'likes' property from replies.
                             "upvoteCount": reply.likes,
                             "dateCreated": new Date().toISOString(),
                             "author": { "@type": "Person", "name": replyAuthor?.name }
@@ -108,6 +115,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
             title: newPost.title,
             categoryId: newPost.categoryId,
             content: newPost.content,
+            // FIX: Use authorId instead of author details.
             authorId: currentUser.id,
             timestamp: 'Just now',
             replies: [],
@@ -123,6 +131,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
         }
         const newReply: Reply = {
             id: `r${Date.now()}`,
+            // FIX: Use authorId and add likes property.
             authorId: currentUser.id,
             content: replyContent,
             timestamp: 'Just now',
@@ -146,6 +155,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
         setReplyContent('');
 
         // Add notification for thread author
+        // FIX: Use authorId to find author.
         const threadAuthor = getUser(selectedThread.authorId);
         if (threadAuthor && threadAuthor.id !== currentUser.id) {
             onAddNotification(
@@ -172,12 +182,15 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                 likedThread = thread;
                 const updatedReplies = thread.replies.map(reply => {
                     if (reply.id === replyId) {
+                        // FIX: Use authorId.
                         likedReplyAuthorId = reply.authorId;
                         if (alreadyLiked) {
                             newLikedReplies.delete(replyId);
+                            // FIX: Use likes property.
                             return { ...reply, likes: reply.likes - 1 };
                         } else {
                             newLikedReplies.add(replyId);
+                            // FIX: Use likes property.
                             return { ...reply, likes: reply.likes + 1 };
                         }
                     }
@@ -194,8 +207,10 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
             const updatedReplies = selectedThread.replies.map(reply => {
                  if (reply.id === replyId) {
                     if (alreadyLiked) {
+                        // FIX: Use likes property.
                         return { ...reply, likes: reply.likes - 1 };
                     } else {
+                        // FIX: Use likes property.
                         return { ...reply, likes: reply.likes + 1 };
                     }
                 }
@@ -336,6 +351,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
 
             <div className="space-y-4">
                 {filteredThreads.map(thread => {
+                    // FIX: Use authorId to find the author object.
                     const author = getUser(thread.authorId);
                     const category = getCategory(thread.categoryId);
                     if (!author) return null;
@@ -365,6 +381,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
 
     const renderThreadView = () => {
         if (!selectedThread) return null;
+        // FIX: Use authorId to find the author object.
         const author = getUser(selectedThread.authorId);
         if (!author) return null;
         return (
@@ -400,8 +417,10 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                         <h3 className="text-xl font-semibold text-white mb-2">{selectedThread.replies.length} Replies</h3>
                     }
                     {selectedThread.replies.map(reply => {
+                        // FIX: Use authorId to find author object.
                         const replyAuthor = getUser(reply.authorId);
                         if (!replyAuthor) return null;
+                        // FIX: Check authorId against thread's authorId.
                         const isOPReply = reply.authorId === selectedThread.authorId;
                         return (
                              <div key={reply.id} className={`p-4 rounded-lg border transition-colors ${replyAuthor?.role === 'admin' ? 'bg-green-900/20 border-green-500/30' : (isOPReply ? 'bg-orange-900/20 border-[#F6520C]/30' : 'bg-gray-800/50 border-gray-700')}`}>
@@ -434,6 +453,7 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.562 8H12V4a2 2 0 00-2-2v1.293a1 1 0 01-1.707 0L6.5 2.5a1 1 0 00-1 0V10.333z" />
                                         </svg>
+                                        {/* FIX: Use likes property. */}
                                         <span>{reply.likes > 0 ? reply.likes : 'Like'}</span>
                                     </button>
                                 </div>

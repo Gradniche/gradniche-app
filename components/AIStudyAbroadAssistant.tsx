@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getAIChatResponseStream, ChatMessage } from '../services/geminiService';
-import { User, generateAvatarUrl } from '../data/forums';
 
 interface AIStudyAbroadAssistantProps {
     isOpen: boolean;
     onClose: () => void;
     context: string;
-    currentUser: User | null;
 }
 
-const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen, onClose, context, currentUser }) => {
+const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen, onClose, context }) => {
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -59,9 +57,7 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
     
     if (!isOpen) return null;
 
-    const userAvatarUrl = currentUser 
-        ? generateAvatarUrl(currentUser.avatarConfig)
-        : 'https://api.dicebear.com/7.x/adventurer/svg?seed=guest';
+    const userAvatarUrl = 'https://api.dicebear.com/7.x/adventurer/svg?seed=guest';
         
     const aiAvatarUrl = 'https://api.dicebear.com/7.x/adventurer/svg?seed=gradniche-ai-assistant&hair=short01&accessories=glasses&skinColor=F5C6A0&accessoriesProbability=100';
 
@@ -97,7 +93,7 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
                             {msg.role === 'user' && (
                                 <img 
                                     src={userAvatarUrl} 
-                                    alt={currentUser?.name || 'Guest'} 
+                                    alt={'Guest'} 
                                     className="w-8 h-8 rounded-full" 
                                 />
                             )}

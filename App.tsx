@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect, useMemo } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -9,6 +12,7 @@ import AIDestinationFinder from './components/AIDestinationFinder';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import CollegeFinder from './components/CollegeFinder';
+// FIX: Changed to a default import for UniversityDetail.
 import UniversityDetail from './components/UniversityDetail';
 import ProgramDetail from './components/ProgramDetail';
 import DestinationDetail from './components/DestinationDetail';
@@ -19,7 +23,6 @@ import AISOPSnalyzer from './components/AISOPSnalyzer';
 import VisaGuides from './components/VisaGuides';
 import ScholarshipFinder from './components/ScholarshipFinder';
 import CommunityForums from './components/CommunityForums';
-import Login from './components/Login';
 import CostOfLivingCalculator from './components/CostOfLivingCalculator';
 import PreDepartureChecklists from './components/PreDepartureChecklists';
 import FloatingChatButton from './components/FloatingChatButton';
@@ -29,25 +32,14 @@ import TermsAndConditions from './components/TermsAndConditions';
 import DisclaimerPage from './components/DisclaimerPage';
 import CookiePolicy from './components/CookiePolicy';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import AvatarCustomizer from './components/AvatarCustomizer';
 import { University, Program, universities } from './data/universities';
 import { destinationData } from './data/destinations';
-import { User, users as initialUsers, AvatarConfig } from './data/forums';
-import { maleAvatars, femaleAvatars } from './data/avatars';
 import CommunityHighlights from './components/CommunityHighlights';
 import ShortlistPage from './components/ShortlistPage';
 import F1VisaPrep from './components/F1VisaPrep';
 import F1VisaPrepFeature from './components/F1VisaPrepFeature';
+import { User, users as forumUsers } from './data/forums';
 
-
-export interface Notification {
-  id: string;
-  recipientId: string;
-  message: string;
-  threadId: string;
-  isRead: boolean;
-  timestamp: Date;
-}
 
 export type ShortlistItem = 
     | { type: 'university'; universityId: string; }
@@ -55,7 +47,7 @@ export type ShortlistItem =
 
 
 export type ToolPage = 'course-comparison' | 'sop-analyzer' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
-export type Page = 'home' | 'college-finder' | 'about' | 'destination-usa' | 'destination-uk' | 'destination-canada' | 'destination-australia' | 'destination-germany' | 'destination-ireland' | 'destination-uae' | 'destination-new-zealand' | 'login' | 'contact' | 'terms-and-conditions' | 'disclaimer' | 'cookie-policy' | 'privacy-policy' | 'shortlist' | ToolPage;
+export type Page = 'home' | 'college-finder' | 'about' | 'destination-usa' | 'destination-uk' | 'destination-canada' | 'destination-australia' | 'destination-germany' | 'destination-ireland' | 'destination-uae' | 'destination-new-zealand' | 'contact' | 'terms-and-conditions' | 'disclaimer' | 'cookie-policy' | 'privacy-policy' | 'shortlist' | ToolPage;
 
 const toolDetails: Record<ToolPage, {name: string, description: string}> = {
     'course-comparison': { name: 'Course Comparison', description: 'Compare courses from different universities side-by-side to find your perfect fit.' },
@@ -87,7 +79,6 @@ const pageMetadata: Record<Page, { title: string, description: string }> = {
     'destination-ireland': { title: 'Study in Ireland | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in Europe\'s tech hub. Discover universities and post-study work opportunities in Ireland with GradNiche.' },
     'destination-uae': { title: 'Study in the UAE | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in a global business hub known for modern universities and an international outlook. Your complete guide with GradNiche.' },
     'destination-new-zealand': { title: 'Study in New Zealand | Top Universities & Guide | GradNiche', description: 'Discover a world-class education, stunning landscapes, and a high quality of life in New Zealand. Your complete guide with GradNiche.' },
-    'login': { title: 'Login or Sign Up | GradNiche Community', description: 'Log in or sign up to access the GradNiche community forums and connect with other students planning to study abroad.' },
     'course-comparison': { title: 'Course Comparison Tool | Compare Programs | GradNiche', description: 'Compare university courses side-by-side. Analyze tuition, duration, requirements, and more to find the perfect program for your study abroad journey.' },
     'sop-analyzer': { title: 'AI SOP Analyzer | Instant Essay Feedback | GradNiche', description: 'Improve your Statement of Purpose with our AI Analyzer. Get instant, data-driven feedback on clarity, storytelling, and impact to boost your application.' },
     'f1-visa-prep': { title: 'F1 Visa Interview Prep | AI Mock Interview | GradNiche', description: 'Practice for your US F-1 student visa interview with a realistic AI tool. Get confident with common questions, tips, and sample answers from GradNiche.' },
@@ -104,15 +95,33 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [loginRedirectPage, setLoginRedirectPage] = useState<Page | null>(null);
-  const [users, setUsers] = useState<User[]>(initialUsers);
-  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
-  const [shortlist, setShortlist] = useState<ShortlistItem[]>([]);
+  const [shortlist, setShortlist] = useState<ShortlistItem[]>(() => {
+    try {
+        const saved = localStorage.getItem('gradniche-shortlist');
+        return saved ? JSON.parse(saved) : [];
+    } catch {
+        return [];
+    }
+  });
+
+  // FIX: Added mock user state management for CommunityForums props.
+  const [users, setUsers] = useState<User[]>(forumUsers);
+  const [currentUser, setCurrentUser] = useState<User | null>(users[0]); // Mock login: Rohan Mehta is logged in
+
+  const handleAddNotification = (recipientId: string, message: string, threadId: string) => {
+    // This is a mock function. In a real app, it would update state or call an API.
+    console.log(`Notification for ${recipientId}: ${message} (Thread: ${threadId})`);
+  };
+
+  useEffect(() => {
+    try {
+        localStorage.setItem('gradniche-shortlist', JSON.stringify(shortlist));
+    } catch (error) {
+        console.error("Could not save shortlist to localStorage", error);
+    }
+  }, [shortlist]);
 
 
   const aiContext = useMemo(() => {
@@ -240,13 +249,6 @@ const App: React.FC = () => {
 
 
   const navigateTo = (page: Page) => {
-    if ((page === 'community-forums' || page === 'shortlist' || page === 'sop-analyzer') && !isAuthenticated) {
-        setLoginRedirectPage(page);
-        setCurrentPage('login');
-        window.scrollTo(0, 0);
-        return;
-    }
-
     setCurrentPage(page);
     setSelectedUniversity(null);
     setSelectedProgram(null);
@@ -273,75 +275,7 @@ const App: React.FC = () => {
       });
   };
 
-  const handleLogin = (user: User) => {
-    setIsAuthenticated(true);
-    setCurrentUser(user);
-    navigateTo(loginRedirectPage || 'home');
-    setLoginRedirectPage(null);
-  };
-
-  const handleSignup = (newUser: { name: string, username: string, password?: string }) => {
-    const generateRandomAvatarConfig = (): AvatarConfig => {
-        const allAvatars = [...maleAvatars, ...femaleAvatars];
-        const randomIndex = Math.floor(Math.random() * allAvatars.length);
-        return allAvatars[randomIndex];
-    };
-    
-    const newUserRecord: User = {
-        ...newUser,
-        id: `u${Date.now()}`,
-        avatarConfig: generateRandomAvatarConfig(),
-        role: 'user',
-    };
-    setUsers(prevUsers => [...prevUsers, newUserRecord]);
-    setIsAuthenticated(true);
-    setCurrentUser(newUserRecord);
-    navigateTo(loginRedirectPage || 'home');
-    setLoginRedirectPage(null);
-    setIsAvatarModalOpen(true);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setCurrentUser(null);
-    setNotifications([]);
-    setActiveThreadId(null);
-    setShortlist([]);
-    navigateTo('home');
-  };
-  
-  const handleSaveAvatar = (newConfig: AvatarConfig) => {
-    if (!currentUser) return;
-
-    const updatedUser = { ...currentUser, avatarConfig: newConfig };
-    setCurrentUser(updatedUser);
-
-    setUsers(prevUsers => prevUsers.map(u => u.id === currentUser.id ? updatedUser : u));
-    setIsAvatarModalOpen(false);
-  };
-
-  const handleAddNotification = (recipientId: string, message: string, threadId: string) => {
-    const newNotification: Notification = {
-      id: `notif-${Date.now()}`,
-      recipientId,
-      message,
-      threadId,
-      isRead: false,
-      timestamp: new Date(),
-    };
-    setNotifications(prev => [newNotification, ...prev]);
-  };
-
-  const handleMarkNotificationsAsRead = () => {
-    if (!currentUser) return;
-    setNotifications(prev =>
-      prev.map(n =>
-        n.recipientId === currentUser.id ? { ...n, isRead: true } : n
-      )
-    );
-  };
-
-  const handleNotificationClick = (threadId: string) => {
+  const handleThreadSelect = (threadId: string) => {
     setActiveThreadId(threadId);
     navigateTo('community-forums');
   };
@@ -378,11 +312,7 @@ const App: React.FC = () => {
     } else if (['about', 'contact', 'shortlist', 'terms-and-conditions', 'disclaimer', 'cookie-policy', 'privacy-policy'].includes(currentPage)) {
         navigateTo('home');
     } else if (Object.keys(toolDetails).includes(currentPage)) {
-        if (currentPage === 'community-forums' || currentPage === 'login') {
-            navigateTo('home');
-        } else {
-            navigateTo('home');
-        }
+        navigateTo('home');
     }
   };
   
@@ -399,9 +329,6 @@ const App: React.FC = () => {
           <div className="scroll-animate"><F1VisaPrepFeature navigateTo={navigateTo} /></div>
         </>
       );
-    }
-    if (currentPage === 'login') {
-        return <Login onLogin={handleLogin} onSignup={handleSignup} onBack={handleBack} users={users} />;
     }
     if (currentPage === 'shortlist') {
         return <ShortlistPage 
@@ -431,16 +358,14 @@ const App: React.FC = () => {
                     onBack={handleBack}
                     shortlist={shortlist}
                     onToggleShortlist={handleToggleShortlist}
-                    isAuthenticated={isAuthenticated}
                     navigateTo={navigateTo}
-                    onThreadSelect={handleNotificationClick}
+                    onThreadSelect={handleThreadSelect}
                 />;
       }
       return <CollegeFinder 
                 onUniversitySelect={handleSelectUniversity} 
                 shortlist={shortlist}
                 onToggleShortlist={handleToggleShortlist}
-                isAuthenticated={isAuthenticated}
             />;
     }
     if (currentPage.startsWith('destination-')) {
@@ -493,11 +418,12 @@ const App: React.FC = () => {
     if (currentPage === 'community-forums') {
         return <CommunityForums 
             onBack={handleBack} 
-            currentUser={currentUser} 
-            users={users}
-            onAddNotification={handleAddNotification}
             activeThreadId={activeThreadId}
             onClearActiveThreadId={clearActiveThreadId}
+            // FIX: Pass missing props to CommunityForums component.
+            currentUser={currentUser}
+            users={users}
+            onAddNotification={handleAddNotification}
         />;
     }
     if (Object.keys(toolDetails).includes(currentPage)) {
@@ -512,13 +438,6 @@ const App: React.FC = () => {
     <div className="bg-[#0a101f] min-h-screen">
       <Header 
         navigateTo={navigateTo} 
-        isAuthenticated={isAuthenticated} 
-        onLogout={handleLogout} 
-        currentUser={currentUser} 
-        notifications={notifications}
-        onMarkNotificationsAsRead={handleMarkNotificationsAsRead}
-        onNotificationClick={handleNotificationClick}
-        onCustomizeAvatar={() => setIsAvatarModalOpen(true)}
       />
       <main>
         {renderMainContent()}
@@ -528,17 +447,8 @@ const App: React.FC = () => {
         isOpen={isChatOpen} 
         onClose={() => setIsChatOpen(false)}
         context={aiContext}
-        currentUser={currentUser} 
       />
       <FloatingChatButton onClick={() => setIsChatOpen(true)} />
-      {currentUser && (
-        <AvatarCustomizer 
-          isOpen={isAvatarModalOpen}
-          onClose={() => setIsAvatarModalOpen(false)}
-          currentUser={currentUser}
-          onSave={handleSaveAvatar}
-        />
-      )}
     </div>
   );
 };

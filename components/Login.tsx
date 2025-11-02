@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// FIX: Import the User interface from the data/forums module.
 import { User } from '../data/forums';
 
 interface LoginProps {

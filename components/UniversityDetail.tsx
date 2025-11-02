@@ -1,9 +1,10 @@
 
 
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { University, Program } from '../data/universities';
 import { ShortlistItem, Page } from '../App';
-import { threads as allThreads, users, User, generateAvatarUrl } from '../data/forums';
+import { threads as allThreads, generateAvatarUrl, users } from '../data/forums';
 
 
 interface UniversityDetailProps {
@@ -12,7 +13,6 @@ interface UniversityDetailProps {
   onBack: () => void;
   shortlist: ShortlistItem[];
   onToggleShortlist: (item: ShortlistItem) => void;
-  isAuthenticated: boolean;
   navigateTo: (page: Page) => void; 
   onThreadSelect: (threadId: string) => void;
 }
@@ -63,7 +63,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
 );
 
 
-const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, shortlist, onToggleShortlist, isAuthenticated, navigateTo, onThreadSelect }) => {
+const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, shortlist, onToggleShortlist, navigateTo, onThreadSelect }) => {
   const [activeSection, setActiveSection] = useState('overview');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const isUniversityShortlisted = shortlist.some(item => item.type === 'university' && item.universityId === university.id);
@@ -85,8 +85,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
     { id: 'reviews', label: 'Community', ref: reviewsRef },
     { id: 'faq', label: 'FAQ', ref: faqRef },
   ], [university.programs.length]);
-
-  const getUser = (userId: string): User | undefined => users.find(u => u.id === userId);
 
   const relevantThreads = useMemo(() => {
     const universityNameLower = university.name.toLowerCase();
@@ -167,13 +165,11 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                  <div className="absolute top-4 right-4 z-20">
                     <button
                         onClick={() => onToggleShortlist({ type: 'university', universityId: university.id })}
-                        disabled={!isAuthenticated}
-                        className="flex items-center space-x-2 px-4 py-2 rounded-full bg-black/30 backdrop-blur-sm text-white hover:text-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed group"
+                        className="flex items-center space-x-2 px-4 py-2 rounded-full bg-black/30 backdrop-blur-sm text-white hover:text-yellow-400 group"
                         aria-label={isUniversityShortlisted ? 'Remove university from shortlist' : 'Add university to shortlist'}
                     >
                         <StarIcon isFilled={isUniversityShortlisted} />
                         <span className="text-sm font-semibold hidden sm:block">{isUniversityShortlisted ? 'Shortlisted' : 'Shortlist'}</span>
-                        {!isAuthenticated && <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-black text-xs text-white px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap shadow-lg">Login to shortlist</span>}
                     </button>
                 </div>
                 <div className="flex flex-col md:flex-row items-center md:space-x-8">
@@ -237,126 +233,87 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                                                     </span>
                                                 )}
                                                 {program.rankings.usNewsSubject && (
-                                                    <span className="bg-blue-500/20 text-blue-300 font-semibold px-2 py-1 rounded-full flex items-center gap-1.5">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                        </svg>
-                                                        U.S. News Subject: #{program.rankings.usNewsSubject}
-                                                    </span>
+                                                    <span className="bg-blue-500/20 text-blue-300 font-semibold px-2 py-1 rounded-full">US News Subject: #{program.rankings.usNewsSubject}</span>
                                                 )}
                                             </div>
                                         )}
                                     </div>
-                                    <div className="text-right flex-shrink-0">
-                                        <p className="text-lg font-bold text-[#F6520C]">${program.tuition.toLocaleString()}</p>
-                                        <p className="text-xs text-gray-500">/ year</p>
+                                    <div className="flex-shrink-0 text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
                                     </div>
                                 </div>
                             </button>
                         )) : (
-                            <div className="bg-gray-800/50 p-6 rounded-lg text-center">
-                                <p className="text-gray-400">No graduate programs listed for this university. Please check the official university website for more information.</p>
-                            </div>
+                            <p className="text-gray-500 text-center">No graduate programs listed for this university.</p>
                         )}
                     </div>
                 </section>
-
+                
                 <hr className="my-10 border-gray-700" />
-
+                
                 <section id="scholarships" ref={scholarshipsRef} className="scroll-mt-24">
-                    <h2 className="text-2xl font-semibold text-white mb-6">Scholarships & Financial Aid</h2>
-                    <p className="text-gray-400 leading-relaxed whitespace-pre-line">{university.scholarships || 'Information not available. Please check the university website.'}</p>
+                    <h2 className="text-2xl font-semibold text-white mb-4">Scholarships & Funding</h2>
+                    <p className="text-gray-400 leading-relaxed mb-6">{university.scholarships}</p>
+                     <button onClick={() => navigateTo('scholarship-finder')} className="bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
+                      Find Relevant Scholarships
+                    </button>
                 </section>
                 
                 <hr className="my-10 border-gray-700" />
                 
                 <section id="admissions" ref={admissionsRef} className="scroll-mt-24">
-                    <h2 className="text-2xl font-semibold text-white mb-6">Admissions Insights</h2>
-                    <div className="bg-gray-800/50 p-6 rounded-lg space-y-4">
-                        <p className="text-gray-300">Admissions at a top-tier institution like {university.name} are highly competitive and holistic. With an estimated acceptance rate of {university.acceptanceRate || 'just a small percentage'}, the admissions committee looks beyond just grades and test scores, seeking candidates who demonstrate passion, leadership, and a unique perspective.</p>
-                        <ul className="list-disc list-outside pl-5 text-gray-400 space-y-2 marker:text-[#F6520C]">
-                            <li><strong>Academic Excellence:</strong> A strong academic record in a relevant field is the foundation of any application.</li>
-                            <li><strong>Statement of Purpose (SOP):</strong> A compelling SOP that clearly articulates your motivations, research interests, and career goals is essential to stand out.</li>
-                            <li><strong>Letters of Recommendation (LORs):</strong> Strong LORs from professors or supervisors who can vouch for your academic and research potential carry significant weight.</li>
-                            <li><strong>Relevant Experience:</strong> Internships, research projects, or full-time work experience can significantly strengthen your profile, especially for professional Master's programs and MBAs.</li>
-                        </ul>
+                    <h2 className="text-2xl font-semibold text-white mb-4">Admission Insights</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        <KeyFact label="Acceptance Rate" value={university.acceptanceRate} />
+                        <KeyFact label="Application Fee" value={university.applicationFee} />
                     </div>
                 </section>
-
+                
                 <hr className="my-10 border-gray-700" />
 
                 <section id="student-life" ref={studentLifeRef} className="scroll-mt-24">
-                    <h2 className="text-2xl font-semibold text-white mb-6">Student Life & Community</h2>
-                    <div className="space-y-4">
-                        <div className="bg-gray-800/50 p-6 rounded-lg">
-                            <h4 className="font-semibold text-white mb-2">Vibrant International Community</h4>
-                            <p className="text-gray-400">
-                                {university.name} boasts a diverse student body, with approximately <strong className="text-orange-300">{university.internationalStudents || 'many'} of students coming from outside {university.country}</strong>. This creates a rich multicultural environment, offering global perspectives both inside and outside the classroom.
-                            </p>
-                        </div>
-                        <div className="bg-gray-800/50 p-6 rounded-lg">
-                            <h4 className="font-semibold text-white mb-2">Personalized Academic Attention</h4>
-                            <p className="text-gray-400">
-                                With a student-to-faculty ratio of <strong className="text-orange-300">{university.studentFacultyRatio || 'N/A'}</strong>, the university emphasizes personalized learning and direct access to world-class professors. This is particularly beneficial for graduate students engaging in research and specialized coursework.
-                            </p>
-                        </div>
+                    <h2 className="text-2xl font-semibold text-white mb-4">Student Life</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        <KeyFact label="Int'l Students" value={university.internationalStudents} />
+                        <KeyFact label="Student:Faculty Ratio" value={university.studentFacultyRatio} />
                     </div>
                 </section>
                 
                 <hr className="my-10 border-gray-700" />
                 
-                <section id="reviews" ref={reviewsRef} className="scroll-mt-24">
-                     <h2 className="text-2xl font-semibold text-white mb-6">Community Discussions</h2>
-                     <div className="space-y-6">
-                        {relevantThreads.length > 0 ? (
-                            relevantThreads.map(thread => {
-                                const author = getUser(thread.authorId);
-                                if (!author) return null;
+                 <section id="reviews" ref={reviewsRef} className="scroll-mt-24">
+                    <h2 className="text-2xl font-semibold text-white mb-6">Community Discussions</h2>
+                    {relevantThreads.length > 0 ? (
+                        <div className="space-y-4">
+                            {relevantThreads.map(thread => {
+                                const author = users.find(u => u.id === thread.authorId);
                                 return (
-                                    <div key={thread.id} className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
-                                        <div className="flex items-center space-x-3 mb-3">
-                                            <img src={generateAvatarUrl(author.avatarConfig)} alt={author.name} className="w-10 h-10 rounded-full" />
-                                            <div>
-                                                <p className="font-semibold text-white">{author.name}</p>
-                                                <p className="text-xs text-gray-500">{thread.timestamp}</p>
-                                            </div>
-                                        </div>
-                                        <h4 className="text-lg font-bold text-white mb-2">{thread.title}</h4>
-                                        <p className="text-gray-400 text-sm line-clamp-3">
-                                            {thread.content}
-                                        </p>
-                                        <div className="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
-                                            <div className="text-sm text-gray-400">
-                                                {thread.replies.length} {thread.replies.length === 1 ? 'Reply' : 'Replies'}
-                                            </div>
-                                            <button onClick={() => onThreadSelect(thread.id)} className="text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition">
-                                                Read full discussion &rarr;
-                                            </button>
-                                        </div>
+                                <button key={thread.id} onClick={() => onThreadSelect(thread.id)} className="w-full text-left bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-gray-500 transition-colors">
+                                    <p className="font-semibold text-white truncate">{thread.title}</p>
+                                    <div className="flex items-center space-x-2 text-xs text-gray-400 mt-2">
+                                        <img src={generateAvatarUrl(author!.avatarConfig)} alt={author!.name} className="w-5 h-5 rounded-full" />
+                                        <span>{author!.name}</span>
+                                        <span>&middot;</span>
+                                        <span>{thread.replies.length} replies</span>
                                     </div>
-                                )
-                            })
-                        ) : (
-                            <div className="bg-gray-800/50 p-6 rounded-lg text-center">
-                                <p className="text-gray-400">No community discussions found about {university.name} yet.</p>
-                                <button onClick={() => navigateTo('community-forums')} className="mt-4 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition">
-                                    Be the first to start one!
                                 </button>
-                            </div>
-                        )}
-                        <div className="text-center mt-6">
-                            <button onClick={() => navigateTo('community-forums')} className="bg-gray-700/50 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700 transition-colors duration-300">
-                                Explore More in Forums
-                            </button>
+                            )})}
                         </div>
-                     </div>
+                    ) : (
+                        <p className="text-gray-500">No community discussions found for this university yet.</p>
+                    )}
+                    <button onClick={() => navigateTo('community-forums')} className="mt-6 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition">
+                        View All Discussions &rarr;
+                    </button>
                 </section>
                 
                 <hr className="my-10 border-gray-700" />
                 
                 <section id="faq" ref={faqRef} className="scroll-mt-24">
                     <h2 className="text-2xl font-semibold text-white mb-6">Frequently Asked Questions</h2>
-                    <div>
+                    <div className="space-y-2">
                         {faqs.map((faq, index) => (
                             <AccordionItem
                                 key={index}
@@ -364,61 +321,44 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                                 isOpen={openFaqIndex === index}
                                 onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                             >
-                                <p>{faq.answer}</p>
+                                {faq.answer}
                             </AccordionItem>
                         ))}
                     </div>
                 </section>
-                
-                <hr className="my-10 border-gray-700" />
-                
-                <div className="bg-gradient-to-r from-[#F6520C]/20 to-gray-800/30 p-8 rounded-lg text-center border border-[#F6520C]/50">
-                    <h2 className="text-2xl font-bold text-white">Need Help Applying to {university.name}?</h2>
-                    <p className="text-lg text-gray-400 mt-2 mb-6 max-w-2xl mx-auto">
-                        Our expert counselors can provide personalized guidance on your application, SOP, and visa process to maximize your chances of success.
-                    </p>
-                    <button onClick={() => navigateTo('contact')} className="bg-[#F6520C] text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition duration-300 shadow-lg transform hover:scale-105">
-                        Get Free Counseling
-                    </button>
-                </div>
             </div>
             
-            {/* Right Column: Sticky Key Facts & Nav */}
-            <aside className="lg:col-span-1">
-                <div className="lg:sticky lg:top-24">
-                    <div className="hidden lg:block bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-gray-700">
-                        <h2 className="text-2xl font-semibold text-white mb-4">Key Facts</h2>
+            {/* Right Column: Key Facts & Navigation */}
+            <aside className="lg:col-span-1 hidden lg:block">
+                <div className="sticky top-24 space-y-6">
+                    <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
+                        <h2 className="text-xl font-bold text-white mb-4">Key Facts</h2>
                         <div className="grid grid-cols-2 gap-4">
                             <KeyFact label="QS Ranking" value={university.qsRanking ? `#${university.qsRanking}` : 'N/A'} />
-                            <KeyFact label="US News Global" value={university.otherRankings?.usNewsGlobal ? `#${university.otherRankings.usNewsGlobal}` : undefined} />
+                             <KeyFact label="US News Global" value={university.otherRankings?.usNewsGlobal ? `#${university.otherRankings.usNewsGlobal}` : undefined} />
                             <KeyFact label="National Rank" value={university.otherRankings?.national ? `#${university.otherRankings.national}` : undefined} />
                             <KeyFact label="Acceptance Rate" value={university.acceptanceRate} />
                             <KeyFact label="Type" value={university.type} />
                             <KeyFact label="Founded" value={university.foundedYear} />
-                             <KeyFact label="Student:Faculty" value={university.studentFacultyRatio} />
-                            <KeyFact label="Int'l Students" value={university.internationalStudents} />
-                            <KeyFact label="Application Fee" value={university.applicationFee} />
                         </div>
                     </div>
-                    <nav className="mt-8 bg-white/5 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
-                        <h3 className="text-lg font-semibold text-white mb-3 px-2">On this page</h3>
+                    <div className="bg-white/5 p-4 rounded-lg border border-gray-700">
+                        <h3 className="text-lg font-bold text-white mb-2 px-2">On This Page</h3>
                         <ul className="space-y-1">
                             {navLinks.map(link => (
                                 <li key={link.id}>
                                     <a href={`#${link.id}`}
-                                       className={`flex justify-between items-center px-3 py-2 text-sm rounded-md transition-all duration-200 border-l-4 ${activeSection === link.id ? 'bg-[#F6520C]/10 text-[#F6520C] font-semibold border-[#F6520C]' : 'text-gray-400 hover:text-white hover:bg-gray-700/50 border-transparent'}`}
-                                    >
+                                      className={`block text-sm px-3 py-2 rounded-md transition-colors ${activeSection === link.id ? 'bg-[#F6520C]/20 text-[#F6520C] font-semibold' : 'text-gray-400 hover:text-white hover:bg-gray-700/50'}`}>
                                         {link.label}
-                                        {typeof link.count !== 'undefined' && <span className={`text-xs px-2 py-0.5 rounded-full ${activeSection === link.id ? 'bg-[#F6520C]/30' : 'bg-gray-600'}`}>{link.count}</span>}
+                                        {link.count !== undefined && <span className="ml-2 bg-gray-600 text-gray-200 text-xs font-bold px-2 py-0.5 rounded-full">{link.count}</span>}
                                     </a>
                                 </li>
                             ))}
                         </ul>
-                    </nav>
+                    </div>
                 </div>
             </aside>
         </div>
-
       </div>
     </section>
   );

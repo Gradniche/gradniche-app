@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+// FIX: Import the User interface from the data/forums module.
 import { User, AvatarConfig, generateAvatarUrl } from '../data/forums';
 import { maleAvatars, femaleAvatars } from '../data/avatars';
 

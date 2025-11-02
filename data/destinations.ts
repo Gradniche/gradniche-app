@@ -270,309 +270,379 @@ export const destinationData: DestinationData = {
                 { question: "Can I apply for the Graduate Route from outside the UK?", answer: "No, you must apply for the Graduate Route visa from inside the UK and must have a valid Student Visa at the time of application. You must apply after your university has notified you that you have successfully completed your course." }
             ]
         },
-        postStudyWorkInfo: "The Graduate Route:\nThis is the UK's post-study work visa. It allows eligible international students to stay in the UK to work, or look for work, after they have successfully completed their course.\n- Duration: 2 years for Master's graduates, 3 years for PhD graduates.\n- Flexibility: It is an unsponsored route, meaning you do not need a job offer to apply. You can work in most jobs and switch employers freely.\n- Objective: It provides a great opportunity to gain valuable work experience in the UK, which can later help in applying for a Skilled Worker visa.",
-        scholarshipsInfo: "The UK offers several prestigious scholarships for Indian students:\n- Chevening Scholarships: A fully-funded scholarship from the UK government for a one-year Master's degree. Highly competitive and prestigious.\n- Commonwealth Scholarships: For students from Commonwealth countries, including India, covering Master's and PhD studies.\n- GREAT Scholarships: A joint initiative by the British Council and UK universities, offering scholarships of at least £10,000 for one-year postgraduate courses.\n- University-Specific Scholarships: Almost all UK universities offer merit-based scholarships specifically for international students.",
-        coursesInfo: "The UK is a popular destination for a wide range of subjects, especially:\n- Business, Management, and Finance\n- Law\n- Engineering\n- Computer Science and Artificial Intelligence\n- Art and Design\n- Medicine and Life Sciences",
+        postStudyWorkInfo: "The Graduate Route:\nThis is the UK's post-study work visa. It allows eligible international students to stay in the UK to work, or look for work, for 2 years (3 years for PhD graduates) after they have successfully completed their course. This visa is a great opportunity to gain valuable work experience in the UK.",
+        scholarshipsInfo: "The UK offers many prestigious scholarships for Indian students:\n- Chevening Scholarships: The UK government's global scholarship programme, offering full funding for Master's degrees.\n- Commonwealth Scholarships: For students from Commonwealth countries, offering various scholarships for Master's and PhD studies.\n- GREAT Scholarships: A joint programme by the British Council and UK universities, offering scholarships for Indian students for a one-year Master's degree.",
+        coursesInfo: "The UK is a popular destination for a wide variety of subjects:\n- Business, Management & Finance\n- Engineering & Technology\n- Law\n- Art & Design\n- Computer Science and Data Science\n- Medicine and Life Sciences",
         faq: [
-            { question: "What is the Graduate Route visa?", answer: "The Graduate Route allows international students who have successfully completed a degree in the UK to stay and work, or look for work, at any skill level for two years (three years for PhD graduates). You must apply from within the UK before your Student visa expires." },
-            { question: "How long does a Master's degree take in the UK?", answer: "Most Master's programs in the UK are one year long, which is a major advantage as it reduces both tuition and living costs compared to two-year programs in other countries." },
-            { question: "Is the IELTS UKVI required?", answer: "It depends on your university's requirements. Some universities may accept standard IELTS Academic or other tests, while others specifically require the IELTS for UKVI for visa purposes. Always check with your chosen institution." }
+            { question: "Are one-year Master's degrees from the UK valuable?", answer: "Yes, absolutely. One-year Master's degrees from the UK are globally recognized and highly respected by employers. The intensive nature of the course is well understood and valued. It also allows you to enter the workforce a year earlier." },
+            { question: "What is a 'conditional' vs 'unconditional' offer?", answer: "A conditional offer means you still need to meet certain requirements, such as achieving a specific score on your English test or in your final undergraduate exams. An unconditional offer means you have met all the requirements and your place is confirmed." },
+            { question: "Can I bring my family with me on a Student Visa?", answer: "If you are studying a postgraduate course of 9 months or longer, or a government-sponsored student, you may be able to bring your dependents (partner and children under 18) with you." }
         ],
         topUniversities: [
-            { name: "University of Cambridge", qsRanking: 5, logo: "https://logo.clearbit.com/cam.ac.uk" },
-            { name: "University of Oxford", qsRanking: 3, logo: "https://logo.clearbit.com/ox.ac.uk" },
-            { name: "Imperial College London", qsRanking: 2, logo: "https://logo.clearbit.com/imperial.ac.uk" },
-            { name: "UCL (University College London)", qsRanking: 9, logo: "https://logo.clearbit.com/ucl.ac.uk" }
+            { name: "University of Cambridge", qsRanking: 2, logo: "https://logo.clearbit.com/cam.ac.uk" },
+            { name: "University of Oxford", qsRanking: 4, logo: "https://logo.clearbit.com/ox.ac.uk" },
+            { name: "Imperial College London", qsRanking: 8, logo: "https://logo.clearbit.com/imperial.ac.uk" },
+            { name: "UCL (University College London)", qsRanking: 10, logo: "https://logo.clearbit.com/ucl.ac.uk" }
         ]
     },
     australia: {
         name: "Australia",
-        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2 19h20M4 19a8 8 0 018-8 8 8 0 018 8M12 3a8 8 0 018 8" }), React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M20 19a8 8 0 00-8-8" })),
-        heroImage: "https://images.unsplash.com/photo-1617924449881-674574b5b74c?q=80&w=2070&auto=format&fit=crop",
-        intro: "Australia offers a world-class education system in a relaxed, friendly, and safe environment. With its sunny climate, beautiful beaches, and vibrant cities, it provides an unbeatable lifestyle alongside excellent academic and research opportunities.",
+        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })),
+        heroImage: "https://images.unsplash.com/photo-1624555130298-e6b42c34a0d2?q=80&w=1974&auto=format&fit=crop",
+        intro: "Australia offers a world-class education combined with an unbeatable lifestyle. Known for its vibrant cities, stunning landscapes, and friendly culture, it provides a high-quality, hands-on learning experience with generous post-study work rights.",
         avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-australia-female', hair: 'long02', eyes: 'variant07', skinColor: 'C47D6A', hairColor: 'B86B25', clothing: 'crewNeck', clothingColor: 'FFCD00' } },
         whyStudy: [
             { 
                 title: "Globally Ranked", 
-                point: "Australian universities are consistently ranked among the top globally, particularly in fields like engineering and environmental science.",
-                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M5 3v4M3 5h4M6 17v4m-2-2h4M14 3v4m-2 2h4M15 17v4m-2-2h4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }))
-            },
-            { 
-                title: "Research & Technology", 
-                point: "The government and universities invest heavily in research and innovation, providing students with access to state-of-the-art facilities.",
-                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 01-.517-3.86l.477-2.387a2 2 0 01.547-1.022a2 2 0 011.022-.547z" }), React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 8a4 4 0 100-8 4 4 0 000 8z" }))
+                point: "Australian universities are consistently ranked among the top in the world, particularly in fields like engineering, medicine, and environmental science.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.002 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.002 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" }))
             },
             { 
                 title: "Post-Study Work", 
-                point: "The Temporary Graduate visa (subclass 485) allows eligible students to stay and work in Australia for two to four years after graduation.",
-                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }))
+                point: "Generous Temporary Graduate visa (subclass 485) allows graduates to work for 2-4 years, providing a pathway to professional careers.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M briefcase" }))
             },
             { 
-                title: "Unmatched Lifestyle", 
-                point: "Enjoy a high standard of living, vibrant multicultural cities, and stunning natural landscapes, from coral reefs to vast deserts.",
-                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" }))
+                title: "Quality of Life", 
+                point: "Enjoy a high standard of living, vibrant multicultural cities, and stunning natural beauty, from beaches to the outback.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 10V3L4 14h7v7l9-11h-7z" }))
+            },
+            { 
+                title: "Research Focus", 
+                point: "Australia is a leader in global research, making significant contributions in fields like environmental sciences and medical research.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 01-.517-3.86l.477-2.387a2 2 0 011.806-.547z" }))
             }
         ],
-        educationSystemInfo: "The Australian education system is modeled on the British system, emphasizing research and practical skills. A Bachelor's degree is typically three years, while Master's degrees range from 1 to 2 years. The system is regulated by the government through the Australian Qualifications Framework (AQF), ensuring high standards across all institutions.",
-        admissionProcessInfo: "1. Apply to University: Submit an application to your chosen institution.\n2. Receive Offer: Get a Letter of Offer from the university.\n3. Confirmation of Enrolment (CoE): Accept the offer and pay the tuition deposit to receive your CoE.",
-        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: $22,000 - $50,000 AUD per year.\n\nLiving Costs:\n- The Department of Home Affairs requires students to show they have access to at least $21,041 AUD for living costs for one year. Major cities like Sydney and Melbourne are more expensive.",
+        educationSystemInfo: "The Australian education system is modeled on the British system. A Bachelor's degree is typically 3 years, while a Master's degree is 1.5-2 years. The system is regulated by the Australian Qualifications Framework (AQF), ensuring consistent quality across all institutions. There is a strong emphasis on practical, real-world skills and group-based project work.",
+        admissionProcessInfo: "1. Select Course & University: Use a platform like GradNiche to research your options.\n2. Apply: Submit your application directly to the university with all required documents (transcripts, English test scores, SOP, etc.).\n3. Receive Offer: If successful, you will receive a Letter of Offer.\n4. Accept & Pay: Accept your offer and pay the tuition deposit to receive your Confirmation of Enrolment (CoE).",
+        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: $25,000 - $50,000 AUD per year.\n\nLiving Costs:\n- The Australian government requires students to show they have access to at least $21,041 AUD for living costs for one year.",
         visaGuide: {
-            overview: "The Australian Student Visa (subclass 500) allows you to stay in Australia to study full-time in a registered course. A key component of the application is satisfying the Genuine Temporary Entrant (GTE) requirement.",
+            overview: "The Student visa (subclass 500) allows you to stay in Australia to study full-time in a CRICOS-registered course. You can generally include family members in your application.",
             documents: [
                 { item: 'Valid Passport', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" })) },
                 { item: 'Confirmation of Enrolment (CoE)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" })) },
-                { item: 'GTE Statement', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" })) },
-                { item: 'Financial Capacity Evidence', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
-                { item: 'Overseas Student Health Cover (OSHC)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" })) },
-                { item: 'English Proficiency Test Results', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" })) }
+                { item: 'Proof of Financial Capacity', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
+                { item: 'Genuine Temporary Entrant (GTE)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" })) },
+                { item: 'Overseas Student Health Cover (OSHC)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) },
             ],
             steps: [
-                { title: 'Receive Confirmation of Enrolment (CoE)', description: "After accepting your university's Letter of Offer and paying the tuition deposit, you will receive your CoE. This document is essential for the visa application." },
-                { title: 'Prepare GTE and Financial Documents', description: "Write a detailed Genuine Temporary Entrant (GTE) statement explaining your reasons for choosing Australia and your course. Gather evidence of your financial capacity to cover all costs." },
-                { title: 'Arrange Overseas Student Health Cover (OSHC)', description: "You must purchase an approved OSHC policy for the entire duration of your planned stay in Australia before you can apply for your visa." },
-                { title: 'Lodge Your Visa Application Online', description: "Create an ImmiAccount on the Department of Home Affairs website, fill in the application form, and upload all your documents, including your CoE, GTE statement, financial proof, and OSHC policy." },
-                { title: 'Provide Biometrics', description: "After lodging your application, you will be required to visit a designated center to provide your biometrics (fingerprints and a photograph)." }
+                { title: 'Receive Confirmation of Enrolment (CoE)', description: "After accepting your offer and paying your deposit, your university will provide you with a CoE." },
+                { title: 'Create an ImmiAccount', description: "Create an account on the Australian Department of Home Affairs' ImmiAccount portal. This is where you will lodge your visa application." },
+                { title: 'Gather and Prepare Documents', description: "Collect all necessary documents, including your CoE, financial proof, OSHC policy, and write a strong Genuine Temporary Entrant (GTE) statement." },
+                { title: 'Lodge Your Application', description: "Complete the online application form in your ImmiAccount, upload all your documents, and pay the visa application fee." },
+                { title: 'Provide Biometrics & Health Check', description: "You may be required to provide biometrics (fingerprints and photo) and undergo a health examination as part of your application." }
             ],
             financials: [
-                "You must demonstrate access to sufficient funds to cover travel, 12 months of course fees, and 12 months of living costs.",
-                "The current minimum living cost requirement is AUD $24,505 per year for a single applicant.",
-                "Evidence can include bank statements, education loans, or scholarship letters."
+                "You must show evidence of sufficient funds to cover your travel, tuition, and living costs.",
+                "The minimum required amount for living expenses is currently AUD $21,041 for one year.",
+                "Evidence can include bank deposits, loan documents, or scholarship letters."
             ],
             interviewTips: [
-                "Visa interviews are not standard for Australian student visas but can be requested by the case officer.",
-                "Your GTE statement is your main interview. Be honest, detailed, and clear about your intentions.",
-                "Research your course and university thoroughly and be able to explain how it will benefit your future career back in India.",
-                "Ensure your financial documents are clear and the source of funds is legitimate and explainable."
+                "Interviews are not always required but can be requested by the case officer.",
+                "Be prepared to explain your GTE statement in detail.",
+                "Your main goal is to prove that your primary purpose is to study and that you intend to return home after your studies.",
+                "Have clear reasons for choosing Australia, your specific institution, and your course."
             ],
             faq: [
-                { question: "What is the GTE (Genuine Temporary Entrant) requirement?", answer: "The GTE is a personal statement where you must convince the Department of Home Affairs that you genuinely intend to stay in Australia temporarily for studies and not for other reasons. You need to provide details about your personal circumstances, ties to your home country, and the value of the course to your future." },
-                { question: "Can my family accompany me?", answer: "Yes, you can include family members (your partner and your or your partner's dependent children) in your student visa application. You will need to show additional funds for their living expenses." }
+                { question: "What is the GTE requirement?", answer: "The Genuine Temporary Entrant (GTE) is a personal statement you write to prove that you are coming to Australia temporarily to gain a quality education and that you intend to return home afterward. You need to provide details about your personal circumstances in your home country and your potential circumstances in Australia." },
+                { question: "What is OSHC?", answer: "Overseas Student Health Cover (OSHC) is a mandatory health insurance for international students in Australia. You must have OSHC for the entire duration of your stay. Universities often have a preferred provider they can arrange for you." }
             ]
         },
-        postStudyWorkInfo: "Temporary Graduate visa (subclass 485):\nThis visa has two main streams:\n- Post-Study Work stream: For students who graduate with a higher education degree. It allows them to stay and work for 2 to 4 years, depending on their qualification and the location of their study.\n- Graduate Work stream: For students with specific qualifications related to occupations on the skills shortage list.\nThis visa is an excellent pathway to gain work experience and potentially qualify for a skilled migration visa later.",
-        scholarshipsInfo: "Australia is committed to supporting international students:\n- Australia Awards: Government-funded scholarships for students from specific countries, offering full tuition, travel, and living expenses.\n- Provider Scholarships: Almost all Australian universities offer scholarships for international students based on academic merit. These can range from a percentage of tuition fees (e.g., 25-50%) to a fixed amount.\n- Research Training Program (RTP): For students pursuing research-based Master's or PhDs, the RTP provides tuition fee offsets and stipends.",
-        coursesInfo: "Australia is renowned for its programs in:\n- Information Technology (especially Data Science and Cyber Security)\n- Engineering\n- Business and Accounting\n- Healthcare (Nursing, Public Health)\n- Hospitality and Tourism\n- Environmental Sciences",
+        postStudyWorkInfo: "Temporary Graduate visa (subclass 485):\n- Post-Study Work stream: This allows you to live, study and work in Australia temporarily after you have finished your studies. The length of your stay depends on your qualification, typically 2 years for a Master's by coursework and 3 years for a Master's by research.\n- Recent changes have extended these durations for certain in-demand degrees.",
+        scholarshipsInfo: "Australia offers a range of scholarships for international students:\n- Australia Awards: Prestigious, government-funded scholarships for students from developing countries to undertake full-time study.\n- Destination Australia: Scholarships to study in regional Australia, providing funding for both tuition and living expenses.\n- University-specific Scholarships: Most Australian universities offer a wide variety of scholarships based on academic merit.",
+        coursesInfo: "Australia is a great choice for various fields:\n- Business & Management\n- Engineering (especially Mining and Civil)\n- Information Technology & Data Science\n- Environmental Sciences & Marine Biology\n- Hospitality & Tourism",
         faq: [
-            { question: "What is the Genuine Temporary Entrant (GTE) requirement?", answer: "GTE is a key part of the visa application where you must prove that you are coming to Australia temporarily for the purpose of studying and intend to return home after your education. This is assessed based on your personal circumstances, immigration history, and the value of the course to your future." },
-            { question: "What is OSHC?", answer: "Overseas Student Health Cover (OSHC) is mandatory health insurance for international students in Australia. You must have OSHC for the entire duration of your student visa." },
-            { question: "How much can I work as a student in Australia?", answer: "Currently, student visa holders can work up to 48 hours per fortnight while their course is in session and unlimited hours during scheduled course breaks. Policies can change, so it's best to check the official government website for the latest rules." }
+            { question: "Can I work while studying in Australia?", answer: "Yes. The student visa allows you to work up to 48 hours per fortnight during your study periods and unlimited hours during scheduled course breaks." },
+            { question: "What is CRICOS?", answer: "CRICOS stands for the Commonwealth Register of Institutions and Courses for Overseas Students. You must study a course registered on CRICOS to be eligible for a student visa. This ensures the course and institution meet high standards set by the Australian government." },
+            { question: "Is it expensive to live in Australia?", answer: "Living costs can be high, especially in major cities like Sydney and Melbourne. However, the ability to work part-time helps offset these costs, and the high quality of life is a major draw for many students." }
         ],
         topUniversities: [
-            { name: "Australian National University", qsRanking: 30, logo: "https://logo.clearbit.com/anu.edu.au" },
-            { name: "University of Melbourne", qsRanking: 13, logo: "https://logo.clearbit.com/unimelb.edu.au" },
-            { name: "University of Sydney", qsRanking: 18, logo: "https://logo.clearbit.com/sydney.edu.au" },
-            { name: "UNSW Sydney", qsRanking: 19, logo: "https://logo.clearbit.com/unsw.edu.au" }
+            { name: "The Australian National University", qsRanking: 30, logo: "https://logo.clearbit.com/anu.edu.au" },
+            { name: "The University of Melbourne", qsRanking: 33, logo: "https://logo.clearbit.com/unimelb.edu.au" },
+            { name: "The University of Sydney", qsRanking: 41, logo: "https://logo.clearbit.com/sydney.edu.au" },
+            { name: "The University of New South Wales (UNSW)", qsRanking: 45, logo: "https://logo.clearbit.com/unsw.edu.au" }
         ]
     },
     germany: {
         name: "Germany",
-        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2 6h20M2 12h20M2 18h20" })),
-        heroImage: "https://images.unsplash.com/photo-1560026333-b8279205a5a3?q=80&w=2070&auto=format&fit=crop",
-        intro: "Germany is a powerhouse of engineering and research, offering world-class education with little to no tuition fees at its public universities. It combines a rich cultural history with a modern, high-tech economy, making it an ideal destination for ambitious students.",
+        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15 5v14M9 5v14M5 9h14M5 15h14" })),
+        heroImage: "https://images.unsplash.com/photo-1595393045353-295e85c88941?q=80&w=2070&auto=format&fit=crop",
+        intro: "Germany is a global powerhouse in engineering and research, famous for its high-quality, tuition-free education at public universities. It offers a unique blend of historic culture and modern innovation in the heart of Europe.",
         avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-germany', hair: 'short06', eyes: 'variant03', skinColor: 'D88C7A', hairColor: '2c1b18', clothing: 'blazer', clothingColor: '000000' } },
         whyStudy: [
-            { title: "No Tuition Fees", point: "Most public universities in Germany offer high-quality education with no tuition fees, even for international students.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" })) },
-            { title: "Engineering & Tech", point: "As the birthplace of 'Industry 4.0', Germany is a global leader in automotive, mechanical, and electrical engineering.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 10V3L4 14h7v7l9-11h-7z" })) },
-            { title: "Research Hub", point: "Strong focus on research with world-renowned institutions like Max Planck and Fraunhofer, providing excellent PhD opportunities.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 003.86.517l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 01-.517-3.86l.477-2.387a2 2 0 01.547-1.022a2 2 0 011.022-.547z" }), React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 8a4 4 0 100-8 4 4 0 000 8z" })) },
-            { title: "Post-Study Visa", point: "Graduates can stay for 18 months to find a job, and the strong economy provides excellent career prospects.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" })) }
+            { 
+                title: "Tuition-Free Education", 
+                point: "Most public universities in Germany charge no tuition fees for Master's programs, even for international students.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M11.828 15.172a.5.5 0 01.354.146l.707.707a.5.5 0 010 .707l-2.121 2.121a.5.5 0 01-.707 0L8 16.828a.5.5 0 01.146-.354l.707-.707a.5.5 0 01.707 0z" }), React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 18.5a.5.5 0 01.49.59l-1.07 3.22a.5.5 0 01-.978 0l-1.07-3.22a.5.5 0 01.49-.59z" }))
+            },
+            { 
+                title: "Engineering Excellence", 
+                point: "Globally renowned for its automotive, mechanical, and industrial engineering programs with strong industry links.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 10V3L4 14h7v7l9-11h-7z" }))
+            },
+            { 
+                title: "Strong Economy", 
+                point: "As Europe's largest economy, Germany offers excellent career prospects for graduates, especially in STEM fields.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }))
+            },
+            { 
+                title: "Post-Study Work Visa", 
+                point: "Graduates can stay for 18 months to find a job, with clear pathways to long-term work permits and residency.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }))
+            }
         ],
-        educationSystemInfo: "Germany's higher education is split between traditional research universities (Universitäten) and universities of applied sciences (Fachhochschulen). Master's degrees are typically two years and are either consecutive (building on a related Bachelor's) or non-consecutive. The system is highly regarded for its research-intensive approach and strong links to industry.",
-        admissionProcessInfo: "1. Find a Program: Use the DAAD database to find a suitable program.\n2. Check Requirements: Ensure you meet the academic and language (German or English) requirements.\n3. Apply: Apply either directly to the university or through the Uni-Assist portal for many universities.",
-        costOfStudyingInfo: "Tuition Fees:\n- Public Universities: Free for most programs (a small semester contribution of €150-€300 applies).\n- Private Universities: €10,000 - €25,000 per year.\n\nLiving Costs:\n- A 'Blocked Account' (Sperrkonto) is required for the visa, proving you have sufficient funds. The current mandatory amount is €11,208 for one year, which equates to €934 per month.",
+        educationSystemInfo: "German higher education is divided into Universities (research-oriented) and Universities of Applied Sciences (Fachhochschulen, practice-oriented). Master's degrees are typically two years and can be taught in either German or English. The system is highly specialized and research-driven.",
+        admissionProcessInfo: "1. Find a Program: Use platforms like DAAD to find suitable programs.\n2. Check Requirements: Ensure you meet the specific academic and language requirements.\n3. Apply: Apply either directly to the university or through the Uni-Assist portal for many universities.",
+        costOfStudyingInfo: "Tuition Fees:\n- Public Universities: Free for most programs (a small semester contribution of €150-€300 is required).\n- Private Universities: €10,000 - €20,000 per year.\n\nLiving Costs:\n- You must show proof of funds in a 'Blocked Account' (Sperrkonto). The current required amount is €11,208 for one year.",
         visaGuide: {
-            overview: "To study in Germany, you need a German National Visa for the purpose of studying. A key requirement is the 'Blocked Account' (Sperrkonto) to prove you can finance your stay.",
+            overview: "A German National Visa (D-Visa) for the purpose of studying is required to enter Germany for your studies. Upon arrival, you will convert this into a residence permit.",
             documents: [
                 { item: 'Valid Passport', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" })) },
-                { item: 'Letter of Admission', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
-                { item: 'Proof of Financial Means (Blocked Account)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
-                { item: 'Travel Health Insurance', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" })) },
+                { item: 'University Admission Letter', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
+                { item: 'Blocked Account Confirmation', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
+                { item: 'Health Insurance', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) },
             ],
             steps: [
-                { title: 'Get University Admission', description: "First, secure an admission letter from a German university." },
-                { title: 'Open a Blocked Account (Sperrkonto)', description: "Open a blocked account with a provider like Fintiba or Expatrio and deposit the required amount (currently €11,208) for your living expenses." },
-                { title: 'Book Visa Appointment', description: "Schedule an appointment for your national visa application at the German embassy or consulate in your region via the VFS Global website." },
-                { title: 'Prepare Documents & Attend Interview', description: "Gather all required documents, including the application form, passport, photos, admission letter, and proof of blocked account, and attend your scheduled appointment." }
+                { title: 'Open a Blocked Account', description: "This is the most crucial step. You must deposit the required amount (€11,208 as of 2023) into a German blocked account to prove you can cover your living expenses." },
+                { title: 'Get Health Insurance', description: "You need to get travel health insurance for the visa process, which you will later convert to a German public or private health insurance upon arrival." },
+                { title: 'Schedule an Appointment', description: "Book a visa appointment at the German embassy or consulate in your jurisdiction via the VFS Global website." },
+                { title: 'Attend the Interview', description: "Submit your application and documents at the VFS centre. Your interview will focus on your motivation, academic background, and future plans." }
             ],
-            financials: ["A blocked account with €11,208 is the standard proof of funds. An official scholarship letter (e.g., from DAAD) can also serve as proof."],
-            interviewTips: ["The interview is straightforward. Be prepared to explain your motivation for choosing Germany and your specific course.", "Clearly state your study plans and career goals.", "Knowledge of basic German can be an advantage, even for English-taught programs."],
+            financials: [
+                "The blocked account is the primary proof of funds.",
+                "A formal sponsorship letter ('Verpflichtungserklärung') from a resident in Germany is another option.",
+                "Scholarship award letters are also accepted."
+            ],
+            interviewTips: [
+                "Your motivation letter is key. Clearly articulate why you chose Germany and your specific program.",
+                "Be prepared to answer questions about your future career plans in your home country.",
+                "Even for English-taught programs, showing some basic German language skills is a plus."
+            ],
             faq: [
-                { question: "What is a Blocked Account (Sperrkonto)?", answer: "It's a special bank account required for the German student visa. You deposit a year's worth of living expenses, and you can only withdraw a fixed monthly amount (€934) after arriving in Germany, ensuring you have stable funds for your studies." },
-                { question: "Do I need to learn German to study in Germany?", answer: "Not necessarily. There are over 2,000 programs taught entirely in English. However, learning basic German is highly recommended for daily life and will significantly improve your job prospects after graduation." }
+                { question: "What is a Blocked Account (Sperrkonto)?", answer: "A blocked account is a special bank account for international students in Germany. You deposit a lump sum for your first year's living expenses, and you can only withdraw a fixed monthly amount. It serves as proof of financial resources for your visa." },
+                { question: "Do I need to know German to study in Germany?", answer: "Not necessarily. Many Master's programs are taught entirely in English. However, learning basic German is highly recommended for daily life and will significantly improve your job prospects after graduation." }
             ]
         },
-        postStudyWorkInfo: "Job Seeker Visa:\n- Graduates from German universities can apply for a residence permit to stay in the country and seek employment for up to 18 months.\n- During this period, you can take up any kind of employment to support yourself.\n- Once you find a job that matches your qualifications, you can apply for a German residence permit or an EU Blue Card.",
-        scholarshipsInfo: "While public education is free, there are scholarships for living costs:\n- DAAD Scholarships: The German Academic Exchange Service (DAAD) offers a wide range of scholarships for international students covering living expenses.\n- Deutschlandstipendium: This program provides a monthly stipend of €300, half from the government and half from private sponsors.\n- University-Specific Scholarships: Many universities offer their own scholarships for talented international students.",
-        coursesInfo: "Germany is a global leader in technical and scientific fields. Popular courses include:\n- Automotive Engineering\n- Mechanical Engineering\n- Computer Science & Informatics\n- Data Science & Analytics\n- Renewable Energy\n- Business & Management",
+        postStudyWorkInfo: "After graduation, you can apply for a residence permit to seek work for up to 18 months. Once you find a job that matches your qualifications, you can apply for a German residence permit for work or an EU Blue Card, which is a pathway to permanent residency.",
+        scholarshipsInfo: "While tuition is free, scholarships are available to cover living costs:\n- DAAD Scholarships: The German Academic Exchange Service offers a wide range of scholarships for international students.\n- Deutschlandstipendium: Provides €300 per month and is awarded by universities to high-achieving students.\n- Foundation Scholarships: Many political and religious foundations in Germany offer scholarships to international students.",
+        coursesInfo: "Germany is a global leader in:\n- Automotive, Mechanical & Industrial Engineering\n- Renewable Energy\n- Computer Science & Informatics\n- Natural Sciences (Physics, Chemistry, Biology)\n- Business & Economics",
         faq: [
-            { question: "What is Uni-Assist?", answer: "Uni-Assist is a centralized admissions portal for international students used by many German universities. It evaluates your application documents to see if you meet the formal requirements for admission before forwarding your application to the universities you choose." },
-            { question: "Can I work while studying?", answer: "Yes, international students are allowed to work for 120 full days or 240 half days per year. This helps in covering living expenses." }
+            { question: "Is education really free in Germany?", answer: "Yes, for the most part. All public universities in 15 out of 16 German states have no tuition fees for Master's programs. The state of Baden-Württemberg is the only exception, charging non-EU students €1,500 per semester. All students have to pay a small semester contribution of around €150-300." },
+            { question: "What is Uni-Assist?", answer: "Uni-Assist is a centralized admissions portal used by many, but not all, German universities to process international student applications. It checks if your application meets the formal requirements before forwarding it to the universities." },
+            { question: "Can I work part-time while studying?", answer: "Yes, international students are allowed to work for 120 full days or 240 half days per year. This can help cover your living expenses." }
         ],
         topUniversities: [
-            { name: "Technical University of Munich (TUM)", qsRanking: 28, logo: "https://logo.clearbit.com/tum.de" },
-            { name: "Ludwig Maximilian University of Munich (LMU)", qsRanking: 59, logo: "https://logo.clearbit.com/lmu.de" },
-            { name: "Heidelberg University", qsRanking: 84, logo: "https://logo.clearbit.com/uni-heidelberg.de" }
+            { name: "Technical University of Munich (TUM)", qsRanking: 49, logo: "https://logo.clearbit.com/tum.de" },
+            { name: "Ludwig-Maximilians-Universität München (LMU)", qsRanking: 59, logo: "https://logo.clearbit.com/lmu.de" },
+            { name: "Heidelberg University", qsRanking: 65, logo: "https://logo.clearbit.com/uni-heidelberg.de" }
         ]
     },
     ireland: {
         name: "Ireland",
-        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.5,18.5a.5.5,0,0,1,0,1H13a.5.5,0,0,1,0-1Z" })),
-        heroImage: "https://images.unsplash.com/photo-1576702251953-274a27aa4693?q=80&w=1974&auto=format&fit=crop",
-        intro: "Known as the 'Silicon Docks of Europe', Ireland is a vibrant, English-speaking country offering a world-class education with close ties to the global tech industry. It combines a safe, friendly culture with excellent post-study work opportunities.",
+        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })),
+        heroImage: "https://images.unsplash.com/photo-1576728741344-85019e262141?q=80&w=1935&auto=format&fit=crop",
+        intro: "Known as the 'Silicon Valley of Europe', Ireland is a vibrant, English-speaking country with a fast-growing economy. It's home to the European headquarters of many tech giants, offering a dynamic environment and excellent career prospects for graduates.",
         avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-ireland-female', hair: 'long06', eyes: 'variant11', skinColor: 'F5C6A0', hairColor: 'cb6820', clothing: 'crewNeck', clothingColor: '009A44' } },
         whyStudy: [
-            { title: "European Tech Hub", point: "Home to the European headquarters of top tech giants like Google, Facebook, Apple, and LinkedIn.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M5 12h14M12 5l7 7-7 7" })) },
-            { title: "English-Speaking", point: "An English-speaking country in the heart of Europe, making it easy for international students to adapt and communicate.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M3 5h12M9 3v2m1.06 5.16l-4.16 4.16M16 12h5m-9-9v2M5 12H3m16 0h-2M12 21v-2m-3.53-3.53l-2-2m13.06-2l-2-2" })) },
-            { title: "Post-Study Work Visa", point: "A generous 2-year post-study work visa allows Master's and PhD graduates to gain valuable work experience.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" })) },
-            { title: "Safe & Friendly", point: "Consistently ranked as one of the safest and friendliest countries in the world, with a rich cultural heritage.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" })) }
+            { 
+                title: "Europe's Tech Hub", 
+                point: "Home to the European HQs of Google, Facebook, Apple, and more, providing unparalleled job opportunities in tech.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M5 12h14M12 5l7 7-7 7" }))
+            },
+            { 
+                title: "One-Year Master's", 
+                point: "Most Master's programs are one year, allowing for a quicker, more cost-effective route to a high-quality European degree.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }))
+            },
+            { 
+                title: "Post-Study Work Visa", 
+                point: "The Third Level Graduate Programme provides a 2-year post-study work visa, allowing graduates to seek employment.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }))
+            },
+            { 
+                title: "Friendly & Safe", 
+                point: "Renowned for its friendly people, safe cities, and rich cultural heritage, providing a welcoming environment for students.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" }))
+            }
         ],
-        educationSystemInfo: "The Irish education system is part of the European Bologna Process, ensuring qualifications are recognized globally. Master's degrees are typically one year, offering an intensive and focused curriculum. The system is known for its high-quality research and strong industry collaboration, especially in the tech and pharmaceutical sectors.",
-        admissionProcessInfo: "1. Choose a Course: Select a course and university.\n2. Apply Online: Most applications are made directly to the university's admissions office.\n3. Receive Offer: Secure an offer letter from the Irish university.",
-        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: €10,000 - €25,000 per year.\n\nLiving Costs:\n- For your student visa, you must demonstrate access to at least €10,000 for one academic year of living expenses. A more realistic budget, especially in Dublin, is around €12,000 - €15,000 per year.",
+        educationSystemInfo: "Ireland's education system is part of the European Bologna Process, ensuring degrees are recognized worldwide. The system is similar to the UK's, with a strong focus on research and specialized one-year Master's programs.",
+        admissionProcessInfo: "1. Choose a Course: Select a course and university.\n2. Apply Online: Most applications are made directly to the university's international office.\n3. Receive Offer: If accepted, you will receive a Letter of Offer.",
+        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: €12,000 - €25,000 per year.\n\nLiving Costs:\n- You must show proof of access to at least €10,000 for your first year of living expenses.",
         visaGuide: {
-            overview: "As an Indian student, you need to apply for a 'D' type study visa to enter Ireland. After arrival, you must register with the Garda National Immigration Bureau (GNIB/INIS) to get your Irish Residence Permit (IRP) card.",
+            overview: "Indian students need to apply for a 'D' type study visa to enter Ireland. The application is made online, and then you submit your documents to the VFS centre in your jurisdiction.",
             documents: [
                 { item: 'Valid Passport', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" })) },
                 { item: 'Letter of Acceptance', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
                 { item: 'Proof of Fee Payment', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-12h5.25M9 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" })) },
-                { item: 'Proof of Funds (€10,000)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
-                { item: 'Private Medical Insurance', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" })) }
+                { item: 'Financial Evidence', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
             ],
             steps: [
-                { title: 'Secure Admission', description: "Receive an unconditional Letter of Acceptance from your Irish university." },
-                { title: 'Pay Tuition Fees', description: "Pay the required tuition fee deposit as mentioned in your offer letter and get a receipt." },
-                { title: 'Arrange Finances and Insurance', description: "Gather proof of funds (e.g., education loan sanction letter, bank statements) and purchase private medical insurance." },
-                { title: 'Apply Online', description: "Complete the online visa application form on the AVATS website, pay the fee, and submit it." },
-                { title: 'Submit Documents', description: "Submit your passport and all supporting documents to the VFS centre in your jurisdiction." }
+                { title: 'Apply Online', description: "Complete the AVATS online application form." },
+                { title: 'Pay the Fee', description: "Pay the visa application fee online." },
+                { title: 'Submit Documents', description: "Submit your printed summary form, passport, and all supporting documents to the relevant VFS office." },
+                { title: 'Await Decision', description: "Processing times are typically 4-8 weeks." }
             ],
-            financials: ["You must show you have sufficient funds to cover your course fees and living expenses. The current minimum living expense requirement is €10,000 for the first year."],
-            interviewTips: ["Visa interviews are not always required for Ireland but can be requested.", "Clearly articulate your reasons for choosing Ireland and your specific course.", "Emphasize your intention to return to India after completing your studies and post-study work period."],
+            financials: [
+                "You must show evidence of access to at least €10,000 for the first year of your course.",
+                "An education loan from an approved bank in India is a common way to show this.",
+                "A statement of your (or your sponsor's) bank account for the previous six months is required."
+            ],
+            interviewTips: [
+                "Interviews are rare but can be requested.",
+                "Be ready to explain your 'gaps' in education, if any.",
+                "Clearly state your reasons for choosing Ireland and your intention to return to India."
+            ],
             faq: [
-                { question: "What is the IRP card?", answer: "The Irish Residence Permit (IRP) is a credit-card-sized registration card that proves you are legally residing in Ireland. You must register and get your IRP card within 90 days of arriving in the country." },
-                { question: "What is the Third Level Graduate Programme?", answer: "This is the official name for the post-study work visa. It allows eligible graduates with a Master's or PhD degree to remain in Ireland for 24 months to seek employment and work full-time." }
+                { question: "What is the Third Level Graduate Programme?", answer: "It allows non-EU/EEA students who have graduated from Irish higher education institutions to remain in Ireland for up to 24 months to seek employment. Once you find a job, you can apply for a Green Card or Work Permit." },
+                { question: "Is a part-time job easy to find in Ireland?", answer: "Yes, in major cities like Dublin, Cork, and Galway, it's relatively easy to find part-time jobs in the retail and hospitality sectors. Students can work up to 20 hours per week during term time." }
             ]
         },
-        postStudyWorkInfo: "Third Level Graduate Programme (Stamp 1G):\n- Graduates with a Master's or PhD from an Irish university are eligible for a 24-month (2-year) post-study work visa.\n- This allows you to work full-time in any profession and is a direct pathway to gaining a full work permit and potentially long-term residency.",
-        scholarshipsInfo: "Many Irish universities offer scholarships for Indian students:\n- Government of Ireland International Education Scholarship (GOI-IES): A prestigious scholarship offering a full tuition waiver and a €10,000 stipend for one year of study.\n- University Scholarships: Institutions like Trinity College Dublin, UCD, and NUI Galway offer merit-based scholarships, often providing partial tuition fee waivers (€2,000 - €5,000).",
-        coursesInfo: "Ireland is a top destination for technology and science programs:\n- Data Science & Big Data Analytics\n- Software Engineering & Computer Science\n- Business Analytics\n- Pharmaceutical Sciences & Biotechnology\n- Digital Marketing\n- Finance",
+        postStudyWorkInfo: "The Third Level Graduate Programme allows eligible graduates to remain in Ireland and work for up to 24 months. This provides an excellent opportunity to gain work experience in Europe's booming tech and pharmaceutical sectors and potentially secure a long-term work permit.",
+        scholarshipsInfo: "Many Irish universities offer merit-based scholarships for Indian students, typically in the form of tuition fee waivers from €2,000 to €5,000. The Government of Ireland International Education Scholarship is a prestigious award that provides a full tuition waiver and a €10,000 stipend for one year.",
+        coursesInfo: "Ireland's booming economy has created high demand for graduates in:\n- Data Science & Big Data\n- Software Engineering & Cloud Computing\n- Business Analytics\n- Pharmaceutical Sciences & Biotechnology\n- Financial Services",
         faq: [
-            { question: "What is the difference between a college and a university in Ireland?", answer: "In Ireland, 'university' is a protected term for institutions that offer degrees up to the PhD level. 'Colleges' or 'Institutes of Technology' also offer high-quality degrees, often with a more practical or vocational focus." },
-            { question: "Is Ireland an expensive country for students?", answer: "While Dublin can be as expensive as other major European cities, the overall cost of living and tuition is generally more affordable than in the UK or USA. The one-year Master's programs also help in reducing the total cost." }
+            { question: "Is Ireland a good option for tech students?", answer: "Absolutely. With the European headquarters of Google, Apple, Facebook, LinkedIn, and many others located in Dublin, it is one of the best places in the world to launch a career in technology." },
+            { question: "What is the difference between a college and a university in Ireland?", answer: "In Ireland, 'university' is a protected term for institutions that offer degrees up to the doctoral level and have a strong research focus. 'Colleges' or 'Institutes of Technology' typically focus on vocational and professional training, though many now also have university status." }
         ],
         topUniversities: [
-            { name: "Trinity College Dublin", qsRanking: 100, logo: "https://logo.clearbit.com/tcd.ie" },
-            { name: "University College Dublin (UCD)", qsRanking: 176, logo: "https://logo.clearbit.com/ucd.ie" },
-            { name: "University of Galway", qsRanking: 278, logo: "https://logo.clearbit.com/universityofgalway.ie" }
+            { name: "Trinity College Dublin", qsRanking: 101, logo: "https://logo.clearbit.com/tcd.ie" },
+            { name: "University College Dublin", qsRanking: 181, logo: "https://logo.clearbit.com/ucd.ie" },
+            { name: "National University of Ireland Galway", qsRanking: 270, logo: "https://logo.clearbit.com/nuigalway.ie" }
         ]
     },
     uae: {
         name: "UAE",
-        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" })),
-        heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop",
-        intro: "The United Arab Emirates is a dynamic and futuristic hub for education and business. With state-of-the-art campuses, a highly international environment, and a focus on innovation, the UAE offers a unique study abroad experience in a tax-free landscape.",
+        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.704 4.343a9 9 0 0110.592 0m-12.592 0A9 9 0 009.296 2.343M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })),
+        heroImage: "https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1974&auto=format&fit=crop",
+        intro: "The United Arab Emirates, particularly Dubai, has rapidly emerged as a global hub for business, finance, and tourism. It offers a unique study abroad experience with modern universities, a highly international environment, and tax-free earning potential.",
         avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uae', hair: 'short08', eyes: 'variant12', skinColor: 'AF6E5A', hairColor: '000000', clothing: 'shirt', clothingColor: '000000', accessories: 'sunglasses', accessoriesProbability: 100 } },
         whyStudy: [
-            { title: "Global Business Hub", point: "Strategically located between East and West, it's a major center for trade, finance, and tourism, offering great internship opportunities.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" })) },
-            { title: "Modern & Safe", point: "Known for its futuristic cities, modern infrastructure, and one of the highest safety ratings in the world.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" })) },
-            { title: "Truly International", point: "With over 200 nationalities living and working in the UAE, you'll experience a highly diverse and multicultural environment.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" })) },
-            { title: "Tax-Free Income", point: "The prospect of tax-free salaries after graduation is a major draw for students looking to kickstart their careers.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" })) }
+            { 
+                title: "Global Business Hub", 
+                point: "Study in a strategic location with a booming economy and strong opportunities in finance, hospitality, and trade.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }))
+            },
+            { 
+                title: "International Environment", 
+                point: "Experience a truly global classroom, with a vast expatriate population and students from over 150 nationalities.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9" }))
+            },
+            { 
+                title: "Tax-Free Earnings", 
+                point: "Post-graduation employment in the UAE comes with the major benefit of tax-free salaries, maximizing your savings.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" }))
+            },
+            { 
+                title: "Golden Visa for Students", 
+                point: "Outstanding students may be eligible for a 10-year Golden Visa, providing long-term residency and stability.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M5 3v4M3 5h4M6 17v4m-2-2h4M14 3v4m-2 2h4M15 17v4m-2-2h4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }))
+            }
         ],
-        educationSystemInfo: "The UAE has heavily invested in its education sector, attracting branch campuses of many world-renowned universities alongside its own high-quality local institutions. The system is modern and focused on preparing students for the global workforce. Master's degrees are typically 1.5 to 2 years long.",
-        admissionProcessInfo: "1. Select University: Choose from local universities or international branch campuses.\n2. Check Eligibility: Ensure you meet the specific academic and English language requirements (TOEFL/IELTS).\n3. Apply Online: Submit your application and required documents directly through the university's portal.",
-        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: $15,000 - $35,000 USD per year.\n\nLiving Costs:\n- Living costs are highest in Dubai and Abu Dhabi. Expect to budget around $1,200 - $1,800 USD per month for accommodation, food, and other expenses.",
+        educationSystemInfo: "The UAE has a rapidly developing higher education sector with a mix of federal institutions, private universities, and branch campuses of international universities from the US, UK, and Australia. This offers students a wide choice of curricula and qualifications.",
+        admissionProcessInfo: "1. Choose University: Select from local universities or international branch campuses.\n2. Apply: Applications are typically made online directly to the university.\n3. Offer: Receive an offer letter upon meeting the requirements.",
+        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: $15,000 - $35,000 USD per year.\n\nLiving Costs:\n- Approximately $1,000 - $1,500 USD per month, with accommodation being the largest expense.",
         visaGuide: {
-            overview: "Your student visa is typically sponsored by the university you are enrolled in. The university's administration office will guide you through the process after you have been accepted and paid your initial fees.",
+            overview: "The student visa for the UAE is typically sponsored by the university you are enrolled in. The university's administration will guide you through the process after you have been accepted.",
             documents: [
                 { item: 'Valid Passport', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" })) },
-                { item: 'University Offer Letter', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
-                { item: 'Passport Size Photos', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" })) },
-                { item: 'Medical Fitness Test', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) }
+                { item: 'University Admission Letter', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
+                { item: 'Tuition Fee Receipt', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-12h5.25M9 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" })) },
+                { item: 'Medical Fitness Test', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) },
             ],
             steps: [
-                { title: 'Accept Your Offer', description: "Formally accept the admission offer from your university and pay the required tuition deposit." },
-                { title: 'Submit Documents to University', description: "The university will act as your sponsor. You need to submit scanned copies of your passport, photos, and other required documents to their visa department." },
-                { title: 'University Applies for Visa', description: "The university applies for your entry permit on your behalf. Once approved, they will send you a copy." },
-                { title: 'Enter the UAE', description: "You can travel to the UAE using the entry permit." },
-                { title: 'Complete Formalities in UAE', description: "After arrival, you will undergo a medical test and provide biometrics to complete the process of getting your student residence visa stamped in your passport." }
+                { title: 'University Applies for Entry Permit', description: "After you pay your fees, the university will apply for an entry permit on your behalf, which allows you to enter the UAE." },
+                { title: 'Arrive in UAE', description: "Travel to the UAE using the entry permit." },
+                { title: 'Medical Test & Biometrics', description: "Once in the UAE, you will undergo a medical fitness test and provide your biometrics for the Emirates ID." },
+                { title: 'Visa Stamping', description: "The university will submit your passport for visa stamping, which is the final step in getting your one-year renewable residence visa." }
             ],
-            financials: ["While a blocked account is not required, universities may ask for bank statements to prove you can cover your tuition and living expenses before they sponsor your visa."],
-            interviewTips: ["No formal visa interview is conducted at an embassy. The entire process is managed by the university and immigration authorities within the UAE.", "Ensure all your documents are clear, valid, and submitted correctly to your university to avoid delays."],
+            financials: ["Proof of funds is generally submitted to the university, not the embassy.", "The university will guide you on the specific financial documents they require."],
+            interviewTips: ["There is typically no visa interview required at an embassy for a UAE student visa, as the process is handled in-country by the university sponsor."],
             faq: [
-                { question: "Who sponsors my student visa in the UAE?", answer: "Your university acts as your sponsor for the student visa. This simplifies the process as the university's visa office handles the application with the immigration authorities." },
-                { question: "Can I work while studying in the UAE?", answer: "Yes, many free zones like Dubai International Academic City have programs that allow students to take on part-time work and internships with companies within the zone. Regulations can vary, so it's best to check with your university." }
+                { question: "What is the Golden Visa for students?", answer: "The UAE offers a 10-year Golden Visa to outstanding students who have a GPA of at least 3.8 (or equivalent). This provides long-term residency and is a significant benefit for those looking to build a career in the UAE." }
             ]
         },
-        postStudyWorkInfo: "Post-Study Work Options:\n- While there isn't a standardized post-study work visa like in other countries, the UAE has introduced long-term residence options.\n- 'Golden Visa' for Outstanding Students: High-achieving students (with a GPA of 3.8 or higher from accredited universities) may be eligible for a 10-year Golden Visa, allowing them to live and work in the UAE without a national sponsor.\n- Job Search: The majority of graduates find employment and their new employer then sponsors their work visa.",
-        scholarshipsInfo: "Scholarships are widely available, especially from individual universities:\n- Academic Merit Scholarships: Most universities in the UAE offer generous scholarships to students with excellent academic records, often providing a tuition fee reduction of 15% to 50%.\n- Need-Based Grants: Some institutions also provide financial aid to students who can demonstrate financial need.\n- It is best to check the 'scholarships' or 'financial aid' section of the specific university you are applying to.",
-        coursesInfo: "The UAE is a hub for business, finance, and modern technology courses:\n- Business Administration (MBA)\n- Finance and Accounting\n- Hospitality and Tourism Management\n- Engineering (Civil, Petroleum, Electrical)\n- Computer Science & Artificial Intelligence\n- Architecture and Design",
+        postStudyWorkInfo: "The UAE offers various avenues for graduates to find work. There is no specific 'post-study work visa', but graduates can transfer from a student visa to an employment visa once they secure a job. The introduction of the Golden Visa for exceptional students also provides a long-term residency option.",
+        scholarshipsInfo: "Many universities in the UAE, especially international branch campuses, offer generous merit-based scholarships for Indian students, often in the form of tuition fee reductions ranging from 15% to 50% or more.",
+        coursesInfo: "The UAE is becoming a hub for specialized programs, including:\n- Hospitality & Tourism Management\n- Business & Finance (MBA, FinTech)\n- Logistics & Supply Chain Management\n- Architecture & Design\n- Artificial Intelligence",
         faq: [
-            { question: "What are international branch campuses?", answer: "These are campuses of well-known universities from other countries (e.g., UK, USA, Australia) that have been established in the UAE. They offer the same curriculum and degree as the main campus, providing a world-class education in a new location." },
-            { question: "Is the UAE safe for international students?", answer: "The UAE is known for being one of the safest countries in the world, with very low crime rates and a high standard of living, making it an excellent and secure environment for students." }
+            { question: "Can I get an internationally recognized degree in the UAE?", answer: "Yes. Many reputable universities from the UK, USA, and Australia have branch campuses in the UAE. You receive the same degree as you would on their home campus, which is globally recognized." },
+            { question: "Is it safe to study in the UAE?", answer: "The UAE is known for being one of the safest countries in the world, with very low crime rates and a high standard of living." }
         ],
         topUniversities: [
-            { name: "Khalifa University", qsRanking: 203, logo: "https://logo.clearbit.com/ku.ac.ae" },
-            { name: "American University of Sharjah", qsRanking: 369, logo: "https://logo.clearbit.com/aus.edu" },
-            { name: "United Arab Emirates University", qsRanking: 261, logo: "https://logo.clearbit.com/uaeu.ac.ae" }
+            { name: "Khalifa University", qsRanking: 230, logo: "https://logo.clearbit.com/ku.ac.ae" },
+            { name: "United Arab Emirates University", qsRanking: 290, logo: "https://logo.clearbit.com/uaeu.ac.ae" },
+            { name: "American University of Sharjah", qsRanking: 364, logo: "https://logo.clearbit.com/aus.edu" }
         ]
     },
     'new-zealand': {
         name: "New Zealand",
-        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19,21.5a1,1,0,0,1-1.6-.8l-1.9-4.2a1,1,0,0,1,0-.9,1,1,0,0,1,.8-.5h1.3a1,1,0,0,0,.9-.6l3.4-6.8a1,1,0,0,0-1.7-.8l-3.5,7a1,1,0,0,1-.8.5H14a1,1,0,0,0-1,1,1,1,0,0,0,0,1l2,4.3a1,1,0,0,0,1.6.8Z" })),
-        heroImage: "https://images.unsplash.com/photo-1507699622108-3835c2417445?q=80&w=2070&auto=format&fit=crop",
-        intro: "New Zealand offers a unique blend of high-quality, internationally recognized education and an unbeatable quality of life. Known for its stunning landscapes, friendly people, and innovative spirit, it provides a safe and welcoming environment for students to thrive.",
+        icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 1 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })),
+        heroImage: "https://images.unsplash.com/photo-1595893547194-e87a26f30628?q=80&w=2070&auto=format&fit=crop",
+        intro: "New Zealand offers a world-class, British-based education system amidst stunning natural landscapes. It's known for its excellent quality of life, friendly and safe environment, and innovative research in niche fields.",
         avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-nz-female', hair: 'long07', eyes: 'variant01', skinColor: 'E4A381', hairColor: '4D4D4D', clothing: 'blazer', clothingColor: '000000' } },
         whyStudy: [
-            { title: "World-Class Education", point: "NZ qualifications are based on the British system and are recognized globally for their quality and practical focus.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { d: "M12 14l9-5-9-5-9 5 9 5z" }), React.createElement('path', { d: "M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" }), React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M1 12v7a2 2 0 002 2h18a2 2 0 002-2v-7" })) },
-            { title: "Incredible Quality of Life", point: "Consistently ranked as one of the safest and most peaceful countries, offering a perfect balance of city life and nature.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" })) },
-            { title: "Innovation & Research", point: "A hub for research in fields like agriculture, environmental science, and technology, encouraging a hands-on learning approach.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" })) },
-            { title: "Work Opportunities", point: "The Post-study Work Visa allows graduates to work for up to three years, providing a strong career foundation.", icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" })) }
+            { 
+                title: "Quality of Life", 
+                point: "Consistently ranked as one of the best countries for work-life balance, safety, and overall well-being.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" }))
+            },
+            { 
+                title: "Globally Recognized", 
+                point: "All eight of New Zealand's universities are ranked in the top 3% worldwide, offering a high-quality, internationally respected education.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }))
+            },
+            { 
+                title: "Post-Study Work Rights", 
+                point: "Graduates are eligible for a post-study work visa for up to 3 years, providing a great opportunity to launch a global career.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }))
+            },
+            { 
+                title: "Innovative Research", 
+                point: "Known for its practical and innovative approach to research, especially in fields like agriculture, conservation, and renewable energy.",
+                icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: 2 }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" }))
+            }
         ],
-        educationSystemInfo: "New Zealand's education system is internationally respected for its high quality. A Bachelor's degree is three years, and a Master's degree is typically one to two years. The system promotes critical thinking and practical skills, with eight universities all ranked in the top 3% worldwide.",
-        admissionProcessInfo: "1. Choose Program: Select a program and an approved education provider.\n2. Meet Entry Requirements: Fulfill the academic and English language proficiency (IELTS/PTE) criteria.\n3. Apply and Get Offer: Apply directly to the institution and receive an 'Offer of Place'.",
-        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: NZ$25,000 - NZ$45,000 per year.\n\nLiving Costs:\n- You must prove you have at least NZ$20,000 to cover your living expenses for the first year of study. This is a key requirement for the student visa application.",
+        educationSystemInfo: "New Zealand's education system is based on the British model. It has 8 universities, all of which are public. The focus is on research-based teaching, and students are encouraged to think critically and independently. A Master's degree is typically 1-2 years.",
+        admissionProcessInfo: "1. Select Course: Choose your course and university.\n2. Apply: Submit an application directly to the university with academic transcripts, English proficiency scores, and other required documents.\n3. Receive Offer: Get an 'Offer of Place' from the university.",
+        costOfStudyingInfo: "Tuition Fees:\n- Master's Programs: $25,000 - $45,000 NZD per year.\n\nLiving Costs:\n- You must show proof of at least $20,000 NZD for your first year of living expenses.",
         visaGuide: {
-            overview: "The New Zealand Fee Paying Student Visa allows you to study full-time. The application process is primarily online and requires you to show you are a genuine student with sufficient funds for your stay.",
+            overview: "The New Zealand Student Visa allows you to study full-time at an approved education provider. You must prove you have enough money for tuition and living costs and that you intend to leave after your studies.",
             documents: [
                 { item: 'Valid Passport', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" })) },
                 { item: 'Offer of Place', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" })) },
-                { item: 'Proof of Funds (NZ$20,000/year)', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
-                { item: 'Proof of Tuition Fee Payment', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-12h5.25M9 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" })) },
-                // FIX: Added missing properties to the visaGuide object for New Zealand to conform to the VisaGuide interface.
-                { item: 'Medical Examination Certificate', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) },
-                { item: 'English Proficiency Test Results', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" })) }
+                { item: 'Proof of Funds', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0h.75A.75.75 0 015.25 6v.75m0 0v-.75A.75.75 0 015.25 4.5h-.75m0 0H3.75m9 12.75h3.75a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z" })) },
+                { item: 'Medical Certificates', icon: React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" })) },
             ],
             steps: [
-                { title: 'Receive Offer of Place', description: "Secure your admission from an approved New Zealand education provider. This is the first and most crucial document." },
-                { title: 'Gather Financial Evidence', description: "Collect documents to prove you have at least NZ$20,000 for your first year of living costs, plus funds to cover your tuition fees." },
-                { title: 'Apply Online', description: "Complete the student visa application form on the official Immigration New Zealand website. Upload all your supporting documents." },
-                { title: 'Pay Application Fee & Submit', description: "Pay the required visa application fee online and submit your application for processing." },
-                { title: 'Await Decision', description: "Immigration New Zealand will assess your application. They may contact you for further information or an interview if required. Once approved, you'll receive your visa." }
+                { title: 'Receive Offer of Place', description: "Get an unconditional offer of place from an approved education provider." },
+                { title: 'Gather Documents', description: "Collect all necessary documents, including proof of identity, financial evidence, and health certificates." },
+                { title: 'Apply Online', description: "Complete the online application form on the Immigration New Zealand website and pay the application fee." },
+                { title: 'Await Decision', description: "Processing times can vary. You may be asked for more information or an interview." }
             ],
             financials: [
-                "You must provide evidence of sufficient funds to cover your living expenses for the first year of your study, which is currently set at NZ$20,000.",
-                "You also need to show proof that you have paid your tuition fees or have access to funds to cover them.",
-                "Acceptable evidence includes bank statements for the last 6 months, an education loan sanction letter, or an official scholarship award letter."
+                "You must show you have at least NZ$20,000 for your first year of study for living expenses.",
+                "You also need to show proof that you have paid your tuition fees or have funds to cover them."
             ],
             interviewTips: [
-                "Visa interviews are not standard for New Zealand but may be requested if the visa officer needs clarification.",
-                "Be prepared to clearly explain your reasons for choosing New Zealand, your specific course, and your chosen institution.",
-                "Articulate your future career plans and how your studies in New Zealand will help you achieve them back in your home country.",
-                "Be honest and confident in your answers."
+                "Interviews are not standard but can be requested.",
+                "Be ready to explain your choice of course and institution.",
+                "Clearly state your intentions to return to your home country after your studies."
             ],
             faq: [
-                { question: "What is an 'Offer of Place'?", answer: "This is the official acceptance letter from your chosen New Zealand institution. It must be unconditional and is a mandatory document for your visa application." },
-                { question: "Can I work while studying in New Zealand?", answer: "Yes, most student visa holders are permitted to work up to 20 hours per week during the academic year and full-time during scheduled holidays, like the summer break." }
+                { question: "Can I work on a student visa in New Zealand?", answer: "Yes, most student visa holders can work up to 20 hours per week during term time and full-time during scheduled holidays." },
+                { question: "What is the post-study work visa in New Zealand?", answer: "After completing your studies, you may be eligible for a Post-study Work Visa, allowing you to work in New Zealand for 1, 2, or 3 years, depending on your qualification." }
             ]
         },
-        postStudyWorkInfo: "New Zealand's Post-study Work Visa allows eligible graduates to work for any employer in any job.\n- Duration: The length of the visa can be up to 3 years, depending on your qualification.\n- Pathway to Residence: This visa provides a great opportunity to gain skilled work experience in New Zealand, which can be a stepping stone towards applying for a skilled migrant residence visa.",
-        scholarshipsInfo: "There are several scholarships available for international students in New Zealand:\n- New Zealand Government Scholarships: These are prestigious scholarships, such as the New Zealand International Scholarships, which cover full tuition, living allowances, and travel costs.\n- University Scholarships: All eight of New Zealand's universities offer a range of scholarships for international students based on academic merit. These often provide partial tuition fee waivers.",
-        coursesInfo: "New Zealand offers high-quality programs, particularly in:\n- Business & Management\n- Engineering (Civil, Mechanical)\n- Information Technology & Data Science\n- Agriculture & Environmental Science\n- Tourism & Hospitality\n- Health Sciences",
+        postStudyWorkInfo: "New Zealand provides a balanced approach with good work opportunities and an excellent quality of life.\n- Post-study Work Visa: Graduates can work in New Zealand for up to 3 years, depending on their qualification.\n- Niche Sectors: Strong opportunities in unique fields like agri-tech, environmental science, and creative industries.",
+        scholarshipsInfo: "Scholarships for New Zealand are available from individual universities and the government.\n- University Scholarships: Most universities offer scholarships for international students based on academic merit.\n- New Zealand Government Scholarships: These are prestigious awards for students from specific countries, often focused on development-related fields.",
+        coursesInfo: "New Zealand is strong in:\n- Agri-tech and Food Science\n- Environmental Science and Conservation\n- Film and Creative Industries\n- Tourism and Hospitality\n- Engineering (especially Civil and Geothermal)",
         faq: [
-            { question: "What is the education system like in New Zealand?", answer: "New Zealand follows the British education system, which is known for its quality and is recognized worldwide. All eight universities are ranked within the top 3% globally, ensuring a high standard of education." },
-            { question: "Is New Zealand a good country for international students?", answer: "Yes, New Zealand is considered one of the safest, friendliest, and most peaceful countries in the world. It offers a great work-life balance and a welcoming environment for students from all backgrounds." }
+            { question: "Is New Zealand safe for international students?", answer: "Yes, New Zealand is consistently ranked as one of the safest and most peaceful countries in the world, with a friendly and welcoming culture." },
+            { question: "What is the quality of life like?", answer: "The quality of life is very high, known for its stunning natural landscapes, outdoor lifestyle, and excellent work-life balance." }
         ],
         topUniversities: [
-            { name: "University of Auckland", qsRanking: 66, logo: "https://logo.clearbit.com/auckland.ac.nz" },
-            { name: "University of Otago", qsRanking: 214, logo: "https://logo.clearbit.com/otago.ac.nz" }
+            { name: "University of Auckland", qsRanking: 68, logo: "https://logo.clearbit.com/auckland.ac.nz" },
+            { name: "University of Otago", qsRanking: 206, logo: "https://logo.clearbit.com/otago.ac.nz" }
         ]
     }
-};
+}

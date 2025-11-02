@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Page, Notification } from '../App';
-import { User, generateAvatarUrl, AvatarConfig } from '../data/forums';
+import { Page } from '../App';
+import { generateAvatarUrl, AvatarConfig } from '../data/forums';
 
 // FIX: Added optional properties to the DropdownChild interface to match its usage for both individual links and dropdown containers. This resolves multiple TypeScript errors.
 interface DropdownChild {
@@ -42,6 +42,7 @@ const navLinks: DropdownChild[] = [
     ]
   },
   { href: 'college-finder', label: 'College Finder', isPage: true },
+  { href: 'shortlist', label: 'My Shortlist', isPage: true },
   { 
     label: 'Resources', 
     isDropdown: true, 
@@ -65,28 +66,14 @@ const navLinks: DropdownChild[] = [
 
 interface HeaderProps {
     navigateTo: (page: Page) => void;
-    isAuthenticated: boolean;
-    onLogout: () => void;
-    currentUser: User | null;
-    notifications: Notification[];
-    onMarkNotificationsAsRead: () => void;
-    onNotificationClick: (threadId: string) => void;
-    onCustomizeAvatar: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ navigateTo, isAuthenticated, onLogout, currentUser, notifications, onMarkNotificationsAsRead, onNotificationClick, onCustomizeAvatar }) => {
+const Header: React.FC<HeaderProps> = ({ navigateTo }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navRef = useRef<HTMLElement>(null);
-  const notificationsRef = useRef<HTMLDivElement>(null);
-  const userMenuRef = useRef<HTMLDivElement>(null);
-
-  const userNotifications = currentUser ? notifications.filter(n => n.recipientId === currentUser.id) : [];
-  const unreadCount = userNotifications.filter(n => !n.isRead).length;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,35 +108,11 @@ const Header: React.FC<HeaderProps> = ({ navigateTo, isAuthenticated, onLogout, 
     }
     setIsMenuOpen(false);
   }
-  
-  const handleToggleNotifications = () => {
-    setIsNotificationsOpen(prev => !prev);
-    if (!isNotificationsOpen && unreadCount > 0) {
-        onMarkNotificationsAsRead();
-    }
-    setIsUserMenuOpen(false);
-  };
-
-  const handleToggleUserMenu = () => {
-    setIsUserMenuOpen(prev => !prev);
-    setIsNotificationsOpen(false);
-  };
-
-  const handleNotificationItemClick = (threadId: string) => {
-    onNotificationClick(threadId);
-    setIsNotificationsOpen(false);
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setOpenDropdown(null);
-      }
-      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
-        setIsNotificationsOpen(false);
-      }
-      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
-        setIsUserMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -238,64 +201,6 @@ const Header: React.FC<HeaderProps> = ({ navigateTo, isAuthenticated, onLogout, 
               )}
             </div>
           ))}
-          {isAuthenticated && currentUser ? (
-            <div className="flex items-center space-x-3 ml-2">
-                 <div className="relative" ref={notificationsRef}>
-                    <button onClick={handleToggleNotifications} className="relative text-gray-300 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                      {unreadCount > 0 && (
-                        <span className="absolute top-0 right-0 block h-4 w-4 transform -translate-y-1/2 translate-x-1/2 rounded-full text-white bg-red-600 text-xs flex items-center justify-center">{unreadCount}</span>
-                      )}
-                    </button>
-                    <div className={`absolute top-full right-0 mt-4 w-80 max-h-96 overflow-y-auto modern-scrollbar transition-all ease-in-out duration-300 z-20 ${isNotificationsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-                      <div className="bg-gray-800/90 backdrop-blur-md rounded-md shadow-lg border border-[#F6520C]/20 overflow-hidden">
-                        <div className="p-3 border-b border-gray-700">
-                          <h4 className="font-semibold text-white">Notifications</h4>
-                        </div>
-                        {userNotifications.length > 0 ? (
-                          userNotifications.map(notification => (
-                            <button key={notification.id} onClick={() => handleNotificationItemClick(notification.threadId)} className={`block w-full text-left px-4 py-3 text-sm transition-colors hover:bg-[#F6520C]/80 ${!notification.isRead ? 'bg-[#F6520C]/20' : ''}`}>
-                              <p className="text-gray-300">{notification.message}</p>
-                              <p className="text-xs text-gray-500 mt-1">{new Date(notification.timestamp).toLocaleString()}</p>
-                            </button>
-                          ))
-                        ) : (
-                          <p className="p-4 text-sm text-gray-400">You have no new notifications.</p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                
-                 <div className="relative" ref={userMenuRef}>
-                    <button onClick={handleToggleUserMenu} className="flex items-center space-x-2 p-1 rounded-full hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C]">
-                      <img src={generateAvatarUrl(currentUser.avatarConfig)} alt={currentUser.name} className="w-8 h-8 rounded-full border-2 border-transparent group-hover:border-[#F6520C]" />
-                      <span className="text-white text-sm font-semibold hidden lg:block">{currentUser.name}</span>
-                       <svg className={`w-4 h-4 text-gray-300 transition-transform hidden lg:block ${isUserMenuOpen ? 'transform rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                     <div className={`absolute top-full right-0 mt-4 w-56 transition-all ease-in-out duration-300 z-10 ${isUserMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-                        <div className="bg-gray-800/90 backdrop-blur-md rounded-md shadow-lg border border-[#F6520C]/20 py-2 overflow-hidden">
-                            <div className="px-4 py-2 border-b border-gray-700">
-                                <p className="text-sm text-white font-semibold">{currentUser.name}</p>
-                                <p className="text-xs text-gray-400">{currentUser.username}</p>
-                            </div>
-                            <button onClick={() => { navigateTo('shortlist'); setIsUserMenuOpen(false); }} className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#F6520C] hover:text-white transition-colors">
-                              My Shortlist
-                            </button>
-                            <button onClick={() => { onCustomizeAvatar(); setIsUserMenuOpen(false); }} className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#F6520C] hover:text-white transition-colors">
-                              Customize Avatar
-                            </button>
-                            <button onClick={onLogout} className="block w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500 hover:text-white transition-colors">
-                                Logout
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          ) : (
-             <button onClick={() => navigateTo('login')} className="bg-[#F6520C] text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-[#E84A00]">
-                Login
-            </button>
-          )}
         </nav>
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-md">
@@ -320,27 +225,6 @@ const Header: React.FC<HeaderProps> = ({ navigateTo, isAuthenticated, onLogout, 
             <div className="container mx-auto px-6 pt-24 pb-12 flex flex-col h-full">
                 <div className="flex-grow overflow-y-auto modern-scrollbar -mr-4 pr-4">
                     <div className="flex flex-col gap-y-10">
-                        {/* User Section */}
-                        {isAuthenticated && currentUser ? (
-                            <div>
-                                <div className="flex items-center gap-4 p-4 bg-white/10 rounded-xl border border-gray-700">
-                                    <img src={generateAvatarUrl(currentUser.avatarConfig)} alt={currentUser.name} className="w-14 h-14 rounded-full" />
-                                    <div>
-                                        <p className="font-bold text-white text-lg">{currentUser.name}</p>
-                                        <p className="text-sm text-gray-400">@{currentUser.username}</p>
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-3 mt-3">
-                                    <button onClick={() => { navigateTo('shortlist'); setIsMenuOpen(false); }} className="text-center py-3 bg-white/5 rounded-lg text-sm font-semibold text-gray-300 hover:bg-white/10 transition-colors">My Shortlist</button>
-                                    <button onClick={() => { onCustomizeAvatar(); setIsMenuOpen(false); }} className="text-center py-3 bg-white/5 rounded-lg text-sm font-semibold text-gray-300 hover:bg-white/10 transition-colors">Customize Avatar</button>
-                                </div>
-                            </div>
-                        ) : (
-                            <button onClick={() => { navigateTo('login'); setIsMenuOpen(false); }} className="w-full bg-[#F6520C] text-white py-3.5 text-lg font-semibold rounded-lg hover:bg-opacity-90 transition transform hover:scale-105">
-                                Login / Sign Up
-                            </button>
-                        )}
-
                         {/* Main Navigation */}
                         <nav>
                             <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider px-2 mb-3">Menu</h3>
@@ -388,15 +272,6 @@ const Header: React.FC<HeaderProps> = ({ navigateTo, isAuthenticated, onLogout, 
                         </div>
                     </div>
                 </div>
-
-                {/* Logout button */}
-                {isAuthenticated && (
-                    <div className="mt-auto pt-6">
-                        <button onClick={() => { onLogout(); setIsMenuOpen(false); }} className="w-full text-center py-3 bg-red-600/20 rounded-lg text-red-300 font-semibold hover:bg-red-600/40 transition-colors">
-                            Logout
-                        </button>
-                    </div>
-                )}
             </div>
         </div>
       )}

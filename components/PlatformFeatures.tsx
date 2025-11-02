@@ -1,8 +1,12 @@
 import React from 'react';
-import { users, generateAvatarUrl } from '../data/forums';
+import { generateAvatarUrl, AvatarConfig } from '../data/forums';
 
 const PlatformFeatures: React.FC = () => {
-  const communityUsers = users.slice(1, 4); // Get a few sample users (excluding admin)
+    const communityAvatars: AvatarConfig[] = [
+        { style: 'adventurer', options: { seed: 'rohan-mehta', hair: 'short08', eyes: 'variant05', skinColor: 'AF6E5A', hairColor: '2c1b18', clothing: 'shirt', clothingColor: '607d8b' } },
+        { style: 'adventurer', options: { seed: 'priya-sharma', hair: 'long14', eyes: 'variant12', skinColor: 'D88C7A', hairColor: '4D4D4D', clothing: 'hoodie', clothingColor: 'f44336' } },
+        { style: 'adventurer', options: { seed: 'vikram-kumar', hair: 'short06', eyes: 'variant03', skinColor: 'E4A381', hairColor: 'A25900', clothing: 'crewNeck', clothingColor: '009688' } },
+    ];
 
   const features = [
     {
@@ -45,12 +49,12 @@ const PlatformFeatures: React.FC = () => {
       description: 'Connect with peers, read authentic reviews, and get advice from students already studying abroad.',
       customContent: (
         <div className="mt-4 flex justify-center -space-x-3">
-            {communityUsers.map((user) => (
+            {communityAvatars.map((config, index) => (
                 <img
-                    key={user.id}
+                    key={index}
                     className="h-10 w-10 rounded-full border-2 border-gray-800"
-                    src={generateAvatarUrl(user.avatarConfig)}
-                    alt={user.name}
+                    src={generateAvatarUrl(config)}
+                    alt={`Community user ${index + 1}`}
                 />
             ))}
             <div className="h-10 w-10 rounded-full bg-gray-600 flex items-center justify-center text-xs font-bold text-white border-2 border-gray-800">

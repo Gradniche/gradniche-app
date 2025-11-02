@@ -6,7 +6,6 @@ interface CollegeFinderProps {
     onUniversitySelect: (university: University) => void;
     shortlist: ShortlistItem[];
     onToggleShortlist: (item: ShortlistItem) => void;
-    isAuthenticated: boolean;
 }
 
 const StarIcon: React.FC<{ isFilled: boolean }> = ({ isFilled }) => (
@@ -117,7 +116,7 @@ const MultiSelectDropdown: React.FC<{
     );
 };
 
-const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, shortlist, onToggleShortlist, isAuthenticated }) => {
+const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, shortlist, onToggleShortlist }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [countryFilters, setCountryFilters] = useState<string[]>([]);
     const [courseFilters, setCourseFilters] = useState<string[]>([]);
@@ -294,9 +293,8 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, short
                                             </div>
                                         </button>
                                         <div className="absolute top-4 right-4 z-10">
-                                            <button onClick={() => onToggleShortlist({ type: 'university', universityId: uni.id })} disabled={!isAuthenticated} className="p-2 rounded-full bg-black/40 backdrop-blur-sm text-white hover:bg-black/60 hover:text-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed relative group/tooltip" aria-label={isShortlisted ? 'Remove from shortlist' : 'Add to shortlist'}>
+                                            <button onClick={() => onToggleShortlist({ type: 'university', universityId: uni.id })} className="p-2 rounded-full bg-black/40 backdrop-blur-sm text-white hover:bg-black/60 hover:text-yellow-400 relative group/tooltip" aria-label={isShortlisted ? 'Remove from shortlist' : 'Add to shortlist'}>
                                                 <StarIcon isFilled={isShortlisted} />
-                                                {!isAuthenticated && <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-black text-xs text-white px-3 py-1 rounded-md opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap shadow-lg">Login to shortlist</span>}
                                             </button>
                                         </div>
                                     </div>
