@@ -1,9 +1,10 @@
+
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { universities as universityData, University } from '../data/universities';
 import { ShortlistItem } from '../App';
 
 interface CollegeFinderProps {
-    onUniversitySelect: (university: University) => void;
+    navigate: (path: string) => void;
     shortlist: ShortlistItem[];
     onToggleShortlist: (item: ShortlistItem) => void;
 }
@@ -116,7 +117,7 @@ const MultiSelectDropdown: React.FC<{
     );
 };
 
-const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, shortlist, onToggleShortlist }) => {
+const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate, shortlist, onToggleShortlist }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [countryFilters, setCountryFilters] = useState<string[]>([]);
     const [courseFilters, setCourseFilters] = useState<string[]>([]);
@@ -281,7 +282,7 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, short
                                 return (
                                     <div key={uni.id} className="group relative bg-gradient-to-br from-gray-800/50 to-gray-900/70 backdrop-blur-sm rounded-lg border border-gray-700 hover:border-[#F6520C]/80 transition-all duration-300 flex flex-col text-center overflow-hidden hover:-translate-y-1 hover:shadow-xl" style={{ minHeight: '320px' }}>
                                         <div className="absolute inset-0 bg-gradient-to-b from-[#F6520C]/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                                        <button onClick={() => onUniversitySelect(uni)} className="w-full h-full flex flex-col p-6 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C]">
+                                        <a href={`#/college-finder/${uni.id}`} onClick={(e) => { e.preventDefault(); navigate(`/college-finder/${uni.id}`); }} className="w-full h-full flex flex-col p-6 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C]">
                                             <div className="flex-grow flex flex-col items-center justify-start">
                                                 <img src={uni.logo} alt={`${uni.name} logo`} className="w-24 h-24 rounded-full object-contain bg-white p-1.5 mb-5 border-2 border-gray-600 group-hover:border-[#F6520C] transition-colors" />
                                                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors flex-grow flex items-center justify-center line-clamp-3">{uni.name}</h3>
@@ -291,7 +292,7 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ onUniversitySelect, short
                                                 <p className="text-gray-400 text-xs uppercase font-semibold tracking-wider">QS World Rank</p>
                                                 <p className="font-bold text-white text-2xl mt-1">#{uni.qsRanking || 'N/A'}</p>
                                             </div>
-                                        </button>
+                                        </a>
                                         <div className="absolute top-4 right-4 z-10">
                                             <button onClick={() => onToggleShortlist({ type: 'university', universityId: uni.id })} className="p-2 rounded-full bg-black/40 backdrop-blur-sm text-white hover:bg-black/60 hover:text-yellow-400 relative group/tooltip" aria-label={isShortlisted ? 'Remove from shortlist' : 'Add to shortlist'}>
                                                 <StarIcon isFilled={isShortlisted} />

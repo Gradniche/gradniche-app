@@ -64,17 +64,17 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in" onClick={onClose}>
             <div
-                className="bg-gray-900/80 backdrop-blur-xl border border-[#F6520C]/30 w-full max-w-lg h-[90vh] max-h-[700px] rounded-2xl shadow-2xl flex flex-col transform transition-all duration-300 scale-95 opacity-0 animate-scale-in"
+                className="bg-gray-900/80 backdrop-blur-xl border border-[#F6520C]/30 w-full h-full rounded-none md:max-w-lg md:h-[90vh] md:max-h-[700px] md:rounded-2xl shadow-2xl flex flex-col transform transition-all duration-300 scale-95 opacity-0 animate-scale-in"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
+                <div className="flex items-center justify-between p-3 border-b border-gray-700/50">
                     <div className="flex items-center space-x-3">
                          <div className="p-2 bg-gray-800 rounded-full ring-2 ring-[#F6520C]/50">
                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold text-white">AI Study Abroad Assistant</h2>
+                            <h2 className="text-base font-bold text-white">AI Study Abroad Assistant</h2>
                             <p className="text-xs text-green-400 flex items-center"><span className="w-2 h-2 bg-green-400 rounded-full mr-1.5"></span>Online</p>
                         </div>
                     </div>

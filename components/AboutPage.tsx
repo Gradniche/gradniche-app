@@ -1,10 +1,10 @@
 import React from 'react';
-import { Page } from '../App';
 import { AvatarConfig, generateAvatarUrl } from '../data/forums';
 
 interface AboutPageProps {
     onBack: () => void;
-    navigateTo: (page: Page) => void;
+    // FIX: Changed navigateTo to navigate and Page to string to match props passed from App.tsx
+    navigate: (path: string) => void;
 }
 
 const platformFeatures = [
@@ -12,25 +12,29 @@ const platformFeatures = [
         title: 'In-Depth College Finder', 
         description: 'Our powerful search engine allows you to filter thousands of universities by country, course, tuition, and QS ranking to discover your perfect match.', 
         icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>,
-        page: 'college-finder' as Page
+        // FIX: Use full path for navigation
+        page: '/college-finder'
     },
     { 
         title: 'AI-Powered Application Tools', 
         description: 'Gain a competitive edge with our AI tools. Get instant feedback on your Statement of Purpose with our SOP Analyzer, or find your ideal study destination.', 
         icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.67-2.67L11.25 18l1.938-.648a3.375 3.375 0 002.67-2.67L16.75 13.5l.648 1.938a3.375 3.375 0 002.67 2.67L21.75 18l-1.938.648a3.375 3.375 0 00-2.67 2.67z" /></svg>,
-        page: 'sop-analyzer' as Page
+        // FIX: Use full path for navigation
+        page: '/tools/sop-analyzer'
     },
      { 
         title: 'Comprehensive Resource Hub', 
         description: 'Navigate every step with confidence. Access detailed Visa Guides, search for funding with our Scholarship Finder, and plan your budget with our calculators.', 
         icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
-        page: 'visa-guides' as Page
+        // FIX: Use full path for navigation
+        page: '/tools/visa-guides'
     },
     { 
         title: 'Active Student Community', 
         description: "You're not alone. Connect with thousands of fellow aspirants in our Community Forums. Ask questions, share experiences, and get authentic advice.", 
         icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>,
-        page: 'community-forums' as Page
+        // FIX: Use full path for navigation
+        page: '/tools/community-forums'
     },
 ];
 
@@ -52,7 +56,7 @@ const avatar2Config: AvatarConfig = { style: 'adventurer', options: { seed: 'abo
 const avatar3Config: AvatarConfig = { style: 'adventurer', options: { seed: 'about-us-female-2', hair: 'long06', eyes: 'variant11', skinColor: 'F5C6A0', hairColor: 'cb6820', clothing: 'crewNeck', clothingColor: '8bc34a' } };
 
 
-const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigateTo }) => {
+const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
     return (
         <div className="bg-[#0a101f] text-gray-300">
             {/* Hero Section */}
@@ -121,7 +125,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigateTo }) => {
                                         <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
                                     </div>
                                     <p className="text-gray-400 mb-6 flex-grow">{feature.description}</p>
-                                    <button onClick={() => navigateTo(feature.page)} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 self-start">
+                                    <button onClick={() => navigate(feature.page)} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 self-start">
                                         Explore Feature
                                     </button>
                                 </div>
@@ -155,7 +159,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigateTo }) => {
                             <p className="text-gray-400 leading-relaxed mb-6">
                                 This website is solely created and maintained by one person. While I strive for accuracy, clarity, and a seamless user experience, occasional errors may occur as the site continues to grow. If you notice any issues or have suggestions, please share your feedback through the form—your input directly helps me improve and prioritize updates.
                             </p>
-                            <button onClick={() => navigateTo('contact')} className="bg-gray-700/50 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-300">
+                            <button onClick={() => navigate('/contact')} className="bg-gray-700/50 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-300">
                                 Provide Feedback
                             </button>
                         </div>
@@ -184,7 +188,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigateTo }) => {
                         <p className="text-lg text-gray-400 mt-4 mb-8 max-w-2xl mx-auto">
                             Our tools and resources are designed to guide you every step of the way. Explore top universities and find your perfect fit today.
                         </p>
-                        <button onClick={() => navigateTo('college-finder')} className="bg-[#F6520C] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg transform hover:scale-105 glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C]/80">
+                        <button onClick={() => navigate('/college-finder')} className="bg-[#F6520C] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg transform hover:scale-105 glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C]/80">
                             Launch College Finder
                         </button>
                     </section>

@@ -45,6 +45,7 @@
       /* Modern scrollbar styles */
       .modern-scrollbar::-webkit-scrollbar {
         height: 6px;
+        width: 6px;
       }
       .modern-scrollbar::-webkit-scrollbar-track {
         background: transparent;
@@ -110,6 +111,26 @@
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
         transform-origin: 70% 70%;
+      }
+      /* --- Mobile App-like Optimizations --- */
+      @keyframes slideInFromRight {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+      }
+      .animate-slide-in-right {
+        animation: slideInFromRight 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      }
+      
+      /* Mobile-specific enhancements */
+      a, button {
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+      }
+      
+      @media (max-width: 767px) {
+        section {
+            padding-top: 3.5rem; /* py-14 */
+            padding-bottom: 3.5rem; /* py-14 */
+        }
       }
     </style>
 <script type="importmap">

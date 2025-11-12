@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useMemo } from 'react';
 import { Program, University, universities as allUniversities } from '../data/universities';
 
@@ -298,8 +295,8 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
   const info = countrySpecificInfo;
 
   return (
-    <section className="py-20 bg-[#0a101f] min-h-screen">
-      <div className="container mx-auto px-6">
+    <section className="py-16 md:py-20 bg-[#0a101f] min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-8">
             <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -309,25 +306,46 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
             </button>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm p-8 rounded-lg mb-8 border border-gray-700">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">{programTitle}</h1>
-            <p className="text-xl text-gray-400 mt-1">at {university.name}</p>
-            
-             <p className="mt-4 text-gray-300">
-                Explore the {programTitle} at {university.name}. This {program.duration} program, offered by the <em>{program.school}</em>, is a {program.isSTEM ? 'STEM-designated course, ideal for international students seeking post-study work opportunities.' : 'comprehensive course designed for academic excellence.'}
-            </p>
+        <div className="bg-white/5 backdrop-blur-sm p-4 sm:p-6 rounded-lg mb-8 border border-gray-700">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">{programTitle}</h1>
+            <p className="text-lg text-gray-400 mt-1">at {university.name}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-8">
+            <div className="lg:col-span-2 space-y-8 flex flex-col gap-8 order-2 lg:order-1">
+                 {/* Summary Box (for mobile, shown first) */}
+                <div className="lg:hidden bg-gray-800/50 p-4 rounded-lg border border-gray-700 space-y-4">
+                    <div className="flex justify-between items-baseline">
+                        <span className="text-gray-400">Tuition Fee</span>
+                        <span className="text-xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+                    </div>
+                    <div className="flex justify-between items-baseline">
+                        <span className="text-gray-400">Duration</span>
+                        <span className="font-semibold text-white">{program.duration}</span>
+                    </div>
+                     <div className="flex justify-between items-baseline">
+                       <span className="text-gray-400">School</span>
+                       <span className="font-semibold text-white text-right">{program.school}</span>
+                    </div>
+                     {program.isSTEM && (
+                       <div className="flex justify-center pt-2">
+                           <span className="bg-orange-500/20 text-orange-300 text-sm font-bold px-4 py-2 rounded-full">STEM Designated</span>
+                       </div>
+                    )}
+                    <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-gray-700/50 text-gray-300 border border-gray-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-700 hover:text-white transition duration-300">Course Link</a>
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-[#F6520C] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Apply Now</a>
+                    </div>
+                </div>
+
                 {/* Program Overview */}
-                <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Detailed Program Overview</h2>
+                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Detailed Program Overview</h2>
                     <p className="text-gray-400 leading-relaxed whitespace-pre-line">{enhancedAbout}</p>
                     
                     {program.sellingPoints && program.sellingPoints.length > 0 && (
-                        <div className="mt-6 bg-orange-900/40 p-6 rounded-lg border border-[#F6520C]/50">
-                            <h3 className="text-xl font-bold text-orange-300 mb-4">Why Choose This Program at {university.name}?</h3>
+                        <div className="mt-6 bg-orange-900/40 p-4 sm:p-6 rounded-lg border border-[#F6520C]/50">
+                            <h3 className="text-lg sm:text-xl font-bold text-orange-300 mb-4">Why Choose This Program at {university.name}?</h3>
                             <ul className="space-y-3">
                                 {program.sellingPoints.map((point, index) => (
                                     <li key={index} className="flex items-start">
@@ -343,8 +361,8 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                 </div>
 
                 {/* Admission Requirements */}
-                <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Admission Requirements</h2>
+                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Admission Requirements</h2>
                     {program.gpa && (
                         <div className="bg-gray-800/50 p-4 rounded-lg mb-4">
                             <div className="flex justify-between items-center">
@@ -359,8 +377,8 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                 </div>
                 
                  {/* --- Career Outcomes Section --- */}
-                <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                         Career Outcomes & Opportunities
                     </h2>
                     <div className="text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: info.outcomes(program.isSTEM) }}></div>
@@ -377,16 +395,16 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                 </div>
 
                 {/* --- ROI Section --- */}
-                <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                         Return on Investment (ROI) Analysis
                     </h2>
                     <div className="text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: info.roi }}></div>
                 </div>
                 
                 {englishTests.length > 0 && (
-                  <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                      <h2 className="text-2xl font-semibold text-white mb-4">English Language Proficiency</h2>
+                  <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">English Language Proficiency</h2>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {englishTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
                       </div>
@@ -394,8 +412,8 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                 )}
                 
                 {standardizedTests.length > 0 && (
-                  <div className="bg-white/5 p-6 rounded-lg border border-gray-700">
-                      <h2 className="text-2xl font-semibold text-white mb-4">Standardized Tests</h2>
+                  <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
+                      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Standardized Tests</h2>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {standardizedTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
                       </div>
@@ -409,10 +427,9 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                     </div>
                 )}
             </div>
-            
-            <div className="lg:col-span-1">
-                <div className="sticky top-24 space-y-6">
-                    <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+            <div className="lg:col-span-1 order-1 lg:order-2 mb-8 lg:mb-0">
+                <div className="lg:sticky top-24 space-y-6">
+                     <div className="hidden lg:block bg-gray-800/50 p-6 rounded-lg border border-gray-700">
                         <div className="space-y-4">
                             <div className="flex justify-between items-baseline">
                                <span className="text-gray-400">Tuition Fee</span>

@@ -1,9 +1,6 @@
-
-
-
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { University, Program } from '../data/universities';
-import { ShortlistItem, Page } from '../App';
+import { ShortlistItem } from '../App';
 import { threads as allThreads, generateAvatarUrl, users } from '../data/forums';
 
 
@@ -13,7 +10,7 @@ interface UniversityDetailProps {
   onBack: () => void;
   shortlist: ShortlistItem[];
   onToggleShortlist: (item: ShortlistItem) => void;
-  navigateTo: (page: Page) => void; 
+  navigate: (path: string) => void; 
   onThreadSelect: (threadId: string) => void;
 }
 
@@ -63,7 +60,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
 );
 
 
-const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, shortlist, onToggleShortlist, navigateTo, onThreadSelect }) => {
+const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, shortlist, onToggleShortlist, navigate, onThreadSelect }) => {
   const [activeSection, setActiveSection] = useState('overview');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const isUniversityShortlisted = shortlist.some(item => item.type === 'university' && item.universityId === university.id);
@@ -256,7 +253,7 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                 <section id="scholarships" ref={scholarshipsRef} className="scroll-mt-24">
                     <h2 className="text-2xl font-semibold text-white mb-4">Scholarships & Funding</h2>
                     <p className="text-gray-400 leading-relaxed mb-6">{university.scholarships}</p>
-                     <button onClick={() => navigateTo('scholarship-finder')} className="bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
+                     <button onClick={() => navigate('/tools/scholarship-finder')} className="bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
                       Find Relevant Scholarships
                     </button>
                 </section>
@@ -304,7 +301,7 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                     ) : (
                         <p className="text-gray-500">No community discussions found for this university yet.</p>
                     )}
-                    <button onClick={() => navigateTo('community-forums')} className="mt-6 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition">
+                    <button onClick={() => navigate('/tools/community-forums')} className="mt-6 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition">
                         View All Discussions &rarr;
                     </button>
                 </section>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Page } from '../App';
 import { AvatarConfig } from './forums';
 
 export interface FAQ {

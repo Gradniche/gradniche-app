@@ -1,54 +1,54 @@
+
 import React from 'react';
-import { Page } from '../App';
 import { AvatarConfig, generateAvatarUrl } from '../data/forums';
 
 const destinations = [
   {
     name: 'USA',
     description: 'Home to top-ranked universities and diverse career opportunities.',
-    page: 'destination-usa' as Page,
+    href: '/destinations/usa',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-usa', hair: 'short01', eyes: 'variant01', skinColor: 'F5C6A0', hairColor: '4D4D4D', clothing: 'shirt', clothingColor: 'F6520C' } },
   },
   {
     name: 'Canada',
     description: 'Known for its high quality of life and welcoming immigration policies.',
-    page: 'destination-canada' as Page,
+    href: '/destinations/canada',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-canada-female', hair: 'long01', eyes: 'variant06', skinColor: 'E4A381', hairColor: 'A25900', clothing: 'hoodie', clothingColor: 'FF0000' } },
   },
   {
     name: 'UK',
     description: 'Rich in history with world-renowned institutions and vibrant cities.',
-    page: 'destination-uk' as Page,
+    href: '/destinations/uk',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uk', hair: 'short02', eyes: 'variant02', skinColor: 'AF6E5A', hairColor: '282828', clothing: 'blazer', clothingColor: '00247D' } },
   },
   {
     name: 'Australia',
     description: 'Offers a fantastic lifestyle and excellent hands-on learning experiences.',
-    page: 'destination-australia' as Page,
+    href: '/destinations/australia',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-australia-female', hair: 'long02', eyes: 'variant07', skinColor: 'C47D6A', hairColor: 'B86B25', clothing: 'crewNeck', clothingColor: 'FFCD00' } },
   },
    {
     name: 'Germany',
     description: 'Engineering excellence and low-cost education in the heart of Europe.',
-    page: 'destination-germany' as Page,
+    href: '/destinations/germany',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-germany', hair: 'short06', eyes: 'variant03', skinColor: 'D88C7A', hairColor: '2c1b18', clothing: 'blazer', clothingColor: '000000' } },
   },
   {
     name: 'Ireland',
     description: 'Europe\'s vibrant tech hub with a rich culture and friendly atmosphere.',
-    page: 'destination-ireland' as Page,
+    href: '/destinations/ireland',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-ireland-female', hair: 'long06', eyes: 'variant11', skinColor: 'F5C6A0', hairColor: 'cb6820', clothing: 'crewNeck', clothingColor: '009A44' } },
   },
    {
     name: 'UAE',
     description: 'A futuristic global business hub with modern universities and tax-free perks.',
-    page: 'destination-uae' as Page,
+    href: '/destinations/uae',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uae', hair: 'short08', eyes: 'variant12', skinColor: 'AF6E5A', hairColor: '000000', clothing: 'shirt', clothingColor: '000000', accessories: 'sunglasses', accessoriesProbability: 100 } },
   },
   {
     name: 'New Zealand',
     description: 'Stunning landscapes, a high quality of life, and a world-class education system.',
-    page: 'destination-new-zealand' as Page,
+    href: '/destinations/new-zealand',
     avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-nz-female', hair: 'long07', eyes: 'variant01', skinColor: 'E4A381', hairColor: '4D4D4D', clothing: 'blazer', clothingColor: '000000' } },
   }
 ];
@@ -57,14 +57,15 @@ const destinations = [
 interface DestinationCardProps {
   name: string;
   description: string;
-  page: Page;
+  href: string;
   avatarConfig: AvatarConfig;
-  navigateTo: (page: Page) => void;
+  navigate: (path: string) => void;
 }
 
-const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, page, avatarConfig, navigateTo }) => (
-    <button
-        onClick={() => navigateTo(page)}
+const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, href, avatarConfig, navigate }) => (
+    <a
+        href={`#${href}`}
+        onClick={(e) => {e.preventDefault(); navigate(href)}}
         className="relative rounded-lg overflow-hidden group h-96 text-left focus:outline-none focus:ring-4 focus:ring-[#F6520C] focus:ring-offset-4 focus:ring-offset-gray-900 border-2 border-gray-700 hover:border-[#F6520C] hover:shadow-2xl hover:shadow-[#F6520C]/20 transition-all duration-300"
     >
         {/* Gradient background */}
@@ -88,14 +89,14 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, pa
                 <p className="text-gray-300">{description}</p>
             </div>
         </div>
-    </button>
+    </a>
 );
 
 interface DestinationsProps {
-    navigateTo: (page: Page) => void;
+    navigate: (path: string) => void;
 }
 
-const Destinations: React.FC<DestinationsProps> = ({ navigateTo }) => {
+const Destinations: React.FC<DestinationsProps> = ({ navigate }) => {
   return (
     <section id="destinations" className="py-20 bg-gray-900/50">
       <div className="container mx-auto px-6">
@@ -107,7 +108,7 @@ const Destinations: React.FC<DestinationsProps> = ({ navigateTo }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {destinations.map((dest) => (
-            <DestinationCard key={dest.name} {...dest} navigateTo={navigateTo} />
+            <DestinationCard key={dest.name} {...dest} navigate={navigate} />
           ))}
         </div>
       </div>

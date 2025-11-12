@@ -1,10 +1,10 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { University, Program, universities as allUniversities } from '../data/universities';
-import { Page } from '../App';
 
 interface CourseComparisonProps {
   onBack: () => void;
-  navigateTo: (page: Page) => void;
+  navigate: (path: string) => void;
 }
 
 interface SelectedProgram {
@@ -40,7 +40,7 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
 );
 
 
-const CourseComparison: React.FC<CourseComparisonProps> = ({ onBack, navigateTo }) => {
+const CourseComparison: React.FC<CourseComparisonProps> = ({ onBack, navigate }) => {
     const [step, setStep] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedUniversities, setSelectedUniversities] = useState<University[]>([]);

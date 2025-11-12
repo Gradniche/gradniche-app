@@ -1,5 +1,7 @@
+
+
+
 import React, { useState, useEffect } from 'react';
-import { Page } from '../App';
 
 interface Course {
   id: number;
@@ -12,7 +14,8 @@ type GradeScale = 'percentage' | '10-point' | 'letter';
 
 interface GPACalculatorProps {
   onBack: () => void;
-  navigateTo: (page: Page) => void;
+  // FIX: Changed navigateTo to navigate and Page to string to match props passed from App.tsx
+  navigate: (path: string) => void;
 }
 
 const getGradePoint = (grade: string, scale: GradeScale): number | null => {
@@ -149,7 +152,7 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
         <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
@@ -161,259 +164,155 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
 );
 
 
-const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigateTo }) => {
-  const [courses, setCourses] = useState<Course[]>([{ id: 1, name: '', credits: '', grade: '' }]);
-  const [gradeScale, setGradeScale] = useState<GradeScale>('percentage');
-  const [calculatedGpa, setCalculatedGpa] = useState<{ gpa: string, totalCredits: number } | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  
-  useEffect(() => {
-    // Add JSON-LD Structured Data for SEO
-    const scriptId = 'gpa-calculator-structured-data';
-    document.getElementById(scriptId)?.remove();
+const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
+    const [courses, setCourses] = useState<Course[]>([
+        { id: 1, name: '', credits: '', grade: '' },
+        { id: 2, name: '', credits: '', grade: '' },
+        { id: 3, name: '', credits: '', grade: '' },
+        { id: 4, name: '', credits: '', grade: '' },
+    ]);
+    const [scale, setScale] = useState<GradeScale>('percentage');
+    const [gpa, setGpa] = useState<number | null>(null);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+    
+    useEffect(() => {
+        const scriptId = 'gpa-calculator-structured-data';
+        document.getElementById(scriptId)?.remove();
 
-    const howToStructuredData = {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to Calculate Your GPA on a 4.0 Scale",
-        "step": [
-            { "@type": "HowToStep", "name": "Select Your Grading System", "text": "Choose the grading scale that matches your transcripts, such as Percentage (0-100), 10-Point Scale, or Letter Grades (A-F)." },
-            { "@type": "HowToStep", "name": "Enter Your Courses and Credits", "text": "For each course, enter the number of credits and the grade you received. You can add as many courses as you need." },
-            { "@type": "HowToStep", "name": "Calculate Your GPA", "text": "Click the 'Calculate GPA' button to see your GPA instantly converted to the standard 4.0 scale."}
-        ]
+        const faqJsonData = {
+            "@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": faqData.map(item => ({
+                "@type": "Question", "name": item.question,
+                "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+            }))
+        };
+        
+        const script = document.createElement('script');
+        script.id = scriptId;
+        script.type = 'application/ld+json';
+        script.innerHTML = JSON.stringify(faqJsonData);
+        document.head.appendChild(script);
+
+        return () => { document.getElementById(scriptId)?.remove(); };
+    }, []);
+
+    const handleCourseChange = (id: number, field: 'name' | 'credits' | 'grade', value: string) => {
+        setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
     };
 
-    const faqStructuredData = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqData.map(item => ({
-            "@type": "Question", "name": item.question,
-            "acceptedAnswer": { "@type": "Answer", "text": item.answer }
-        }))
+    const addCourse = () => {
+        setCourses([...courses, { id: Date.now(), name: '', credits: '', grade: '' }]);
     };
     
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify([howToStructuredData, faqStructuredData]);
-    document.head.appendChild(script);
+    const removeCourse = (id: number) => {
+        setCourses(courses.filter(c => c.id !== id));
+    };
 
-    return () => { document.getElementById(scriptId)?.remove(); };
-  }, []);
+    const calculateGPA = () => {
+        let totalPoints = 0;
+        let totalCredits = 0;
 
+        courses.forEach(course => {
+            const credits = parseFloat(course.credits);
+            const gradePoint = getGradePoint(course.grade, scale);
 
-  const addCourse = () => {
-    setCourses([...courses, { id: Date.now(), name: '', credits: '', grade: '' }]);
-  };
+            if (!isNaN(credits) && credits > 0 && gradePoint !== null) {
+                totalPoints += gradePoint * credits;
+                totalCredits += credits;
+            }
+        });
 
-  const removeCourse = (id: number) => {
-    setCourses(courses.filter(course => course.id !== id));
-  };
-
-  const handleCourseChange = (id: number, field: keyof Omit<Course, 'id'>, value: string) => {
-    setCourses(courses.map(course => course.id === id ? { ...course, [field]: value } : course));
-  };
-
-  const resetCalculator = () => {
-    setCourses([{ id: 1, name: '', credits: '', grade: '' }]);
-    setCalculatedGpa(null);
-    setError(null);
-  };
-  
-  const calculateGpa = () => {
-    setError(null);
-    setCalculatedGpa(null);
-    let totalPoints = 0;
-    let totalCredits = 0;
-
-    for (const course of courses) {
-        if (!course.credits || !course.grade) continue;
-
-        const credits = parseFloat(course.credits);
-        if (isNaN(credits) || credits <= 0) {
-            setError('Please enter valid, positive numbers for credits.');
+        if (totalCredits === 0) {
+            setGpa(null);
             return;
         }
 
-        const gradePoint = getGradePoint(course.grade, gradeScale);
-        if (gradePoint === null) {
-            setError(`Invalid grade '${course.grade}' for the selected scale. Please check your inputs.`);
-            return;
-        }
+        const calculatedGpa = totalPoints / totalCredits;
+        setGpa(parseFloat(calculatedGpa.toFixed(2)));
+    };
 
-        totalPoints += gradePoint * credits;
-        totalCredits += credits;
-    }
-    
-    if (totalCredits === 0) {
-        setError('Please enter at least one course with credits and a grade to calculate GPA.');
-        return;
-    }
-
-    const gpa = (totalPoints / totalCredits).toFixed(2);
-    setCalculatedGpa({ gpa, totalCredits });
-  };
-  
-  const getGradePlaceholder = () => {
-      switch(gradeScale) {
-          case 'percentage': return 'e.g., 85';
-          case '10-point': return 'e.g., 8.5';
-          case 'letter': return 'e.g., A-';
-          default: return '';
-      }
-  }
-
-  return (
-    <section className="py-20 bg-[#0a101f] min-h-screen">
-      <div className="container mx-auto px-6">
-         <div className="mb-8">
-            <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Back</span>
-            </button>
-        </div>
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">GPA Calculator for Study Abroad</h1>
-           <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-            Applying to universities in the US, Canada, or elsewhere? Convert your Indian percentage, 10-point CGPA, or letter grades to the 4.0 GPA scale to understand your academic standing.
-          </p>
-        </div>
-
-        {/* How It Works Section */}
-        <div className="max-w-4xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">3 Simple Steps to Calculate Your GPA</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div className="flex flex-col items-center">
-                    <div className="bg-[#F6520C]/20 text-[#F6520C] rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold border-2 border-[#F6520C]">1</div>
-                    <h3 className="text-xl font-semibold text-white mt-4">Select Your Scale</h3>
-                    <p className="text-gray-400 mt-2">Choose the grading system that matches your mark sheets.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <div className="bg-[#F6520C]/20 text-[#F6520C] rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold border-2 border-[#F6520C]">2</div>
-                    <h3 className="text-xl font-semibold text-white mt-4">Enter Your Courses</h3>
-                    <p className="text-gray-400 mt-2">Add your courses, credits, and the grades you received.</p>
-                </div>
-                 <div className="flex flex-col items-center">
-                    <div className="bg-[#F6520C]/20 text-[#F6520C] rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold border-2 border-[#F6520C]">3</div>
-                    <h3 className="text-xl font-semibold text-white mt-4">Get Your Converted GPA</h3>
-                    <p className="text-gray-400 mt-2">Instantly see your GPA on the standard 4.0 scale.</p>
-                </div>
-            </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Calculator Form */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-gray-700 shadow-xl">
-                <div className="mb-6 space-y-2">
-                    <label className="block text-lg font-medium text-white text-center" htmlFor="grade-scale-selector">Step 1: Select Your Grading System</label>
-                    <GradeScaleSelector selected={gradeScale} onSelect={setGradeScale} />
-                </div>
-
-                <div className="mb-6">
-                     <label className="block text-lg font-medium text-white text-center mb-4">Step 2: Enter Your Courses</label>
-                    <div className="space-y-4">
-                        {courses.map((course, index) => (
-                            <div key={course.id} className="grid grid-cols-12 gap-3 items-center">
-                                <div className="col-span-12 sm:col-span-5">
-                                    <label htmlFor={`course-name-${course.id}`} className="sr-only">Course Name {index + 1}</label>
-                                    <input id={`course-name-${course.id}`} type="text" placeholder={`Course ${index + 1} (Optional)`} value={course.name} onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
-                                </div>
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor={`course-credits-${course.id}`} className="sr-only">Credits for Course {index + 1}</label>
-                                    <input id={`course-credits-${course.id}`} type="number" placeholder="Credits" value={course.credits} onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
-                                </div>
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor={`course-grade-${course.id}`} className="sr-only">Grade for Course {index + 1}</label>
-                                    <input id={`course-grade-${course.id}`} type="text" placeholder={getGradePlaceholder()} value={course.grade} onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
-                                </div>
-                                <div className="col-span-12 sm:col-span-1 flex justify-end">
-                                    {courses.length > 1 && (
-                                        <button onClick={() => removeCourse(course.id)} aria-label="Remove course" className="text-gray-500 hover:text-red-500 transition-colors p-2 rounded-full">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                     <button onClick={addCourse} className="mt-4 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                        <span>Add Another Course</span>
+    return (
+        <section className="py-20 bg-[#0a101f] min-h-screen">
+            <div className="container mx-auto px-6">
+                <div className="mb-8">
+                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        <span>Back</span>
                     </button>
                 </div>
-
-                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-                    <button onClick={calculateGpa} className="w-full sm:w-auto bg-[#F6520C] text-white px-8 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]">
-                        Calculate My GPA
-                    </button>
-                    <button onClick={resetCalculator} className="w-full sm:w-auto bg-gray-700/50 text-gray-300 px-8 py-3 rounded-md font-semibold hover:bg-gray-700 transition duration-300">
-                        Clear All
-                    </button>
+                <div className="text-center mb-12">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white">GPA Calculator</h1>
+                    <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                        Convert your Indian percentage or 10-point CGPA to the 4.0 scale used by international universities. Understand your academic standing with our easy tool.
+                    </p>
                 </div>
-            </div>
 
-            {/* Results Display */}
-            <div className="sticky top-24">
-                <h2 className="text-2xl font-bold text-white text-center mb-4">Your Result</h2>
-                <div className="p-8 bg-gray-800/50 border-2 border-gray-700 rounded-lg text-center transition-all duration-300 min-h-[300px] flex flex-col justify-center">
-                    {error && <p className="text-red-400 bg-red-900/30 p-3 rounded-md">{error}</p>}
-                    {!calculatedGpa && !error && (
-                        <div className="text-gray-500">
-                             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                            <p>Your calculated GPA will appear here.</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    {/* Input Section */}
+                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-gray-700 space-y-6">
+                        <div>
+                            <label className="block text-lg font-semibold text-white mb-3">1. Select Your Grading Scale</label>
+                            <GradeScaleSelector selected={scale} onSelect={setScale} />
                         </div>
-                    )}
-                    {calculatedGpa && (
-                        <div className="animate-fade-in">
-                            <p className="text-lg text-gray-300">Your Calculated GPA is</p>
-                            <GPAGauge gpa={parseFloat(calculatedGpa.gpa)} />
-                            <p className="text-6xl font-extrabold text-white my-1" style={{ textShadow: "0 0 15px rgba(246, 82, 12, 0.5)"}}>{calculatedGpa.gpa}</p>
-                            <p className="text-sm text-gray-500">Based on {calculatedGpa.totalCredits} total credits.</p>
-                            <GPABreakdown gpa={parseFloat(calculatedGpa.gpa)} />
-                             <div className="mt-6">
-                                <button onClick={() => navigateTo('college-finder')} className="w-full bg-gray-700/50 text-[#F6520C] border border-[#F6520C] px-6 py-3 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 text-lg font-semibold">
-                                    Find Universities Matching Your Profile
+                        
+                        <div>
+                            <label className="block text-lg font-semibold text-white mb-3">2. Enter Your Courses</label>
+                            <div className="space-y-3">
+                                {courses.map((course, index) => (
+                                    <div key={course.id} className="grid grid-cols-12 gap-2 items-center">
+                                        <input type="text" placeholder={`Course ${index + 1}`} value={course.name} onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} className="col-span-5 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
+                                        <input type="number" placeholder="Credits" value={course.credits} onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} className="col-span-3 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
+                                        <input type="text" placeholder={scale === 'percentage' ? '0-100' : scale === '10-point' ? '0-10' : 'A-F'} value={course.grade} onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} className="col-span-3 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
+                                        <button onClick={() => removeCourse(course.id)} className="col-span-1 text-gray-500 hover:text-red-500 transition-colors disabled:opacity-50" disabled={courses.length <= 1}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                             <button onClick={addCourse} className="mt-4 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition-colors">+ Add another course</button>
+                        </div>
+
+                        <button onClick={calculateGPA} className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition transform hover:scale-105">
+                            Calculate My GPA
+                        </button>
+                    </div>
+
+                    {/* Output Section */}
+                    <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg border border-gray-700 text-center sticky top-24">
+                        <h2 className="text-2xl font-bold text-white mb-4">Your Estimated GPA</h2>
+                        {gpa !== null ? (
+                            <div className="animate-fade-in">
+                                <GPAGauge gpa={gpa} />
+                                <p className="text-6xl font-extrabold text-white my-4">{gpa.toFixed(2)} / 4.0</p>
+                                <GPABreakdown gpa={gpa} />
+                                 <button onClick={() => navigate('/college-finder')} className="mt-6 w-full bg-gray-700/50 text-gray-300 border border-gray-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-700 hover:text-white transition duration-300">
+                                    Find Universities with this GPA
                                 </button>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            <div className="text-gray-500 py-12">
+                                <p>Your calculated GPA will appear here.</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="mt-20 max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold text-white text-center mb-10">Understanding Your GPA</h2>
+                    <div className="space-y-4">
+                        {faqData.map((faqItem, index) => (
+                            <AccordionItem 
+                                key={index} 
+                                faq={faqItem} 
+                                isOpen={openFaqIndex === index}
+                                onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
-
-         {/* FAQ Section */}
-        <div className="mt-20 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-white text-center mb-10">Understanding Your GPA</h2>
-             <div className="space-y-4">
-                {faqData.map((faqItem, index) => (
-                    <AccordionItem 
-                        key={index} 
-                        faq={faqItem} 
-                        isOpen={openFaqIndex === index}
-                        onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                    />
-                ))}
-            </div>
-        </div>
-        
-        {/* Disclaimer */}
-        <div className="mt-16 max-w-4xl mx-auto text-center">
-            <div className="bg-yellow-900/30 border border-yellow-500/50 rounded-lg p-6">
-                <h4 className="font-bold text-lg text-yellow-300 mb-2">Disclaimer</h4>
-                <p className="text-sm text-yellow-400/80">
-                    The GPA conversion provided by this calculator is an approximation for informational purposes only. Conversion methodologies can vary significantly between institutions. For all official academic or immigration purposes, you must use a professional credential evaluation service like WES. GradNiche is not responsible for any decisions made based on the results of this tool.
-                </p>
-            </div>
-        </div>
-
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default GPACalculator;

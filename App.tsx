@@ -1,6 +1,4 @@
 
-
-
 import React, { useState, useEffect, useMemo } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -12,7 +10,6 @@ import AIDestinationFinder from './components/AIDestinationFinder';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import CollegeFinder from './components/CollegeFinder';
-// FIX: Changed to a default import for UniversityDetail.
 import UniversityDetail from './components/UniversityDetail';
 import ProgramDetail from './components/ProgramDetail';
 import DestinationDetail from './components/DestinationDetail';
@@ -45,11 +42,9 @@ export type ShortlistItem =
     | { type: 'university'; universityId: string; }
     | { type: 'program'; universityId: string; programId: string; };
 
+type ToolID = 'course-comparison' | 'sop-analyzer' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
 
-export type ToolPage = 'course-comparison' | 'sop-analyzer' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
-export type Page = 'home' | 'college-finder' | 'about' | 'destination-usa' | 'destination-uk' | 'destination-canada' | 'destination-australia' | 'destination-germany' | 'destination-ireland' | 'destination-uae' | 'destination-new-zealand' | 'contact' | 'terms-and-conditions' | 'disclaimer' | 'cookie-policy' | 'privacy-policy' | 'shortlist' | ToolPage;
-
-const toolDetails: Record<ToolPage, {name: string, description: string}> = {
+const toolDetails: Record<ToolID, {name: string, description: string}> = {
     'course-comparison': { name: 'Course Comparison', description: 'Compare courses from different universities side-by-side to find your perfect fit.' },
     'sop-analyzer': { name: 'AI SOP Analyzer', description: 'Get instant, data-driven feedback on your Statement of Purpose to boost your application.' },
     'visa-guides': { name: 'Visa Application Guides', description: 'Access step-by-step guides for student visa applications for top study destinations.' },
@@ -61,41 +56,39 @@ const toolDetails: Record<ToolPage, {name: string, description: string}> = {
     'f1-visa-prep': { name: 'F1 Visa Interview Prep', description: 'Practice for your F-1 visa interview with a realistic AI-powered mock interview.' },
 };
 
-const pageMetadata: Record<Page, { title: string, description: string }> = {
-    'home': { title: 'GradNiche | AI-Powered Study Abroad Platform', description: 'Plan your global education with GradNiche. Use AI tools, a university finder, and expert guides to find top destinations and achieve your study abroad dreams.' },
-    'college-finder': { title: 'University Finder | Search & Compare Colleges | GradNiche', description: 'Find your perfect university. Search and compare thousands of global colleges by country, course, tuition, and QS ranking with GradNiche\'s advanced tool.' },
-    'shortlist': { title: 'My Shortlist | Compare Universities & Programs | GradNiche', description: 'Manage and compare shortlisted universities and programs. Make an informed decision for your future education abroad with GradNiche\'s comparison tools.' },
-    'about': { title: 'About GradNiche | Our Mission in Global Education', description: 'Learn about GradNiche, our mission, and the team dedicated to making global education accessible for all students through innovative technology and support.' },
-    'contact': { title: 'Contact Us | Study Abroad Guidance | GradNiche', description: 'Have questions about studying abroad? Get in touch with the GradNiche team. We\'re here to help you with applications, visas, and university selection.' },
-    'terms-and-conditions': { title: 'Terms & Conditions | GradNiche', description: 'Read the terms and conditions for using the GradNiche platform and its services.' },
-    'disclaimer': { title: 'Disclaimer | GradNiche', description: 'Read the disclaimer for the use of GradNiche\'s platform, tools, and information.' },
-    'cookie-policy': { title: 'Cookie Policy | GradNiche', description: 'Understand how GradNiche uses cookies and similar technologies to enhance your experience on our platform.' },
-    'privacy-policy': { title: 'Privacy Policy | GradNiche', description: 'Learn about how GradNiche collects, uses, and protects your personal data when you use our services.' },
-    'destination-usa': { title: 'Study in the USA | Top Universities & Visa Guide | GradNiche', description: 'Explore top universities, visa requirements, costs, and scholarships for studying in the USA. Your complete guide to American education with GradNiche.' },
-    'destination-uk': { title: 'Study in the UK | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in the United Kingdom. Find universities, course information, and post-study work options with GradNiche.' },
-    'destination-canada': { title: 'Study in Canada | Top Universities & Visa Guide | GradNiche', description: 'Discover the benefits of studying in Canada, from top universities to clear immigration pathways. Your complete guide with GradNiche.' },
-    'destination-australia': { title: 'Study in Australia | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in Australia, known for world-class education and an incredible lifestyle. Your complete guide with GradNiche.' },
-    'destination-germany': { title: 'Study in Germany | Top Universities & Visa Guide | GradNiche', description: 'Explore engineering excellence, low-cost education, and top research universities in Germany. Your complete guide with GradNiche.' },
-    'destination-ireland': { title: 'Study in Ireland | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in Europe\'s tech hub. Discover universities and post-study work opportunities in Ireland with GradNiche.' },
-    'destination-uae': { title: 'Study in the UAE | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in a global business hub known for modern universities and an international outlook. Your complete guide with GradNiche.' },
-    'destination-new-zealand': { title: 'Study in New Zealand | Top Universities & Guide | GradNiche', description: 'Discover a world-class education, stunning landscapes, and a high quality of life in New Zealand. Your complete guide with GradNiche.' },
-    'course-comparison': { title: 'Course Comparison Tool | Compare Programs | GradNiche', description: 'Compare university courses side-by-side. Analyze tuition, duration, requirements, and more to find the perfect program for your study abroad journey.' },
-    'sop-analyzer': { title: 'AI SOP Analyzer | Instant Essay Feedback | GradNiche', description: 'Improve your Statement of Purpose with our AI Analyzer. Get instant, data-driven feedback on clarity, storytelling, and impact to boost your application.' },
-    'f1-visa-prep': { title: 'F1 Visa Interview Prep | AI Mock Interview | GradNiche', description: 'Practice for your US F-1 student visa interview with a realistic AI tool. Get confident with common questions, tips, and sample answers from GradNiche.' },
-    'visa-guides': { title: 'Student Visa Guides | Application Help | GradNiche', description: 'Access detailed, step-by-step student visa application guides for top destinations like the USA, UK, Canada, and more. Prepare with GradNiche.' },
-    'scholarship-finder': { title: 'Scholarship Finder | Fund Your Studies Abroad | GradNiche', description: 'Find funding for your education. Search our comprehensive database for international scholarships that match your profile, country, and field of study.' },
-    'community-forums': { title: 'Community Forums | Study Abroad Discussions | GradNiche', description: 'Join the GradNiche community. Connect with fellow students, ask questions about applications and visas, and share your experiences studying abroad.' },
-    'cost-of-living-calculator': { title: 'Cost of Living Calculator | Plan Your Budget | GradNiche', description: 'Estimate your monthly living expenses abroad. Compare costs for accommodation, food, and transport in major student cities to plan your study abroad budget.' },
-    'pre-departure-checklists': { title: 'Pre-Departure Checklist | Study Abroad Prep | GradNiche', description: 'Stay organized before you fly. Use our interactive pre-departure checklist to manage your documents, finances, and packing for a smooth transition.' },
-    'gpa-calculator': { title: 'GPA Calculator | Convert Your Grades to 4.0 Scale | GradNiche', description: 'Convert your Indian percentage or 10-point CGPA to the 4.0 scale used by international universities. Understand your academic standing with our easy tool.' },
+const pageMetadata: Record<string, { title: string, description: string }> = {
+    '/': { title: 'GradNiche | AI-Powered Study Abroad Platform', description: 'Plan your global education with GradNiche. Use AI tools, a university finder, and expert guides to find top destinations and achieve your study abroad dreams.' },
+    '/college-finder': { title: 'University Finder | Search & Compare Colleges | GradNiche', description: 'Find your perfect university. Search and compare thousands of global colleges by country, course, tuition, and QS ranking with GradNiche\'s advanced tool.' },
+    '/shortlist': { title: 'My Shortlist | Compare Universities & Programs | GradNiche', description: 'Manage and compare shortlisted universities and programs. Make an informed decision for your future education abroad with GradNiche\'s comparison tools.' },
+    '/about': { title: 'About GradNiche | Our Mission in Global Education', description: 'Learn about GradNiche, our mission, and the team dedicated to making global education accessible for all students through innovative technology and support.' },
+    '/contact': { title: 'Contact Us | Study Abroad Guidance | GradNiche', description: 'Have questions about studying abroad? Get in touch with the GradNiche team. We\'re here to help you with applications, visas, and university selection.' },
+    '/terms-and-conditions': { title: 'Terms & Conditions | GradNiche', description: 'Read the terms and conditions for using the GradNiche platform and its services.' },
+    '/disclaimer': { title: 'Disclaimer | GradNiche', description: 'Read the disclaimer for the use of GradNiche\'s platform, tools, and information.' },
+    '/cookie-policy': { title: 'Cookie Policy | GradNiche', description: 'Understand how GradNiche uses cookies and similar technologies to enhance your experience on our platform.' },
+    '/privacy-policy': { title: 'Privacy Policy | GradNiche', description: 'Learn about how GradNiche collects, uses, and protects your personal data when you use our services.' },
+    '/destinations/usa': { title: 'Study in the USA | Top Universities & Visa Guide | GradNiche', description: 'Explore top universities, visa requirements, costs, and scholarships for studying in the USA. Your complete guide to American education with GradNiche.' },
+    '/destinations/uk': { title: 'Study in the UK | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in the United Kingdom. Find universities, course information, and post-study work options with GradNiche.' },
+    '/destinations/canada': { title: 'Study in Canada | Top Universities & Visa Guide | GradNiche', description: 'Discover the benefits of studying in Canada, from top universities to clear immigration pathways. Your complete guide with GradNiche.' },
+    '/destinations/australia': { title: 'Study in Australia | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in Australia, known for world-class education and an incredible lifestyle. Your complete guide with GradNiche.' },
+    '/destinations/germany': { title: 'Study in Germany | Top Universities & Visa Guide | GradNiche', description: 'Explore engineering excellence, low-cost education, and top research universities in Germany. Your complete guide with GradNiche.' },
+    '/destinations/ireland': { title: 'Study in Ireland | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in Europe\'s tech hub. Discover universities and post-study work opportunities in Ireland with GradNiche.' },
+    '/destinations/uae': { title: 'Study in the UAE | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in a global business hub known for modern universities and an international outlook. Your complete guide with GradNiche.' },
+    '/destinations/new-zealand': { title: 'Study in New Zealand | Top Universities & Guide | GradNiche', description: 'Discover a world-class education, stunning landscapes, and a high quality of life in New Zealand. Your complete guide with GradNiche.' },
+    '/tools/course-comparison': { title: 'Course Comparison Tool | Compare Programs | GradNiche', description: 'Compare university courses side-by-side. Analyze tuition, duration, requirements, and more to find the perfect program for your study abroad journey.' },
+    '/tools/sop-analyzer': { title: 'AI SOP Analyzer | Instant Essay Feedback | GradNiche', description: 'Improve your Statement of Purpose with our AI Analyzer. Get instant, data-driven feedback on clarity, storytelling, and impact to boost your application.' },
+    '/tools/f1-visa-prep': { title: 'F1 Visa Interview Prep | AI Mock Interview | GradNiche', description: 'Practice for your US F-1 student visa interview with a realistic AI tool. Get confident with common questions, tips, and sample answers from GradNiche.' },
+    '/tools/visa-guides': { title: 'Student Visa Guides | Application Help | GradNiche', description: 'Access detailed, step-by-step student visa application guides for top destinations like the USA, UK, Canada, and more. Prepare with GradNiche.' },
+    '/tools/scholarship-finder': { title: 'Scholarship Finder | Fund Your Studies Abroad | GradNiche', description: 'Find funding for your education. Search our comprehensive database for international scholarships that match your profile, country, and field of study.' },
+    '/tools/community-forums': { title: 'Community Forums | Study Abroad Discussions | GradNiche', description: 'Join the GradNiche community. Connect with fellow students, ask questions about applications and visas, and share your experiences studying abroad.' },
+    '/tools/cost-of-living-calculator': { title: 'Cost of Living Calculator | Plan Your Budget | GradNiche', description: 'Estimate your monthly living expenses abroad. Compare costs for accommodation, food, and transport in major student cities to plan your study abroad budget.' },
+    '/tools/pre-departure-checklists': { title: 'Pre-Departure Checklist | Study Abroad Prep | GradNiche', description: 'Stay organized before you fly. Use our interactive pre-departure checklist to manage your documents, finances, and packing for a smooth transition.' },
+    '/tools/gpa-calculator': { title: 'GPA Calculator | Convert Your Grades to 4.0 Scale | GradNiche', description: 'Convert your Indian percentage or 10-point CGPA to the 4.0 scale used by international universities. Understand your academic standing with our easy tool.' },
 };
 
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
-  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
-  const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
+  const getPathFromHash = () => window.location.hash.substring(1) || '/';
+  const [path, setPath] = useState(getPathFromHash());
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [shortlist, setShortlist] = useState<ShortlistItem[]>(() => {
     try {
@@ -106,12 +99,38 @@ const App: React.FC = () => {
     }
   });
 
-  // FIX: Added mock user state management for CommunityForums props.
+  const navigate = (to: string) => {
+    window.location.hash = to;
+  };
+
+  useEffect(() => {
+    const onHashChange = () => {
+        const newHashPath = getPathFromHash();
+        if (newHashPath.startsWith('/#')) { // Anchor link for homepage
+            const elementId = newHashPath.substring(2);
+            // If not on homepage, navigate there first, then scroll
+            if (path.split('?')[0] !== '/') {
+                setPath('/');
+                setTimeout(() => {
+                    document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                }, 150);
+            } else { // Already on homepage, just scroll
+                document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            setPath(newHashPath);
+            window.scrollTo(0, 0);
+        }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    onHashChange(); // Handle initial load
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
   const [users, setUsers] = useState<User[]>(forumUsers);
-  const [currentUser, setCurrentUser] = useState<User | null>(users[0]); // Mock login: Rohan Mehta is logged in
+  const [currentUser, setCurrentUser] = useState<User | null>(users[0]);
 
   const handleAddNotification = (recipientId: string, message: string, threadId: string) => {
-    // This is a mock function. In a real app, it would update state or call an API.
     console.log(`Notification for ${recipientId}: ${message} (Thread: ${threadId})`);
   };
 
@@ -159,13 +178,13 @@ const App: React.FC = () => {
     return `This is a summary of the data available on the GradNiche platform:\n\n${fullPlatformSummary}\n\nDETAILED DESTINATION & UNIVERSITY INFORMATION:\n\n${destinationDetails}`;
   }, []);
 
-  const updateMetaTags = (title: string, description: string, imageUrl?: string) => {
-    const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto=format&fit=crop';
-    const url = "https://gradniche.com"; // Placeholder canonical URL
+  const updateMetaTags = (title: string, description: string, imageUrl?: string, urlPath?: string) => {
+    const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto.format&fit=crop';
+    const baseUrl = "https://gradniche.com";
+    const canonicalUrl = `${baseUrl}/#${urlPath || ''}`;
 
     document.title = title;
     
-    // Standard description
     let descEl = document.querySelector('meta[name="description"]');
     if (!descEl) {
         descEl = document.createElement('meta');
@@ -174,50 +193,57 @@ const App: React.FC = () => {
     }
     descEl.setAttribute('content', description);
 
-    // Open Graph
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', imageUrl || defaultImage);
 
-    // Twitter Card
     document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
     document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description);
     document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', imageUrl || defaultImage);
 
-    // Canonical
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
 };
 
-
   useEffect(() => {
-    let title = pageMetadata.home.title;
-    let description = pageMetadata.home.description;
+    const [pathOnly] = path.split('?');
+    let title = pageMetadata['/']?.title || 'GradNiche';
+    let description = pageMetadata['/']?.description || '';
     let imageUrl = undefined;
+    
+    const pathSegments = pathOnly.split('/').filter(Boolean);
 
-    if (selectedProgram && selectedUniversity) {
-        title = `${selectedProgram.name} at ${selectedUniversity.name} | GradNiche`;
-        description = `Learn about the ${selectedProgram.name} program at ${selectedUniversity.name}. Explore tuition, requirements, and admission details with GradNiche.`;
-        imageUrl = selectedUniversity.logo;
-    } else if (selectedUniversity) {
-        title = `${selectedUniversity.name} | Programs & Rankings | GradNiche`;
-        description = `Explore ${selectedUniversity.name}. Find details on programs, QS ranking, tuition fees, and admission insights on GradNiche's university profile page.`;
-        imageUrl = selectedUniversity.logo;
+    if (pathSegments[0] === 'college-finder' && pathSegments.length >= 2) {
+        const university = universities.find(u => u.id === pathSegments[1]);
+        if (university) {
+            if (pathSegments.length === 3) {
+                const program = university.programs.find(p => p.id === pathSegments[2]);
+                if (program) {
+                    title = `${program.name} at ${university.name} | GradNiche`;
+                    description = `Learn about the ${program.name} program at ${university.name}. Explore tuition, requirements, and admission details with GradNiche.`;
+                    imageUrl = university.logo;
+                }
+            } else {
+                 title = `${university.name} | Programs & Rankings | GradNiche`;
+                 description = `Explore ${university.name}. Find details on programs, QS ranking, tuition fees, and admission insights on GradNiche's university profile page.`;
+                 imageUrl = university.logo;
+            }
+        }
     } else {
-        const meta = pageMetadata[currentPage];
+        const meta = pageMetadata[pathOnly];
         if (meta) {
             title = meta.title;
             description = meta.description;
         }
-        if (currentPage.startsWith('destination-')) {
-          const countryKey = currentPage.replace('destination-', '');
+        if (pathOnly.startsWith('/destinations/')) {
+          const countryKey = pathSegments[1];
           const destData = destinationData[countryKey as keyof typeof destinationData];
           if (destData) imageUrl = destData.heroImage;
         }
     }
 
-    updateMetaTags(title, description, imageUrl);
-  }, [currentPage, selectedUniversity, selectedProgram]);
+    updateMetaTags(title, description, imageUrl, pathOnly);
+  }, [path]);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -229,9 +255,7 @@ const App: React.FC = () => {
                 }
             });
         },
-        {
-            threshold: 0.1,
-        }
+        { threshold: 0.1 }
     );
 
     const elementsToAnimate = document.querySelectorAll('.scroll-animate');
@@ -239,21 +263,13 @@ const App: React.FC = () => {
 
     return () => {
         elementsToAnimate.forEach((el) => {
-            // Check if el is still in the DOM before unobserving
             if (el && document.body.contains(el)) {
                 observer.unobserve(el);
             }
         });
     };
-  }, [currentPage, selectedUniversity, selectedProgram]);
+  }, [path]);
 
-
-  const navigateTo = (page: Page) => {
-    setCurrentPage(page);
-    setSelectedUniversity(null);
-    setSelectedProgram(null);
-    window.scrollTo(0, 0);
-  };
 
   const handleToggleShortlist = (item: ShortlistItem) => {
       setShortlist(prev => {
@@ -276,173 +292,143 @@ const App: React.FC = () => {
   };
 
   const handleThreadSelect = (threadId: string) => {
-    setActiveThreadId(threadId);
-    navigateTo('community-forums');
+    navigate(`/tools/community-forums?thread=${threadId}`);
   };
 
-  const clearActiveThreadId = () => {
-    setActiveThreadId(null);
-  };
-
-  const handleSelectUniversity = (university: University) => {
-    setSelectedUniversity(university);
-    window.scrollTo(0, 0);
-  };
-
-  const handleSelectProgram = (program: Program) => {
-    setSelectedProgram(program);
-    window.scrollTo(0, 0);
-  };
-  
-  const handleNavigateToProgram = (university: University, program: Program) => {
-    setSelectedUniversity(university);
-    setSelectedProgram(program);
-    setCurrentPage('college-finder');
-    window.scrollTo(0, 0);
-  };
-
-  const handleBack = () => {
-    window.scrollTo(0, 0);
-    if (selectedProgram) {
-      setSelectedProgram(null);
-    } else if (selectedUniversity) {
-      setSelectedUniversity(null);
-    } else if (currentPage.startsWith('destination-')) {
-        navigateTo('home');
-    } else if (['about', 'contact', 'shortlist', 'terms-and-conditions', 'disclaimer', 'cookie-policy', 'privacy-policy'].includes(currentPage)) {
-        navigateTo('home');
-    } else if (Object.keys(toolDetails).includes(currentPage)) {
-        navigateTo('home');
-    }
-  };
-  
   const renderMainContent = () => {
-    if (currentPage === 'home') {
+    const [pathOnly, queryString] = path.split('?');
+    const pathSegments = pathOnly.split('/').filter(Boolean);
+    const queryParams = new URLSearchParams(queryString || '');
+
+    if (pathOnly === '/') {
       return (
         <>
-          <Hero />
+          <Hero navigate={navigate} />
           <div className="scroll-animate"><PlatformFeatures /></div>
-          <div className="scroll-animate"><Destinations navigateTo={navigateTo} /></div>
-          <div className="scroll-animate"><CoreTools navigateTo={navigateTo} /></div>
-          <div className="scroll-animate"><Tools navigateTo={navigateTo} /></div>
-          <div className="scroll-animate"><CommunityHighlights navigateTo={navigateTo} /></div>
-          <div className="scroll-animate"><F1VisaPrepFeature navigateTo={navigateTo} /></div>
+          <div className="scroll-animate"><Destinations navigate={navigate} /></div>
+          <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
+          <div className="scroll-animate"><Tools navigate={navigate} /></div>
+          <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
+          <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
         </>
       );
     }
-    if (currentPage === 'shortlist') {
+    if (pathOnly === '/shortlist') {
         return <ShortlistPage 
             shortlist={shortlist} 
             onToggleShortlist={handleToggleShortlist}
-            onBack={handleBack}
-            onNavigateToUniversity={(uni) => {
-                setSelectedUniversity(uni);
-                setCurrentPage('college-finder');
-            }}
-            onNavigateToProgram={handleNavigateToProgram}
+            onBack={() => navigate('/')}
+            onNavigateToUniversity={(uni) => navigate(`/college-finder/${uni.id}`)}
+            onNavigateToProgram={(uni, prog) => navigate(`/college-finder/${uni.id}/${prog.id}`)}
         />;
     }
-    if (currentPage === 'college-finder') {
-      if (selectedProgram && selectedUniversity) {
-        return <ProgramDetail 
-                    program={selectedProgram} 
-                    university={selectedUniversity} 
-                    onBack={handleBack} 
-                    onNavigateToProgram={handleNavigateToProgram}
+    if (pathOnly.startsWith('/college-finder')) {
+        if (pathSegments.length === 3) {
+            const university = universities.find(u => u.id === pathSegments[1]);
+            const program = university?.programs.find(p => p.id === pathSegments[2]);
+            if (university && program) {
+                return <ProgramDetail 
+                    program={program} 
+                    university={university} 
+                    onBack={() => navigate(`/college-finder/${university.id}`)} 
+                    onNavigateToProgram={(uni, prog) => navigate(`/college-finder/${uni.id}/${prog.id}`)}
                 />;
-      }
-      if (selectedUniversity) {
-        return <UniversityDetail 
-                    university={selectedUniversity} 
-                    onProgramSelect={handleSelectProgram} 
-                    onBack={handleBack}
+            }
+        }
+        if (pathSegments.length === 2) {
+            const university = universities.find(u => u.id === pathSegments[1]);
+            if (university) {
+                return <UniversityDetail 
+                    university={university} 
+                    onProgramSelect={(prog) => navigate(`/college-finder/${university.id}/${prog.id}`)} 
+                    onBack={() => navigate('/college-finder')}
                     shortlist={shortlist}
                     onToggleShortlist={handleToggleShortlist}
-                    navigateTo={navigateTo}
+                    navigate={navigate}
                     onThreadSelect={handleThreadSelect}
                 />;
-      }
-      return <CollegeFinder 
-                onUniversitySelect={handleSelectUniversity} 
-                shortlist={shortlist}
-                onToggleShortlist={handleToggleShortlist}
-            />;
-    }
-    if (currentPage.startsWith('destination-')) {
-        const countryKey = currentPage.replace('destination-', '') as keyof typeof destinationData;
-        const countryData = destinationData[countryKey];
-        return <DestinationDetail country={countryData} onBack={handleBack} navigateTo={navigateTo} />;
-    }
-     if (currentPage === 'about') {
-        return <AboutPage onBack={handleBack} navigateTo={navigateTo} />;
-    }
-    if (currentPage === 'contact') {
-        return <ContactPage onBack={handleBack} />;
-    }
-    if (currentPage === 'terms-and-conditions') {
-        return <TermsAndConditions onBack={handleBack} />;
-    }
-    if (currentPage === 'disclaimer') {
-        return <DisclaimerPage onBack={handleBack} />;
-    }
-    if (currentPage === 'cookie-policy') {
-        return <CookiePolicy onBack={handleBack} />;
-    }
-     if (currentPage === 'privacy-policy') {
-        return <PrivacyPolicy onBack={handleBack} />;
-    }
-    if (currentPage === 'course-comparison') {
-        return <CourseComparison onBack={handleBack} navigateTo={navigateTo} />;
-    }
-    if (currentPage === 'gpa-calculator') {
-        return <GPACalculator onBack={handleBack} navigateTo={navigateTo} />;
-    }
-    if (currentPage === 'sop-analyzer') {
-        return <AISOPSnalyzer onBack={handleBack} />;
-    }
-    if (currentPage === 'f1-visa-prep') {
-        return <F1VisaPrep onBack={handleBack} />;
-    }
-    if (currentPage === 'visa-guides') {
-        return <VisaGuides onBack={handleBack} />;
-    }
-     if (currentPage === 'scholarship-finder') {
-        return <ScholarshipFinder onBack={handleBack} />;
-    }
-    if (currentPage === 'cost-of-living-calculator') {
-        return <CostOfLivingCalculator onBack={handleBack} />;
-    }
-    if (currentPage === 'pre-departure-checklists') {
-        return <PreDepartureChecklists onBack={handleBack} />;
-    }
-    if (currentPage === 'community-forums') {
-        return <CommunityForums 
-            onBack={handleBack} 
-            activeThreadId={activeThreadId}
-            onClearActiveThreadId={clearActiveThreadId}
-            // FIX: Pass missing props to CommunityForums component.
-            currentUser={currentUser}
-            users={users}
-            onAddNotification={handleAddNotification}
+            }
+        }
+        return <CollegeFinder 
+            navigate={navigate} 
+            shortlist={shortlist}
+            onToggleShortlist={handleToggleShortlist}
         />;
     }
-    if (Object.keys(toolDetails).includes(currentPage)) {
-        const tool = toolDetails[currentPage as ToolPage];
-        return <ToolsPage tool={tool} onBack={handleBack} />;
+    if (pathOnly.startsWith('/destinations/')) {
+        const countryKey = pathSegments[1];
+        const countryData = destinationData[countryKey as keyof typeof destinationData];
+        if (countryData) {
+            return <DestinationDetail country={countryData} onBack={() => navigate('/')} navigate={navigate} />;
+        }
     }
-    return null;
+     if (pathOnly === '/about') {
+        return <AboutPage onBack={() => navigate('/')} navigate={navigate} />;
+    }
+    if (pathOnly === '/contact') {
+        return <ContactPage onBack={() => navigate('/')} />;
+    }
+    if (pathOnly === '/terms-and-conditions') {
+        return <TermsAndConditions onBack={() => navigate('/')} />;
+    }
+    if (pathOnly === '/disclaimer') {
+        return <DisclaimerPage onBack={() => navigate('/')} />;
+    }
+    if (pathOnly === '/cookie-policy') {
+        return <CookiePolicy onBack={() => navigate('/')} />;
+    }
+     if (pathOnly === '/privacy-policy') {
+        return <PrivacyPolicy onBack={() => navigate('/')} />;
+    }
+    if (pathOnly.startsWith('/tools/')) {
+        const toolId = pathSegments[1] as ToolID;
+        if (toolId === 'course-comparison') return <CourseComparison onBack={() => navigate('/')} navigate={navigate} />;
+        if (toolId === 'gpa-calculator') return <GPACalculator onBack={() => navigate('/')} navigate={navigate} />;
+        if (toolId === 'sop-analyzer') return <AISOPSnalyzer onBack={() => navigate('/')} />;
+        if (toolId === 'f1-visa-prep') return <F1VisaPrep onBack={() => navigate('/')} />;
+        if (toolId === 'visa-guides') return <VisaGuides onBack={() => navigate('/')} />;
+        if (toolId === 'scholarship-finder') return <ScholarshipFinder onBack={() => navigate('/')} />;
+        if (toolId === 'cost-of-living-calculator') return <CostOfLivingCalculator onBack={() => navigate('/')} />;
+        if (toolId === 'pre-departure-checklists') return <PreDepartureChecklists onBack={() => navigate('/')} />;
+        if (toolId === 'community-forums') {
+            const threadId = queryParams.get('thread');
+            return <CommunityForums 
+                onBack={() => navigate('/')} 
+                activeThreadId={threadId}
+                onClearActiveThreadId={() => navigate('/tools/community-forums')}
+                currentUser={currentUser}
+                users={users}
+                onAddNotification={handleAddNotification}
+            />;
+        }
+        const tool = toolDetails[toolId];
+        if (tool) {
+            return <ToolsPage tool={tool} onBack={() => navigate('/')} />;
+        }
+    }
+
+    // Fallback to home page for unknown routes
+      return (
+        <>
+          <Hero navigate={navigate} />
+          <div className="scroll-animate"><PlatformFeatures /></div>
+          <div className="scroll-animate"><Destinations navigate={navigate} /></div>
+          <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
+          <div className="scroll-animate"><Tools navigate={navigate} /></div>
+          <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
+          <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
+        </>
+      );
   }
 
 
   return (
     <div className="bg-[#0a101f] min-h-screen">
-      <Header 
-        navigateTo={navigateTo} 
-      />
+      <Header navigate={navigate} />
       <main>
         {renderMainContent()}
       </main>
-      <Footer navigateTo={navigateTo} />
+      <Footer navigate={navigate} />
       <AIStudyAbroadAssistant 
         isOpen={isChatOpen} 
         onClose={() => setIsChatOpen(false)}

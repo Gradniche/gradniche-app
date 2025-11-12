@@ -1,12 +1,12 @@
+
 import React from 'react';
-import { Page } from '../App';
 import { AvatarConfig, generateAvatarUrl } from '../data/forums';
 
 interface F1VisaPrepFeatureProps {
-    navigateTo: (page: Page) => void;
+    navigate: (path: string) => void;
 }
 
-const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigateTo }) => {
+const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigate }) => {
     const visaOfficerAvatarConfig: AvatarConfig = { 
         style: 'adventurer', 
         options: { 
@@ -29,12 +29,13 @@ const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigateTo }) => 
                         <p className="text-lg text-gray-400 mt-4 mb-6">
                             The final step to your US study dream is the visa interview. Practice with our AI-powered mock interview tool that simulates a real conversation with a consular officer. Get confident, prepare your answers, and walk into your interview ready to succeed.
                         </p>
-                        <button 
-                            onClick={() => navigateTo('f1-visa-prep')} 
-                            className="bg-[#F6520C] text-white px-8 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]"
+                        <a 
+                            href="#/tools/f1-visa-prep"
+                            onClick={(e) => { e.preventDefault(); navigate('/tools/f1-visa-prep'); }} 
+                            className="inline-block bg-[#F6520C] text-white px-8 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]"
                         >
                             Start Practicing Now
-                        </button>
+                        </a>
                     </div>
                     <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-center items-center">
                         <div className="relative w-56 h-56 sm:w-64 sm:h-64">

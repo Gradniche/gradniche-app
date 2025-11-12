@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { costData, conversionRates, CityCost } from '../data/costs';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
@@ -172,7 +166,8 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                                         fill="#8884d8"
                                                         dataKey="value"
                                                         nameKey="name"
-                                                        label={({ name, percent }: any) => `${(percent * 100).toFixed(0)}%`}
+                                                        // FIX: Explicitly typed the 'percent' property in the Pie chart's label function to resolve an arithmetic operation error where 'percent' was not being inferred as a number.
+                                                        label={({ name, percent }: { name: string; percent: number }) => `${name} ${(percent * 100).toFixed(0)}%`}
                                                     >
                                                         {chartData.map((entry, index) => (
                                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -231,7 +226,6 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                     <tr className="bg-gray-800/50">
                                         <td className="p-4 text-xl font-bold text-[#F6520C] sticky left-0 bg-[#0f172a] z-10">Total (Monthly)</td>
                                         {selectedCities.map(city => {
-                                            // FIX: Explicitly typed the parameters of the reduce function to ensure the result is correctly inferred as a number, resolving an arithmetic operation error.
                                             const totalLocal = Object.values(city.costs).reduce((sum: number, cost: number) => sum + cost, 0);
                                             const totalInr = totalLocal * conversionRates[city.currency];
                                             return (

@@ -1,8 +1,8 @@
+
 import React from 'react';
-import { Page } from '../App';
 
 interface CoreToolsProps {
-    navigateTo: (page: Page) => void;
+    navigate: (path: string) => void;
 }
 
 const toolsData = [
@@ -15,8 +15,7 @@ const toolsData = [
         </svg>
     ),
     cta: 'Launch Finder',
-    action: 'college-finder',
-    isPage: true,
+    action: '/college-finder',
   },
   {
     title: 'Resource Hub',
@@ -27,8 +26,7 @@ const toolsData = [
         </svg>
     ),
     cta: 'Explore Resources',
-    action: 'visa-guides',
-    isPage: true,
+    action: '/tools/visa-guides',
   },
   {
     title: 'AI-Powered Tools',
@@ -39,12 +37,11 @@ const toolsData = [
       </svg>
     ),
     cta: 'Discover AI Tools',
-    action: '#ai-finder',
-    isPage: false,
+    action: '/tools/sop-analyzer',
   },
 ];
 
-const CoreTools: React.FC<CoreToolsProps> = ({ navigateTo }) => {
+const CoreTools: React.FC<CoreToolsProps> = ({ navigate }) => {
   return (
     <section id="college-finder" className="py-20 bg-[#0a101f]">
       <div className="container mx-auto px-6">
@@ -61,15 +58,9 @@ const CoreTools: React.FC<CoreToolsProps> = ({ navigateTo }) => {
                     <div className="mb-6">{tool.icon}</div>
                     <h3 className="text-2xl font-semibold mb-3 text-white">{tool.title}</h3>
                     <p className="text-gray-400 flex-grow mb-6">{tool.description}</p>
-                    {tool.isPage ? (
-                         <button onClick={() => navigateTo(tool.action as Page)} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
-                           {tool.cta}
-                         </button>
-                    ) : (
-                        <a href={tool.action} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
-                          {tool.cta}
-                        </a>
-                    )}
+                    <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
+                      {tool.cta}
+                    </a>
                 </div>
             ))}
         </div>

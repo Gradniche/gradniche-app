@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Destination, FAQ, VisaGuide } from '../data/destinations';
-import { Page } from '../App';
 import { generateAvatarUrl } from '../data/forums';
 
 interface DestinationDetailProps {
   country: Destination;
   onBack: () => void;
-  navigateTo: (page: Page) => void;
+  // FIX: Changed navigateTo prop to 'navigate' and its argument type to 'string' to match the implementation in App.tsx.
+  navigate: (path: string) => void;
 }
 
 // --- NEW ENHANCED INFO CARD COMPONENTS ---
@@ -217,7 +217,7 @@ const navLinks = [
     { id: 'faq', label: 'FAQ' },
 ];
 
-const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, navigateTo }) => {
+const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, navigate }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [activeSection, setActiveSection] = useState<string>('why-study');
   const sectionRefs = useRef<{[key: string]: HTMLElement | null}>({});
@@ -316,8 +316,8 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
         </div>
       </section>
 
-       <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <main className="py-16 transform lg:-translate-y-24">
+       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl">
+            <main className="py-12 md:py-16 transform lg:-translate-y-24">
                 <div className="mb-8">
                     <button onClick={onBack} className="bg-black/30 backdrop-blur-md text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-4 shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -327,8 +327,8 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     </button>
                 </div>
 
-                <div className="sticky top-[80px] lg:top-44 z-30 bg-[#0a101f]/80 backdrop-blur-md py-2 mb-8 -mx-6">
-                    <div ref={tabContainerRef} className="flex space-x-4 overflow-x-auto px-6 pb-2 modern-scrollbar">
+                <div className="sticky top-16 lg:top-44 z-30 bg-[#0a101f]/80 backdrop-blur-md py-2 mb-8 -mx-4 md:-mx-6">
+                    <div ref={tabContainerRef} className="flex space-x-4 overflow-x-auto px-4 md:px-6 pb-2 modern-scrollbar">
                         {navLinks.map(link => (
                              <a key={link.id} href={`#${link.id}`}
                                 className={`block whitespace-nowrap px-4 py-2 text-sm font-medium rounded-full transition-colors ${activeSection === link.id ? 'bg-[#F6520C] text-white' : 'text-gray-300 bg-gray-800/50 hover:bg-gray-700'}`}>
@@ -366,7 +366,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     } />
                     <GenericInfoCard id="scholarships" title="Scholarships and Funding" content={country.scholarshipsInfo} icon={
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                    } cta={{ text: "Find Scholarships", action: () => navigateTo('scholarship-finder') }} />
+                    } cta={{ text: "Find Scholarships", action: () => navigate('/tools/scholarship-finder') }} />
                     <GenericInfoCard id="education-system" title="The Higher Education System" content={country.educationSystemInfo} icon={
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
                     } />
@@ -385,7 +385,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                         ))}
                     </div>
                     <div className="text-center mt-12">
-                        <button onClick={() => navigateTo('college-finder')} className="bg-[#F6520C] text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#E84A00]">
+                        <button onClick={() => navigate('/college-finder')} className="bg-[#F6520C] text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#E84A00]">
                             Explore More in College Finder
                         </button>
                     </div>

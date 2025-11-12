@@ -1,8 +1,8 @@
+
 import React from 'react';
-import { Page } from '../App';
 
 interface FooterProps {
-    navigateTo: (page: Page) => void;
+    navigate: (path: string) => void;
 }
 
 const socialIcons = [
@@ -11,41 +11,39 @@ const socialIcons = [
     { href: 'https://t.me/gradniche', label: 'Telegram', icon: <svg fill="currentColor" className="w-5 h-5" viewBox="0 0 24 24"><path d="m9.417 15.181-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931l3.622-16.972.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218Z"></path></svg> },
 ];
 
-const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
+const Footer: React.FC<FooterProps> = ({ navigate }) => {
+  
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    navigate(href);
+  };
   
   const navigationLinks = [
-    { href: '#destinations', label: 'Destinations', isPage: false },
-    { href: 'college-finder', label: 'College Finder', isPage: true },
-    { href: 'about', label: 'About Us', isPage: true },
-    { href: 'contact', label: 'Contact', isPage: true },
+    { href: '/#destinations', label: 'Destinations'},
+    { href: '/college-finder', label: 'College Finder'},
+    { href: '/about', label: 'About Us'},
+    { href: '/contact', label: 'Contact'},
   ];
 
   const keyToolLinks = [
-    { href: 'sop-analyzer' as Page, label: 'SOP Analyzer', isPage: true },
-    { href: 'f1-visa-prep' as Page, label: 'F1 Visa Prep', isPage: true },
-    { href: 'visa-guides' as Page, label: 'Visa Guides', isPage: true },
-    { href: 'scholarship-finder' as Page, label: 'Scholarship Finder', isPage: true },
-    { href: 'course-comparison' as Page, label: 'Compare Courses', isPage: true },
-    { href: 'community-forums' as Page, label: 'Forums', isPage: true },
+    { href: '/tools/sop-analyzer', label: 'SOP Analyzer' },
+    { href: '/tools/f1-visa-prep', label: 'F1 Visa Prep' },
+    { href: '/tools/visa-guides', label: 'Visa Guides' },
+    { href: '/tools/scholarship-finder', label: 'Scholarship Finder' },
+    { href: '/tools/course-comparison', label: 'Compare Courses' },
+    { href: '/tools/community-forums', label: 'Forums' },
   ];
 
   const legalLinks = [
-    { href: 'privacy-policy', label: 'Privacy Policy', isPage: true },
-    { href: 'terms-and-conditions', label: 'Terms & Conditions', isPage: true },
-    { href: 'disclaimer', label: 'Disclaimer', isPage: true },
-    { href: 'cookie-policy', label: 'Cookie Policy', isPage: true },
+    { href: '/privacy-policy', label: 'Privacy Policy' },
+    { href: '/terms-and-conditions', label: 'Terms & Conditions' },
+    { href: '/disclaimer', label: 'Disclaimer' },
+    { href: '/cookie-policy', label: 'Cookie Policy' },
   ];
 
-  const renderLink = (link: { href: string; label: string; isPage: boolean; }) => {
-    if (link.isPage) {
-        return (
-            <button onClick={() => navigateTo(link.href as Page)} className="text-sm text-left text-gray-400 hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">{link.label}</button>
-        );
-    }
-    return (
-        <a href={link.href} className="text-sm text-gray-400 hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">{link.label}</a>
-    );
-  };
+  const renderLink = (link: { href: string; label: string; }) => (
+    <a href={`#${link.href}`} onClick={(e) => handleNavClick(e, link.href)} className="text-sm text-gray-400 hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">{link.label}</a>
+  );
 
   return (
     <div className="px-0 md:px-6 md:pb-4">
@@ -54,9 +52,9 @@ const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Brand and Subscribe Section */}
                 <div className="lg:col-span-1">
-                    <button onClick={() => navigateTo('home')} className="text-2xl font-extrabold text-white text-left focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-sm">
+                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white text-left focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-sm">
                         Grad<span className="text-[#F6520C]">Niche</span>
-                    </button>
+                    </a>
                     <p className="text-sm mt-2 max-w-xs">Empowering your global education journey with data-driven tools and expert insights.</p>
                     <div className="mt-6">
                         <h4 className="font-semibold text-white mb-2">Get the Latest Intel</h4>
