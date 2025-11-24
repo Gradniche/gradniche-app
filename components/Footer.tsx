@@ -21,6 +21,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
   const navigationLinks = [
     { href: '/#destinations', label: 'Destinations'},
     { href: '/college-finder', label: 'College Finder'},
+    { href: '/blogs', label: 'Blog' },
     { href: '/about', label: 'About Us'},
     { href: '/contact', label: 'Contact'},
   ];

@@ -1,4 +1,5 @@
 
+
 import React, { useMemo, useState } from 'react';
 import { University, Program, universities } from '../data/universities';
 import { ShortlistItem } from '../App';
@@ -9,6 +10,7 @@ interface ShortlistPageProps {
     onBack: () => void;
     onNavigateToUniversity: (university: University) => void;
     onNavigateToProgram: (university: University, program: Program) => void;
+    onSave: () => void;
 }
 
 interface UniversityComparisonProps {
@@ -144,7 +146,7 @@ const ProgramComparisonTable: React.FC<ProgramComparisonProps> = ({ programs, on
 };
 
 
-const ShortlistPage: React.FC<ShortlistPageProps> = ({ shortlist, onToggleShortlist, onBack, onNavigateToUniversity, onNavigateToProgram }) => {
+const ShortlistPage: React.FC<ShortlistPageProps> = ({ shortlist, onToggleShortlist, onBack, onNavigateToUniversity, onNavigateToProgram, onSave }) => {
     
     const [activeTab, setActiveTab] = useState<'universities' | 'programs'>('universities');
     
@@ -189,6 +191,17 @@ const ShortlistPage: React.FC<ShortlistPageProps> = ({ shortlist, onToggleShortl
                     <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
                         Your personal hub to compare and contrast your top university and program choices.
                     </p>
+                    {shortlist.length > 0 && (
+                        <div className="mt-6">
+                            <button onClick={onSave} className="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300 flex items-center space-x-2 mx-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V4zm2 1v10h6V5H7z" />
+                                    <path d="M9 1a1 1 0 00-1 1v2a1 1 0 002 0V2a1 1 0 00-1-1z" />
+                                </svg>
+                                <span>Save My Shortlist</span>
+                            </button>
+                        </div>
+                    )}
                 </div>
                 
                 {shortlist.length === 0 ? (

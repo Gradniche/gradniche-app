@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { costData, conversionRates, CityCost } from '../data/costs';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
@@ -73,7 +74,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
         });
     };
 
-    const costCategories = ['accommodation', 'food', 'transport', 'utilities', 'entertainment'];
+    const costCategories: (keyof CityCost['costs'])[] = ['accommodation', 'food', 'transport', 'utilities', 'entertainment'];
     const COLORS = ['#F6520C', '#FF7B40', '#FFA580', '#FFC2A6', '#FFE8DD'];
 
     
@@ -82,7 +83,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
             <div className="container mx-auto px-6">
                 <div className="mb-8">
                     <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span>Back</span>
                     </button>
                 </div>
@@ -146,7 +147,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                             {selectedCities.map(city => {
                                 const chartData = costCategories.map(category => ({
                                     name: category.charAt(0).toUpperCase() + category.slice(1),
-                                    value: city.costs[category as keyof typeof city.costs]
+                                    value: city.costs[category]
                                 }));
                                 const total = chartData.reduce((sum, entry) => sum + entry.value, 0);
 
@@ -166,8 +167,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                                         fill="#8884d8"
                                                         dataKey="value"
                                                         nameKey="name"
-                                                        // FIX: Explicitly typed the 'percent' property in the Pie chart's label function to resolve an arithmetic operation error where 'percent' was not being inferred as a number.
-                                                        label={({ name, percent }: { name: string; percent: number }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                                        label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}
                                                     >
                                                         {chartData.map((entry, index) => (
                                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -217,8 +217,8 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                             <td className="p-4 text-gray-300 capitalize sticky left-0 bg-[#0a101f] z-10">{category}</td>
                                             {selectedCities.map(city => (
                                                 <td key={city.name} className="p-4 text-center">
-                                                    <div className="font-semibold text-white">{city.currencySymbol}{city.costs[category as keyof typeof city.costs].toLocaleString()}</div>
-                                                    <div className="text-xs text-gray-500">₹ {(city.costs[category as keyof typeof city.costs] * conversionRates[city.currency]).toLocaleString()}</div>
+                                                    <div className="font-semibold text-white">{city.currencySymbol}{city.costs[category].toLocaleString()}</div>
+                                                    <div className="text-xs text-gray-500">₹ {(city.costs[category] * conversionRates[city.currency]).toLocaleString()}</div>
                                                 </td>
                                             ))}
                                         </tr>
@@ -226,7 +226,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                     <tr className="bg-gray-800/50">
                                         <td className="p-4 text-xl font-bold text-[#F6520C] sticky left-0 bg-[#0f172a] z-10">Total (Monthly)</td>
                                         {selectedCities.map(city => {
-                                            const totalLocal = Object.values(city.costs).reduce((sum: number, cost: number) => sum + cost, 0);
+                                            const totalLocal = (Object.values(city.costs) as number[]).reduce((sum: number, cost: number) => sum + cost, 0);
                                             const totalInr = totalLocal * conversionRates[city.currency];
                                             return (
                                                 <td key={city.name} className="p-4 text-center bg-gray-800/50">

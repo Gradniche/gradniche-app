@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { checklistData, ChecklistCategory } from '../data/checklists';
 
@@ -49,17 +50,21 @@ const PreDepartureChecklists: React.FC<PreDepartureChecklistsProps> = ({ onBack 
     const [dragOverItemId, setDragOverItemId] = useState<string | null>(null);
     const dragItemRef = useRef<{ categoryId: string; itemId: string } | null>(null);
 
-    useEffect(() => {
-        localStorage.setItem('preDepartureChecklist', JSON.stringify(Array.from(checkedItems)));
-    }, [checkedItems]);
-    
-    useEffect(() => {
-        const orderToSave: Record<string, string[]> = {};
-        checklist.forEach(category => {
-            orderToSave[category.id] = category.items.map(item => item.id);
-        });
-        localStorage.setItem('preDepartureChecklistOrder', JSON.stringify(orderToSave));
-    }, [checklist]);
+    const handleSaveProgress = () => {
+        try {
+            localStorage.setItem('preDepartureChecklist', JSON.stringify(Array.from(checkedItems)));
+            
+            const orderToSave: Record<string, string[]> = {};
+            checklist.forEach(category => {
+                orderToSave[category.id] = category.items.map(item => item.id);
+            });
+            localStorage.setItem('preDepartureChecklistOrder', JSON.stringify(orderToSave));
+            alert('Checklist progress saved!');
+        } catch (e) {
+            console.error("Failed to save checklist to localStorage", e);
+            alert('Error saving your progress.');
+        }
+    };
 
     const handleToggleCheck = (itemId: string) => {
         setCheckedItems(prev => {
@@ -146,6 +151,16 @@ const PreDepartureChecklists: React.FC<PreDepartureChecklistsProps> = ({ onBack 
         e.preventDefault();
     };
 
+    const gradients = [
+        'from-orange-500 to-pink-500',
+        'from-blue-500 to-cyan-500',
+        'from-emerald-500 to-teal-500',
+        'from-purple-500 to-indigo-500',
+        'from-rose-500 to-red-500',
+        'from-amber-500 to-orange-500',
+        'from-cyan-500 to-blue-500',
+    ];
+
     return (
         <section className="py-20 bg-[#0a101f] min-h-screen">
             <style>{`
@@ -186,19 +201,22 @@ const PreDepartureChecklists: React.FC<PreDepartureChecklistsProps> = ({ onBack 
                     </div>
 
                     <div className="space-y-4">
-                        {checklist.map(category => {
+                        {checklist.map((category, index) => {
                              const isCategoryOpen = openCategoryId === category.id;
                              const categoryTotalItems = category.items.length;
                              const categoryCompletedItems = category.items.filter(item => checkedItems.has(item.id)).length;
                             return (
-                                <div key={category.id} className="bg-gray-800/50 rounded-lg border border-gray-700 overflow-hidden transition-all duration-300">
+                                <div key={category.id} className="bg-gray-800/50 rounded-xl border border-gray-700 overflow-hidden transition-all duration-300">
                                     <button 
                                         onClick={() => setOpenCategoryId(isCategoryOpen ? null : category.id)}
-                                        className="w-full flex justify-between items-center p-4 hover:bg-gray-800/70"
+                                        className="w-full flex justify-between items-center p-4 hover:bg-gray-800/70 group"
                                         aria-expanded={isCategoryOpen}
                                     >
                                         <div className="flex items-center space-x-4">
-                                            <div className="text-[#F6520C] bg-gray-900/50 p-2 rounded-md">{category.icon}</div>
+                                            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                                                {/* Clone the icon to change color to white if needed, but kept original structure for simplicity */}
+                                                {React.cloneElement(category.icon, { className: "h-6 w-6 text-white" })}
+                                            </div>
                                             <h3 className="text-xl font-bold text-white">{category.title}</h3>
                                         </div>
                                         <div className="flex items-center space-x-4">
@@ -251,9 +269,16 @@ const PreDepartureChecklists: React.FC<PreDepartureChecklistsProps> = ({ onBack 
                         })}
                     </div>
                     
-                    <div className="mt-8 pt-6 border-t border-gray-700 text-center">
-                        <button onClick={resetChecklist} className="text-gray-500 text-sm font-semibold hover:text-red-500 transition-colors">
+                    <div className="mt-8 pt-6 border-t border-gray-700 flex justify-center items-center space-x-4">
+                        <button onClick={resetChecklist} className="text-gray-500 text-sm font-semibold hover:text-red-500 transition-colors bg-gray-800/50 px-5 py-2 rounded-full border border-gray-600">
                            Reset Checklist
+                        </button>
+                        <button onClick={handleSaveProgress} className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-green-700 transition duration-300 flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V4zm2 1v10h6V5H7z" />
+                                <path d="M9 1a1 1 0 00-1 1v2a1 1 0 002 0V2a1 1 0 00-1-1z" />
+                            </svg>
+                            <span>Save Progress</span>
                         </button>
                     </div>
                 </div>

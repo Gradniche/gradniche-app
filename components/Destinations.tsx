@@ -66,27 +66,36 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, hr
     <a
         href={`#${href}`}
         onClick={(e) => {e.preventDefault(); navigate(href)}}
-        className="relative rounded-lg overflow-hidden group h-96 text-left focus:outline-none focus:ring-4 focus:ring-[#F6520C] focus:ring-offset-4 focus:ring-offset-gray-900 border-2 border-gray-700 hover:border-[#F6520C] hover:shadow-2xl hover:shadow-[#F6520C]/20 transition-all duration-300"
+        className="relative group h-full min-h-[320px] rounded-2xl overflow-hidden bg-gray-800/30 border border-white/5 hover:border-[#F6520C]/50 transition-all duration-500 flex flex-col"
     >
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-[#0a101f] to-black"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(246,82,12,0.15)_0%,rgba(10,16,31,0)_80%)] group-hover:bg-[radial-gradient(ellipse_at_top,_rgba(246,82,12,0.25)_0%,rgba(10,16,31,0)_80%)] transition-all duration-300"></div>
+        {/* Animated Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#0a101f] to-black transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(246,82,12,0.15),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col h-full p-6">
-            <div className="flex-grow flex items-center justify-center pt-4">
-                {/* Avatar */}
-                <div className="w-40 h-40 transition-transform duration-300 transform group-hover:scale-110">
-                    <div className="bg-white/5 p-2 rounded-full shadow-lg border border-white/10">
-                        <img src={generateAvatarUrl(avatarConfig)} alt={`${name} destination student avatar`} className="w-full h-full" />
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col h-full p-8">
+            
+            {/* Avatar Circle */}
+            <div className="flex justify-center mb-6">
+                <div className="relative">
+                    <div className="absolute inset-0 bg-[#F6520C] rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <div className="w-32 h-32 bg-gray-900/80 rounded-full p-2 border border-white/10 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                        <img src={generateAvatarUrl(avatarConfig)} alt={`${name} avatar`} className="w-full h-full" />
                     </div>
                 </div>
             </div>
             
             {/* Text */}
-            <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2 text-white">{name}</h3>
-                <p className="text-gray-300">{description}</p>
+            <div className="text-center mt-auto">
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#F6520C] transition-colors duration-300">{name}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+            </div>
+
+            {/* Hover Arrow */}
+            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
             </div>
         </div>
     </a>
@@ -98,15 +107,15 @@ interface DestinationsProps {
 
 const Destinations: React.FC<DestinationsProps> = ({ navigate }) => {
   return (
-    <section id="destinations" className="py-20 bg-gray-900/50">
+    <section id="destinations" className="py-24 bg-gradient-to-b from-[#0a101f] to-gray-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Explore Global Hubs</h2>
-          <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Explore Global Hubs</h2>
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
             Discover premier destinations that offer world-class education and unparalleled opportunities.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {destinations.map((dest) => (
             <DestinationCard key={dest.name} {...dest} navigate={navigate} />
           ))}

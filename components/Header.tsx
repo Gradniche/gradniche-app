@@ -40,6 +40,7 @@ const navLinks: DropdownChild[] = [
   },
   { href: '/college-finder', label: 'College Finder' },
   { href: '/shortlist', label: 'My Shortlist' },
+  { href: '/blogs', label: 'Blog' },
   { 
     label: 'Resources', 
     isDropdown: true, 

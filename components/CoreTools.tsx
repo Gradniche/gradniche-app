@@ -10,10 +10,11 @@ const toolsData = [
     title: 'College Finder',
     description: 'Search, filter, and compare thousands of universities. Your perfect match is just a few clicks away.',
     icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
     ),
+    color: 'from-blue-500 to-cyan-500',
     cta: 'Launch Finder',
     action: '/college-finder',
   },
@@ -21,10 +22,11 @@ const toolsData = [
     title: 'Resource Hub',
     description: 'In-depth articles and downloadable guides to navigate every aspect of studying abroad.',
     icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
     ),
+    color: 'from-purple-500 to-pink-500',
     cta: 'Explore Resources',
     action: '/tools/visa-guides',
   },
@@ -32,10 +34,11 @@ const toolsData = [
     title: 'AI-Powered Tools',
     description: 'Leverage artificial intelligence to find the right destination or get instant feedback on your application essays.',
      icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
+    color: 'from-orange-500 to-red-500',
     cta: 'Discover AI Tools',
     action: '/tools/sop-analyzer',
   },
@@ -54,11 +57,13 @@ const CoreTools: React.FC<CoreToolsProps> = ({ navigate }) => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {toolsData.map((tool) => (
-                <div key={tool.title} className="bg-white/5 backdrop-blur-sm p-8 rounded-lg text-center hover:shadow-xl hover:-translate-y-2 hover:scale-[1.03] transition-all duration-300 border border-[#F6520C]/20 hover:border-[#F6520C] flex flex-col items-center">
-                    <div className="mb-6">{tool.icon}</div>
+                <div key={tool.title} className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl text-center hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 border border-gray-700 hover:border-gray-600 flex flex-col items-center group">
+                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        {tool.icon}
+                    </div>
                     <h3 className="text-2xl font-semibold mb-3 text-white">{tool.title}</h3>
                     <p className="text-gray-400 flex-grow mb-6">{tool.description}</p>
-                    <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-gray-800/80 text-[#F6520C] border border-[#F6520C] px-6 py-2 rounded-full hover:bg-[#F6520C] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
+                    <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-gray-800/80 text-white border border-gray-600 px-6 py-2 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C]">
                       {tool.cta}
                     </a>
                 </div>

@@ -36,6 +36,10 @@ import ShortlistPage from './components/ShortlistPage';
 import F1VisaPrep from './components/F1VisaPrep';
 import F1VisaPrepFeature from './components/F1VisaPrepFeature';
 import { User, users as forumUsers } from './data/forums';
+import BlogHighlights from './components/BlogHighlights';
+import BlogsArchive from './components/BlogsArchive';
+import BlogDetail from './components/BlogDetail';
+import { blogPosts } from './data/blogs';
 
 
 export type ShortlistItem = 
@@ -62,6 +66,7 @@ const pageMetadata: Record<string, { title: string, description: string }> = {
     '/shortlist': { title: 'My Shortlist | Compare Universities & Programs | GradNiche', description: 'Manage and compare shortlisted universities and programs. Make an informed decision for your future education abroad with GradNiche\'s comparison tools.' },
     '/about': { title: 'About GradNiche | Our Mission in Global Education', description: 'Learn about GradNiche, our mission, and the team dedicated to making global education accessible for all students through innovative technology and support.' },
     '/contact': { title: 'Contact Us | Study Abroad Guidance | GradNiche', description: 'Have questions about studying abroad? Get in touch with the GradNiche team. We\'re here to help you with applications, visas, and university selection.' },
+    '/blogs': { title: 'GradNiche Insights | Study Abroad Blog', description: 'Explore the GradNiche blog for expert tips on university applications, visa interviews, scholarship hunting, and student life abroad. Your essential resource.' },
     '/terms-and-conditions': { title: 'Terms & Conditions | GradNiche', description: 'Read the terms and conditions for using the GradNiche platform and its services.' },
     '/disclaimer': { title: 'Disclaimer | GradNiche', description: 'Read the disclaimer for the use of GradNiche\'s platform, tools, and information.' },
     '/cookie-policy': { title: 'Cookie Policy | GradNiche', description: 'Understand how GradNiche uses cookies and similar technologies to enhance your experience on our platform.' },
@@ -134,13 +139,15 @@ const App: React.FC = () => {
     console.log(`Notification for ${recipientId}: ${message} (Thread: ${threadId})`);
   };
 
-  useEffect(() => {
+  const handleSaveShortlist = () => {
     try {
         localStorage.setItem('gradniche-shortlist', JSON.stringify(shortlist));
+        alert('Your shortlist has been saved!');
     } catch (error) {
         console.error("Could not save shortlist to localStorage", error);
+        alert('There was an error saving your shortlist.');
     }
-  }, [shortlist]);
+  };
 
 
   const aiContext = useMemo(() => {
@@ -229,6 +236,13 @@ const App: React.FC = () => {
                  imageUrl = university.logo;
             }
         }
+    } else if (pathSegments[0] === 'blogs' && pathSegments.length === 2) {
+        const blog = blogPosts.find(b => b.id === parseInt(pathSegments[1]));
+        if (blog) {
+            title = `${blog.title} | GradNiche Insights`;
+            description = blog.excerpt;
+            imageUrl = blog.image;
+        }
     } else {
         const meta = pageMetadata[pathOnly];
         if (meta) {
@@ -308,6 +322,7 @@ const App: React.FC = () => {
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
+          <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
         </>
@@ -320,6 +335,7 @@ const App: React.FC = () => {
             onBack={() => navigate('/')}
             onNavigateToUniversity={(uni) => navigate(`/college-finder/${uni.id}`)}
             onNavigateToProgram={(uni, prog) => navigate(`/college-finder/${uni.id}/${prog.id}`)}
+            onSave={handleSaveShortlist}
         />;
     }
     if (pathOnly.startsWith('/college-finder')) {
@@ -368,6 +384,17 @@ const App: React.FC = () => {
     if (pathOnly === '/contact') {
         return <ContactPage onBack={() => navigate('/')} />;
     }
+     if (pathOnly === '/blogs') {
+        return <BlogsArchive onBack={() => navigate('/')} navigate={navigate} />;
+    }
+    if (pathOnly.startsWith('/blogs/')) {
+        const blogId = parseInt(pathSegments[1]);
+        const blog = blogPosts.find(b => b.id === blogId);
+        if (blog) {
+            return <BlogDetail blog={blog} onBack={() => navigate('/blogs')} navigate={navigate} />;
+        }
+        return <BlogsArchive onBack={() => navigate('/')} navigate={navigate} />;
+    }
     if (pathOnly === '/terms-and-conditions') {
         return <TermsAndConditions onBack={() => navigate('/')} />;
     }
@@ -415,6 +442,7 @@ const App: React.FC = () => {
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
+          <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
         </>
