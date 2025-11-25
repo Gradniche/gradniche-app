@@ -61,7 +61,7 @@ const toolDetails: Record<ToolID, {name: string, description: string}> = {
 };
 
 const pageMetadata: Record<string, { title: string, description: string }> = {
-    '/': { title: 'GradNiche | AI-Powered Study Abroad Platform', description: 'Plan your global education with GradNiche. Use AI tools, a university finder, and expert guides to find top destinations and achieve your study abroad dreams.' },
+    '/': { title: 'GradNiche | AI-Powered Study Abroad Platform', description: 'Plan your global education with GradNiche. Use AI tools, a university finder, and expert guides to find top destinations and achieve your study abroad dreams. ' },
     '/college-finder': { title: 'University Finder | Search & Compare Colleges | GradNiche', description: 'Find your perfect university. Search and compare thousands of global colleges by country, course, tuition, and QS ranking with GradNiche\'s advanced tool.' },
     '/shortlist': { title: 'My Shortlist | Compare Universities & Programs | GradNiche', description: 'Manage and compare shortlisted universities and programs. Make an informed decision for your future education abroad with GradNiche\'s comparison tools.' },
     '/about': { title: 'About GradNiche | Our Mission in Global Education', description: 'Learn about GradNiche, our mission, and the team dedicated to making global education accessible for all students through innovative technology and support.' },
@@ -71,7 +71,7 @@ const pageMetadata: Record<string, { title: string, description: string }> = {
     '/disclaimer': { title: 'Disclaimer | GradNiche', description: 'Read the disclaimer for the use of GradNiche\'s platform, tools, and information.' },
     '/cookie-policy': { title: 'Cookie Policy | GradNiche', description: 'Understand how GradNiche uses cookies and similar technologies to enhance your experience on our platform.' },
     '/privacy-policy': { title: 'Privacy Policy | GradNiche', description: 'Learn about how GradNiche collects, uses, and protects your personal data when you use our services.' },
-    '/destinations/usa': { title: 'Study in the USA | Top Universities & Visa Guide | GradNiche', description: 'Explore top universities, visa requirements, costs, and scholarships for studying in the USA. Your complete guide to American education with GradNiche.' },
+    '/destinations/usa': { title: 'Study in the USA | Top Universities & Visa Guide | GradNiche', description: 'Explore top universities, visa requirements, costs, and scholarships for studying in the USA. Your complete guide with GradNiche.' },
     '/destinations/uk': { title: 'Study in the UK | Top Universities & Visa Guide | GradNiche', description: 'Your guide to studying in the United Kingdom. Find universities, course information, and post-study work options with GradNiche.' },
     '/destinations/canada': { title: 'Study in Canada | Top Universities & Visa Guide | GradNiche', description: 'Discover the benefits of studying in Canada, from top universities to clear immigration pathways. Your complete guide with GradNiche.' },
     '/destinations/australia': { title: 'Study in Australia | Top Universities & Visa Guide | GradNiche', description: 'Learn about studying in Australia, known for world-class education and an incredible lifestyle. Your complete guide with GradNiche.' },
@@ -92,8 +92,8 @@ const pageMetadata: Record<string, { title: string, description: string }> = {
 
 
 const App: React.FC = () => {
-  const getPathFromHash = () => window.location.hash.substring(1) || '/';
-  const [path, setPath] = useState(getPathFromHash());
+  // Use Hash routing
+  const [path, setPath] = useState(window.location.hash.substring(1) || '/');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [shortlist, setShortlist] = useState<ShortlistItem[]>(() => {
     try {
@@ -106,30 +106,23 @@ const App: React.FC = () => {
 
   const navigate = (to: string) => {
     window.location.hash = to;
+    // Scroll to top is handled by the effect below or can be done here
   };
 
   useEffect(() => {
-    const onHashChange = () => {
-        const newHashPath = getPathFromHash();
-        if (newHashPath.startsWith('/#')) { // Anchor link for homepage
-            const elementId = newHashPath.substring(2);
-            // If not on homepage, navigate there first, then scroll
-            if (path.split('?')[0] !== '/') {
-                setPath('/');
-                setTimeout(() => {
-                    document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
-                }, 150);
-            } else { // Already on homepage, just scroll
-                document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            setPath(newHashPath);
-            window.scrollTo(0, 0);
-        }
+    const handleHashChange = () => {
+        const currentPath = window.location.hash.substring(1) || '/';
+        setPath(currentPath);
+        window.scrollTo(0, 0);
     };
-    window.addEventListener('hashchange', onHashChange);
-    onHashChange(); // Handle initial load
-    return () => window.removeEventListener('hashchange', onHashChange);
+
+    // Handle initial load if there is a hash
+    if (window.location.hash) {
+        handleHashChange();
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const [users, setUsers] = useState<User[]>(forumUsers);
@@ -188,6 +181,8 @@ const App: React.FC = () => {
   const updateMetaTags = (title: string, description: string, imageUrl?: string, urlPath?: string) => {
     const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto.format&fit=crop';
     const baseUrl = "https://gradniche.com";
+    // For hash routing, canonical might just be the base, or we can append hash for specificity if crawlers support it.
+    // Standard SEO prefers clean URLs, but for this SPA fix, we stick to functional meta updates.
     const canonicalUrl = `${baseUrl}/#${urlPath || ''}`;
 
     document.title = title;
@@ -209,11 +204,17 @@ const App: React.FC = () => {
     document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description);
     document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', imageUrl || defaultImage);
 
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+    let canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (!canonicalEl) {
+        canonicalEl = document.createElement('link');
+        canonicalEl.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', canonicalUrl);
 };
 
   useEffect(() => {
-    const [pathOnly] = path.split('?');
+    const pathOnly = path.split('?')[0];
     let title = pageMetadata['/']?.title || 'GradNiche';
     let description = pageMetadata['/']?.description || '';
     let imageUrl = undefined;
@@ -314,7 +315,7 @@ const App: React.FC = () => {
     const pathSegments = pathOnly.split('/').filter(Boolean);
     const queryParams = new URLSearchParams(queryString || '');
 
-    if (pathOnly === '/') {
+    if (pathOnly === '/' || pathOnly === '') {
       return (
         <>
           <Hero navigate={navigate} />

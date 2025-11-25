@@ -59,7 +59,6 @@ const avatar3Config: AvatarConfig = { style: 'adventurer', options: { seed: 'abo
 const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
     return (
         <div className="bg-[#0a101f] text-gray-300">
-            {/* Hero Section */}
             <section
                 className="relative h-[60vh] min-h-[450px] text-white flex items-center justify-center text-center bg-center bg-cover"
                 style={{ backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')` }}
@@ -82,7 +81,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         <span>Back to Home</span>
                     </button>
                     
-                    {/* Our Story & Mission */}
                     <section className="text-center mb-24">
                         <div className="flex justify-center items-center space-x-[-15px] sm:space-x-[-30px] mb-12 animate-fade-in">
                             <div className="transform transition-transform hover:scale-110 duration-300 z-10">
@@ -109,7 +107,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
                     
-                    {/* Platform Features Section */}
                     <section className="mb-24">
                          <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold text-white">Explore the GradNiche Toolkit</h2>
@@ -133,7 +130,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
                     
-                    {/* Our Values */}
                     <section className="mb-24">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold text-white">Our Core Values</h2>
@@ -154,7 +150,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
 
-                    {/* A Note from the Creator */}
                     <section className="mb-24 text-center">
                         <div className="max-w-3xl mx-auto bg-gray-800/50 backdrop-blur-md p-8 rounded-lg border border-gray-700">
                             <h2 className="text-2xl font-bold text-white mb-4">A Note from the Creator</h2>
@@ -167,7 +162,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
                     
-                    {/* Connect With Us Section */}
                     <section className="mb-24">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold text-white">Connect With Us</h2>
@@ -184,7 +178,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
 
-                    {/* CTA Section */}
                      <section className="bg-gray-800/50 backdrop-blur-md p-12 rounded-lg text-center border border-[#F6520C]/30 shadow-lg">
                         <h2 className="text-3xl font-bold text-white">Ready to Start Your Journey?</h2>
                         <p className="text-lg text-gray-400 mt-4 mb-8 max-w-2xl mx-auto">

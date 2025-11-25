@@ -68,14 +68,10 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, hr
         onClick={(e) => {e.preventDefault(); navigate(href)}}
         className="relative group h-full min-h-[320px] rounded-2xl overflow-hidden bg-gray-800/30 border border-white/5 hover:border-[#F6520C]/50 transition-all duration-500 flex flex-col"
     >
-        {/* Animated Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#0a101f] to-black transition-opacity duration-500"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(246,82,12,0.15),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-        {/* Content Container */}
         <div className="relative z-10 flex flex-col h-full p-8">
-            
-            {/* Avatar Circle */}
             <div className="flex justify-center mb-6">
                 <div className="relative">
                     <div className="absolute inset-0 bg-[#F6520C] rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
@@ -85,13 +81,11 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, hr
                 </div>
             </div>
             
-            {/* Text */}
             <div className="text-center mt-auto">
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#F6520C] transition-colors duration-300">{name}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
             </div>
 
-            {/* Hover Arrow */}
             <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

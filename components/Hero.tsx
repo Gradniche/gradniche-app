@@ -18,7 +18,6 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
     <section 
       className="relative h-[110vh] min-h-[700px] text-white flex items-center justify-center text-center overflow-hidden -mt-20"
     >
-      {/* Background Image with Parallax */}
       <div 
         className="absolute inset-0 bg-center bg-cover z-0"
         style={{ 
@@ -28,7 +27,6 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
         aria-hidden="true"
       />
       
-      {/* Cinematic Overlays */}
       <div className="absolute inset-0 bg-black/50 z-10"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a101f] z-10"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a101f_120%)] z-10"></div>
@@ -54,8 +52,8 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a 
-                  href="#/#destinations" 
-                  onClick={(e) => { e.preventDefault(); navigate('/#destinations'); }}
+                  href="#destinations" 
+                  onClick={(e) => { e.preventDefault(); navigate('#destinations'); }}
                   className="group relative px-8 py-4 bg-[#F6520C] text-white rounded-full text-lg font-bold shadow-[0_0_20px_rgba(246,82,12,0.5)] hover:shadow-[0_0_30px_rgba(246,82,12,0.7)] transition-all duration-300 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center gap-2">
@@ -76,7 +74,6 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7-7-7" />

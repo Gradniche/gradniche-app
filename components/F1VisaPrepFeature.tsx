@@ -24,7 +24,6 @@ const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigate }) => {
         <section id="f1-prep-feature" className="py-20">
             <div className="container mx-auto px-6">
                 <div className="relative bg-gradient-to-r from-indigo-900 via-purple-900 to-gray-900 rounded-3xl p-8 md:p-16 shadow-2xl overflow-hidden border border-white/10">
-                    {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
 
@@ -57,7 +56,6 @@ const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigate }) => {
                                         alt="AI Visa Officer Avatar" 
                                         className="w-[90%] h-[90%] rounded-full object-cover shadow-inner" 
                                     />
-                                    {/* Floating Badge */}
                                     <div className="absolute -bottom-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-bold flex items-center animate-bounce">
                                         <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
                                         AI Interviewer Ready

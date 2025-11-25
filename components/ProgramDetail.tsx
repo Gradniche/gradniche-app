@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { Program, University, universities as allUniversities } from '../data/universities';
 
@@ -117,7 +118,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
     for (const uni of allUniversities) {
         if (uni.id === university.id) continue;
 
-        // Find a program that matches the keyword but is not the exact same program ID
         const matchingProgram = uni.programs.find(p => 
             p.id !== program.id && p.name.toLowerCase().includes(keywordLower)
         );
@@ -129,7 +129,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
 
     return results
         .sort((a, b) => (a.university.qsRanking || 9999) - (b.university.qsRanking || 9999))
-        .slice(0, 4); // Show top 4 similar programs
+        .slice(0, 4); 
   }, [program.id, program.name, university.id]);
 
   const potentialJobTitles = useMemo(() => getPotentialJobTitles(program.name), [program.name]);
@@ -313,7 +313,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
 
         <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-8">
             <div className="lg:col-span-2 space-y-8 flex flex-col gap-8 order-2 lg:order-1">
-                 {/* Summary Box (for mobile, shown first) */}
                 <div className="lg:hidden bg-gray-800/50 p-4 rounded-lg border border-gray-700 space-y-4">
                     <div className="flex justify-between items-baseline">
                         <span className="text-gray-400">Tuition Fee</span>
@@ -338,7 +337,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                     </div>
                 </div>
 
-                {/* Program Overview */}
                 <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
                     <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Detailed Program Overview</h2>
                     <p className="text-gray-400 leading-relaxed whitespace-pre-line">{enhancedAbout}</p>
@@ -360,7 +358,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                     )}
                 </div>
 
-                {/* Admission Requirements */}
                 <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
                     <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Admission Requirements</h2>
                     {program.gpa && (
@@ -376,7 +373,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                     </ul>
                 </div>
                 
-                 {/* --- Career Outcomes Section --- */}
                 <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
                     <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                         Career Outcomes & Opportunities
@@ -394,7 +390,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                     )}
                 </div>
 
-                {/* --- ROI Section --- */}
                 <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
                     <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                         Return on Investment (ROI) Analysis
@@ -460,7 +455,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                             </a>
                         </div>
                     </div>
-                    {/* --- NEW SIMILAR PROGRAMS SECTION --- */}
                     {similarPrograms.length > 0 && (
                         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
                             <h3 className="text-xl font-semibold text-white mb-4">Similar Programs</h3>
@@ -485,7 +479,6 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                             </div>
                         </div>
                     )}
-                     {/* --- END NEW SIMILAR PROGRAMS SECTION --- */}
                 </div>
             </div>
         </div>

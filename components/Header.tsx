@@ -28,14 +28,14 @@ const navLinks: DropdownChild[] = [
     isDropdown: true, 
     name: 'destinations',
     children: [
-      { label: 'USA', href: '/destinations/usa', icon: <img src={generateAvatarUrl(usaAvatarConfig)} alt="USA" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'Canada', href: '/destinations/canada', icon: <img src={generateAvatarUrl(canadaAvatarConfig)} alt="Canada" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'UK', href: '/destinations/uk', icon: <img src={generateAvatarUrl(ukAvatarConfig)} alt="UK" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'Australia', href: '/destinations/australia', icon: <img src={generateAvatarUrl(australiaAvatarConfig)} alt="Australia" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'Germany', href: '/destinations/germany', icon: <img src={generateAvatarUrl(germanyAvatarConfig)} alt="Germany" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'Ireland', href: '/destinations/ireland', icon: <img src={generateAvatarUrl(irelandAvatarConfig)} alt="Ireland" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'UAE', href: '/destinations/uae', icon: <img src={generateAvatarUrl(uaeAvatarConfig)} alt="UAE" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
-      { label: 'New Zealand', href: '/destinations/new-zealand', icon: <img src={generateAvatarUrl(newZealandAvatarConfig)} alt="New Zealand" className="h-full w-full rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" /> },
+      { label: 'USA', href: '/destinations/usa', icon: <img src={generateAvatarUrl(usaAvatarConfig)} alt="USA" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'Canada', href: '/destinations/canada', icon: <img src={generateAvatarUrl(canadaAvatarConfig)} alt="Canada" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'UK', href: '/destinations/uk', icon: <img src={generateAvatarUrl(ukAvatarConfig)} alt="UK" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'Australia', href: '/destinations/australia', icon: <img src={generateAvatarUrl(australiaAvatarConfig)} alt="Australia" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'Germany', href: '/destinations/germany', icon: <img src={generateAvatarUrl(germanyAvatarConfig)} alt="Germany" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'Ireland', href: '/destinations/ireland', icon: <img src={generateAvatarUrl(irelandAvatarConfig)} alt="Ireland" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'UAE', href: '/destinations/uae', icon: <img src={generateAvatarUrl(uaeAvatarConfig)} alt="UAE" className="h-full w-full rounded-full object-cover" /> },
+      { label: 'New Zealand', href: '/destinations/new-zealand', icon: <img src={generateAvatarUrl(newZealandAvatarConfig)} alt="New Zealand" className="h-full w-full rounded-full object-cover" /> },
     ]
   },
   { href: '/college-finder', label: 'College Finder' },
@@ -46,16 +46,60 @@ const navLinks: DropdownChild[] = [
     isDropdown: true, 
     name: 'resources',
     children: [
-      { label: 'Course Comparison', href: '/tools/course-comparison', description: 'Analyze courses side-by-side.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4h5m-5 4h5m2-16l-4 4m0 0l-4-4m4 4V3" /></svg> },
-      { label: 'AI SOP Analyzer', href: '/tools/sop-analyzer', description: 'Get instant feedback on your essay.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12l1.549-3.326a.5.5 0 00-.948-.442L12 11.549l-3.601-1.309a.5.5 0 00-.548.848L11.549 12l-1.309 3.601a.5.5 0 00.848.548L12 13.451l3.326 1.549a.5.5 0 00.442-.948L13.451 12z" /></svg> },
-      { label: 'F1 Visa Interview Prep', href: '/tools/f1-visa-prep', description: 'Practice with an AI visa officer.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg> },
-      { label: 'AI Destination Finder', href: '/#ai-finder', description: 'Let our AI suggest countries for you.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.704 4.343a9 9 0 0110.592 0m-12.592 0A9 9 0 009.296 2.343M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-      { label: 'Visa Application Guides', href: '/tools/visa-guides', description: 'Step-by-step visa assistance.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg> },
-      { label: 'Scholarship Finder', href: '/tools/scholarship-finder', description: 'Find funding for your studies.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 12a4 4 0 100-8 4 4 0 000 8z" /></svg> },
-      { label: 'Community Forums', href: '/tools/community-forums', description: 'Connect with fellow students.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h4M9 12l2 2 4-4" /></svg> },
-      { label: 'Cost of Living Calculator', href: '/tools/cost-of-living-calculator', description: 'Estimate your expenses abroad.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg> },
-      { label: 'Pre-Departure Checklists', href: '/tools/pre-departure-checklists', description: 'Stay organized before you fly.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg> },
-      { label: 'GPA Calculator', href: '/tools/gpa-calculator', description: 'Convert your grades to the 4.0 scale.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg> },
+      { 
+        label: 'Course Comparison', 
+        href: '/tools/course-comparison', 
+        description: 'Side-by-side analysis.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 10v4" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 14h-2" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'AI SOP Analyzer', 
+        href: '/tools/sop-analyzer', 
+        description: 'Instant essay feedback.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 13H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 17H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 9H8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="18" cy="18" r="3" className="text-white/50" fill="currentColor" fillOpacity="0.2" stroke="none"/></svg> 
+      },
+      { 
+        label: 'F1 Visa Prep', 
+        href: '/tools/f1-visa-prep', 
+        description: 'AI Mock Interviews.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 8v8" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'Visa Guides', 
+        href: '/tools/visa-guides', 
+        description: 'Step-by-step procedures.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 12h20" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" strokeLinecap="round" strokeLinejoin="round"/><path d="M15 12V7a3 3 0 0 0-6 0v5" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'Scholarship Finder', 
+        href: '/tools/scholarship-finder', 
+        description: 'Find global funding.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="8" r="7" strokeLinecap="round" strokeLinejoin="round"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'Community Forums', 
+        href: '/tools/community-forums', 
+        description: 'Connect with peers.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'Living Costs', 
+        href: '/tools/cost-of-living-calculator', 
+        description: 'Budget estimator.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 18V6" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'Pre-Departure', 
+        href: '/tools/pre-departure-checklists', 
+        description: 'Interactive checklists.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" strokeLinejoin="round"/><polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
+      { 
+        label: 'GPA Calculator', 
+        href: '/tools/gpa-calculator', 
+        description: 'Grade conversion.', 
+        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="6" width="20" height="12" rx="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 12h4" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 12h4" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 12v-4" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 12v4" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+      },
     ]
   },
   { href: '/about', label: 'About Us' },
@@ -112,48 +156,80 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
 
 
   const renderDropdown = (link: DropdownChild) => {
+    const topClass = isScrolled ? 'top-[70px]' : 'top-[85px]';
+
     if (link.name === 'destinations') {
       return (
-        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-60 transition-all ease-in-out duration-300 z-10 ${openDropdown === link.name ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-800 transform rotate-45"></div>
-          <div className="bg-gray-800/[.95] backdrop-blur-xl rounded-lg shadow-2xl border border-[#F6520C]/30 p-2 overflow-hidden">
-            {link.children?.map(child => (
-              <a 
-                key={child.label} 
-                href={`#${child.href!}`}
-                onClick={(e) => handleNavClick(e, child.href!)}
-                className="group flex items-center gap-3 w-full p-3 rounded-md hover:bg-[#F6520C]/10 transition-colors text-left focus:outline-none focus-visible:bg-[#F6520C]/20"
-              >
-                <div className="h-8 w-8">{child.icon}</div>
-                <p className="font-semibold text-white">{child.label}</p>
-              </a>
-            ))}
-          </div>
+        <div className={`fixed ${topClass} left-0 right-0 mx-auto w-[95vw] max-w-[600px] transition-all ease-out duration-300 z-50 ${openDropdown === link.name ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
+            <div className="bg-[#050a14] rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.7)] border border-white/10 p-5 relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
+                
+                <div className="grid grid-cols-2 gap-3 relative z-10">
+                    {link.children?.map(child => (
+                    <a 
+                        key={child.label} 
+                        href={`#${child.href!}`}
+                        onClick={(e) => handleNavClick(e, child.href!)}
+                        className="group flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
+                    >
+                        <div className="relative w-10 h-10 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-white/10 group-hover:ring-[#F6520C] group-hover:shadow-[0_0_15px_rgba(246,82,12,0.4)] transition-all duration-300">
+                            {child.icon}
+                        </div>
+                        <span className="font-semibold text-gray-300 group-hover:text-white transition-colors">{child.label}</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#F6520C] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    ))}
+                </div>
+            </div>
         </div>
       );
     }
     if (link.name === 'resources') {
       return (
-        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[40rem] transition-all ease-in-out duration-300 z-10 ${openDropdown === link.name ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-800 transform rotate-45"></div>
-          <div className="bg-gray-800/[.95] backdrop-blur-xl rounded-lg shadow-2xl border border-[#F6520C]/30 p-6 overflow-hidden">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-              {link.children?.map(child => (
-                <a
-                  key={child.label}
-                  href={`#${child.href!}`}
-                  onClick={(e) => handleNavClick(e, child.href!)}
-                  className="group flex items-start gap-4 p-3 rounded-md hover:bg-[#F6520C]/10 transition-colors text-left focus:outline-none focus-visible:bg-[#F6520C]/20"
-                >
-                  <div className="flex-shrink-0 bg-gray-700/50 p-3 rounded-lg text-[#F6520C] group-hover:bg-[#F6520C] group-hover:text-white transition-all">
-                    {child.icon}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">{child.label}</p>
-                    <p className="text-sm text-gray-400">{child.description}</p>
-                  </div>
-                </a>
-              ))}
+        <div className={`fixed ${topClass} left-0 right-0 mx-auto w-[95vw] max-w-[900px] transition-all ease-out duration-300 z-50 ${openDropdown === link.name ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
+          <div className="bg-[#050a14] rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 p-6 relative">
+             <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#F6520C]/10 rounded-full blur-3xl -z-10"></div>
+             <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+              {link.children?.map((child, index) => {
+                 const gradients = [
+                    'from-blue-600 to-cyan-400', 
+                    'from-violet-600 to-fuchsia-400',
+                    'from-orange-500 to-red-500',
+                    'from-emerald-500 to-teal-400',
+                    'from-pink-500 to-rose-500',
+                    'from-amber-400 to-orange-500',
+                    'from-indigo-500 to-blue-500',
+                    'from-green-500 to-emerald-600',
+                    'from-red-500 to-pink-600',
+                 ];
+                 const gradient = gradients[index % gradients.length];
+
+                 return (
+                    <a
+                    key={child.label}
+                    href={`#${child.href!}`}
+                    onClick={(e) => handleNavClick(e, child.href!)}
+                    className="group flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
+                    >
+                    <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gray-800/80 flex items-center justify-center border border-white/5 group-hover:border-transparent transition-all duration-300 relative overflow-hidden`}>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                        <div className="relative z-10 text-gray-400 group-hover:text-white transition-colors duration-300">
+                             {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement, { className: "w-6 h-6" }) : null}
+                        </div>
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-200 group-hover:text-white transition-colors mb-0.5 text-sm">
+                            {child.label}
+                        </p>
+                        <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors leading-tight">{child.description}</p>
+                    </div>
+                    </a>
+              )})}
             </div>
           </div>
         </div>
@@ -167,9 +243,9 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
     children: React.ReactNode;
   }> = ({ href, children }) => (
     <li>
-      <a href={`#${href}`} onClick={(e) => handleNavClick(e, href)} className="flex justify-between items-center w-full p-4 text-white font-semibold text-left text-lg hover:bg-white/5 transition-colors rounded-lg">
+      <a href={`#${href}`} onClick={(e) => handleNavClick(e, href)} className="flex justify-between items-center w-full p-5 text-white font-bold text-lg bg-white/5 rounded-2xl border border-white/5 hover:border-white/20 hover:bg-white/10 transition-all shadow-sm active:scale-95">
         <span>{children}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
       </a>
     </li>
   );
@@ -180,13 +256,13 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
     isOpen: boolean;
     onToggle: () => void;
   }> = ({ title, children, isOpen, onToggle }) => (
-    <li className="bg-white/5 rounded-lg overflow-hidden">
-      <button onClick={onToggle} className="flex justify-between items-center w-full p-4 text-white font-semibold text-left text-lg">
+    <li className="bg-[#050a14]/50 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+      <button onClick={onToggle} className="flex justify-between items-center w-full p-5 text-white font-bold text-lg hover:bg-white/5 transition-colors">
         <span>{title}</span>
-        <svg className={`w-5 h-5 text-gray-400 transform transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        <svg className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </button>
-      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-        <div className="pb-2 px-2">
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-[800px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
+        <div className="px-2">
             {children}
         </div>
       </div>
@@ -194,86 +270,102 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
   );
 
   return (
-    <header className={`bg-[#0a101f]/95 md:bg-white/10 backdrop-blur-md sticky z-50 md:mx-6 md:rounded-xl transition-all duration-300 ${isScrolled ? 'top-0 md:top-2 shadow-2xl shadow-black/20' : 'top-0 md:top-4 shadow-lg'}`}>
-      <div className={`container mx-auto px-4 md:px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-2 md:py-3' : 'py-3 md:py-4'}`}>
-        <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm">
+    <header className={`bg-[#0a101f]/95 md:bg-white/5 backdrop-blur-xl sticky z-50 md:mx-6 md:rounded-2xl transition-all duration-300 ${isScrolled ? 'top-0 md:top-3 shadow-2xl shadow-black/40 border-b md:border border-white/10' : 'top-0 md:top-6 shadow-lg border-b md:border border-white/5'}`}>
+      <div className={`container mx-auto px-4 md:px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 md:py-3' : 'py-4 md:py-4'}`}>
+        <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight relative z-[110]">
           Grad<span className="text-[#F6520C]">Niche</span>
         </a>
-        <nav className="hidden md:flex space-x-2 items-center" ref={navRef}>
+        
+        <nav className="hidden md:flex space-x-1 items-center" ref={navRef}>
           {navLinks.map((link) => (
             <div key={link.label} className="relative">
               {link.isDropdown ? (
                 <>
                   <button 
                     onClick={() => setOpenDropdown(openDropdown === link.name ? null : link.name!)} 
-                    className="text-gray-300 hover:text-white hover:bg-[#F6520C]/80 transition-all duration-300 font-medium flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-4 py-2"
+                    className={`text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-5 py-2 ${openDropdown === link.name ? 'bg-white/10 text-white' : ''}`}
                   >
                     {link.label}
-                    <svg className={`w-4 h-4 ml-1 transition-transform ${openDropdown === link.name ? 'transform rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg className={`w-4 h-4 ml-1.5 transition-transform duration-300 ${openDropdown === link.name ? 'transform rotate-180 text-[#F6520C]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </button>
                   {renderDropdown(link)}
                 </>
               ) : (
-                <a href={`#${link.href!}`} onClick={(e) => handleNavClick(e, link.href!)} className="text-gray-300 hover:text-white hover:bg-[#F6520C]/80 transition-all duration-300 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-4 py-2">
+                <a href={`#${link.href!}`} onClick={(e) => handleNavClick(e, link.href!)} className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-5 py-2">
                   {link.label}
                 </a>
               )}
             </div>
           ))}
         </nav>
-        <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-md p-1">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+        <div className="md:hidden relative z-[110]">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 focus:outline-none p-2 hover:bg-white/10 rounded-full transition-colors">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}></path>
             </svg>
           </button>
         </div>
       </div>
+      
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-gray-900/90 backdrop-blur-xl z-60 animate-slide-in-right">
-            <div className="flex justify-between items-center p-4">
-                 <span className="text-2xl font-extrabold text-white">Grad<span className="text-[#F6520C]">Niche</span></span>
-                <button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-gray-400 hover:text-white transition-colors z-70"
-                    aria-label="Close menu"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+        <div className="fixed inset-0 z-[100] bg-[#020617] flex flex-col w-screen h-screen overflow-hidden md:hidden">
+            <div className="absolute inset-0 pointer-events-none">
+               <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px]"></div>
+               <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#F6520C]/10 rounded-full blur-[100px]"></div>
             </div>
 
-            <div className="p-4 h-[calc(100vh-64px)] overflow-y-auto modern-scrollbar">
-                <ul className="space-y-2">
+            <div className="h-[80px] flex-none w-full bg-[#020617]/95 backdrop-blur-md border-b border-white/5"></div>
+
+            <div className="flex-1 overflow-y-auto px-6 py-8 pb-24 w-full">
+                <ul className="space-y-4">
                     {navLinks.filter(l => !l.isDropdown).map(link => (
                         <MobileNavLink key={link.label} href={link.href!}>
                             {link.label}
                         </MobileNavLink>
                     ))}
+                    
                     <MobileAccordion title="Destinations" isOpen={mobileNavOpen === 'destinations'} onToggle={() => setMobileNavOpen(p => p === 'destinations' ? null : 'destinations')}>
-                        <div className="grid grid-cols-2 gap-2 p-2">
+                        <div className="grid grid-cols-2 gap-4 p-2">
                             {navLinks.find(l => l.name === 'destinations')?.children?.map(child => (
-                                <a key={child.label} href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 text-center hover:bg-white/10 transition-colors">
-                                    <div className="w-16 h-16">{child.icon}</div>
-                                    <span className="text-sm font-semibold text-gray-300">{child.label}</span>
+                                <a key={child.label} href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 text-center hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
+                                    <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-white/10 shadow-md">
+                                        {child.icon}
+                                    </div>
+                                    <span className="text-sm font-bold text-gray-300">{child.label}</span>
                                 </a>
                             ))}
                         </div>
                     </MobileAccordion>
+                    
                     <MobileAccordion title="Resources" isOpen={mobileNavOpen === 'resources'} onToggle={() => setMobileNavOpen(p => p === 'resources' ? null : 'resources')}>
-                        <ul className="space-y-1 p-2">
-                             {navLinks.find(l => l.name === 'resources')?.children?.map(child => (
+                        <ul className="space-y-3 p-2">
+                             {navLinks.find(l => l.name === 'resources')?.children?.map((child, index) => {
+                                 const gradients = [
+                                    'from-blue-600 to-cyan-400', 
+                                    'from-violet-600 to-fuchsia-400',
+                                    'from-orange-500 to-red-500',
+                                    'from-emerald-500 to-teal-400',
+                                    'from-pink-500 to-rose-500',
+                                    'from-amber-400 to-orange-500',
+                                 ];
+                                 const gradient = gradients[index % gradients.length];
+                                 return (
                                 <li key={child.label}>
-                                     <a href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-3 rounded-lg text-left hover:bg-white/10 transition-colors w-full">
-                                        <div className="text-[#F6520C] flex-shrink-0 w-6 h-6">{child.icon}</div>
+                                     <a href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
+                                        <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center relative overflow-hidden`}>
+                                            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-30 group-hover:opacity-50 transition-opacity`}></div>
+                                            <div className="relative z-10 text-gray-300 group-hover:text-white">
+                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement, { className: "w-5 h-5" }) : null}
+                                            </div>
+                                        </div>
                                         <div>
-                                            <p className="font-semibold text-white">{child.label}</p>
-                                            <p className="text-xs text-gray-400">{child.description}</p>
+                                            <p className="font-bold text-white text-base">{child.label}</p>
+                                            <p className="text-xs text-gray-400 mt-0.5">{child.description}</p>
                                         </div>
                                     </a>
                                 </li>
-                            ))}
+                            )})}
                         </ul>
                     </MobileAccordion>
                 </ul>

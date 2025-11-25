@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { University, Program } from '../data/universities';
 import { ShortlistItem } from '../App';
@@ -51,7 +52,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
             aria-expanded={isOpen}
         >
             <span className="font-semibold text-white">{title}</span>
-            <svg className={`w-5 h-5 text-gray-400 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg className={`w-5 h-5 text-gray-400 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path></svg>
         </button>
         <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
             <div className="pb-4 text-gray-400 leading-relaxed">{children}</div>
@@ -97,9 +98,8 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
         if (universityAcronym && (title.includes(universityAcronym) || content.includes(universityAcronym))) {
             return true;
         }
-        // Also check replies for university name
         return thread.replies.some(reply => reply.content.toLowerCase().includes(universityNameLower));
-    }).slice(0, 3); // Limit to 3 highlights
+    }).slice(0, 3);
   }, [university.name]);
 
   const enhancedAbout = `${university.about}\n\nBeyond the lecture halls, the university thrives with a vibrant campus life that celebrates diversity and fosters personal growth. Students from over 100 countries create a rich tapestry of cultures, perspectives, and ideas. You can immerse yourself in a wide array of student-led clubs—from technical societies and entrepreneurial hubs to cultural groups and sports teams. This dynamic environment encourages collaboration, networking, and the formation of lifelong friendships, ensuring a holistic and enriching student experience.\n\nThe university is a hub of groundbreaking research and innovation, offering graduate students unparalleled opportunities to work alongside world-renowned faculty at the forefront of their fields. State-of-the-art laboratories and research centers provide the perfect ecosystem to tackle complex challenges and contribute to meaningful discoveries. Complementing this academic rigor is a dedicated career services department, which offers personalized coaching, networking events with top employers, and comprehensive resources to help you translate your academic achievements into a successful global career.`;
@@ -133,7 +133,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
     return () => {
       navLinks.forEach(link => {
         if (link.ref.current) {
-          // Check if ref is still in the DOM before unobserving
           if(link.ref.current && document.body.contains(link.ref.current)) {
               observer.unobserve(link.ref.current);
           }
@@ -155,7 +154,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
             </button>
         </div>
         
-        {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/70 backdrop-blur-sm p-8 rounded-lg mb-12 border border-gray-700 overflow-hidden">
             <div className="absolute -top-1/4 -right-1/4 w-1/2 h-full bg-gradient-to-tr from-[#F6520C]/10 via-transparent to-transparent rounded-full opacity-50"></div>
             <div className="relative z-10">
@@ -179,7 +177,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
             </div>
         </div>
 
-        {/* Key Facts - for mobile screens */}
         <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-gray-700 lg:hidden mb-8">
             <h2 className="text-2xl font-semibold text-white mb-4">Key Facts</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -195,9 +192,7 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
             </div>
         </div>
         
-        {/* Two-Column Layout with Sticky Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Left Column: Tabbed Content */}
             <div className="lg:col-span-2 bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-gray-700">
                 <section id="overview" ref={overviewRef} className="scroll-mt-24">
                     <h2 className="text-2xl font-semibold text-white mb-6">About University</h2>
@@ -325,7 +320,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                 </section>
             </div>
             
-            {/* Right Column: Key Facts & Navigation */}
             <aside className="lg:col-span-1 hidden lg:block">
                 <div className="sticky top-24 space-y-6">
                     <div className="bg-white/5 p-6 rounded-lg border border-gray-700">

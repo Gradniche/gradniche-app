@@ -28,7 +28,6 @@ const BlogsArchive: React.FC<BlogsArchiveProps> = ({ onBack, navigate }) => {
   return (
     <section className="py-20 bg-[#0a101f] min-h-screen">
       <div className="container mx-auto px-6">
-        {/* Navigation Header */}
         <div className="flex justify-between items-center mb-12">
             <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -61,7 +60,6 @@ const BlogsArchive: React.FC<BlogsArchiveProps> = ({ onBack, navigate }) => {
           </p>
         </div>
 
-        {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map(cat => (
                 <button 
@@ -74,7 +72,6 @@ const BlogsArchive: React.FC<BlogsArchiveProps> = ({ onBack, navigate }) => {
             ))}
         </div>
 
-        {/* Content Grid */}
         <div className="space-y-12">
             {featuredPost && (
                 <a 

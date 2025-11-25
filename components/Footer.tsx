@@ -51,9 +51,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
         <footer className="bg-gray-900 text-gray-400 md:rounded-xl">
         <div className="container mx-auto px-6 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {/* Brand and Subscribe Section */}
                 <div className="lg:col-span-1">
-                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white text-left focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-sm">
+                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm">
                         Grad<span className="text-[#F6520C]">Niche</span>
                     </a>
                     <p className="text-sm mt-2 max-w-xs">Empowering your global education journey with data-driven tools and expert insights.</p>
@@ -69,7 +68,6 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                     </div>
                 </div>
 
-                {/* Links Section */}
                 <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-8">
                     <div>
                         <h4 className="font-semibold text-white mb-4">Navigation</h4>
@@ -95,7 +93,6 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 </div>
             </div>
 
-            {/* Bottom Bar */}
             <div className="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center">
                 <p className="text-sm">&copy; {new Date().getFullYear()} GradNiche. All Rights Reserved.</p>
                 <div className="flex space-x-4 mt-4 sm:mt-0">

@@ -71,7 +71,7 @@ const MultiSelectDropdown: React.FC<{
                 className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white flex justify-between items-center"
             >
                 <span className="truncate">{displayValue}</span>
-                <svg className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                <svg className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path></svg>
             </button>
             {isOpen && (
                 <div className="absolute z-20 top-full mt-2 w-full bg-gray-800 border border-gray-600 rounded-md shadow-lg max-h-60 flex flex-col">
