@@ -219,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                     <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gray-800/80 flex items-center justify-center border border-white/5 group-hover:border-transparent transition-all duration-300 relative overflow-hidden`}>
                         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                         <div className="relative z-10 text-gray-400 group-hover:text-white transition-colors duration-300">
-                             {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement, { className: "w-6 h-6" }) : null}
+                             {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-6 h-6" }) : null}
                         </div>
                     </div>
                     <div>
@@ -356,7 +356,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                                         <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center relative overflow-hidden`}>
                                             <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-30 group-hover:opacity-50 transition-opacity`}></div>
                                             <div className="relative z-10 text-gray-300 group-hover:text-white">
-                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement, { className: "w-5 h-5" }) : null}
+                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5" }) : null}
                                             </div>
                                         </div>
                                         <div>

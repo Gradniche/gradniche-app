@@ -1,6 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Program, University, universities as allUniversities } from '../data/universities';
+import UniversityLogo from './UniversityLogo';
 
 // Helper function to generate a clean program title
 const getProgramTitle = (program: Program): string => {
@@ -465,7 +466,9 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                                         onClick={() => onNavigateToProgram(simUni, simProg)}
                                         className="w-full text-left p-4 rounded-lg bg-gray-900/50 hover:bg-gray-800/70 border border-gray-700 hover:border-[#F6520C]/70 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C] flex items-center space-x-4"
                                     >
-                                        <img src={simUni.logo} alt={`${simUni.name} logo`} className="w-12 h-12 rounded-full object-contain bg-white p-1 flex-shrink-0" />
+                                        <div className="w-12 h-12 rounded-full bg-white p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                            <UniversityLogo src={simUni.logo} alt={simUni.name} className="w-full h-full object-contain" />
+                                        </div>
                                         <div className="flex-1 min-w-0">
                                             <p className="font-semibold text-white truncate group-hover:text-orange-300">{simProg.name}</p>
                                             <p className="text-sm text-gray-400 truncate">{simUni.name}</p>

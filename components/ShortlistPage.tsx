@@ -1,8 +1,8 @@
 
-
 import React, { useMemo, useState } from 'react';
 import { University, Program, universities } from '../data/universities';
 import { ShortlistItem } from '../App';
+import UniversityLogo from './UniversityLogo';
 
 interface ShortlistPageProps {
     shortlist: ShortlistItem[];
@@ -30,7 +30,9 @@ const UniversityComparisonTable: React.FC<UniversityComparisonProps> = ({ univer
                     <div className="bg-gray-800 p-4 sticky left-0 z-10"></div>
                     {selectedUnis.map((uni) => (
                         <div key={uni.id} className="bg-gray-800 p-4 text-center space-y-2">
-                            <img src={uni.logo} alt={`${uni.name} logo`} className="w-12 h-12 rounded-full object-contain bg-white p-1 mx-auto" />
+                            <div className="w-12 h-12 mx-auto rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
+                                <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
+                            </div>
                             <p className="font-bold text-white text-sm">{uni.name}</p>
                             <button onClick={() => onToggleShortlist({ type: 'university', universityId: uni.id })} className="text-xs text-gray-500 hover:text-red-500 transition-colors">
                                 Remove
@@ -95,7 +97,9 @@ const ProgramComparisonTable: React.FC<ProgramComparisonProps> = ({ programs, on
                     <div className="bg-gray-800 p-4 sticky left-0 z-10"></div>
                     {programs.map(({ program, university }) => (
                         <div key={program.id} className="bg-gray-800 p-4 text-center space-y-2">
-                            <img src={university.logo} alt={`${university.name} logo`} className="w-12 h-12 rounded-full object-contain bg-white p-1 mx-auto" />
+                            <div className="w-12 h-12 mx-auto rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
+                                <UniversityLogo src={university.logo} alt={university.name} className="w-full h-full object-contain" />
+                            </div>
                             <p className="font-bold text-white text-sm">{program.name}</p>
                             <p className="text-xs text-gray-400">{university.name}</p>
                             <button onClick={() => onToggleShortlist({ type: 'program', universityId: university.id, programId: program.id })} className="text-xs text-gray-500 hover:text-red-500 transition-colors">

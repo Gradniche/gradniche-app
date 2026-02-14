@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { University, Program } from '../data/universities';
 import { ShortlistItem } from '../App';
 import { threads as allThreads, generateAvatarUrl, users } from '../data/forums';
+import UniversityLogo from './UniversityLogo';
 
 
 interface UniversityDetailProps {
@@ -168,7 +169,9 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                     </button>
                 </div>
                 <div className="flex flex-col md:flex-row items-center md:space-x-8">
-                    <img src={university.logo} alt={`${university.name} logo`} className="w-28 h-28 rounded-full mb-6 md:mb-0 object-contain bg-white p-2 flex-shrink-0 border-4 border-gray-700" />
+                    <div className="w-28 h-28 rounded-full mb-6 md:mb-0 bg-white p-2 flex-shrink-0 border-4 border-gray-700 overflow-hidden flex items-center justify-center">
+                        <UniversityLogo src={university.logo} alt={university.name} className="w-full h-full object-contain" />
+                    </div>
                     <div className="text-center md:text-left">
                         <h1 className="text-3xl md:text-4xl font-bold text-white">{university.name}</h1>
                         <p className="text-xl text-gray-400 mt-1">{university.location} &middot; {university.setting}</p>

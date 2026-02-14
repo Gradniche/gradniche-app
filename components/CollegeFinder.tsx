@@ -2,6 +2,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { universities as universityData, University } from '../data/universities';
 import { ShortlistItem } from '../App';
+import UniversityLogo from './UniversityLogo';
 
 interface CollegeFinderProps {
     navigate: (path: string) => void;
@@ -284,7 +285,9 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate, shortlist, onTo
                                         <div className="absolute inset-0 bg-gradient-to-b from-[#F6520C]/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                                         <a href={`#/college-finder/${uni.id}`} onClick={(e) => { e.preventDefault(); navigate(`/college-finder/${uni.id}`); }} className="w-full h-full flex flex-col p-6 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C]">
                                             <div className="flex-grow flex flex-col items-center justify-start">
-                                                <img src={uni.logo} alt={`${uni.name} logo`} className="w-24 h-24 rounded-full object-contain bg-white p-1.5 mb-5 border-2 border-gray-600 group-hover:border-[#F6520C] transition-colors" />
+                                                <div className="w-24 h-24 mb-5 p-1.5 rounded-full bg-white border-2 border-gray-600 group-hover:border-[#F6520C] transition-colors flex items-center justify-center overflow-hidden">
+                                                    <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
+                                                </div>
                                                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors flex-grow flex items-center justify-center line-clamp-3">{uni.name}</h3>
                                                 <p className="text-sm text-gray-400 mt-1">{uni.location}</p>
                                             </div>

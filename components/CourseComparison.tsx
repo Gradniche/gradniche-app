@@ -1,6 +1,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { University, Program, universities as allUniversities } from '../data/universities';
+import UniversityLogo from './UniversityLogo';
 
 interface CourseComparisonProps {
   onBack: () => void;
@@ -30,7 +31,7 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
                 className={`w-6 h-6 text-[#F6520C] transform transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
             >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
         <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
@@ -189,7 +190,9 @@ const CourseComparison: React.FC<CourseComparisonProps> = ({ onBack, navigate })
                     return (
                         <button key={uni.name} onClick={() => handleUniversitySelect(uni)}
                             className={`p-4 rounded-lg border-2 transition-all duration-200 text-left flex items-center space-x-4 ${isSelected ? 'bg-[#F6520C]/20 border-[#F6520C]' : 'bg-white/5 border-gray-700 hover:border-gray-500'}`}>
-                            <img src={uni.logo} alt={`${uni.name} logo`} className="w-12 h-12 rounded-full object-contain bg-white p-1" />
+                            <div className="w-12 h-12 rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
+                                <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
+                            </div>
                             <div>
                                 <p className="font-semibold text-white">{uni.name}</p>
                                 <p className="text-sm text-gray-400">{uni.location}</p>
@@ -244,7 +247,9 @@ const CourseComparison: React.FC<CourseComparisonProps> = ({ onBack, navigate })
                         <button key={`${item.university.name}-${item.program.name}`} onClick={() => handleProgramSelect(item)}
                             className={`p-4 rounded-lg border-2 transition-all duration-200 text-left flex flex-col h-full ${isSelected ? 'bg-[#F6520C]/20 border-[#F6520C]' : 'bg-white/5 border-gray-700 hover:border-gray-500'}`}>
                             <div className="flex items-center space-x-3 mb-3">
-                                <img src={item.university.logo} alt={`${item.university.name} logo`} className="w-8 h-8 rounded-full object-contain bg-white p-0.5" />
+                                <div className="w-8 h-8 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                    <UniversityLogo src={item.university.logo} alt={item.university.name} className="w-full h-full object-contain" />
+                                </div>
                                 <p className="text-sm text-gray-400">{item.university.name}</p>
                             </div>
                             <p className="font-semibold text-white flex-grow">{item.program.name}</p>
@@ -288,7 +293,9 @@ const CourseComparison: React.FC<CourseComparisonProps> = ({ onBack, navigate })
                         {/* Program Headers */}
                         {selectedPrograms.map((p, i) => (
                             <div key={i} className="bg-gray-800 p-4 text-center">
-                                <img src={p.university.logo} alt={`${p.university.name} logo`} className="w-12 h-12 rounded-full object-contain bg-white p-1 mx-auto mb-2" />
+                                <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-white p-1 flex items-center justify-center overflow-hidden">
+                                    <UniversityLogo src={p.university.logo} alt={p.university.name} className="w-full h-full object-contain" />
+                                </div>
                                 <p className="font-bold text-white">{p.program.name}</p>
                                 <p className="text-sm text-gray-400">{p.university.name}</p>
                             </div>

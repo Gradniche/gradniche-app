@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Destination, FAQ, VisaGuide } from '../data/destinations';
 import { generateAvatarUrl } from '../data/forums';
+import UniversityLogo from './UniversityLogo';
 
 interface DestinationDetailProps {
   country: Destination;
@@ -13,7 +14,7 @@ interface DestinationDetailProps {
 
 const PremiumIcon = ({ icon, color = 'from-orange-500 to-pink-500' }: { icon: React.ReactNode, color?: string }) => (
     <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg shadow-orange-500/10 text-white transform group-hover:scale-110 transition-transform duration-300`}>
-        {React.cloneElement(icon as React.ReactElement, { className: "w-7 h-7" })}
+        {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { className: "w-7 h-7" }) : icon}
     </div>
 );
 
@@ -158,7 +159,7 @@ const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {visaGuide.documents.map((doc, index) => (
                             <div key={index} className="bg-black/30 p-4 rounded-xl flex items-center space-x-4 border border-white/5 hover:border-white/20 transition-all hover:bg-black/40">
-                                <div className="text-[#F6520C] flex-shrink-0 bg-white/5 p-2 rounded-lg">{React.cloneElement(doc.icon, { className: "w-6 h-6" })}</div>
+                                <div className="text-[#F6520C] flex-shrink-0 bg-white/5 p-2 rounded-lg">{React.cloneElement(doc.icon as React.ReactElement<any>, { className: "w-6 h-6" })}</div>
                                 <p className="font-medium text-gray-200 text-sm">{doc.item}</p>
                             </div>
                         ))}
@@ -483,8 +484,8 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {country.topUniversities.map(uni => (
                             <div key={uni.name} className="bg-gray-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-[#F6520C]/50 transition-all duration-300 group flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/10">
-                                <div className="w-24 h-24 bg-white rounded-2xl p-4 mb-6 shadow-lg shadow-white/5 group-hover:scale-105 transition-transform flex items-center justify-center">
-                                    <img src={uni.logo} alt={`${uni.name} logo`} className="w-full h-full object-contain" />
+                                <div className="w-24 h-24 bg-white rounded-2xl p-2 mb-6 shadow-lg shadow-white/5 group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+                                    <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
                                 </div>
                                 <h4 className="font-bold text-white text-lg mb-2 leading-tight">{uni.name}</h4>
                                 <div className="mt-auto pt-4 w-full border-t border-white/5">
