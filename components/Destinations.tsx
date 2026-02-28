@@ -66,24 +66,24 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, hr
     <a
         href={`#${href}`}
         onClick={(e) => {e.preventDefault(); navigate(href)}}
-        className="relative group h-full min-h-[320px] rounded-2xl overflow-hidden bg-gray-800/30 border border-white/5 hover:border-[#F6520C]/50 transition-all duration-500 flex flex-col"
+        className="relative group h-full min-h-[320px] rounded-3xl overflow-hidden bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 flex flex-col"
     >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#0a101f] to-black transition-opacity duration-500"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(246,82,12,0.15),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(246,82,12,0.1),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
         <div className="relative z-10 flex flex-col h-full p-8">
             <div className="flex justify-center mb-6">
                 <div className="relative">
-                    <div className="absolute inset-0 bg-[#F6520C] rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                    <div className="w-32 h-32 bg-gray-900/80 rounded-full p-2 border border-white/10 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                    <div className="absolute inset-0 bg-[#F6520C] rounded-full blur opacity-10 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="w-32 h-32 bg-gray-900/50 rounded-full p-2 border border-white/10 relative overflow-hidden group-hover:scale-105 transition-transform duration-500 backdrop-blur-sm">
                         <img src={generateAvatarUrl(avatarConfig)} alt={`${name} avatar`} className="w-full h-full" />
                     </div>
                 </div>
             </div>
             
             <div className="text-center mt-auto">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#F6520C] transition-colors duration-300">{name}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{name}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed font-light">{description}</p>
             </div>
 
             <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -101,11 +101,19 @@ interface DestinationsProps {
 
 const Destinations: React.FC<DestinationsProps> = ({ navigate }) => {
   return (
-    <section id="destinations" className="py-24 bg-gradient-to-b from-[#0a101f] to-gray-900">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Explore Global Hubs</h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+    <section id="destinations" className="py-24 relative bg-[#050810] overflow-hidden">
+      {/* Subtle background elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+            <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Top Locations</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Explore Global Hubs</h2>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
             Discover premier destinations that offer world-class education and unparalleled opportunities.
           </p>
         </div>

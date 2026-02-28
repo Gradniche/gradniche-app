@@ -43,61 +43,72 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
   ];
 
   const renderLink = (link: { href: string; label: string; }) => (
-    <a href={`#${link.href}`} onClick={(e) => handleNavClick(e, link.href)} className="text-sm text-gray-400 hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">{link.label}</a>
+    <a href={`#${link.href}`} onClick={(e) => handleNavClick(e, link.href)} className="text-sm text-gray-400 hover:text-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm flex items-center group">
+        <span className="w-0 h-[1px] bg-[#F6520C] mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+        {link.label}
+    </a>
   );
 
   return (
-    <div className="px-0 md:px-6 md:pb-4">
-        <footer className="bg-gray-900 text-gray-400 md:rounded-xl">
-        <div className="container mx-auto px-6 py-12">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-1">
-                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm">
+    <div className="px-0 md:px-6 md:pb-6 bg-[#050810]">
+        <footer className="bg-white/[0.02] text-gray-400 md:rounded-3xl border border-white/5 relative overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-orange-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div className="container mx-auto px-8 py-16 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-12">
+                <div className="lg:col-span-1 space-y-6">
+                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-3xl font-extrabold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Grad<span className="text-[#F6520C]">Niche</span>
                     </a>
-                    <p className="text-sm mt-2 max-w-xs">Empowering your global education journey with data-driven tools and expert insights.</p>
-                    <div className="mt-6">
-                        <h4 className="font-semibold text-white mb-2">Get the Latest Intel</h4>
-                        <form className="flex">
+                    <p className="text-sm text-gray-400 leading-relaxed font-light">Empowering your global education journey with data-driven tools and expert insights.</p>
+                    <div className="mt-8">
+                        <h4 className="font-bold text-white mb-4 tracking-tight">Get the Latest Intel</h4>
+                        <form className="flex relative group">
                             <label htmlFor="footer-email" className="sr-only">Email address</label>
-                            <input id="footer-email" type="email" placeholder="your.email@example.com" className="w-full px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#F6520C]"/>
-                            <button type="submit" aria-label="Subscribe to newsletter" className="bg-[#F6520C] text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#F6520C]">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+                            <input id="footer-email" type="email" placeholder="your.email@example.com" className="w-full px-5 py-3 bg-black/40 text-gray-300 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] focus:border-transparent transition-all duration-300 placeholder-gray-600"/>
+                            <button type="submit" aria-label="Subscribe to newsletter" className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#F6520C] text-white px-4 rounded-lg hover:bg-[#E84A00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C] transition-all duration-300 shadow-lg hover:shadow-[0_0_15px_rgba(246,82,12,0.4)] flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
                             </button>
                         </form>
                     </div>
                 </div>
 
-                <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-12 lg:pl-12">
                     <div>
-                        <h4 className="font-semibold text-white mb-4">Navigation</h4>
-                        <ul className="space-y-3">
+                        <h4 className="font-bold text-white mb-6 tracking-tight">Navigation</h4>
+                        <ul className="space-y-4">
                             {navigationLinks.map(link => <li key={link.label}>{renderLink(link)}</li>)}
                         </ul>
                     </div>
                     <div>
-                        <h4 className="font-semibold text-white mb-4">Key Tools</h4>
-                        <ul className="space-y-3">
+                        <h4 className="font-bold text-white mb-6 tracking-tight">Key Tools</h4>
+                        <ul className="space-y-4">
                             {keyToolLinks.map(link => <li key={link.label}>{renderLink(link)}</li>)}
                         </ul>
                     </div>
                     <div>
-                        <h4 className="font-semibold text-white mb-4">Legal & Contact</h4>
-                        <ul className="space-y-3">
+                        <h4 className="font-bold text-white mb-6 tracking-tight">Legal & Contact</h4>
+                        <ul className="space-y-4">
                             {legalLinks.map(link => <li key={link.label}>{renderLink(link)}</li>)}
                              <li>
-                                <a href="mailto:hello@gradniche.com" className="text-sm hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">hello@gradniche.com</a>
+                                <a href="mailto:hello@gradniche.com" className="text-sm text-gray-400 hover:text-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm flex items-center group">
+                                    <span className="w-0 h-[1px] bg-[#F6520C] mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
+                                    hello@gradniche.com
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div className="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center">
-                <p className="text-sm">&copy; {new Date().getFullYear()} GradNiche. All Rights Reserved.</p>
-                <div className="flex space-x-4 mt-4 sm:mt-0">
+            <div className="mt-16 border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center">
+                <p className="text-sm text-gray-500 font-light">&copy; {new Date().getFullYear()} GradNiche. All Rights Reserved.</p>
+                <div className="flex space-x-6 mt-6 sm:mt-0">
                     {socialIcons.map(social => (
-                        <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#F6520C] transition focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full">
+                        <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full hover:scale-110 transform">
                             {social.icon}
                         </a>
                     ))}

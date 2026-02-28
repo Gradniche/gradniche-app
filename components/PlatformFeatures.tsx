@@ -75,11 +75,19 @@ const PlatformFeatures: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Why GradNiche?</h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+    <section className="py-24 relative bg-[#0a101f] overflow-hidden">
+      {/* Subtle background elements to match hero */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+            <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">The GradNiche Advantage</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Why GradNiche?</h2>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
             We merge cutting-edge technology with comprehensive data to empower your path to global education.
           </p>
         </div>
@@ -88,18 +96,18 @@ const PlatformFeatures: React.FC = () => {
           {features.map((feature, index) => (
             <div 
                 key={index} 
-                className={`relative group overflow-hidden rounded-2xl bg-gray-800/30 border border-white/10 p-8 hover:border-white/20 transition-all duration-300 ${feature.colSpan}`}
+                className={`relative group overflow-hidden rounded-3xl bg-white/[0.02] border border-white/5 p-8 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 ${feature.colSpan}`}
             >
                 {/* Gradient Glow */}
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.color} opacity-20 blur-3xl group-hover:opacity-30 transition-opacity`}></div>
+                <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${feature.color} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>
                 
                 <div className="relative z-10 flex flex-col h-full">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                         {feature.icon}
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed font-light">{feature.description}</p>
                     
                     {feature.customContent}
                 </div>

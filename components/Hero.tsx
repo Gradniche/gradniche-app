@@ -24,36 +24,89 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden -mt-20 pt-20 pb-24">
-      {/* Immersive Background */}
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-24 bg-[#050810]">
+      <style>
+        {`
+          @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(var(--r)); }
+            50% { transform: translateY(-20px) rotate(var(--r)); }
+          }
+          .animate-float {
+            animation: float-slow 8s ease-in-out infinite;
+          }
+          .animate-float-delayed {
+            animation: float-slow 10s ease-in-out infinite;
+            animation-delay: -4s;
+          }
+        `}
+      </style>
+
+      {/* Mobile Background Image (Visible only on small screens where floating cards are hidden) */}
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 lg:hidden"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1496372412473-e8a0d496d34c?q=80&w=2070&auto=format&fit=crop')`, // A great composite/collage style image of global landmarks
+          backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop')`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
-          transform: `translateY(${offsetY * 0.3}px) scale(1.05)`,
-          transition: 'transform 0.1s ease-out'
+          opacity: 0.2,
+          transform: `translateY(${offsetY * 0.3}px)`,
         }}
         aria-hidden="true"
       />
-      
-      {/* Atmospheric Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a101f]/80 via-[#0a101f]/40 to-[#0a101f] z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a101f]/80 via-transparent to-[#0a101f]/80 z-10"></div>
+
+      {/* Atmospheric Background glow */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#F6520C]/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]"></div>
+      </div>
+
+      {/* Floating Destination Cards (Desktop only) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden lg:block">
+        {/* USA */}
+        <div className="absolute top-[15%] left-[5%] xl:left-[10%] w-56 h-72 rounded-3xl border border-white/10 p-2 bg-white/5 backdrop-blur-md animate-float shadow-2xl" style={{ '--r': '-8deg' } as React.CSSProperties}>
+          <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale-[20%]" alt="USA" />
+          <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-bold border border-white/10 flex items-center gap-2">
+            <span>🇺🇸</span> New York, USA
+          </div>
+        </div>
+        
+        {/* UK */}
+        <div className="absolute top-[20%] right-[5%] xl:right-[10%] w-64 h-48 rounded-3xl border border-white/10 p-2 bg-white/5 backdrop-blur-md animate-float-delayed shadow-2xl" style={{ '--r': '12deg' } as React.CSSProperties}>
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale-[20%]" alt="UK" />
+          <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-bold border border-white/10 flex items-center gap-2">
+            <span>🇬🇧</span> London, UK
+          </div>
+        </div>
+
+        {/* Australia */}
+        <div className="absolute bottom-[15%] left-[8%] xl:left-[12%] w-64 h-48 rounded-3xl border border-white/10 p-2 bg-white/5 backdrop-blur-md animate-float-delayed shadow-2xl" style={{ '--r': '-12deg' } as React.CSSProperties}>
+          <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale-[20%]" alt="Australia" />
+          <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-bold border border-white/10 flex items-center gap-2">
+            <span>🇦🇺</span> Sydney, AUS
+          </div>
+        </div>
+
+        {/* Canada */}
+        <div className="absolute bottom-[20%] right-[8%] xl:right-[12%] w-56 h-72 rounded-3xl border border-white/10 p-2 bg-white/5 backdrop-blur-md animate-float shadow-2xl" style={{ '--r': '8deg' } as React.CSSProperties}>
+          <img src="https://images.unsplash.com/photo-1507992781348-310259076fe0?q=80&w=400&auto=format&fit=crop" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale-[20%]" alt="Canada" />
+          <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-bold border border-white/10 flex items-center gap-2">
+            <span>🇨🇦</span> Toronto, CAN
+          </div>
+        </div>
+      </div>
 
       <div className="relative z-20 container mx-auto px-6 flex flex-col items-center mt-12">
         
         {/* Editorial Headline */}
-        <div className="text-center max-w-4xl mx-auto mb-12 animate-fade-in">
+        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12 animate-fade-in">
           <div className="inline-block px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md mb-6">
-            <span className="text-sm font-medium tracking-wider text-white/90 uppercase">Your Global Education Starts Here</span>
+            <span className="text-xs md:text-sm font-medium tracking-wider text-white/90 uppercase">Your Global Education Starts Here</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-white" style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.1 }}>
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-6 text-white" style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.1 }}>
             Study <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#F6520C] to-orange-400">Abroad</span><br />
             Made Simple.
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed px-4">
             Discover top universities, secure scholarships, and ace your visa interviews with GradNiche's AI-powered platform.
           </p>
         </div>
@@ -110,6 +163,9 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
 
       </div>
       
+      {/* Bottom Gradient to blend with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a101f] to-transparent z-20 pointer-events-none"></div>
+
       {/* Scroll Hint */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2 animate-bounce opacity-50">
         <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white">Explore</span>

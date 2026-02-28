@@ -58,17 +58,22 @@ const avatar3Config: AvatarConfig = { style: 'adventurer', options: { seed: 'abo
 
 const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
     return (
-        <div className="bg-[#0a101f] text-gray-300">
+        <div className="bg-[#050810] text-gray-300 min-h-screen">
             <section
-                className="relative h-[60vh] min-h-[450px] text-white flex items-center justify-center text-center bg-center bg-cover"
+                className="relative h-[60vh] min-h-[450px] text-white flex items-center justify-center text-center bg-center bg-cover overflow-hidden"
                 style={{ backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')` }}
             >
-                <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#050810]/80 via-[#050810]/60 to-[#050810] z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F6520C]/10 rounded-full blur-[150px] pointer-events-none z-10"></div>
+                
                 <div className="relative z-20 container mx-auto px-6">
-                    <h1 className="text-4xl md:text-6xl font-extrabold" style={{ textShadow: '0px 2px 10px rgba(0, 0, 0, 0.7)' }}>
+                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Our Mission</span>
+                    </div>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Democratizing Global Education
                     </h1>
-                    <p className="mt-4 text-lg md:text-xl font-light max-w-3xl mx-auto" style={{ textShadow: '0px 1px 5px rgba(0, 0, 0, 0.5)' }}>
+                    <p className="mt-4 text-lg md:text-xl font-light max-w-3xl mx-auto text-gray-300">
                         We believe that every student deserves access to the world's best educational opportunities, and we're building the tools to make that a reality.
                     </p>
                 </div>
@@ -107,44 +112,49 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
                     
-                    <section className="mb-24">
-                         <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white">Explore the GradNiche Toolkit</h2>
-                            <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                    <section className="mb-24 relative">
+                         <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Explore the GradNiche Toolkit</h2>
+                            <p className="text-lg text-gray-400 mt-6 max-w-3xl mx-auto font-light">
                                 We've built a comprehensive suite of tools to give you an unfair advantage in your study abroad preparations.
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {platformFeatures.map((feature, index) => (
-                                <div key={feature.title} className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-gray-600 hover:-translate-y-2 transition-all duration-300 animate-fade-in flex flex-col group" style={{ animationDelay: `${index * 0.1}s` }}>
-                                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                                        {feature.icon}
+                                <div key={feature.title} className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 animate-fade-in flex flex-col" style={{ animationDelay: `${index * 0.1}s` }}>
+                                    {/* Gradient Glow */}
+                                    <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${feature.color} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+                                    
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                                            {feature.icon}
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{feature.title}</h3>
+                                        <p className="text-gray-400 mb-8 flex-grow font-light leading-relaxed">{feature.description}</p>
+                                        <button onClick={() => navigate(feature.page)} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-colors duration-300 self-start font-medium">
+                                            Explore Feature
+                                        </button>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
-                                    <p className="text-gray-400 mb-6 flex-grow">{feature.description}</p>
-                                    <button onClick={() => navigate(feature.page)} className="mt-auto bg-gray-800/80 text-white border border-gray-600 px-6 py-2 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-colors duration-300 self-start">
-                                        Explore Feature
-                                    </button>
                                 </div>
                             ))}
                         </div>
                     </section>
                     
                     <section className="mb-24">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white">Our Core Values</h2>
-                            <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Our Core Values</h2>
+                            <p className="text-lg text-gray-400 mt-6 max-w-3xl mx-auto font-light">
                                 The principles that guide our work and our commitment to you.
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {values.map((value, index) => (
-                                <div key={value.title} className="bg-gray-800/50 p-6 rounded-2xl flex flex-col items-center text-center animate-fade-in group hover:bg-gray-800/80 transition-colors" style={{ animationDelay: `${index * 0.1}s` }}>
-                                    <div className={`mb-4 w-14 h-14 rounded-xl bg-gradient-to-br ${value.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                <div key={value.title} className="bg-white/[0.02] border border-white/5 p-8 rounded-3xl flex flex-col items-center text-center animate-fade-in group hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500" style={{ animationDelay: `${index * 0.1}s` }}>
+                                    <div className={`mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br ${value.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                                         {value.icon}
                                     </div>
-                                    <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
-                                    <p className="text-gray-400">{value.description}</p>
+                                    <h4 className="text-xl font-bold text-white mb-3 tracking-tight">{value.title}</h4>
+                                    <p className="text-gray-400 font-light leading-relaxed">{value.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -178,14 +188,19 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                     </section>
 
-                     <section className="bg-gray-800/50 backdrop-blur-md p-12 rounded-lg text-center border border-[#F6520C]/30 shadow-lg">
-                        <h2 className="text-3xl font-bold text-white">Ready to Start Your Journey?</h2>
-                        <p className="text-lg text-gray-400 mt-4 mb-8 max-w-2xl mx-auto">
-                            Our tools and resources are designed to guide you every step of the way. Explore top universities and find your perfect fit today.
-                        </p>
-                        <button onClick={() => navigate('/college-finder')} className="bg-[#F6520C] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg transform hover:scale-105 glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C]/80">
-                            Launch College Finder
-                        </button>
+                     <section className="bg-white/[0.02] backdrop-blur-md p-12 md:p-16 rounded-3xl text-center border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F6520C]/10 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+                        
+                        <div className="relative z-10">
+                            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Ready to Start Your Journey?</h2>
+                            <p className="text-lg md:text-xl text-gray-400 mt-6 mb-10 max-w-2xl mx-auto font-light">
+                                Our tools and resources are designed to guide you every step of the way. Explore top universities and find your perfect fit today.
+                            </p>
+                            <button onClick={() => navigate('/college-finder')} className="bg-[#F6520C] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#d44306] transition-all duration-300 shadow-[0_0_20px_rgba(246,82,12,0.3)] transform hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C]/80">
+                                Launch College Finder
+                            </button>
+                        </div>
                     </section>
                 </div>
             </main>

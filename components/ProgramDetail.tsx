@@ -32,9 +32,9 @@ interface ProgramDetailProps {
 const TestScoreRequirement: React.FC<{ label: string; score: string | undefined }> = ({ label, score }) => {
     if (!score) return null;
     return (
-        <div className="bg-gray-800/50 p-4 rounded-lg text-center">
-            <p className="text-sm text-[#F6520C] font-semibold">{label}</p>
-            <p className="text-lg font-bold text-white">{score}</p>
+        <div className="bg-black/20 p-5 rounded-2xl text-center border border-white/5 hover:bg-white/[0.02] hover:border-white/10 transition-all duration-300">
+            <p className="text-xs text-[#F6520C] uppercase tracking-widest font-medium mb-2">{label}</p>
+            <p className="text-2xl font-bold text-white tracking-tight">{score}</p>
         </div>
     )
 };
@@ -296,8 +296,13 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
   const info = countrySpecificInfo;
 
   return (
-    <section className="py-16 md:py-20 bg-[#0a101f] min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-24 bg-[#050810] min-h-screen relative overflow-hidden">
+      {/* Subtle background elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="mb-8">
             <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -307,178 +312,215 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
             </button>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm p-4 sm:p-6 rounded-lg mb-8 border border-gray-700">
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">{programTitle}</h1>
-            <p className="text-lg text-gray-400 mt-1">at {university.name}</p>
+        <div className="bg-white/[0.02] backdrop-blur-xl p-6 sm:p-10 rounded-3xl mb-12 border border-white/5 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+            <div className="relative z-10">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{programTitle}</h1>
+                <p className="text-xl text-gray-400 font-light">at <span className="font-medium text-white">{university.name}</span></p>
+            </div>
         </div>
 
-        <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-8">
-            <div className="lg:col-span-2 space-y-8 flex flex-col gap-8 order-2 lg:order-1">
-                <div className="lg:hidden bg-gray-800/50 p-4 rounded-lg border border-gray-700 space-y-4">
-                    <div className="flex justify-between items-baseline">
-                        <span className="text-gray-400">Tuition Fee</span>
-                        <span className="text-xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+        <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-12">
+            <div className="lg:col-span-2 space-y-10 flex flex-col order-2 lg:order-1">
+                <div className="lg:hidden bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl space-y-6">
+                    <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                        <span className="text-gray-400 font-medium tracking-wide">Tuition Fee</span>
+                        <span className="text-2xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
                     </div>
-                    <div className="flex justify-between items-baseline">
-                        <span className="text-gray-400">Duration</span>
-                        <span className="font-semibold text-white">{program.duration}</span>
+                    <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                        <span className="text-gray-400 font-medium tracking-wide">Duration</span>
+                        <span className="font-semibold text-white text-lg">{program.duration}</span>
                     </div>
-                     <div className="flex justify-between items-baseline">
-                       <span className="text-gray-400">School</span>
-                       <span className="font-semibold text-white text-right">{program.school}</span>
+                     <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                       <span className="text-gray-400 font-medium tracking-wide">School</span>
+                       <span className="font-semibold text-white text-right text-lg">{program.school}</span>
                     </div>
                      {program.isSTEM && (
                        <div className="flex justify-center pt-2">
-                           <span className="bg-orange-500/20 text-orange-300 text-sm font-bold px-4 py-2 rounded-full">STEM Designated</span>
+                           <span className="bg-[#F6520C]/10 text-[#F6520C] border border-[#F6520C]/20 text-sm font-bold px-5 py-2 rounded-full tracking-wide">STEM Designated</span>
                        </div>
                     )}
-                    <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-gray-700/50 text-gray-300 border border-gray-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-700 hover:text-white transition duration-300">Course Link</a>
-                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-[#F6520C] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Apply Now</a>
+                    <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-white/5 text-white border border-white/10 px-6 py-3.5 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 shadow-lg">Course Link</a>
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-[#F6520C] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#E84A00] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)]">Apply Now</a>
                     </div>
                 </div>
 
-                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Detailed Program Overview</h2>
-                    <p className="text-gray-400 leading-relaxed whitespace-pre-line">{enhancedAbout}</p>
-                    
-                    {program.sellingPoints && program.sellingPoints.length > 0 && (
-                        <div className="mt-6 bg-orange-900/40 p-4 sm:p-6 rounded-lg border border-[#F6520C]/50">
-                            <h3 className="text-lg sm:text-xl font-bold text-orange-300 mb-4">Why Choose This Program at {university.name}?</h3>
-                            <ul className="space-y-3">
-                                {program.sellingPoints.map((point, index) => (
-                                    <li key={index} className="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-400 mr-3 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        <span className="text-orange-200">{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+                <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Detailed Program Overview</h2>
+                        <p className="text-gray-400 leading-relaxed whitespace-pre-line font-light text-lg">{enhancedAbout}</p>
+                        
+                        {program.sellingPoints && program.sellingPoints.length > 0 && (
+                            <div className="mt-8 bg-[#F6520C]/5 p-6 sm:p-8 rounded-2xl border border-[#F6520C]/20">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Why Choose This Program at {university.name}?</h3>
+                                <ul className="space-y-4">
+                                    {program.sellingPoints.map((point, index) => (
+                                        <li key={index} className="flex items-start">
+                                            <div className="bg-[#F6520C]/20 p-1 rounded-full mr-4 mt-1 flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#F6520C]" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-gray-300 leading-relaxed">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Admission Requirements</h2>
-                    {program.gpa && (
-                        <div className="bg-gray-800/50 p-4 rounded-lg mb-4">
-                            <div className="flex justify-between items-center">
-                                <p className="text-md text-[#F6520C] font-semibold">Recommended GPA</p>
-                                <p className="text-xl font-bold text-white">{program.gpa} / 4.0</p>
+                <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Admission Requirements</h2>
+                        {program.gpa && (
+                            <div className="bg-black/20 p-6 rounded-2xl mb-6 border border-white/5">
+                                <div className="flex justify-between items-center">
+                                    <p className="text-sm text-gray-400 uppercase tracking-widest font-medium">Recommended GPA</p>
+                                    <p className="text-2xl font-bold text-white">{program.gpa} <span className="text-gray-500 text-lg font-normal">/ 4.0</span></p>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    <ul className="list-disc list-inside text-gray-400 space-y-2">
-                        {program.requirements.map((req, index) => <li key={index}>{req}</li>)}
-                    </ul>
+                        )}
+                        <ul className="space-y-3">
+                            {program.requirements.map((req, index) => (
+                                <li key={index} className="flex items-start text-gray-400">
+                                    <span className="text-[#F6520C] mr-3 mt-1.5 text-xl leading-none">&bull;</span>
+                                    <span className="leading-relaxed">{req}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
                 
-                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                        Career Outcomes & Opportunities
-                    </h2>
-                    <div className="text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: info.outcomes(program.isSTEM) }}></div>
-                    {potentialJobTitles.length > 0 && (
-                        <div className="mt-6">
-                            <h3 className="text-lg font-semibold text-white mb-3">Potential Job Roles</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {potentialJobTitles.map(title => (
-                                    <span key={title} className="bg-gray-700/50 text-gray-300 text-sm font-medium px-3 py-1.5 rounded-full">{title}</span>
-                                ))}
+                <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            Career Outcomes & Opportunities
+                        </h2>
+                        <div className="text-gray-400 leading-relaxed font-light text-lg" dangerouslySetInnerHTML={{ __html: info.outcomes(program.isSTEM) }}></div>
+                        {potentialJobTitles.length > 0 && (
+                            <div className="mt-8">
+                                <h3 className="text-lg font-bold text-white mb-4 tracking-tight">Potential Job Roles</h3>
+                                <div className="flex flex-wrap gap-3">
+                                    {potentialJobTitles.map(title => (
+                                        <span key={title} className="bg-white/5 border border-white/10 text-gray-300 text-sm font-medium px-4 py-2 rounded-full hover:bg-white/10 transition-colors cursor-default">{title}</span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
 
-                <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                        Return on Investment (ROI) Analysis
-                    </h2>
-                    <div className="text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: info.roi }}></div>
+                <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                            Return on Investment (ROI) Analysis
+                        </h2>
+                        <div className="text-gray-400 leading-relaxed font-light text-lg" dangerouslySetInnerHTML={{ __html: info.roi }}></div>
+                    </div>
                 </div>
                 
                 {englishTests.length > 0 && (
-                  <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">English Language Proficiency</h2>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                          {englishTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
+                  <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                      <div className="relative z-10">
+                          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>English Language Proficiency</h2>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                              {englishTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
+                          </div>
                       </div>
                   </div>
                 )}
                 
                 {standardizedTests.length > 0 && (
-                  <div className="bg-white/5 p-4 sm:p-6 rounded-lg border border-gray-700">
-                      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4">Standardized Tests</h2>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                          {standardizedTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
+                  <div className="bg-white/[0.02] backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                      <div className="relative z-10">
+                          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Standardized Tests</h2>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                              {standardizedTests.map(test => <TestScoreRequirement key={test.label} label={test.label} score={test.score} />)}
+                          </div>
                       </div>
                   </div>
                 )}
                 
                 {program.insights && (
-                     <div className="bg-orange-900/40 p-6 rounded-lg border border-[#F6520C]/50">
-                        <h2 className="text-2xl font-semibold text-orange-300 mb-4">Extra Insights</h2>
-                        <p className="text-orange-200 leading-relaxed">{program.insights}</p>
+                     <div className="bg-[#F6520C]/5 p-8 sm:p-10 rounded-3xl border border-[#F6520C]/20 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F6520C]/5 to-transparent pointer-events-none"></div>
+                        <div className="relative z-10">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Extra Insights</h2>
+                            <p className="text-gray-300 leading-relaxed font-light text-lg">{program.insights}</p>
+                        </div>
                     </div>
                 )}
             </div>
-            <div className="lg:col-span-1 order-1 lg:order-2 mb-8 lg:mb-0">
-                <div className="lg:sticky top-24 space-y-6">
-                     <div className="hidden lg:block bg-gray-800/50 p-6 rounded-lg border border-gray-700">
-                        <div className="space-y-4">
-                            <div className="flex justify-between items-baseline">
-                               <span className="text-gray-400">Tuition Fee</span>
-                               <span className="text-2xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+            <div className="lg:col-span-1 order-1 lg:order-2 mb-12 lg:mb-0">
+                <div className="lg:sticky top-32 space-y-8">
+                     <div className="hidden lg:block bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                        <div className="relative z-10">
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                                   <span className="text-gray-400 font-medium tracking-wide">Tuition Fee</span>
+                                   <span className="text-3xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+                                </div>
+                                <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                                   <span className="text-gray-400 font-medium tracking-wide">Duration</span>
+                                   <span className="font-semibold text-white text-lg">{program.duration}</span>
+                                </div>
+                                 <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
+                                   <span className="text-gray-400 font-medium tracking-wide">School</span>
+                                   <span className="font-semibold text-white text-right text-lg">{program.school}</span>
+                                </div>
+                                 {program.isSTEM && (
+                                   <div className="flex justify-center pt-2">
+                                       <span className="bg-[#F6520C]/10 text-[#F6520C] border border-[#F6520C]/20 text-sm font-bold px-5 py-2 rounded-full tracking-wide">
+                                           STEM Designated
+                                       </span>
+                                   </div>
+                                )}
                             </div>
-                            <div className="flex justify-between items-baseline">
-                               <span className="text-gray-400">Duration</span>
-                               <span className="font-semibold text-white">{program.duration}</span>
+                            <div className="mt-8 flex flex-col gap-4">
+                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-[#F6520C] text-white px-6 py-4 rounded-xl font-semibold hover:bg-[#E84A00] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C]">
+                                  Apply Now
+                                </a>
+                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-white/5 text-white border border-white/10 px-6 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-white/20">
+                                    Course Link
+                                </a>
                             </div>
-                             <div className="flex justify-between items-baseline">
-                               <span className="text-gray-400">School</span>
-                               <span className="font-semibold text-white text-right">{program.school}</span>
-                            </div>
-                             {program.isSTEM && (
-                               <div className="flex justify-center pt-2">
-                                   <span className="bg-orange-500/20 text-orange-300 text-sm font-bold px-4 py-2 rounded-full">
-                                       STEM Designated
-                                   </span>
-                               </div>
-                            )}
-                        </div>
-                        <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                            <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-gray-700/50 text-gray-300 border border-gray-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-700 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-500">
-                                Course Link
-                            </a>
-                            <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-[#F6520C] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]">
-                              Apply Now
-                            </a>
                         </div>
                     </div>
                     {similarPrograms.length > 0 && (
-                        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
-                            <h3 className="text-xl font-semibold text-white mb-4">Similar Programs</h3>
-                            <div className="space-y-4">
-                                {similarPrograms.map(({ university: simUni, program: simProg }) => (
-                                    <button
-                                        key={`${simUni.id}-${simProg.id}`}
-                                        onClick={() => onNavigateToProgram(simUni, simProg)}
-                                        className="w-full text-left p-4 rounded-lg bg-gray-900/50 hover:bg-gray-800/70 border border-gray-700 hover:border-[#F6520C]/70 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C] flex items-center space-x-4"
-                                    >
-                                        <div className="w-12 h-12 rounded-full bg-white p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                            <UniversityLogo src={simUni.logo} alt={simUni.name} className="w-full h-full object-contain" />
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <p className="font-semibold text-white truncate group-hover:text-orange-300">{simProg.name}</p>
-                                            <p className="text-sm text-gray-400 truncate">{simUni.name}</p>
-                                        </div>
-                                        <div className="text-right flex-shrink-0 ml-2">
-                                            <p className="text-xs text-gray-400">QS Rank</p>
-                                            <p className="font-bold text-white text-lg">#{simUni.qsRanking || 'N/A'}</p>
-                                        </div>
-                                    </button>
-                                ))}
+                        <div className="bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                            <div className="relative z-10">
+                                <h3 className="text-2xl font-bold text-white mb-6 tracking-tight">Similar Programs</h3>
+                                <div className="space-y-4">
+                                    {similarPrograms.map(({ university: simUni, program: simProg }) => (
+                                        <button
+                                            key={`${simUni.id}-${simProg.id}`}
+                                            onClick={() => onNavigateToProgram(simUni, simProg)}
+                                            className="w-full text-left p-5 rounded-2xl bg-black/20 hover:bg-white/[0.02] border border-white/5 hover:border-[#F6520C]/30 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C] flex items-center space-x-4"
+                                        >
+                                            <div className="w-14 h-14 rounded-xl bg-white/5 p-2 flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/10">
+                                                <UniversityLogo src={simUni.logo} alt={simUni.name} className="w-full h-full object-contain" />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="font-bold text-white truncate group-hover:text-[#F6520C] transition-colors">{simProg.name}</p>
+                                                <p className="text-sm text-gray-400 truncate mt-1">{simUni.name}</p>
+                                            </div>
+                                            <div className="text-right flex-shrink-0 ml-2">
+                                                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">QS Rank</p>
+                                                <p className="font-bold text-white text-lg">#{simUni.qsRanking || 'N/A'}</p>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     )}
@@ -486,32 +528,38 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
             </div>
         </div>
 
-        <div className="mt-12 bg-white/5 p-6 rounded-lg border border-gray-700 space-y-4">
-            <h3 className="text-lg font-semibold text-white mb-2">Important Disclaimers</h3>
-            <Disclaimer>Tuition fees are subject to periodic revisions by the university. For the latest fee structure and any additional costs, kindly check the university’s official website.</Disclaimer>
-            <Disclaimer>Admission requirements, including GPA and test scores, may vary by program and intake. Please refer to the official university website for the most up-to-date information.</Disclaimer>
-            <Disclaimer>Scholarship opportunities and financial aid options differ by university and program. Always verify details on the university's official financial aid page.</Disclaimer>
+        <div className="mt-16 bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl space-y-5 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+            <div className="relative z-10">
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">Important Disclaimers</h3>
+                <Disclaimer>Tuition fees are subject to periodic revisions by the university. For the latest fee structure and any additional costs, kindly check the university’s official website.</Disclaimer>
+                <Disclaimer>Admission requirements, including GPA and test scores, may vary by program and intake. Please refer to the official university website for the most up-to-date information.</Disclaimer>
+                <Disclaimer>Scholarship opportunities and financial aid options differ by university and program. Always verify details on the university's official financial aid page.</Disclaimer>
+            </div>
         </div>
 
-        <div className="mt-8 text-center">
-            <button onClick={() => setIsModalOpen(true)} className="text-sm text-gray-500 hover:text-[#F6520C] transition">
+        <div className="mt-12 text-center">
+            <button onClick={() => setIsModalOpen(true)} className="text-sm text-gray-500 hover:text-[#F6520C] transition-colors font-medium">
                 Something doesn't look right? Let us know.
             </button>
         </div>
 
          {isModalOpen && (
             <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                <div className="bg-gray-900/80 backdrop-blur-lg border border-[#F6520C]/50 rounded-lg shadow-xl p-8 max-w-lg w-full">
-                    <h2 className="text-2xl font-bold text-white mb-4">Report an Issue</h2>
-                    <p className="text-gray-400 mb-6">Help us keep our information accurate. Please tell us what seems incorrect about the <strong>{program.name}</strong> program.</p>
-                    <textarea 
-                        rows={5} 
-                        placeholder="e.g., The tuition fee seems outdated, the new fee is..." 
-                        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white"
-                    ></textarea>
-                    <div className="mt-6 flex justify-end space-x-4">
-                        <button onClick={() => setIsModalOpen(false)} className="px-6 py-2 rounded-md text-gray-400 hover:bg-gray-700 transition">Cancel</button>
-                        <button onClick={() => { alert('Thank you for your feedback!'); setIsModalOpen(false); }} className="px-6 py-2 rounded-md bg-[#F6520C] text-white hover:bg-opacity-90 transition">Submit Feedback</button>
+                <div className="bg-[#0a101f] border border-white/10 rounded-3xl shadow-2xl p-8 max-w-lg w-full relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">Report an Issue</h2>
+                        <p className="text-gray-400 mb-6 font-light">Help us keep our information accurate. Please tell us what seems incorrect about the <strong className="text-white font-medium">{program.name}</strong> program.</p>
+                        <textarea 
+                            rows={5} 
+                            placeholder="e.g., The tuition fee seems outdated, the new fee is..." 
+                            className="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] focus:border-transparent text-white placeholder-gray-600 resize-none"
+                        ></textarea>
+                        <div className="mt-8 flex justify-end space-x-4">
+                            <button onClick={() => setIsModalOpen(false)} className="px-6 py-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition-colors font-medium">Cancel</button>
+                            <button onClick={() => { alert('Thank you for your feedback!'); setIsModalOpen(false); }} className="px-6 py-3 rounded-xl bg-[#F6520C] text-white hover:bg-[#E84A00] transition-colors font-medium shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)]">Submit Feedback</button>
+                        </div>
                     </div>
                 </div>
             </div>

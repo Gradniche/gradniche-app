@@ -109,11 +109,19 @@ const Tools: React.FC<ToolsProps> = ({ navigate }) => {
   ];
 
   return (
-    <section id="resources" className="py-20 bg-gray-900/50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">A Toolkit For Your Ambition</h2>
-          <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+    <section id="resources" className="py-24 relative bg-[#050810] overflow-hidden">
+      {/* Subtle background elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-pink-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+            <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Free Utilities</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>A Toolkit For Your Ambition</h2>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
             From comparing courses to checking your visa requirements, our free tools are designed to simplify your journey.
           </p>
         </div>
@@ -123,13 +131,16 @@ const Tools: React.FC<ToolsProps> = ({ navigate }) => {
               key={tool.name} 
               href={`#${tool.path}`}
               onClick={(e) => { e.preventDefault(); navigate(tool.path); }}
-              className="bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl text-left hover:shadow-xl hover:-translate-y-2 hover:scale-[1.03] transition-all duration-300 border border-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F6520C] flex flex-col items-start group"
+              className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl text-left hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-start focus:outline-none focus:ring-2 focus:ring-[#F6520C]"
             >
-              <div className={`mb-4 w-14 h-14 rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-all`}>
+              {/* Gradient Glow */}
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${gradients[index % gradients.length]} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+
+              <div className={`mb-6 w-14 h-14 rounded-2xl bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                   {tool.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-orange-300 transition-colors">{tool.name}</h3>
-              <p className="text-gray-400 flex-grow">{tool.description}</p>
+              <h3 className="text-xl font-bold mb-3 text-white tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{tool.name}</h3>
+              <p className="text-gray-400 font-light flex-grow leading-relaxed">{tool.description}</p>
             </a>
           ))}
         </div>
