@@ -64,18 +64,19 @@ const CoreTools: React.FC<CoreToolsProps> = ({ navigate }) => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {toolsData.map((tool) => (
-                <div key={tool.title} className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl text-center hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-center">
+                <div key={tool.title} className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] text-center hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5">
                     {/* Gradient Glow */}
-                    <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${tool.color} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+                    <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${tool.color} opacity-10 blur-[80px] group-hover:opacity-20 transition-opacity duration-500`}></div>
                     
                     <div className="relative z-10 flex flex-col items-center h-full w-full">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                        <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                             {tool.icon}
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{tool.title}</h3>
-                        <p className="text-gray-400 font-light flex-grow mb-8 leading-relaxed">{tool.description}</p>
-                        <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] font-medium w-full sm:w-auto">
+                        <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{tool.title}</h3>
+                        <p className="text-gray-400 font-light flex-grow mb-10 leading-relaxed">{tool.description}</p>
+                        <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3.5 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] font-semibold w-full sm:w-auto shadow-lg hover:shadow-[#F6520C]/30 flex items-center justify-center gap-2 group/btn">
                           {tool.cta}
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>
                     </div>
                 </div>

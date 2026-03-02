@@ -59,9 +59,9 @@ const GradeScaleSelector: React.FC<{ selected: GradeScale; onSelect: (scale: Gra
     ];
 
     return (
-        <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2 bg-gray-800/50 p-2 rounded-lg border border-gray-700">
+        <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2 bg-black/20 p-2 rounded-xl border border-white/5">
             {scales.map(scale => (
-                <button key={scale.id} onClick={() => onSelect(scale.id)} className={`w-full text-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#F6520C] ${selected === scale.id ? 'bg-[#F6520C] text-white shadow-md' : 'text-gray-300 hover:bg-gray-700'}`}>
+                <button key={scale.id} onClick={() => onSelect(scale.id)} className={`w-full text-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-[#F6520C] ${selected === scale.id ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-lg shadow-orange-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
                     {scale.label}
                 </button>
             ))}
@@ -117,16 +117,16 @@ const GPABreakdown: React.FC<{ gpa: number }> = ({ gpa }) => {
     }
 
     const colorClasses = {
-        green: 'border-green-500 bg-green-900/30 text-green-300',
-        yellow: 'border-yellow-500 bg-yellow-900/30 text-yellow-300',
-        orange: 'border-orange-500 bg-orange-900/30 text-orange-300',
-        red: 'border-red-500 bg-red-900/30 text-red-300',
+        green: 'border-green-500/30 bg-green-500/10 text-green-400',
+        yellow: 'border-yellow-500/30 bg-yellow-500/10 text-yellow-400',
+        orange: 'border-orange-500/30 bg-orange-500/10 text-orange-400',
+        red: 'border-red-500/30 bg-red-500/10 text-red-400',
     };
 
     return (
-        <div className={`mt-4 p-4 rounded-lg border-2 ${colorClasses[breakdown.color as keyof typeof colorClasses]}`}>
-            <h4 className={`text-xl font-bold`}>{breakdown.title}</h4>
-            <p className="text-sm mt-1">{breakdown.description}</p>
+        <div className={`mt-6 p-6 rounded-2xl border backdrop-blur-sm ${colorClasses[breakdown.color as keyof typeof colorClasses]}`}>
+            <h4 className={`text-xl font-bold tracking-tight mb-2`}>{breakdown.title}</h4>
+            <p className="text-sm font-light leading-relaxed opacity-90">{breakdown.description}</p>
         </div>
     );
 };
@@ -138,15 +138,15 @@ const faqData = [
 ];
 
 const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpen: boolean, onClick: () => void }> = ({ faq, isOpen, onClick }) => (
-    <div className="border border-gray-700 rounded-lg overflow-hidden">
+    <div className="border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
         <button
             onClick={onClick}
-            className="w-full flex justify-between items-center text-left p-5 bg-gray-800/50 hover:bg-gray-800 transition-colors"
+            className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className="text-lg font-medium text-white">{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -155,8 +155,8 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-            <div className="p-5 bg-white/5 text-gray-400">
+        <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2 font-light">
                 <p>{faq.answer}</p>
             </div>
         </div>
@@ -232,73 +232,90 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
     };
 
     return (
-        <section className="py-20 bg-[#0a101f] min-h-screen">
-            <div className="container mx-auto px-6">
-                <div className="mb-8">
-                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                        <span>Back</span>
+        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="mb-12">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        <span className="font-medium">Back to Tools</span>
                     </button>
                 </div>
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white">GPA Calculator</h1>
-                    <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                <div className="text-center mb-16">
+                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Academics</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>GPA Calculator</h1>
+                    <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
                         Convert your Indian percentage or 10-point CGPA to the 4.0 scale used by international universities. Understand your academic standing with our easy tool.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     {/* Input Section */}
-                    <div className="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-gray-700 space-y-6">
+                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl space-y-8">
                         <div>
-                            <label className="block text-lg font-semibold text-white mb-3">1. Select Your Grading Scale</label>
+                            <label className="block text-xl font-bold text-white tracking-tight mb-4">1. Select Your Grading Scale</label>
                             <GradeScaleSelector selected={scale} onSelect={setScale} />
                         </div>
                         
-                        <div>
-                            <label className="block text-lg font-semibold text-white mb-3">2. Enter Your Courses</label>
-                            <div className="space-y-3">
+                        <div className="pt-6 border-t border-white/5">
+                            <label className="block text-xl font-bold text-white tracking-tight mb-4">2. Enter Your Courses</label>
+                            <div className="space-y-4">
                                 {courses.map((course, index) => (
-                                    <div key={course.id} className="grid grid-cols-12 gap-2 items-center">
-                                        <input type="text" placeholder={`Course ${index + 1}`} value={course.name} onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} className="col-span-5 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
-                                        <input type="number" placeholder="Credits" value={course.credits} onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} className="col-span-3 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
-                                        <input type="text" placeholder={scale === 'percentage' ? '0-100' : scale === '10-point' ? '0-10' : 'A-F'} value={course.grade} onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} className="col-span-3 w-full px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-[#F6520C] text-white text-sm" />
-                                        <button onClick={() => removeCourse(course.id)} className="col-span-1 text-gray-500 hover:text-red-500 transition-colors disabled:opacity-50" disabled={courses.length <= 1}>
+                                    <div key={course.id} className="grid grid-cols-12 gap-3 items-center group">
+                                        <input type="text" placeholder={`Course ${index + 1}`} value={course.name} onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} className="col-span-5 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
+                                        <input type="number" placeholder="Credits" value={course.credits} onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} className="col-span-3 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
+                                        <input type="text" placeholder={scale === 'percentage' ? '0-100' : scale === '10-point' ? '0-10' : 'A-F'} value={course.grade} onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} className="col-span-3 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
+                                        <button onClick={() => removeCourse(course.id)} className="col-span-1 text-gray-600 hover:text-red-500 transition-colors disabled:opacity-30 flex justify-center" disabled={courses.length <= 1}>
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
                                         </button>
                                     </div>
                                 ))}
                             </div>
-                             <button onClick={addCourse} className="mt-4 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition-colors">+ Add another course</button>
+                             <button onClick={addCourse} className="mt-6 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition-colors flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" /></svg>
+                                <span>Add another course</span>
+                             </button>
                         </div>
 
-                        <button onClick={calculateGPA} className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition transform hover:scale-105">
-                            Calculate My GPA
-                        </button>
+                        <div className="pt-6 border-t border-white/5">
+                            <button onClick={calculateGPA} className="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-white/20 transform hover:-translate-y-0.5">
+                                Calculate My GPA
+                            </button>
+                        </div>
                     </div>
 
                     {/* Output Section */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg border border-gray-700 text-center sticky top-24">
-                        <h2 className="text-2xl font-bold text-white mb-4">Your Estimated GPA</h2>
+                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 text-center sticky top-24 shadow-2xl">
+                        <h2 className="text-2xl font-bold text-white tracking-tight mb-8">Your Estimated GPA</h2>
                         {gpa !== null ? (
                             <div className="animate-fade-in">
                                 <GPAGauge gpa={gpa} />
-                                <p className="text-6xl font-extrabold text-white my-4">{gpa.toFixed(2)} / 4.0</p>
+                                <p className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 my-6 tracking-tight">{gpa.toFixed(2)} <span className="text-3xl text-gray-500 font-medium">/ 4.0</span></p>
                                 <GPABreakdown gpa={gpa} />
-                                 <button onClick={() => navigate('/college-finder')} className="mt-6 w-full bg-gray-700/50 text-gray-300 border border-gray-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-700 hover:text-white transition duration-300">
-                                    Find Universities with this GPA
+                                 <button onClick={() => navigate('/college-finder')} className="mt-8 w-full bg-white/5 text-white border border-white/10 px-6 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white/20 transition-all duration-300 group flex items-center justify-center space-x-2">
+                                    <span>Find Universities with this GPA</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                                 </button>
                             </div>
                         ) : (
-                            <div className="text-gray-500 py-12">
-                                <p>Your calculated GPA will appear here.</p>
+                            <div className="text-gray-500 py-16 flex flex-col items-center justify-center">
+                                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                </div>
+                                <p className="font-light">Enter your courses and calculate to see your GPA.</p>
                             </div>
                         )}
                     </div>
                 </div>
 
-                <div className="mt-20 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-white text-center mb-10">Understanding Your GPA</h2>
+                <div className="mt-24 max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Understanding Your GPA</h2>
                     <div className="space-y-4">
                         {faqData.map((faqItem, index) => (
                             <AccordionItem 

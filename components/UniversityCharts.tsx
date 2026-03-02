@@ -5,9 +5,9 @@ import { universities as universityData } from '../data/universities';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-gray-800/80 backdrop-blur-sm p-4 rounded-lg border border-gray-600">
-        <p className="label text-[#F6520C] font-bold">{`${label}`}</p>
-        <p className="intro text-white">{`Avg Tuition : $${payload[0].value.toLocaleString()}`}</p>
+      <div className="bg-[#0a101f]/90 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-xl">
+        <p className="label text-[#F6520C] font-bold tracking-tight mb-1">{`${label}`}</p>
+        <p className="intro text-white font-medium">{`Avg Tuition : $${payload[0].value.toLocaleString()}`}</p>
       </div>
     );
   }
@@ -57,26 +57,27 @@ const UniversityCharts: React.FC = () => {
     const COLORS = ['#F6520C', '#FF7B40', '#FFA580', '#FFC2A6'];
 
     return (
-        <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg mb-12 border border-gray-700">
-            <h2 className="text-2xl font-semibold text-white text-center mb-8">University Data Insights</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" style={{ minHeight: '350px' }}>
+        <div className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl mb-12 border border-white/5 shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#F6520C]/5 rounded-full blur-[80px] -z-10 group-hover:bg-[#F6520C]/10 transition-colors duration-700"></div>
+            <h2 className="text-3xl font-bold text-white text-center mb-10 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>University Data Insights</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" style={{ minHeight: '350px' }}>
                 {/* Tuition Chart */}
-                <div>
-                    <h3 className="text-lg font-semibold text-center text-gray-300 mb-4">Average Tuition Fees by Country (USD)</h3>
+                <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h3 className="text-lg font-semibold text-center text-gray-300 mb-6 tracking-tight">Average Tuition Fees by Country (USD)</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={tuitionByCountry} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#4a5568" />
-                            <XAxis dataKey="name" stroke="#a0aec0" />
-                            <YAxis stroke="#a0aec0" tickFormatter={(value) => `$${Number(value) / 1000}k`} />
-                            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(246, 82, 12, 0.1)' }} />
-                            <Bar dataKey="avgTuition" fill="#F6520C" />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                            <XAxis dataKey="name" stroke="#9CA3AF" tick={{ fill: '#9CA3AF', fontSize: 12 }} axisLine={false} tickLine={false} />
+                            <YAxis stroke="#9CA3AF" tick={{ fill: '#9CA3AF', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(value) => `$${Number(value) / 1000}k`} />
+                            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
+                            <Bar dataKey="avgTuition" fill="#F6520C" radius={[4, 4, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
 
                 {/* Ranking Chart */}
-                <div>
-                    <h3 className="text-lg font-semibold text-center text-gray-300 mb-4">University Distribution by QS Ranking</h3>
+                <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h3 className="text-lg font-semibold text-center text-gray-300 mb-6 tracking-tight">University Distribution by QS Ranking</h3>
                      <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -95,7 +96,7 @@ const UniversityCharts: React.FC = () => {
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
-                             <Tooltip contentStyle={{ backgroundColor: 'rgba(31, 41, 55, 0.8)', border: '1px solid #4a5568', borderRadius: '0.5rem' }}/>
+                             <Tooltip contentStyle={{ backgroundColor: 'rgba(10, 16, 31, 0.9)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)', color: '#F3F4F6', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }} itemStyle={{ color: '#F3F4F6', fontWeight: 500 }}/>
                         </PieChart>
                     </ResponsiveContainer>
                 </div>

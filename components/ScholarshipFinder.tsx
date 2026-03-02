@@ -12,22 +12,22 @@ const faqData = [
 ];
 
 const AccordionItem: React.FC<{ faq: { question: string; answer: string }; isOpen: boolean; onClick: () => void }> = ({ faq, isOpen, onClick }) => (
-    <div className="border border-gray-700 rounded-lg overflow-hidden">
+    <div className="border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
         <button
             onClick={onClick}
-            className="w-full flex justify-between items-center text-left p-5 bg-gray-800/50 hover:bg-gray-800 transition-colors"
+            className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className="text-lg font-medium text-white">{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-            <div className="p-5 bg-white/5 text-gray-400">
+        <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2 font-light">
                 <p>{faq.answer}</p>
             </div>
         </div>
@@ -38,48 +38,49 @@ const ScholarshipCard: React.FC<{ scholarship: Scholarship; isExpanded: boolean;
     const providerInitial = scholarship.provider.charAt(0);
 
     return (
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:border-[#F6520C]/50 hover:shadow-lg hover:shadow-[#F6520C]/10">
-            <button onClick={onToggle} className="w-full text-left p-4 sm:p-6 hover:bg-gray-800/20" aria-expanded={isExpanded}>
-                <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center font-bold text-xl text-white ring-2 ring-gray-600">
+        <div className="bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5">
+            <button onClick={onToggle} className="w-full text-left p-6 sm:p-8 focus:outline-none" aria-expanded={isExpanded}>
+                <div className="flex items-start space-x-6">
+                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-orange-500 to-pink-600 rounded-2xl flex items-center justify-center font-bold text-2xl text-white shadow-lg">
                         {providerInitial}
                     </div>
                     <div className="flex-1">
                         <div className="flex justify-between items-start">
                              <div>
-                                <h3 className="text-lg font-bold text-white transition-colors group-hover:text-[#F6520C]">{scholarship.name}</h3>
-                                <p className="text-sm text-gray-400">{scholarship.provider}</p>
+                                <h3 className="text-xl font-bold text-white tracking-tight transition-colors group-hover:text-[#F6520C]">{scholarship.name}</h3>
+                                <p className="text-sm text-gray-400 font-light mt-1">{scholarship.provider}</p>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 text-gray-500 transition-transform duration-300 flex-shrink-0 ml-2 ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-gray-500 transition-transform duration-500 flex-shrink-0 ml-4 ${isExpanded ? 'rotate-180 text-[#F6520C]' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                         </div>
-                        <div className="flex flex-wrap gap-2 mt-3 text-xs">
-                            {scholarship.isFullFunding && <span className="font-bold px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-300 flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>Full Funding</span>}
-                            <span className="font-semibold px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">{scholarship.country}</span>
-                            {scholarship.levelOfStudy.map(l => <span key={l} className="font-semibold px-2.5 py-1 rounded-full bg-gray-700 text-gray-300">{l}</span>)}
+                        <div className="flex flex-wrap gap-3 mt-4 text-xs">
+                            {scholarship.isFullFunding && <span className="font-semibold px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>Full Funding</span>}
+                            <span className="font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300">{scholarship.country}</span>
+                            {scholarship.levelOfStudy.map(l => <span key={l} className="font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300">{l}</span>)}
                         </div>
                     </div>
                 </div>
-                 <div className="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                 <div className="mt-6 pt-6 border-t border-white/5 flex justify-between items-center">
                     <div>
-                        <p className="text-sm text-gray-400">Amount</p>
-                        <p className="font-semibold text-white">{scholarship.amountDisplay}</p>
+                        <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Amount</p>
+                        <p className="font-bold text-white text-lg">{scholarship.amountDisplay}</p>
                     </div>
                     <div className="text-right">
-                        <p className="text-sm text-gray-400">Deadline</p>
-                        <p className="font-semibold text-white">{scholarship.deadline}</p>
+                        <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Deadline</p>
+                        <p className="font-bold text-white text-lg">{scholarship.deadline}</p>
                     </div>
                 </div>
             </button>
-            <div className={`transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px]' : 'max-h-0'}`}>
-                <div className="bg-gray-900/50 px-6 pb-6 pt-4">
-                    <h4 className="font-semibold text-white mb-2">Eligibility Requirements:</h4>
-                    <ul className="list-disc list-outside pl-5 text-gray-400 space-y-1 text-sm mb-4 marker:text-[#F6520C]">
+            <div className={`transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div className="bg-black/20 px-6 sm:px-8 pb-8 pt-4 border-t border-white/5">
+                    <h4 className="font-bold text-white mb-4 tracking-tight">Eligibility Requirements:</h4>
+                    <ul className="list-disc list-outside pl-5 text-gray-400 space-y-2 text-sm mb-8 font-light marker:text-[#F6520C]">
                         {scholarship.eligibility.map((req, i) => <li key={i}>{req}</li>)}
                     </ul>
-                    <a href={scholarship.applyLink} target="_blank" rel="noopener noreferrer" className="inline-block bg-[#F6520C] text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
-                        Visit Official Site &rarr;
+                    <a href={scholarship.applyLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/30 group">
+                        Visit Official Site
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </a>
                 </div>
             </div>
@@ -166,18 +167,26 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
     };
 
     return (
-        <section className="py-20 bg-[#0a101f] min-h-screen">
-            <div className="container mx-auto px-6">
-                <div className="mb-8">
-                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                        <span>Back</span>
+        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="mb-12">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        <span className="font-medium">Back to Tools</span>
                     </button>
                 </div>
 
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white">Scholarship Finder</h1>
-                    <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                <div className="text-center mb-16">
+                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Financial Aid</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Scholarship Finder</h1>
+                    <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
                         Search our comprehensive database to find prestigious scholarships from around the world. Filter by country, field, funding, and more to discover the perfect opportunity to fund your education.
                     </p>
                 </div>
@@ -185,76 +194,90 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Filters Panel */}
                     <aside className="lg:col-span-1 lg:sticky top-24 h-max">
-                        <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-gray-700 space-y-6">
-                            <h2 className="text-xl font-bold text-white">Filter Scholarships</h2>
-                            <div>
-                                <label htmlFor="search" className="block text-sm font-medium text-gray-300 mb-1">Scholarship Name</label>
-                                <input type="text" id="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="e.g., Chevening..." className="w-full px-4 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
-                            </div>
-                            <div>
-                                <label htmlFor="country" className="block text-sm font-medium text-gray-300 mb-1">Country</label>
-                                <select id="country" value={countryFilter} onChange={e => setCountryFilter(e.target.value)} className="w-full px-4 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white">
-                                    <option value="all">All Countries</option>
-                                    {uniqueCountries.map(c => <option key={c} value={c}>{c}</option>)}
-                                </select>
-                            </div>
-                            <div>
-                                <label htmlFor="level" className="block text-sm font-medium text-gray-300 mb-1">Level of Study</label>
-                                <select id="level" value={levelFilter} onChange={e => setLevelFilter(e.target.value as any)} className="w-full px-4 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white">
-                                    <option value="all">All Levels</option>
-                                    <option value="Masters">Masters</option>
-                                    <option value="PhD">PhD</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label htmlFor="field" className="block text-sm font-medium text-gray-300 mb-1">Field of Study</label>
-                                <select id="field" value={fieldFilter} onChange={e => setFieldFilter(e.target.value)} className="w-full px-4 py-2 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white">
-                                    <option value="all">All Fields</option>
-                                    {uniqueFields.map(f => <option key={f} value={f}>{f}</option>)}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2">Funding</label>
-                                <label className="flex items-center cursor-pointer">
-                                    <div className="relative">
-                                        <input type="checkbox" checked={isFullFunding} onChange={handleFullFundingToggle} className="sr-only" />
-                                        <div className={`block w-12 h-6 rounded-full transition ${isFullFunding ? 'bg-[#F6520C]' : 'bg-gray-600'}`}></div>
-                                        <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${isFullFunding ? 'translate-x-6' : ''}`}></div>
+                        <div className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl border border-white/5 space-y-8 shadow-2xl">
+                            <h2 className="text-2xl font-bold text-white tracking-tight">Filters</h2>
+                            
+                            <div className="space-y-6">
+                                <div>
+                                    <label htmlFor="search" className="block text-sm font-medium text-gray-400 mb-2">Scholarship Name</label>
+                                    <input type="text" id="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="e.g., Chevening..." className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all placeholder-gray-600" />
+                                </div>
+                                <div>
+                                    <label htmlFor="country" className="block text-sm font-medium text-gray-400 mb-2">Country</label>
+                                    <select id="country" value={countryFilter} onChange={e => setCountryFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                        <option value="all">All Countries</option>
+                                        {uniqueCountries.map(c => <option key={c} value={c}>{c}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="level" className="block text-sm font-medium text-gray-400 mb-2">Level of Study</label>
+                                    <select id="level" value={levelFilter} onChange={e => setLevelFilter(e.target.value as any)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                        <option value="all">All Levels</option>
+                                        <option value="Masters">Masters</option>
+                                        <option value="PhD">PhD</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="field" className="block text-sm font-medium text-gray-400 mb-2">Field of Study</label>
+                                    <select id="field" value={fieldFilter} onChange={e => setFieldFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                        <option value="all">All Fields</option>
+                                        {uniqueFields.map(f => <option key={f} value={f}>{f}</option>)}
+                                    </select>
+                                </div>
+                                
+                                <div className="pt-4 border-t border-white/5">
+                                    <label className="flex items-center cursor-pointer group">
+                                        <div className="relative">
+                                            <input type="checkbox" checked={isFullFunding} onChange={handleFullFundingToggle} className="sr-only" />
+                                            <div className={`block w-12 h-6 rounded-full transition-colors duration-300 ${isFullFunding ? 'bg-[#F6520C]' : 'bg-white/10'}`}></div>
+                                            <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm ${isFullFunding ? 'translate-x-6' : ''}`}></div>
+                                        </div>
+                                        <div className="ml-4 text-white text-sm font-medium group-hover:text-[#F6520C] transition-colors">Full Funding Only</div>
+                                    </label>
+                                </div>
+                                
+                                 <div className={`pt-4 border-t border-white/5 transition-opacity duration-300 ${isFullFunding ? 'opacity-40 pointer-events-none' : 'opacity-100'}`}>
+                                    <div className="flex justify-between items-center mb-4">
+                                        <label htmlFor="amount" className="block text-sm font-medium text-gray-400">Min. Amount</label>
+                                        <span className="text-[#F6520C] font-bold">${amountFilter.toLocaleString()}</span>
                                     </div>
-                                    <div className="ml-3 text-gray-300 text-sm font-medium">Full Funding Only</div>
-                                </label>
+                                    <input type="range" id="amount" min="0" max="150000" step="5000" value={amountFilter} onChange={handleAmountSliderChange} disabled={isFullFunding} className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#F6520C]" />
+                                </div>
+                                
+                                <button onClick={resetFilters} className="w-full py-3 text-sm font-semibold text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all duration-300 border border-white/5 hover:border-white/10 mt-6">
+                                    Reset Filters
+                                </button>
                             </div>
-                             <div className={`${isFullFunding ? 'opacity-50' : ''}`}>
-                                <label htmlFor="amount" className="block text-sm font-medium text-gray-300 mb-1">Minimum Amount (USD): ${amountFilter.toLocaleString()}</label>
-                                <input type="range" id="amount" min="0" max="150000" step="5000" value={amountFilter} onChange={handleAmountSliderChange} disabled={isFullFunding} className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#F6520C] disabled:accent-gray-500" />
-                            </div>
-                            <button onClick={resetFilters} className="w-full text-center text-sm font-semibold text-gray-400 hover:text-white transition mt-2">Reset Filters</button>
                         </div>
                     </aside>
 
                     {/* Results Panel */}
                     <main className="lg:col-span-3">
-                        <div className="mb-6">
-                            <h2 className="text-2xl font-semibold text-white">Showing {filteredScholarships.length} Scholarships</h2>
+                        <div className="mb-8 flex items-center justify-between">
+                            <h2 className="text-2xl font-bold text-white tracking-tight">
+                                Showing <span className="text-[#F6520C]">{filteredScholarships.length}</span> Scholarships
+                            </h2>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {filteredScholarships.length > 0 ? (
                                 filteredScholarships.map(s => (
                                     <ScholarshipCard key={s.id} scholarship={s} isExpanded={expandedCardId === s.id} onToggle={() => toggleExpand(s.id)} />
                                 ))
                             ) : (
-                                <div className="text-center py-16 bg-white/5 rounded-lg border border-dashed border-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 10.5a.5.5 0 11-1 0 .5.5 0 011 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.5 13.5L10 10" /></svg>
-                                    <h3 className="text-2xl text-white mt-4">No Scholarships Found</h3>
-                                    <p className="text-gray-400 mt-2">Try adjusting or resetting your filters to find more results.</p>
+                                <div className="text-center py-20 bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/5">
+                                    <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 10.5a.5.5 0 11-1 0 .5.5 0 011 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.5 13.5L10 10" /></svg>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">No Scholarships Found</h3>
+                                    <p className="text-gray-400 font-light">Try adjusting or resetting your filters to find more results.</p>
                                 </div>
                             )}
                         </div>
                     </main>
                 </div>
 
-                 <div className="mt-20 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-white text-center mb-10">Scholarship FAQs</h2>
+                 <div className="mt-24 max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Scholarship FAQs</h2>
                      <div className="space-y-4">
                         {faqData.map((faqItem, index) => (
                             <AccordionItem 

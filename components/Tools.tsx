@@ -131,7 +131,7 @@ const Tools: React.FC<ToolsProps> = ({ navigate }) => {
               key={tool.name} 
               href={`#${tool.path}`}
               onClick={(e) => { e.preventDefault(); navigate(tool.path); }}
-              className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl text-left hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-start focus:outline-none focus:ring-2 focus:ring-[#F6520C]"
+              className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl text-left hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-start focus:outline-none focus:ring-2 focus:ring-[#F6520C] hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5"
             >
               {/* Gradient Glow */}
               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${gradients[index % gradients.length]} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}></div>

@@ -178,104 +178,124 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
     };
 
     return (
-        <section className="py-20 bg-[#0a101f] min-h-screen">
-            <div className="container mx-auto px-6">
-                <div className="mb-8">
-                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                        <span>Back</span>
+        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="mb-12">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                        <span className="font-medium">Back to Tools</span>
                     </button>
                 </div>
                 
-                <div className="text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white">AI SOP Analyzer</h1>
-                </div>
-
-                {/* SEO Intro Section */}
-                <div className="max-w-4xl mx-auto my-8 bg-white/5 backdrop-blur-sm border border-gray-700 p-8 rounded-lg shadow-xl">
-                    <h2 className="text-2xl font-bold text-center text-[#F6520C] mb-4">Elevate Your Statement of Purpose with AI</h2>
-                    <p className="text-center text-gray-300">
-                        Is your SOP strong enough to impress the admissions committee? Our advanced AI tool goes beyond simple grammar checks. Get instant, in-depth feedback on your essay's structure, storytelling, and impact. We also provide a crucial originality report, checking for signs of AI-generated content and plagiarism, ensuring your unique voice shines through.
+                <div className="text-center mb-16">
+                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">AI Tool</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>AI SOP Analyzer</h1>
+                    <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light leading-relaxed">
+                        Elevate your Statement of Purpose. Get instant, in-depth feedback on structure, storytelling, and impact.
                     </p>
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                     {/* Input Panel */}
-                    <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-gray-700">
-                        <h2 className="text-2xl font-semibold text-white mb-4">Paste Your SOP Here</h2>
-                        <div className="relative">
+                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl flex flex-col">
+                        <h2 className="text-2xl font-bold text-white mb-6 tracking-tight">Paste Your SOP Here</h2>
+                        <div className="relative flex-grow flex flex-col">
                             <textarea
                                 value={sopText}
                                 onChange={(e) => setSopText(e.target.value)}
                                 placeholder="Paste your Statement of Purpose here..."
-                                className="w-full h-96 bg-gray-900/50 p-4 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-gray-300 resize-none"
+                                className="w-full flex-grow min-h-[400px] bg-black/20 p-6 rounded-2xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-gray-300 resize-none font-light leading-relaxed modern-scrollbar transition-all duration-300"
                                 aria-label="Statement of Purpose Text Area"
                             />
-                            <div className="absolute bottom-3 right-3 text-sm text-gray-500 bg-gray-800/50 px-2 py-1 rounded">
+                            <div className="absolute bottom-4 right-4 text-sm text-gray-400 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                                 {wordCount} words
                             </div>
                         </div>
                         <button
                             onClick={handleAnalyze}
-                            disabled={isLoading}
-                            className="w-full mt-6 bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition transform hover:scale-105 disabled:bg-gray-600 disabled:cursor-not-allowed"
+                            disabled={isLoading || wordCount < 100}
+                            className="w-full mt-8 bg-gradient-to-r from-orange-500 to-pink-600 text-white py-4 rounded-full font-bold hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
                         >
-                            {isLoading ? 'Analyzing...' : 'Analyze My SOP'}
+                            {isLoading ? (
+                                <span className="flex items-center justify-center space-x-2">
+                                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    <span>Analyzing...</span>
+                                </span>
+                            ) : 'Analyze My SOP'}
                         </button>
                     </div>
                     {/* Results Panel */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 min-h-[500px] flex flex-col justify-center">
+                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl min-h-[500px] flex flex-col">
                         {isLoading && (
-                            <div className="text-center text-gray-400 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
-                                <p>Our AI is reading your SOP and preparing detailed feedback. This may take a moment...</p>
+                            <div className="flex-grow flex flex-col items-center justify-center text-center text-gray-400 animate-pulse">
+                                <div className="w-20 h-20 bg-[#F6520C]/10 rounded-full flex items-center justify-center mb-6 border border-[#F6520C]/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                                </div>
+                                <p className="text-lg font-light max-w-sm">Our AI is reading your SOP and preparing detailed feedback. This may take a moment...</p>
                             </div>
                         )}
                         {error && !isLoading && (
-                            <div className="text-center text-red-400 bg-red-900/30 p-4 rounded-md">
-                                <h3 className="font-bold text-lg mb-2">Analysis Failed</h3>
-                                <p>{error}</p>
+                            <div className="flex-grow flex flex-col items-center justify-center text-center">
+                                <div className="bg-red-500/10 border border-red-500/20 p-8 rounded-2xl max-w-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <h3 className="font-bold text-white text-xl mb-2">Analysis Failed</h3>
+                                    <p className="text-red-400/80 font-light">{error}</p>
+                                </div>
                             </div>
                         )}
                         {!isLoading && !analysis && !error && (
-                             <div className="text-center text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                                <p>Your analysis results will appear here.</p>
+                             <div className="flex-grow flex flex-col items-center justify-center text-center text-gray-500">
+                                <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                </div>
+                                <p className="text-lg font-light">Your analysis results will appear here.</p>
                             </div>
                         )}
                         {analysis && (
-                            <div className="animate-fade-in space-y-6 max-h-[80vh] overflow-y-auto pr-2">
-                                <h2 className="text-3xl font-bold text-white text-center">Your SOP Report</h2>
+                            <div className="animate-fade-in space-y-8 max-h-[600px] overflow-y-auto pr-4 modern-scrollbar">
+                                <h2 className="text-3xl font-bold text-white text-center tracking-tight sticky top-0 bg-[#0a101f]/90 backdrop-blur-md py-4 z-10 border-b border-white/5">Your SOP Report</h2>
                                 
                                 {/* Section 1: Overall Score & Summary */}
-                                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                                    <h3 className="text-xl font-bold text-white text-center mb-4">Overall Score & Summary</h3>
+                                <div className="bg-black/20 p-8 rounded-2xl border border-white/5">
+                                    <h3 className="text-xl font-bold text-white text-center mb-6 tracking-tight">Overall Score & Summary</h3>
                                     <ScoreGauge score={analysis.overallScore} title="Overall Score" />
-                                    <div className="bg-white/5 p-4 rounded-lg mt-4">
-                                        <h4 className="font-semibold text-white mb-1">Key Takeaways</h4>
-                                        <p className="text-sm text-gray-300">{analysis.summary}</p>
+                                    <div className="bg-white/5 p-6 rounded-xl mt-8 border border-white/5">
+                                        <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#F6520C]" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
+                                            Key Takeaways
+                                        </h4>
+                                        <p className="text-gray-300 font-light leading-relaxed">{analysis.summary}</p>
                                     </div>
                                 </div>
 
                                 {/* Section 2: Originality Report */}
-                                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                                    <h3 className="text-xl font-bold text-white text-center mb-4">Originality & Authenticity Report</h3>
-                                    <div className="flex justify-around items-start text-center">
-                                        <div className="px-2">
+                                <div className="bg-black/20 p-8 rounded-2xl border border-white/5">
+                                    <h3 className="text-xl font-bold text-white text-center mb-8 tracking-tight">Originality & Authenticity</h3>
+                                    <div className="flex flex-col sm:flex-row justify-around items-center gap-8">
+                                        <div className="w-full sm:w-1/2 flex justify-center">
                                             <OriginalityMeter title="AI Content Score" score={analysis.aiContentAnalysis.score} />
-                                            <p className="text-gray-400 text-xs mt-2">{analysis.aiContentAnalysis.feedback}</p>
                                         </div>
-                                        <div className="px-2">
+                                        <div className="w-full sm:w-1/2 flex justify-center">
                                             <OriginalityMeter title="Plagiarism Score" score={analysis.plagiarismAnalysis.score} />
-                                            <p className="text-gray-400 text-xs mt-2">{analysis.plagiarismAnalysis.feedback}</p>
                                         </div>
+                                    </div>
+                                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <p className="text-gray-400 text-sm font-light text-center bg-white/5 p-3 rounded-lg">{analysis.aiContentAnalysis.feedback}</p>
+                                        <p className="text-gray-400 text-sm font-light text-center bg-white/5 p-3 rounded-lg">{analysis.plagiarismAnalysis.feedback}</p>
                                     </div>
                                 </div>
                                 
                                 {/* Section 3: Detailed Feedback */}
-                                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                                    <h3 className="text-xl font-bold text-white text-center mb-4">Detailed Feedback</h3>
-                                    <div className="space-y-3">
+                                <div className="bg-black/20 p-8 rounded-2xl border border-white/5">
+                                    <h3 className="text-xl font-bold text-white text-center mb-6 tracking-tight">Detailed Feedback</h3>
+                                    <div className="space-y-4">
                                       <FeedbackCard title="Clarity & Structure" score={analysis.clarity.score} feedback={analysis.clarity.feedback} />
                                       <FeedbackCard title="Storytelling & Motivation" score={analysis.storytelling.score} feedback={analysis.storytelling.feedback} />
                                       <FeedbackCard title="Grammar & Tone" score={analysis.grammar.score} feedback={analysis.grammar.feedback} />
@@ -285,16 +305,25 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                                 
                                 {/* Section 4: Writing Suggestions */}
                                 {analysis.paraphraseInsights && analysis.paraphraseInsights.length > 0 && (
-                                    <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                                        <h3 className="text-xl font-bold text-white text-center mb-4">AI Writing Suggestions</h3>
-                                        <div className="space-y-4">
+                                    <div className="bg-gradient-to-br from-orange-500/10 to-pink-600/10 p-8 rounded-2xl border border-orange-500/20">
+                                        <h3 className="text-xl font-bold text-white text-center mb-6 tracking-tight flex items-center justify-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                            AI Writing Suggestions
+                                        </h3>
+                                        <div className="space-y-6">
                                             {analysis.paraphraseInsights.map((insight, index) => (
-                                                <div key={index} className="border-t border-gray-700 pt-3 first:border-t-0 first:pt-0">
-                                                    <p className="text-sm text-gray-500 italic">Original:</p>
-                                                    <blockquote className="border-l-2 border-gray-600 pl-2 text-gray-400 text-sm my-1">"{insight.originalSentence}"</blockquote>
-                                                    <p className="text-sm text-green-400 font-semibold mt-2">Suggestion:</p>
-                                                    <blockquote className="border-l-2 border-green-500 pl-2 text-green-300 text-sm my-1">"{insight.suggestion}"</blockquote>
-                                                    <p className="text-xs text-gray-400 mt-2"><span className="font-bold">Reason:</span> {insight.reason}</p>
+                                                <div key={index} className="bg-black/20 p-5 rounded-xl border border-white/5">
+                                                    <div className="mb-4">
+                                                        <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Original</p>
+                                                        <p className="text-gray-400 font-light italic border-l-2 border-gray-600 pl-3 py-1">"{insight.originalSentence}"</p>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <p className="text-xs font-bold text-emerald-500 uppercase tracking-wider mb-1">Suggestion</p>
+                                                        <p className="text-emerald-100 font-medium border-l-2 border-emerald-500 pl-3 py-1">"{insight.suggestion}"</p>
+                                                    </div>
+                                                    <div className="bg-white/5 p-3 rounded-lg">
+                                                        <p className="text-sm text-gray-300 font-light"><span className="font-semibold text-white">Why:</span> {insight.reason}</p>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>

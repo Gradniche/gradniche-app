@@ -320,32 +320,32 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
 
     const renderThreadList = () => (
         <>
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                <h2 className="text-2xl font-bold text-white">Discussions</h2>
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
+                <h2 className="text-3xl font-bold text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Discussions</h2>
                 {currentUser && (
-                    <button onClick={() => setIsModalOpen(true)} className="bg-[#F6520C] text-white px-5 py-2 rounded-md font-semibold hover:bg-opacity-90 transition transform hover:scale-105 w-full md:w-auto">
+                    <button onClick={() => setIsModalOpen(true)} className="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 transform hover:-translate-y-0.5 w-full md:w-auto">
                         Start New Discussion
                     </button>
                 )}
             </div>
             
-            <div className="mb-6 relative">
+            <div className="mb-8 relative group">
                  <input
                     type="search"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search discussions by title or content..."
-                    className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white"
+                    className="w-full pl-12 pr-4 py-4 bg-white/[0.02] border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-white transition-all duration-300 placeholder-gray-500 backdrop-blur-md"
                 />
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-[#F6520C] text-gray-400 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-700 pb-4">
-                <button onClick={() => setActiveCategory('all')} className={`px-4 py-2 text-sm font-medium rounded-full transition ${activeCategory === 'all' ? 'bg-[#F6520C] text-white' : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'}`}>All</button>
+            <div className="flex flex-wrap gap-3 mb-8 border-b border-white/5 pb-6">
+                <button onClick={() => setActiveCategory('all')} className={`px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${activeCategory === 'all' ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-md shadow-orange-500/20' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5'}`}>All</button>
                 {categories.map(cat => (
-                     <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-4 py-2 text-sm font-medium rounded-full transition ${activeCategory === cat.id ? 'bg-[#F6520C] text-white' : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'}`}>{cat.name}</button>
+                     <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${activeCategory === cat.id ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-md shadow-orange-500/20' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5'}`}>{cat.name}</button>
                 ))}
             </div>
 
@@ -356,21 +356,30 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                     const category = getCategory(thread.categoryId);
                     if (!author) return null;
                     return (
-                        <button key={thread.id} onClick={() => handleSelectThread(thread)} className="w-full text-left bg-white/5 backdrop-blur-sm p-4 rounded-lg border border-gray-700 hover:border-[#F6520C]/50 transition flex items-start space-x-4">
-                            <img src={generateAvatarUrl(author.avatarConfig)} alt={author?.name} className="w-10 h-10 rounded-full" />
+                        <button key={thread.id} onClick={() => handleSelectThread(thread)} className="w-full text-left bg-white/[0.02] backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:border-[#F6520C]/30 hover:bg-white/[0.04] transition-all duration-300 flex items-start space-x-5 group shadow-lg">
+                            <div className="relative">
+                                <img src={generateAvatarUrl(author.avatarConfig)} alt={author?.name} className="w-12 h-12 rounded-full border-2 border-white/10 group-hover:border-[#F6520C]/50 transition-colors" />
+                                {author?.role === 'admin' && (
+                                    <div className="absolute -bottom-1 -right-1 bg-yellow-500 rounded-full p-0.5 border-2 border-[#0a101f]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-black" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                )}
+                            </div>
                             <div className="flex-1">
-                                 <div className="flex items-center space-x-2">
-                                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-gray-700 text-gray-300">{category?.name}</span>
+                                 <div className="flex items-center space-x-3 mb-2">
+                                    <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">{category?.name}</span>
                                     {author?.role === 'admin' && (
-                                        <span className="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-300">Admin Post</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Admin Post</span>
                                     )}
                                 </div>
-                                <h3 className="text-lg font-semibold text-white mt-1">{thread.title}</h3>
-                                <p className="text-sm text-gray-400">By {author?.name} &middot; {thread.timestamp}</p>
+                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#F6520C] transition-colors tracking-tight">{thread.title}</h3>
+                                <p className="text-sm text-gray-400 font-light">By <span className="font-medium text-gray-300">{author?.name}</span> <span className="mx-2">&middot;</span> {thread.timestamp}</p>
                             </div>
-                            <div className="flex flex-col items-center text-center">
-                                <span className="text-2xl font-bold text-white">{thread.replies.length}</span>
-                                <span className="text-xs text-gray-400">Replies</span>
+                            <div className="flex flex-col items-center justify-center bg-black/20 rounded-xl px-4 py-3 border border-white/5 group-hover:border-[#F6520C]/20 transition-colors">
+                                <span className="text-2xl font-bold text-white group-hover:text-[#F6520C] transition-colors">{thread.replies.length}</span>
+                                <span className="text-xs text-gray-500 uppercase tracking-widest font-medium mt-1">Replies</span>
                             </div>
                         </button>
                     )
@@ -386,35 +395,36 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
         if (!author) return null;
         return (
              <div className="animate-fade-in">
-                <button onClick={handleBackToList} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 mb-6">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                     <span>Back to Discussions</span>
+                <button onClick={handleBackToList} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit mb-8">
+                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                     <span className="font-medium">Back to Discussions</span>
                  </button>
                  
-                <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">{selectedThread.title}</h1>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{selectedThread.title}</h1>
                 
-                <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg border border-[#F6520C]/50 mb-8 shadow-lg">
-                    <div className="flex items-start space-x-4">
-                        <img src={generateAvatarUrl(author.avatarConfig)} alt={author.name} className="w-12 h-12 rounded-full" />
+                <div className="bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 mb-12 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-pink-600"></div>
+                    <div className="flex items-start space-x-5">
+                        <img src={generateAvatarUrl(author.avatarConfig)} alt={author.name} className="w-14 h-14 rounded-full border-2 border-white/10" />
                         <div>
-                            <p className="font-semibold text-white flex items-center">
+                            <p className="font-bold text-white flex items-center text-lg tracking-tight">
                                 {author?.name} 
-                                <span className="ml-2 text-xs text-orange-200 bg-orange-500/20 px-2 py-0.5 rounded-full font-semibold">Original Poster</span>
+                                <span className="ml-3 text-[10px] uppercase tracking-wider text-orange-300 bg-orange-500/20 border border-orange-500/30 px-3 py-1 rounded-full font-bold">Original Poster</span>
                                 {author?.role === 'admin' && (
-                                     <span className="ml-2 text-xs bg-yellow-500 text-black font-bold px-2 py-0.5 rounded-full">Admin</span>
+                                     <span className="ml-2 text-[10px] uppercase tracking-wider bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 font-bold px-3 py-1 rounded-full">Admin</span>
                                 )}
                             </p>
-                            <p className="text-xs text-gray-400 mt-1">{selectedThread.timestamp}</p>
+                            <p className="text-sm text-gray-400 mt-1 font-light">{selectedThread.timestamp}</p>
                         </div>
                     </div>
-                    <div className="text-gray-300 mt-4" dangerouslySetInnerHTML={formatContent(selectedThread.content)}></div>
+                    <div className="text-gray-300 mt-8 leading-relaxed font-light text-lg" dangerouslySetInnerHTML={formatContent(selectedThread.content)}></div>
                 </div>
 
 
                 {/* Replies */}
-                <div className="space-y-4">
+                <div className="space-y-6">
                     {selectedThread.replies.length > 0 && 
-                        <h3 className="text-xl font-semibold text-white mb-2">{selectedThread.replies.length} Replies</h3>
+                        <h3 className="text-2xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{selectedThread.replies.length} Replies</h3>
                     }
                     {selectedThread.replies.map(reply => {
                         // FIX: Use authorId to find author object.
@@ -423,31 +433,31 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                         // FIX: Check authorId against thread's authorId.
                         const isOPReply = reply.authorId === selectedThread.authorId;
                         return (
-                             <div key={reply.id} className={`p-4 rounded-lg border transition-colors ${replyAuthor?.role === 'admin' ? 'bg-green-900/20 border-green-500/30' : (isOPReply ? 'bg-orange-900/20 border-[#F6520C]/30' : 'bg-gray-800/50 border-gray-700')}`}>
-                                 <div className="flex items-start space-x-4">
-                                     <img src={generateAvatarUrl(replyAuthor.avatarConfig)} alt={replyAuthor.name} className="w-10 h-10 rounded-full" />
+                             <div key={reply.id} className={`p-6 rounded-2xl border transition-colors shadow-lg ${replyAuthor?.role === 'admin' ? 'bg-emerald-900/10 border-emerald-500/20' : (isOPReply ? 'bg-orange-900/10 border-[#F6520C]/20' : 'bg-white/[0.02] border-white/5')}`}>
+                                 <div className="flex items-start space-x-5">
+                                     <img src={generateAvatarUrl(replyAuthor.avatarConfig)} alt={replyAuthor.name} className="w-12 h-12 rounded-full border border-white/10" />
                                     <div className="flex-1">
                                         {replyAuthor?.role === 'admin' ? (
-                                            <p className="font-semibold text-white flex items-center">
-                                                <span className="text-green-300">Reply from GradNiche Mentor</span>
-                                                <span className="ml-2 text-xs bg-yellow-500 text-black font-bold px-2 py-0.5 rounded-full">Admin</span>
-                                                <span className="text-xs text-gray-500 font-normal ml-2">&middot; {reply.timestamp}</span>
+                                            <p className="font-bold text-white flex items-center tracking-tight">
+                                                <span className="text-emerald-400">GradNiche Mentor</span>
+                                                <span className="ml-3 text-[10px] uppercase tracking-wider bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 font-bold px-3 py-1 rounded-full">Admin</span>
+                                                <span className="text-sm text-gray-500 font-light ml-3">&middot; {reply.timestamp}</span>
                                             </p>
                                         ) : (
-                                            <p className="font-semibold text-white flex items-center">
+                                            <p className="font-bold text-white flex items-center tracking-tight">
                                                 {replyAuthor?.name}
-                                                {isOPReply && <span className="ml-2 text-xs text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded-full font-medium">OP</span>}
-                                                <span className="text-xs text-gray-500 font-normal ml-2">&middot; {reply.timestamp}</span>
+                                                {isOPReply && <span className="ml-3 text-[10px] uppercase tracking-wider text-orange-300 bg-orange-500/20 border border-orange-500/30 px-3 py-1 rounded-full font-bold">OP</span>}
+                                                <span className="text-sm text-gray-500 font-light ml-3">&middot; {reply.timestamp}</span>
                                             </p>
                                         )}
-                                        <div className="text-gray-300 mt-2" dangerouslySetInnerHTML={formatContent(reply.content)}></div>
+                                        <div className="text-gray-300 mt-4 leading-relaxed font-light" dangerouslySetInnerHTML={formatContent(reply.content)}></div>
                                     </div>
                                  </div>
-                                 <div className="flex items-center space-x-4 mt-3 pl-14 text-gray-400">
+                                 <div className="flex items-center space-x-4 mt-5 pl-17 text-gray-400">
                                     <button
                                         onClick={() => handleLikeReply(selectedThread.id, reply.id)}
                                         disabled={!currentUser}
-                                        className={`flex items-center space-x-1.5 text-sm hover:text-[#F6520C] disabled:cursor-not-allowed disabled:opacity-50 transition-colors ${likedReplies.has(reply.id) ? 'text-[#F6520C] font-semibold' : ''}`}
+                                        className={`flex items-center space-x-2 text-sm hover:text-[#F6520C] disabled:cursor-not-allowed disabled:opacity-50 transition-colors bg-black/20 px-4 py-2 rounded-full border border-white/5 hover:border-[#F6520C]/30 ${likedReplies.has(reply.id) ? 'text-[#F6520C] font-semibold border-[#F6520C]/30 bg-[#F6520C]/10' : ''}`}
                                         aria-label={`Like reply by ${replyAuthor?.name}`}
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -464,24 +474,26 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
 
                 {/* Reply Box */}
                 {currentUser && (
-                     <div className="mt-8 border-t border-gray-700 pt-6">
-                         <h3 className="text-xl font-semibold text-white mb-3">Leave a Reply</h3>
-                         <div className="bg-gray-900/50 border border-gray-600 rounded-md">
-                            <div className="flex items-center space-x-1 p-2 border-b border-gray-600">
-                                <button onClick={() => applyFormat('bold')} title="Bold (Ctrl+B)" className="px-3 py-1 text-sm font-bold text-gray-300 hover:bg-gray-700 rounded">B</button>
-                                <button onClick={() => applyFormat('italic')} title="Italic (Ctrl+I)" className="px-3 py-1 text-sm italic text-gray-300 hover:bg-gray-700 rounded">I</button>
-                                <button onClick={() => applyFormat('code')} title="Code Block" className="px-3 py-1 text-sm font-mono text-gray-300 hover:bg-gray-700 rounded">&lt;/&gt;</button>
+                     <div className="mt-12 pt-8 border-t border-white/5">
+                         <h3 className="text-2xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Leave a Reply</h3>
+                         <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden focus-within:border-[#F6520C]/50 focus-within:ring-1 focus-within:ring-[#F6520C]/50 transition-all duration-300 shadow-lg">
+                            <div className="flex items-center space-x-2 p-3 border-b border-white/10 bg-black/20">
+                                <button onClick={() => applyFormat('bold')} title="Bold (Ctrl+B)" className="px-3 py-1.5 text-sm font-bold text-gray-300 hover:bg-white/10 hover:text-white rounded-lg transition-colors">B</button>
+                                <button onClick={() => applyFormat('italic')} title="Italic (Ctrl+I)" className="px-3 py-1.5 text-sm italic text-gray-300 hover:bg-white/10 hover:text-white rounded-lg transition-colors">I</button>
+                                <button onClick={() => applyFormat('code')} title="Code Block" className="px-3 py-1.5 text-sm font-mono text-gray-300 hover:bg-white/10 hover:text-white rounded-lg transition-colors">&lt;/&gt;</button>
                             </div>
                             <textarea
                                 ref={replyTextareaRef}
                                 value={replyContent}
                                 onChange={(e) => setReplyContent(e.target.value)}
                                 placeholder="Write your reply here..."
-                                rows={5}
-                                className="w-full bg-transparent p-3 focus:outline-none text-gray-300 resize-y"
+                                rows={6}
+                                className="w-full bg-transparent p-5 focus:outline-none text-gray-300 resize-y font-light leading-relaxed"
                             />
                          </div>
-                         <button onClick={handlePostReply} className="mt-4 bg-[#F6520C] text-white px-6 py-2 rounded-md font-semibold hover:bg-opacity-90">Post Reply</button>
+                         <div className="mt-6 flex justify-end">
+                            <button onClick={handlePostReply} className="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 transform hover:-translate-y-0.5">Post Reply</button>
+                         </div>
                      </div>
                 )}
              </div>
@@ -489,17 +501,25 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
     };
 
     return (
-        <section className="py-20 bg-[#0a101f] min-h-screen">
-            <div className="container mx-auto px-6">
-                 <div className="mb-8">
-                     <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                         <span>Back</span>
+        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+                 <div className="mb-12">
+                     <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                         <span className="font-medium">Back to Tools</span>
                      </button>
                  </div>
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white">Community Forums</h1>
-                    <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+                <div className="text-center mb-16">
+                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
+                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Community</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Community Forums</h1>
+                    <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light leading-relaxed">
                         Connect with fellow students, ask questions, and share your study abroad journey.
                     </p>
                 </div>
@@ -507,29 +527,30 @@ const CommunityForums: React.FC<CommunityForumsProps> = ({ onBack, currentUser, 
                 {view === 'list' ? renderThreadList() : renderThreadView()}
 
                  {isModalOpen && (
-                    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                        <div className="bg-gray-900/80 backdrop-blur-lg border border-[#F6520C]/50 rounded-lg shadow-xl p-8 max-w-2xl w-full">
-                            <h2 className="text-2xl font-bold text-white mb-6">Start a New Discussion</h2>
-                            <div className="space-y-4">
+                    <div className="fixed inset-0 bg-[#0a101f]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+                        <div className="bg-[#050810] border border-white/10 rounded-3xl shadow-2xl p-8 max-w-2xl w-full relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-pink-600"></div>
+                            <h2 className="text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Start a New Discussion</h2>
+                            <div className="space-y-6">
                                 <div>
-                                    <label htmlFor="post-title" className="block text-sm font-medium text-gray-300 mb-1">Title</label>
-                                    <input id="post-title" type="text" value={newPost.title} onChange={e => setNewPost({...newPost, title: e.target.value})} placeholder="Enter a descriptive title" className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                                    <label htmlFor="post-title" className="block text-sm font-medium text-gray-300 mb-2">Title</label>
+                                    <input id="post-title" type="text" value={newPost.title} onChange={e => setNewPost({...newPost, title: e.target.value})} placeholder="Enter a descriptive title" className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-white transition-all duration-300 placeholder-gray-500" />
                                 </div>
                                 <div>
-                                     <label htmlFor="post-category" className="block text-sm font-medium text-gray-300 mb-1">Category</label>
-                                     <select id="post-category" value={newPost.categoryId} onChange={e => setNewPost({...newPost, categoryId: e.target.value})} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white">
-                                         <option value="" disabled>Select a category</option>
-                                         {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+                                     <label htmlFor="post-category" className="block text-sm font-medium text-gray-300 mb-2">Category</label>
+                                     <select id="post-category" value={newPost.categoryId} onChange={e => setNewPost({...newPost, categoryId: e.target.value})} className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-white transition-all duration-300 appearance-none">
+                                         <option value="" disabled className="bg-[#0a101f]">Select a category</option>
+                                         {categories.map(cat => <option key={cat.id} value={cat.id} className="bg-[#0a101f]">{cat.name}</option>)}
                                      </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="post-content" className="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
-                                    <textarea id="post-content" value={newPost.content} onChange={e => setNewPost({...newPost, content: e.target.value})} rows={8} placeholder="Write your question or thoughts here..." className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white"></textarea>
+                                    <label htmlFor="post-content" className="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
+                                    <textarea id="post-content" value={newPost.content} onChange={e => setNewPost({...newPost, content: e.target.value})} rows={8} placeholder="Write your question or thoughts here..." className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-white transition-all duration-300 placeholder-gray-500 resize-y font-light leading-relaxed"></textarea>
                                 </div>
                             </div>
-                            <div className="mt-6 flex justify-end space-x-4">
-                                <button onClick={() => setIsModalOpen(false)} className="px-6 py-2 rounded-md text-gray-400 hover:bg-gray-700 transition">Cancel</button>
-                                <button onClick={handleCreatePost} className="px-6 py-2 rounded-md bg-[#F6520C] text-white hover:bg-opacity-90 transition">Create Post</button>
+                            <div className="mt-10 flex justify-end space-x-4">
+                                <button onClick={() => setIsModalOpen(false)} className="px-8 py-3 rounded-full text-white font-semibold hover:bg-white/10 transition-colors duration-300 border border-transparent hover:border-white/10">Cancel</button>
+                                <button onClick={handleCreatePost} className="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-3 rounded-full font-bold hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 transform hover:-translate-y-0.5">Create Post</button>
                             </div>
                         </div>
                     </div>

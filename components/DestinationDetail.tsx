@@ -19,8 +19,8 @@ const PremiumIcon = ({ icon, color = 'from-orange-500 to-pink-500' }: { icon: Re
 );
 
 const SectionWrapper: React.FC<{id: string, title: string, children: React.ReactNode, icon?: React.ReactNode, className?: string}> = ({ id, title, children, icon, className = "" }) => (
-    <div id={id} className={`bg-gray-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full scroll-mt-36 shadow-2xl ${className}`}>
-        <div className="flex items-center space-x-4 mb-6">
+    <div id={id} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 h-full scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5 ${className}`}>
+        <div className="flex items-center space-x-4 mb-8">
             {icon && <div className="flex-shrink-0">{icon}</div>}
             <h3 className="text-2xl font-bold text-white tracking-tight">{title}</h3>
         </div>
@@ -145,10 +145,10 @@ const GenericInfoCard: React.FC<{ title: string, content: string, id: string, ic
 
 const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id: string }> = ({ visaGuide, countryName, id }) => {
     return (
-        <div id={id} className="bg-gray-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 scroll-mt-36 shadow-2xl">
+        <div id={id} className="bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5">
             <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">{countryName} Student Visa Guide</h3>
-                <p className="text-gray-400 leading-relaxed max-w-3xl mx-auto text-lg">{visaGuide.overview}</p>
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{countryName} Student Visa Guide</h3>
+                <p className="text-gray-400 leading-relaxed max-w-3xl mx-auto text-lg font-light">{visaGuide.overview}</p>
             </div>
             
             <div className="space-y-12">
@@ -221,15 +221,15 @@ const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id
 
 
 const AccordionItem: React.FC<{ faq: FAQ, isOpen: boolean, onClick: () => void }> = ({ faq, isOpen, onClick }) => (
-    <div className="border border-white/10 rounded-xl overflow-hidden bg-white/5">
+    <div className="border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
         <button
             onClick={onClick}
-            className="w-full flex justify-between items-center text-left p-5 hover:bg-white/5 transition-colors"
+            className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className={`text-lg font-medium ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -237,8 +237,8 @@ const AccordionItem: React.FC<{ faq: FAQ, isOpen: boolean, onClick: () => void }
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-            <div className="p-5 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2">
+        <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2 font-light">
                 <p>{faq.answer}</p>
             </div>
         </div>
@@ -409,22 +409,22 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
 
                 {/* Bento Grid: Why Study */}
                 <section id="why-study" className="mb-24 scroll-mt-36">
-                    <h2 className="text-4xl font-bold text-white text-center mb-12">Why {country.name}?</h2>
+                    <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Why {country.name}?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
                         {country.whyStudy.map((reason, index) => {
                             // Create an asymmetrical bento grid layout
                             const colSpan = (index === 0 || index === 3) ? "md:col-span-2" : "md:col-span-1";
                             return (
-                                <div key={reason.title} className={`bg-gray-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-300 group flex flex-col justify-between ${colSpan} hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5`}>
+                                <div key={reason.title} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col justify-between ${colSpan} hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5`}>
                                     <div>
-                                        <div className="mb-6">
+                                        <div className="mb-8">
                                             <PremiumIcon icon={reason.icon} color={gradients[index % gradients.length]} />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#F6520C] transition-colors">{reason.title}</h3>
-                                        <p className="text-gray-400 text-lg leading-relaxed">{reason.point}</p>
+                                        <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{reason.title}</h3>
+                                        <p className="text-gray-400 text-lg leading-relaxed font-light">{reason.point}</p>
                                     </div>
                                     {/* Decorative faint background number */}
-                                    <div className="text-8xl font-black text-white/5 absolute -bottom-4 -right-4 pointer-events-none select-none">0{index+1}</div>
+                                    <div className="text-8xl font-black text-white/[0.02] absolute -bottom-4 -right-4 pointer-events-none select-none group-hover:text-white/[0.05] transition-colors duration-500">0{index+1}</div>
                                 </div>
                             )
                         })}
@@ -472,10 +472,10 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                 <section id="universities" className="mb-24 scroll-mt-36">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12">
                         <div>
-                            <h2 className="text-4xl font-bold text-white mb-2">Top Universities</h2>
-                            <p className="text-gray-400">Prestigious institutions in {country.name}</p>
+                            <h2 className="text-4xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Top Universities</h2>
+                            <p className="text-gray-400 font-light">Prestigious institutions in {country.name}</p>
                         </div>
-                        <button onClick={() => navigate('/college-finder')} className="text-[#F6520C] font-bold hover:text-white transition-colors flex items-center group">
+                        <button onClick={() => navigate('/college-finder')} className="text-[#F6520C] font-semibold hover:text-white transition-colors flex items-center group mt-4 md:mt-0">
                             View All in Finder
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </button>
@@ -483,13 +483,13 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {country.topUniversities.map(uni => (
-                            <div key={uni.name} className="bg-gray-900/60 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-[#F6520C]/50 transition-all duration-300 group flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/10">
-                                <div className="w-24 h-24 bg-white rounded-2xl p-2 mb-6 shadow-lg shadow-white/5 group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
+                            <div key={uni.name} className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5">
+                                <div className="w-24 h-24 bg-white rounded-2xl p-2 mb-6 shadow-lg shadow-white/5 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center overflow-hidden">
                                     <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
                                 </div>
-                                <h4 className="font-bold text-white text-lg mb-2 leading-tight">{uni.name}</h4>
+                                <h4 className="font-bold text-white text-lg mb-2 leading-tight tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{uni.name}</h4>
                                 <div className="mt-auto pt-4 w-full border-t border-white/5">
-                                    <p className="text-[#F6520C] font-bold text-sm uppercase tracking-wider">QS Rank #{uni.qsRanking}</p>
+                                    <p className="text-[#F6520C] font-semibold text-sm uppercase tracking-wider">QS Rank #{uni.qsRanking}</p>
                                 </div>
                             </div>
                         ))}
@@ -498,7 +498,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                 
                 {/* FAQ */}
                 <section id="faq" className="scroll-mt-36 max-w-4xl mx-auto">
-                    <h2 className="text-4xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
+                    <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Frequently Asked Questions</h2>
                     <div className="space-y-4">
                         {country.faq.map((faqItem, index) => (
                             <AccordionItem 
