@@ -20,6 +20,8 @@ export type DestinationPage = 'destination-usa' | 'destination-canada' | 'destin
 
 export interface Destination {
     name: string;
+    code: string;
+    flagCode: string;
     icon: React.ReactElement<React.SVGProps<SVGSVGElement>>;
     heroImage: string;
     intro: string;
@@ -41,7 +43,6 @@ export interface Destination {
         qsRanking: number;
         logo: string;
     }[];
-    avatarConfig: AvatarConfig;
 }
 
 interface DestinationData {
@@ -69,10 +70,11 @@ const icons = {
 export const destinationData: DestinationData = {
     usa: {
         name: "United States",
+        code: "US",
+        flagCode: "us",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2070&auto=format&fit=crop",
         intro: "The United States boasts one of the world's most renowned and flexible higher education systems, offering a vast array of programs at prestigious universities. It's a global leader in technology and research, providing unparalleled opportunities for innovation and career growth.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-usa', hair: 'short01', eyes: 'variant01', skinColor: 'F5C6A0', hairColor: '4D4D4D', clothing: 'shirt', clothingColor: 'F6520C' } },
         whyStudy: [
             { 
                 title: "Top-Ranked Universities", 
@@ -149,10 +151,11 @@ export const destinationData: DestinationData = {
     },
     canada: {
         name: "Canada",
+        code: "CA",
+        flagCode: "ca",
         icon: Icon("M3 21v-8a2 2 0 01-2-2h.01M17 5a2 2 0 10-4 0H9a2 2 0 00-2 2v10a2 2 0 002 2h4a2 2 0 104 0z"), // Placeholder for Maple Leaf like flag
         heroImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=2070&auto=format&fit=crop",
         intro: "Canada is celebrated for its high academic standards, welcoming and diverse culture, and high quality of life. It offers a world-class education at an affordable cost, with clear pathways to permanent residency for international graduates.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-canada-female', hair: 'long01', eyes: 'variant06', skinColor: 'E4A381', hairColor: 'A25900', clothing: 'hoodie', clothingColor: 'FF0000' } },
         whyStudy: [
             { 
                 title: "Quality Education", 
@@ -226,10 +229,11 @@ export const destinationData: DestinationData = {
     },
     uk: {
         name: "United Kingdom",
+        code: "UK",
+        flagCode: "gb",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop",
         intro: "The UK is home to some of the world's oldest and most prestigious universities, offering a rich academic heritage. Its courses are often shorter and more intensive, providing a fast-track to your career while immersing you in a vibrant, multicultural society.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uk', hair: 'short02', eyes: 'variant02', skinColor: 'AF6E5A', hairColor: '282828', clothing: 'blazer', clothingColor: '00247D' } },
         whyStudy: [
             { 
                 title: "Academic Heritage", 
@@ -305,10 +309,11 @@ export const destinationData: DestinationData = {
     },
     australia: {
         name: "Australia",
+        code: "AU",
+        flagCode: "au",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2070&auto=format&fit=crop",
         intro: "Australia offers a high quality of life, excellent education system, and post-study work opportunities in a welcoming and multicultural environment.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-australia-female', hair: 'long02', eyes: 'variant07', skinColor: 'C47D6A', hairColor: 'B86B25', clothing: 'crewNeck', clothingColor: 'FFCD00' } },
         whyStudy: [
             { title: "Group of Eight", point: "Home to prestigious Group of Eight universities known for research excellence.", icon: Icon(icons.university) },
             { title: "Lifestyle", point: "World-famous for its relaxed lifestyle, stunning beaches, and vibrant cities.", icon: Icon(icons.heart) },
@@ -348,10 +353,11 @@ export const destinationData: DestinationData = {
     },
     germany: {
         name: "Germany",
+        code: "DE",
+        flagCode: "de",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=2070&auto=format&fit=crop",
         intro: "Germany is the economic powerhouse of Europe, offering high-quality education with low or no tuition fees at public universities.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-germany', hair: 'short06', eyes: 'variant03', skinColor: 'D88C7A', hairColor: '2c1b18', clothing: 'blazer', clothingColor: '000000' } },
         whyStudy: [
             { title: "No Tuition Fees", point: "Most public universities charge little to no tuition fees.", icon: Icon(icons.cash) },
             { title: "Engineering Hub", point: "World leader in engineering and technology.", icon: Icon(icons.lightbulb) },
@@ -388,10 +394,11 @@ export const destinationData: DestinationData = {
     },
     ireland: {
         name: "Ireland",
+        code: "IE",
+        flagCode: "ie",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?q=80&w=2070&auto=format&fit=crop",
         intro: "Ireland is an English-speaking country in Europe known as the 'Silicon Valley of Europe' due to the presence of major tech companies.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-ireland-female', hair: 'long06', eyes: 'variant11', skinColor: 'F5C6A0', hairColor: 'cb6820', clothing: 'crewNeck', clothingColor: '009A44' } },
         whyStudy: [
             { title: "Tech Hub", point: "European HQ for Google, Facebook, etc.", icon: Icon(icons.lightbulb) },
             { title: "English Speaking", point: "Only English-speaking country in Eurozone.", icon: Icon(icons.globe) },
@@ -427,10 +434,11 @@ export const destinationData: DestinationData = {
     },
     uae: {
         name: "UAE",
+        code: "AE",
+        flagCode: "ae",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1518684079-3c830dcefacf?q=80&w=2070&auto=format&fit=crop",
         intro: "The UAE offers a modern, safe, and multicultural environment with campuses of many top global universities.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uae', hair: 'short08', eyes: 'variant12', skinColor: 'AF6E5A', hairColor: '000000', clothing: 'shirt', clothingColor: '000000', accessories: 'sunglasses', accessoriesProbability: 100 } },
         whyStudy: [
             { title: "International Campuses", point: "Study at branch campuses of top UK/US/Aus unis.", icon: Icon(icons.university) },
             { title: "Tax-Free Income", point: "Graduates enjoy tax-free salaries.", icon: Icon(icons.cash) },
@@ -465,10 +473,11 @@ export const destinationData: DestinationData = {
     },
     'new-zealand': {
         name: "New Zealand",
+        code: "NZ",
+        flagCode: "nz",
         icon: Icon(icons.flag),
         heroImage: "https://images.unsplash.com/photo-1469521669194-babb45599def?q=80&w=2070&auto=format&fit=crop",
         intro: "New Zealand is famous for its stunning landscapes, friendly people, and world-class education system.",
-        avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-nz-female', hair: 'long07', eyes: 'variant01', skinColor: 'E4A381', hairColor: '4D4D4D', clothing: 'blazer', clothingColor: '000000' } },
         whyStudy: [
             { title: "Quality of Life", point: "Relaxed pace of life and beautiful environment.", icon: Icon(icons.heart) },
             { title: "Post-Study Work", point: "Up to 3 years open work visa.", icon: Icon(icons.briefcase) },

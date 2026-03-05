@@ -204,19 +204,27 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
     }
 
     return (
-        <section className="py-20 bg-[#0a101f] min-h-screen flex items-center justify-center">
-            <div className="container mx-auto px-6 max-w-md">
+        <section className="py-24 bg-[#050810] min-h-screen flex items-center justify-center relative overflow-hidden">
+            {/* Subtle background elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 max-w-md relative z-10">
                  <div className="mb-8 text-center">
-                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1 mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group mx-auto w-fit">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
-                        <span>Back to Home</span>
+                        <span className="font-medium">Back to Home</span>
                     </button>
                 </div>
 
-                <div className="bg-white/5 backdrop-blur-sm p-8 rounded-lg shadow-xl border border-[#F6520C]/20">
-                    {renderContent()}
+                <div className="bg-white/[0.02] backdrop-blur-xl p-10 rounded-[2rem] shadow-2xl border border-white/10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div className="relative z-10">
+                        {renderContent()}
+                    </div>
                 </div>
             </div>
         </section>

@@ -1,26 +1,11 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { universities as universityData, University } from '../data/universities';
-import { ShortlistItem } from '../App';
 import UniversityLogo from './UniversityLogo';
 
 interface CollegeFinderProps {
     navigate: (path: string) => void;
-    shortlist: ShortlistItem[];
-    onToggleShortlist: (item: ShortlistItem) => void;
 }
-
-const StarIcon: React.FC<{ isFilled: boolean }> = ({ isFilled }) => (
-    isFilled ? (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-    ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-        </svg>
-    )
-);
 
 const countries = [...new Set(universityData.map(u => u.country))].sort();
 const popularCourses = [...new Set(universityData.flatMap(u => u.popularCourses))].sort();
@@ -118,7 +103,7 @@ const MultiSelectDropdown: React.FC<{
     );
 };
 
-const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate, shortlist, onToggleShortlist }) => {
+const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [countryFilters, setCountryFilters] = useState<string[]>([]);
     const [courseFilters, setCourseFilters] = useState<string[]>([]);
@@ -297,9 +282,8 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate, shortlist, onTo
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                              {paginatedUniversities.map(uni => {
-                                const isShortlisted = shortlist.some(item => item.type === 'university' && item.universityId === uni.id);
                                 return (
                                     <div key={uni.id} className="group relative bg-white/[0.02] backdrop-blur-sm rounded-3xl border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 flex flex-col text-center overflow-hidden hover:-translate-y-2 hover:shadow-2xl" style={{ minHeight: '340px' }}>
                                         {/* Gradient Glow */}
@@ -318,11 +302,6 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate, shortlist, onTo
                                                 <p className="font-bold text-white text-3xl tracking-tight">#{uni.qsRanking || 'N/A'}</p>
                                             </div>
                                         </a>
-                                        <div className="absolute top-4 right-4 z-20">
-                                            <button onClick={() => onToggleShortlist({ type: 'university', universityId: uni.id })} className="p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-black/60 hover:text-yellow-400 hover:border-yellow-400/30 transition-all duration-300 relative group/tooltip" aria-label={isShortlisted ? 'Remove from shortlist' : 'Add to shortlist'}>
-                                                <StarIcon isFilled={isShortlisted} />
-                                            </button>
-                                        </div>
                                     </div>
                                 )
                             })}

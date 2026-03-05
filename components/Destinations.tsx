@@ -1,68 +1,76 @@
 
 import React from 'react';
-import { AvatarConfig, generateAvatarUrl } from '../data/forums';
 
 const destinations = [
   {
-    name: 'USA',
+    name: 'United States',
+    code: 'US',
+    flagCode: 'us',
     description: 'Home to top-ranked universities and diverse career opportunities.',
     href: '/destinations/usa',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-usa', hair: 'short01', eyes: 'variant01', skinColor: 'F5C6A0', hairColor: '4D4D4D', clothing: 'shirt', clothingColor: 'F6520C' } },
   },
   {
     name: 'Canada',
+    code: 'CA',
+    flagCode: 'ca',
     description: 'Known for its high quality of life and welcoming immigration policies.',
     href: '/destinations/canada',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-canada-female', hair: 'long01', eyes: 'variant06', skinColor: 'E4A381', hairColor: 'A25900', clothing: 'hoodie', clothingColor: 'FF0000' } },
   },
   {
-    name: 'UK',
+    name: 'United Kingdom',
+    code: 'UK',
+    flagCode: 'gb',
     description: 'Rich in history with world-renowned institutions and vibrant cities.',
     href: '/destinations/uk',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uk', hair: 'short02', eyes: 'variant02', skinColor: 'AF6E5A', hairColor: '282828', clothing: 'blazer', clothingColor: '00247D' } },
   },
   {
     name: 'Australia',
+    code: 'AU',
+    flagCode: 'au',
     description: 'Offers a fantastic lifestyle and excellent hands-on learning experiences.',
     href: '/destinations/australia',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-australia-female', hair: 'long02', eyes: 'variant07', skinColor: 'C47D6A', hairColor: 'B86B25', clothing: 'crewNeck', clothingColor: 'FFCD00' } },
   },
    {
     name: 'Germany',
+    code: 'DE',
+    flagCode: 'de',
     description: 'Engineering excellence and low-cost education in the heart of Europe.',
     href: '/destinations/germany',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-germany', hair: 'short06', eyes: 'variant03', skinColor: 'D88C7A', hairColor: '2c1b18', clothing: 'blazer', clothingColor: '000000' } },
   },
   {
     name: 'Ireland',
+    code: 'IE',
+    flagCode: 'ie',
     description: 'Europe\'s vibrant tech hub with a rich culture and friendly atmosphere.',
     href: '/destinations/ireland',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-ireland-female', hair: 'long06', eyes: 'variant11', skinColor: 'F5C6A0', hairColor: 'cb6820', clothing: 'crewNeck', clothingColor: '009A44' } },
   },
    {
     name: 'UAE',
+    code: 'AE',
+    flagCode: 'ae',
     description: 'A futuristic global business hub with modern universities and tax-free perks.',
     href: '/destinations/uae',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-uae', hair: 'short08', eyes: 'variant12', skinColor: 'AF6E5A', hairColor: '000000', clothing: 'shirt', clothingColor: '000000', accessories: 'sunglasses', accessoriesProbability: 100 } },
   },
   {
     name: 'New Zealand',
+    code: 'NZ',
+    flagCode: 'nz',
     description: 'Stunning landscapes, a high quality of life, and a world-class education system.',
     href: '/destinations/new-zealand',
-    avatarConfig: { style: 'adventurer', options: { seed: 'gradniche-nz-female', hair: 'long07', eyes: 'variant01', skinColor: 'E4A381', hairColor: '4D4D4D', clothing: 'blazer', clothingColor: '000000' } },
   }
 ];
 
 
 interface DestinationCardProps {
   name: string;
+  code: string;
+  flagCode: string;
   description: string;
   href: string;
-  avatarConfig: AvatarConfig;
   navigate: (path: string) => void;
 }
 
-const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, href, avatarConfig, navigate }) => (
+const DestinationCard: React.FC<DestinationCardProps> = ({ name, code, flagCode, description, href, navigate }) => (
     <a
         href={`#${href}`}
         onClick={(e) => {e.preventDefault(); navigate(href)}}
@@ -73,11 +81,17 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ name, description, hr
 
         <div className="relative z-10 flex flex-col h-full p-8">
             <div className="flex justify-center mb-6">
-                <div className="relative">
-                    <div className="absolute inset-0 bg-[#F6520C] rounded-full blur opacity-10 group-hover:opacity-30 transition-opacity duration-500"></div>
-                    <div className="w-32 h-32 bg-gray-900/50 rounded-full p-2 border border-white/10 relative overflow-hidden group-hover:scale-105 transition-transform duration-500 backdrop-blur-sm">
-                        <img src={generateAvatarUrl(avatarConfig)} alt={`${name} avatar`} className="w-full h-full" />
+                <div className="relative w-32 h-32 flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-105">
+                    <div className="absolute inset-0 z-0">
+                        <img 
+                            src={`https://flagcdn.com/w320/${flagCode}.png`} 
+                            alt={`${name} flag`} 
+                            className="w-full h-full object-cover blur-[3px] scale-125 opacity-70 group-hover:opacity-90 transition-all duration-500"
+                            referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/20 group-hover:from-black/40 group-hover:to-transparent transition-colors duration-500"></div>
                     </div>
+                    <span className="relative z-10 text-white font-bold text-4xl tracking-widest drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{code}</span>
                 </div>
             </div>
             

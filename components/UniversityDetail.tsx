@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { University, Program } from '../data/universities';
-import { ShortlistItem } from '../App';
 import { threads as allThreads, generateAvatarUrl, users } from '../data/forums';
 import UniversityLogo from './UniversityLogo';
 
@@ -10,23 +9,9 @@ interface UniversityDetailProps {
   university: University;
   onProgramSelect: (program: Program) => void;
   onBack: () => void;
-  shortlist: ShortlistItem[];
-  onToggleShortlist: (item: ShortlistItem) => void;
   navigate: (path: string) => void; 
   onThreadSelect: (threadId: string) => void;
 }
-
-const StarIcon: React.FC<{ isFilled: boolean; className?: string }> = ({ isFilled, className = "h-6 w-6" }) => (
-    isFilled ? (
-        <svg xmlns="http://www.w3.org/2000/svg" className={`${className} text-yellow-400`} viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-    ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" className={`${className} text-gray-400`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-        </svg>
-    )
-);
 
 const KeyFact: React.FC<{ label: string; value: string | number | undefined }> = ({ label, value }) => {
     if (!value) return null;
@@ -64,10 +49,9 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
 );
 
 
-const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, shortlist, onToggleShortlist, navigate, onThreadSelect }) => {
+const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgramSelect, onBack, navigate, onThreadSelect }) => {
   const [activeSection, setActiveSection] = useState('overview');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const isUniversityShortlisted = shortlist.some(item => item.type === 'university' && item.universityId === university.id);
 
   const overviewRef = useRef<HTMLDivElement>(null);
   const programsRef = useRef<HTMLDivElement>(null);
@@ -167,16 +151,6 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
             
             <div className="relative z-10">
-                 <div className="absolute top-0 right-0 z-20">
-                    <button
-                        onClick={() => onToggleShortlist({ type: 'university', universityId: university.id })}
-                        className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-black/60 hover:text-yellow-400 hover:border-yellow-400/30 transition-all duration-300 group shadow-lg"
-                        aria-label={isUniversityShortlisted ? 'Remove university from shortlist' : 'Add university to shortlist'}
-                    >
-                        <StarIcon isFilled={isUniversityShortlisted} />
-                        <span className="text-sm font-semibold hidden sm:block tracking-wide">{isUniversityShortlisted ? 'Shortlisted' : 'Shortlist'}</span>
-                    </button>
-                </div>
                 <div className="flex flex-col md:flex-row items-center md:space-x-10">
                     <div className="w-32 h-32 rounded-2xl mb-8 md:mb-0 bg-white/5 p-3 flex-shrink-0 border border-white/10 shadow-xl overflow-hidden flex items-center justify-center">
                         <UniversityLogo src={university.logo} alt={university.name} className="w-full h-full object-contain" />

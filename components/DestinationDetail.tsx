@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Destination, FAQ, VisaGuide } from '../data/destinations';
-import { generateAvatarUrl } from '../data/forums';
 import UniversityLogo from './UniversityLogo';
 
 interface DestinationDetailProps {
@@ -352,15 +351,20 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
         
         <div className="relative z-20 container mx-auto px-6 flex flex-col items-center animate-fade-in">
             <div className="relative mb-8 group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-                <div className="relative w-40 h-40 md:w-48 md:h-48 bg-gray-900 p-1 rounded-full border-2 border-white/10">
-                    <img
-                        src={generateAvatarUrl(country.avatarConfig)}
-                        alt={`${country.name} student avatar`}
-                        className="w-full h-full rounded-full object-cover"
-                    />
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-105">
+                    <div className="absolute inset-0 z-0">
+                        <img 
+                            src={`https://flagcdn.com/w320/${country.flagCode}.png`} 
+                            alt={`${country.name} flag`} 
+                            className="w-full h-full object-cover blur-[3px] scale-125 opacity-70 group-hover:opacity-90 transition-all duration-500"
+                            referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/20 group-hover:from-black/40 group-hover:to-transparent transition-colors duration-500"></div>
+                    </div>
+                    <span className="relative z-10 text-white font-bold text-5xl md:text-6xl tracking-widest drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{country.code}</span>
                 </div>
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-[#F6520C] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-[#F6520C] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-20">
                     Guide
                 </div>
             </div>

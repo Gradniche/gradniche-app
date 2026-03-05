@@ -32,7 +32,6 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import { University, Program, universities } from './data/universities';
 import { destinationData } from './data/destinations';
 import CommunityHighlights from './components/CommunityHighlights';
-import ShortlistPage from './components/ShortlistPage';
 import F1VisaPrep from './components/F1VisaPrep';
 import F1VisaPrepFeature from './components/F1VisaPrepFeature';
 import { User, users as forumUsers } from './data/forums';
@@ -41,10 +40,6 @@ import BlogsArchive from './components/BlogsArchive';
 import BlogDetail from './components/BlogDetail';
 import { blogPosts } from './data/blogs';
 
-
-export type ShortlistItem = 
-    | { type: 'university'; universityId: string; }
-    | { type: 'program'; universityId: string; programId: string; };
 
 type ToolID = 'course-comparison' | 'sop-analyzer' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
 
@@ -63,7 +58,6 @@ const toolDetails: Record<ToolID, {name: string, description: string}> = {
 const pageMetadata: Record<string, { title: string, description: string }> = {
     '/': { title: 'GradNiche | AI-Powered Study Abroad Platform', description: 'Plan your global education with GradNiche. Use AI tools, a university finder, and expert guides to find top destinations and achieve your study abroad dreams. ' },
     '/college-finder': { title: 'University Finder | Search & Compare Colleges | GradNiche', description: 'Find your perfect university. Search and compare thousands of global colleges by country, course, tuition, and QS ranking with GradNiche\'s advanced tool.' },
-    '/shortlist': { title: 'My Shortlist | Compare Universities & Programs | GradNiche', description: 'Manage and compare shortlisted universities and programs. Make an informed decision for your future education abroad with GradNiche\'s comparison tools.' },
     '/about': { title: 'About GradNiche | Our Mission in Global Education', description: 'Learn about GradNiche, our mission, and the team dedicated to making global education accessible for all students through innovative technology and support.' },
     '/contact': { title: 'Contact Us | Study Abroad Guidance | GradNiche', description: 'Have questions about studying abroad? Get in touch with the GradNiche team. We\'re here to help you with applications, visas, and university selection.' },
     '/blogs': { title: 'GradNiche Insights | Study Abroad Blog', description: 'Explore the GradNiche blog for expert tips on university applications, visa interviews, scholarship hunting, and student life abroad. Your essential resource.' },
@@ -95,14 +89,6 @@ const App: React.FC = () => {
   // Use Hash routing
   const [path, setPath] = useState(window.location.hash.substring(1) || '/');
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [shortlist, setShortlist] = useState<ShortlistItem[]>(() => {
-    try {
-        const saved = localStorage.getItem('gradniche-shortlist');
-        return saved ? JSON.parse(saved) : [];
-    } catch {
-        return [];
-    }
-  });
 
   const navigate = (to: string) => {
     window.location.hash = to;
@@ -131,17 +117,6 @@ const App: React.FC = () => {
   const handleAddNotification = (recipientId: string, message: string, threadId: string) => {
     console.log(`Notification for ${recipientId}: ${message} (Thread: ${threadId})`);
   };
-
-  const handleSaveShortlist = () => {
-    try {
-        localStorage.setItem('gradniche-shortlist', JSON.stringify(shortlist));
-        alert('Your shortlist has been saved!');
-    } catch (error) {
-        console.error("Could not save shortlist to localStorage", error);
-        alert('There was an error saving your shortlist.');
-    }
-  };
-
 
   const aiContext = useMemo(() => {
     const platformInfo = "GradNiche is a comprehensive platform for students planning to study abroad. It offers tools like a University Finder, AI-powered SOP Analyzer, detailed Visa Guides, a Scholarship Finder, and Community Forums to help students make informed decisions.";
@@ -286,26 +261,6 @@ const App: React.FC = () => {
   }, [path]);
 
 
-  const handleToggleShortlist = (item: ShortlistItem) => {
-      setShortlist(prev => {
-          const isPresent = prev.some(i => 
-              i.type === item.type && 
-              i.universityId === item.universityId &&
-              (i.type === 'program' ? i.programId === (item as any).programId : true)
-          );
-
-          if (isPresent) {
-              return prev.filter(i => !(
-                  i.type === item.type && 
-                  i.universityId === item.universityId &&
-                  (i.type === 'program' ? i.programId === (item as any).programId : true)
-              ));
-          } else {
-              return [...prev, item];
-          }
-      });
-  };
-
   const handleThreadSelect = (threadId: string) => {
     navigate(`/tools/community-forums?thread=${threadId}`);
   };
@@ -329,16 +284,6 @@ const App: React.FC = () => {
         </>
       );
     }
-    if (pathOnly === '/shortlist') {
-        return <ShortlistPage 
-            shortlist={shortlist} 
-            onToggleShortlist={handleToggleShortlist}
-            onBack={() => navigate('/')}
-            onNavigateToUniversity={(uni) => navigate(`/college-finder/${uni.id}`)}
-            onNavigateToProgram={(uni, prog) => navigate(`/college-finder/${uni.id}/${prog.id}`)}
-            onSave={handleSaveShortlist}
-        />;
-    }
     if (pathOnly.startsWith('/college-finder')) {
         if (pathSegments.length === 3) {
             const university = universities.find(u => u.id === pathSegments[1]);
@@ -359,8 +304,6 @@ const App: React.FC = () => {
                     university={university} 
                     onProgramSelect={(prog) => navigate(`/college-finder/${university.id}/${prog.id}`)} 
                     onBack={() => navigate('/college-finder')}
-                    shortlist={shortlist}
-                    onToggleShortlist={handleToggleShortlist}
                     navigate={navigate}
                     onThreadSelect={handleThreadSelect}
                 />;
@@ -368,8 +311,6 @@ const App: React.FC = () => {
         }
         return <CollegeFinder 
             navigate={navigate} 
-            shortlist={shortlist}
-            onToggleShortlist={handleToggleShortlist}
         />;
     }
     if (pathOnly.startsWith('/destinations/')) {
