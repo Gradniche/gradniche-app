@@ -74,7 +74,7 @@ const CoreTools: React.FC<CoreToolsProps> = ({ navigate }) => {
                         </div>
                         <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{tool.title}</h3>
                         <p className="text-gray-400 font-light flex-grow mb-10 leading-relaxed">{tool.description}</p>
-                        <a href={`#${tool.action}`} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3.5 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] font-semibold w-full sm:w-auto shadow-lg hover:shadow-[#F6520C]/30 flex items-center justify-center gap-2 group/btn">
+                        <a href={tool.action} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3.5 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] font-semibold w-full sm:w-auto shadow-lg hover:shadow-[#F6520C]/30 flex items-center justify-center gap-2 group/btn">
                           {tool.cta}
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>

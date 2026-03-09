@@ -611,7 +611,7 @@ export const blogPosts: BlogPost[] = [
             <div class="bg-gray-800 p-6 rounded-lg mt-8 border border-[#F6520C]/30">
                 <h4 class="text-white font-bold text-lg mb-2">Need Help?</h4>
                 <p class="text-gray-400 mb-4">Writing an SOP is hard. We built a tool to help.</p>
-                <a href="#/tools/sop-analyzer" class="text-[#F6520C] font-semibold hover:underline">Try our Free AI SOP Analyzer &rarr;</a>
+                <a href="/tools/sop-analyzer" class="text-[#F6520C] font-semibold hover:underline">Try our Free AI SOP Analyzer &rarr;</a>
             </div>
         `
     },

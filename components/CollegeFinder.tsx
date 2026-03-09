@@ -289,7 +289,7 @@ const CollegeFinder: React.FC<CollegeFinderProps> = ({ navigate }) => {
                                         {/* Gradient Glow */}
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#F6520C]/20 to-transparent opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
                                         
-                                        <a href={`#/college-finder/${uni.id}`} onClick={(e) => { e.preventDefault(); navigate(`/college-finder/${uni.id}`); }} className="w-full h-full flex flex-col p-8 relative z-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C] rounded-3xl">
+                                        <a href={`/college-finder/${uni.id}`} onClick={(e) => { e.preventDefault(); navigate(`/college-finder/${uni.id}`); }} className="w-full h-full flex flex-col p-8 relative z-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C] rounded-3xl">
                                             <div className="flex-grow flex flex-col items-center justify-start">
                                                 <div className="w-24 h-24 mb-6 p-2 rounded-2xl bg-white/5 border border-white/10 group-hover:border-[#F6520C]/50 group-hover:scale-110 transition-all duration-500 flex items-center justify-center overflow-hidden shadow-lg">
                                                     <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />

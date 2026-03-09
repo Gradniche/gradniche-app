@@ -43,7 +43,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
   ];
 
   const renderLink = (link: { href: string; label: string; }) => (
-    <a href={`#${link.href}`} onClick={(e) => handleNavClick(e, link.href)} className="text-sm text-gray-400 hover:text-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm flex items-center group">
+    <a href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="text-sm text-gray-400 hover:text-[#F6520C] transition-colors duration-300 focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm flex items-center group">
         <span className="w-0 h-[1px] bg-[#F6520C] mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300"></span>
         {link.label}
     </a>
@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
         <div className="container mx-auto px-8 py-16 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-12">
                 <div className="lg:col-span-1 space-y-6">
-                    <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-3xl font-extrabold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-3xl font-extrabold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Grad<span className="text-[#F6520C]">Niche</span>
                     </a>
                     <p className="text-sm text-gray-400 leading-relaxed font-light">Empowering your global education journey with data-driven tools and expert insights.</p>

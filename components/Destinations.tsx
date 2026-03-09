@@ -72,7 +72,7 @@ interface DestinationCardProps {
 
 const DestinationCard: React.FC<DestinationCardProps> = ({ name, code, flagCode, description, href, navigate }) => (
     <a
-        href={`#${href}`}
+        href={href}
         onClick={(e) => {e.preventDefault(); navigate(href)}}
         className="relative group h-full min-h-[320px] rounded-3xl overflow-hidden bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 flex flex-col"
     >

@@ -86,29 +86,24 @@ const pageMetadata: Record<string, { title: string, description: string }> = {
 
 
 const App: React.FC = () => {
-  // Use Hash routing
-  const [path, setPath] = useState(window.location.hash.substring(1) || '/');
+  // Use History API routing for better SEO
+  const [path, setPath] = useState(window.location.pathname || '/');
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const navigate = (to: string) => {
-    window.location.hash = to;
-    // Scroll to top is handled by the effect below or can be done here
+    window.history.pushState({}, '', to);
+    setPath(to);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
-    const handleHashChange = () => {
-        const currentPath = window.location.hash.substring(1) || '/';
-        setPath(currentPath);
+    const handlePopState = () => {
+        setPath(window.location.pathname || '/');
         window.scrollTo(0, 0);
     };
 
-    // Handle initial load if there is a hash
-    if (window.location.hash) {
-        handleHashChange();
-    }
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const [users, setUsers] = useState<User[]>(forumUsers);
@@ -156,9 +151,7 @@ const App: React.FC = () => {
   const updateMetaTags = (title: string, description: string, imageUrl?: string, urlPath?: string) => {
     const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto.format&fit=crop';
     const baseUrl = "https://gradniche.com";
-    // For hash routing, canonical might just be the base, or we can append hash for specificity if crawlers support it.
-    // Standard SEO prefers clean URLs, but for this SPA fix, we stick to functional meta updates.
-    const canonicalUrl = `${baseUrl}/#${urlPath || ''}`;
+    const canonicalUrl = `${baseUrl}${urlPath || ''}`;
 
     document.title = title;
     

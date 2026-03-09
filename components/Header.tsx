@@ -166,7 +166,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                     {link.children?.map(child => (
                     <a 
                         key={child.label} 
-                        href={`#${child.href!}`}
+                        href={child.href!}
                         onClick={(e) => handleNavClick(e, child.href!)}
                         className="group flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
                     >
@@ -213,7 +213,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                  return (
                     <a
                     key={child.label}
-                    href={`#${child.href!}`}
+                    href={child.href!}
                     onClick={(e) => handleNavClick(e, child.href!)}
                     className="group flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
                     >
@@ -244,7 +244,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
     children: React.ReactNode;
   }> = ({ href, children }) => (
     <li>
-      <a href={`#${href}`} onClick={(e) => handleNavClick(e, href)} className="flex justify-between items-center w-full p-5 text-white font-bold text-lg bg-white/5 rounded-2xl border border-white/5 hover:border-white/20 hover:bg-white/10 transition-all shadow-sm active:scale-95">
+      <a href={href} onClick={(e) => handleNavClick(e, href)} className="flex justify-between items-center w-full p-5 text-white font-bold text-lg bg-white/5 rounded-2xl border border-white/5 hover:border-white/20 hover:bg-white/10 transition-all shadow-sm active:scale-95">
         <span>{children}</span>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
       </a>
@@ -273,7 +273,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
   return (
     <header className={`bg-[#0a101f]/80 backdrop-blur-xl sticky z-50 md:mx-6 md:rounded-3xl transition-all duration-300 ${isScrolled ? 'top-0 md:top-4 shadow-[0_8px_30px_rgb(0,0,0,0.5)] border-b md:border border-white/10' : 'top-0 md:top-6 shadow-lg border-b md:border border-white/5'}`}>
       <div className={`container mx-auto px-6 md:px-8 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 md:py-3' : 'py-5 md:py-5'}`}>
-        <a href="#/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight relative z-[110]" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-extrabold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-sm tracking-tight relative z-[110]" style={{ fontFamily: "'Playfair Display', serif" }}>
           Grad<span className="text-[#F6520C]">Niche</span>
         </a>
         
@@ -292,7 +292,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                   {renderDropdown(link)}
                 </>
               ) : (
-                <a href={`#${link.href!}`} onClick={(e) => handleNavClick(e, link.href!)} className="text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-5 py-2.5 text-sm tracking-wide">
+                <a href={link.href!} onClick={(e) => handleNavClick(e, link.href!)} className="text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6520C] rounded-full px-5 py-2.5 text-sm tracking-wide">
                   {link.label}
                 </a>
               )}
@@ -330,7 +330,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                         <ul className="space-y-3 p-2">
                              {navLinks.find(l => l.name === 'destinations')?.children?.map((child) => (
                                 <li key={child.label}>
-                                     <a href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
+                                     <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
                                         <div className="flex-shrink-0 w-10 h-10 rounded-lg relative overflow-hidden ring-1 ring-white/10">
                                             {child.icon}
                                         </div>
@@ -358,7 +358,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                                  const gradient = gradients[index % gradients.length];
                                  return (
                                 <li key={child.label}>
-                                     <a href={`#${child.href!}`} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
+                                     <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
                                         <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-black/40 flex items-center justify-center relative overflow-hidden`}>
                                             <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-30 group-hover:opacity-50 transition-opacity`}></div>
                                             <div className="relative z-10 text-gray-300 group-hover:text-white">

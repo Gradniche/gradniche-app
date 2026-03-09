@@ -57,7 +57,7 @@ const CommunityHighlights: React.FC<CommunityHighlightsProps> = ({ navigate }) =
                 </div>
 
                 <div className="text-center mt-12">
-                    <a href="#/tools/community-forums" onClick={(e) => { e.preventDefault(); navigate('/tools/community-forums'); }} className="bg-[#F6520C] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg transform hover:scale-105 glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-[#F6520C]/80">
+                    <a href="/tools/community-forums" onClick={(e) => { e.preventDefault(); navigate('/tools/community-forums'); }} className="bg-[#F6520C] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg transform hover:scale-105 glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-[#F6520C]/80">
                         Join the Conversation
                     </a>
                 </div>

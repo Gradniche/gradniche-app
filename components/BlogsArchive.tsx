@@ -83,7 +83,7 @@ const BlogsArchive: React.FC<BlogsArchiveProps> = ({ onBack, navigate }) => {
         <div className="space-y-12">
             {featuredPost && (
                 <a 
-                    href={`#/blogs/${featuredPost.id}`}
+                    href={`/blogs/${featuredPost.id}`}
                     onClick={(e) => { if(navigate) { e.preventDefault(); navigate(`/blogs/${featuredPost.id}`); } }}
                     className="block group relative rounded-[2rem] overflow-hidden bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 shadow-2xl hover:shadow-[#F6520C]/10"
                 >
@@ -115,7 +115,7 @@ const BlogsArchive: React.FC<BlogsArchiveProps> = ({ onBack, navigate }) => {
                 {regularPosts.map((post, index) => (
                     <a 
                         key={post.id} 
-                        href={`#/blogs/${post.id}`}
+                        href={`/blogs/${post.id}`}
                         onClick={(e) => { if(navigate) { e.preventDefault(); navigate(`/blogs/${post.id}`); } }}
                         className="group flex flex-col bg-white/[0.02] backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5"
                         style={{ animation: `fadeIn 0.5s ease-out forwards`, animationDelay: `${index * 0.1}s`, opacity: 0 }}

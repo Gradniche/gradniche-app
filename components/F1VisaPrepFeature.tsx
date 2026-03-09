@@ -42,7 +42,7 @@ const F1VisaPrepFeature: React.FC<F1VisaPrepFeatureProps> = ({ navigate }) => {
                                 The final step to your US study dream is the visa interview. Practice with our AI-powered mock interview tool that simulates a real conversation with a consular officer. Get confident, prepare your answers, and walk into your interview ready to succeed.
                             </p>
                             <a 
-                                href="#/tools/f1-visa-prep"
+                                href="/tools/f1-visa-prep"
                                 onClick={(e) => { e.preventDefault(); navigate('/tools/f1-visa-prep'); }} 
                                 className="inline-flex items-center justify-center bg-[#F6520C] text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-[#d44306] transition-all duration-300 shadow-[0_0_20px_rgba(246,82,12,0.3)] transform hover:scale-[1.02] active:scale-95"
                             >

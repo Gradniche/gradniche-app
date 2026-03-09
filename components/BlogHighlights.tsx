@@ -37,7 +37,7 @@ const BlogHighlights: React.FC<BlogHighlightsProps> = ({ navigate }) => {
                     {latestPosts.map((post, index) => (
                         <a 
                             key={post.id} 
-                            href={`#/blogs/${post.id}`} 
+                            href={`/blogs/${post.id}`} 
                             onClick={(e) => { e.preventDefault(); navigate(`/blogs/${post.id}`); }}
                             className="group flex flex-col bg-white/[0.02] backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5 h-full"
                             style={{ animationDelay: `${index * 100}ms` }}
