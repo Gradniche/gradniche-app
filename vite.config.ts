@@ -18,6 +18,17 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        cssCodeSplit: false,
+        rollupOptions: {
+          output: {
+            assetFileNames: (assetInfo) => {
+              if (assetInfo.name && assetInfo.name.endsWith('.css')) return 'index.css';
+              return 'assets/[name]-[hash][extname]';
+            },
+          },
+        },
       }
     };
 });
