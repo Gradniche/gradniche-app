@@ -2,6 +2,8 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calculator, Plus, Trash2, ArrowLeft, Info, ChevronDown, GraduationCap, ArrowRight, Sparkles } from 'lucide-react';
 
 interface Course {
   id: number;
@@ -14,7 +16,6 @@ type GradeScale = 'percentage' | '10-point' | 'letter';
 
 interface GPACalculatorProps {
   onBack: () => void;
-  // FIX: Changed navigateTo to navigate and Page to string to match props passed from App.tsx
   navigate: (path: string) => void;
 }
 
@@ -54,14 +55,25 @@ const getGradePoint = (grade: string, scale: GradeScale): number | null => {
 const GradeScaleSelector: React.FC<{ selected: GradeScale; onSelect: (scale: GradeScale) => void }> = ({ selected, onSelect }) => {
     const scales: {id: GradeScale, label: string}[] = [
         { id: 'percentage', label: 'Percentage (0-100)'},
-        { id: '10-point', label: '10-Point Scale'},
-        { id: 'letter', label: 'Letter Grade (A-F)'}
+        { id: '10-point', label: '10-Point'},
+        { id: 'letter', label: 'Letter (A-F)'}
     ];
 
     return (
-        <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-2 bg-black/20 p-2 rounded-xl border border-white/5">
+        <div className="flex bg-white/5 p-1 rounded-xl border border-white/10 relative overflow-hidden">
             {scales.map(scale => (
-                <button key={scale.id} onClick={() => onSelect(scale.id)} className={`w-full text-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-[#F6520C] ${selected === scale.id ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-lg shadow-orange-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
+                <button 
+                    key={scale.id} 
+                    onClick={() => onSelect(scale.id)} 
+                    className={`relative flex-1 text-center py-2.5 text-sm font-medium rounded-lg transition-colors z-10 ${selected === scale.id ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                    {selected === scale.id && (
+                        <motion.div
+                            layoutId="activeScale"
+                            className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg -z-10"
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                    )}
                     {scale.label}
                 </button>
             ))}
@@ -74,60 +86,79 @@ const GPAGauge: React.FC<{ gpa: number }> = ({ gpa }) => {
     const rotation = (gpa / 4.0) * 180 - 90;
 
     return (
-        <div className="relative w-64 h-32 mx-auto mb-2">
-            <svg viewBox="0 0 100 50" className="w-full h-full">
+        <div className="relative w-full max-w-[280px] aspect-[2/1] mx-auto mb-6">
+            <svg viewBox="0 0 100 50" className="w-full h-full overflow-visible">
                 <defs>
                     <linearGradient id="gpa-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" style={{stopColor: '#ef4444', stopOpacity: 1}} />
                         <stop offset="50%" style={{stopColor: '#f59e0b', stopOpacity: 1}} />
                         <stop offset="100%" style={{stopColor: '#22c55e', stopOpacity: 1}} />
                     </linearGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="4" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
                 </defs>
-                <path d="M 10 50 A 40 40 0 0 1 90 50" stroke="#4a5568" strokeWidth="8" fill="none" />
-                <path
+                {/* Background Track */}
+                <path d="M 10 50 A 40 40 0 0 1 90 50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" strokeLinecap="round" fill="none" />
+                
+                {/* Animated Value Track */}
+                <motion.path
                     d="M 10 50 A 40 40 0 0 1 90 50"
                     stroke="url(#gpa-gradient)"
                     strokeWidth="8"
+                    strokeLinecap="round"
                     fill="none"
                     strokeDasharray="125.6"
-                    strokeDashoffset={125.6 - (gpaPercentage / 100 * 125.6)}
-                    className="transition-all duration-1000 ease-out"
+                    initial={{ strokeDashoffset: 125.6 }}
+                    animate={{ strokeDashoffset: 125.6 - (gpaPercentage / 100 * 125.6) }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    filter="url(#glow)"
                 />
             </svg>
-            <div
-                className="absolute bottom-0 left-1/2 w-0.5 h-10 bg-[#F6520C] origin-bottom transition-transform duration-1000 ease-out"
-                style={{ transform: `translateX(-50%) rotate(${rotation}deg)` }}
-            ></div>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-800 border-2 border-[#F6520C] rounded-full"></div>
+            
+            {/* Needle */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 w-1 h-12 bg-white rounded-t-full origin-bottom z-10"
+                initial={{ transform: `translateX(-50%) rotate(-90deg)` }}
+                animate={{ transform: `translateX(-50%) rotate(${rotation}deg)` }}
+                transition={{ duration: 1.5, ease: "easeOut", type: "spring", bounce: 0.2 }}
+                style={{ boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}
+            />
+            {/* Needle Center */}
+            <div className="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full z-20 shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
         </div>
     );
 };
 
 const GPABreakdown: React.FC<{ gpa: number }> = ({ gpa }) => {
-    let breakdown: { title: string; description: string; color: string };
+    let breakdown: { title: string; description: string; color: string; icon: React.ReactNode };
 
     if (gpa >= 3.7) {
-        breakdown = { title: "Excellent", description: "This GPA is highly competitive for top-tier universities worldwide. Focus on maintaining it and crafting a strong overall application with compelling essays and recommendations.", color: "green" };
+        breakdown = { title: "Excellent", description: "Highly competitive for top-tier universities worldwide.", color: "text-green-400", icon: <Sparkles className="w-5 h-5 text-green-400" /> };
     } else if (gpa >= 3.3) {
-        breakdown = { title: "Good", description: "A strong GPA that makes you a competitive applicant for many excellent universities. Strengthen your application with high standardized test scores and relevant experience.", color: "yellow" };
+        breakdown = { title: "Good", description: "A strong GPA. Competitive for many excellent universities.", color: "text-yellow-400", icon: <GraduationCap className="w-5 h-5 text-yellow-400" /> };
     } else if (gpa >= 2.7) {
-        breakdown = { title: "Average", description: "This GPA is acceptable for many good universities. Focus on highlighting your strengths in other areas like your Statement of Purpose, work experience, and projects.", color: "orange" };
+        breakdown = { title: "Average", description: "Acceptable for many good universities. Highlight other strengths.", color: "text-orange-400", icon: <Info className="w-5 h-5 text-orange-400" /> };
     } else {
-        breakdown = { title: "Needs Improvement", description: "This GPA may be below the minimum requirement for many graduate programs. Consider retaking exams or gaining significant work experience to strengthen your profile.", color: "red" };
+        breakdown = { title: "Needs Improvement", description: "May be below minimum requirements. Consider retaking exams.", color: "text-red-400", icon: <Info className="w-5 h-5 text-red-400" /> };
     }
 
-    const colorClasses = {
-        green: 'border-green-500/30 bg-green-500/10 text-green-400',
-        yellow: 'border-yellow-500/30 bg-yellow-500/10 text-yellow-400',
-        orange: 'border-orange-500/30 bg-orange-500/10 text-orange-400',
-        red: 'border-red-500/30 bg-red-500/10 text-red-400',
-    };
-
     return (
-        <div className={`mt-6 p-6 rounded-2xl border backdrop-blur-sm ${colorClasses[breakdown.color as keyof typeof colorClasses]}`}>
-            <h4 className={`text-xl font-bold tracking-tight mb-2`}>{breakdown.title}</h4>
-            <p className="text-sm font-light leading-relaxed opacity-90">{breakdown.description}</p>
-        </div>
+        <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 p-5 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-4 text-left"
+        >
+            <div className="mt-1 p-2 bg-white/5 rounded-full shrink-0">
+                {breakdown.icon}
+            </div>
+            <div>
+                <h4 className={`text-lg font-semibold tracking-tight mb-1 ${breakdown.color}`}>{breakdown.title}</h4>
+                <p className="text-sm text-gray-400 leading-relaxed">{breakdown.description}</p>
+            </div>
+        </motion.div>
     );
 };
 
@@ -141,39 +172,42 @@ const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpe
     <div className="border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
         <button
             onClick={onClick}
-            className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
+            className="w-full flex justify-between items-center text-left p-6 focus:outline-none group"
             aria-expanded={isOpen}
         >
-            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
-            <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path>
-            </svg>
+            <span className={`text-lg font-medium tracking-tight transition-colors ${isOpen ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>{faq.question}</span>
+            <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180 text-white' : 'group-hover:text-gray-300'}`} />
         </button>
-        <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
-            <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2 font-light">
-                <p>{faq.answer}</p>
-            </div>
-        </div>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                    <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2 font-light">
+                        <p>{faq.answer}</p>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     </div>
 );
 
 
 const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
+    const [mode, setMode] = useState<'simple' | 'advanced'>('simple');
+    const [simpleGrade, setSimpleGrade] = useState('');
     const [courses, setCourses] = useState<Course[]>([
         { id: 1, name: '', credits: '', grade: '' },
         { id: 2, name: '', credits: '', grade: '' },
         { id: 3, name: '', credits: '', grade: '' },
-        { id: 4, name: '', credits: '', grade: '' },
     ]);
     const [scale, setScale] = useState<GradeScale>('percentage');
     const [gpa, setGpa] = useState<number | null>(null);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+    const [isCalculating, setIsCalculating] = useState(false);
     
     useEffect(() => {
         const scriptId = 'gpa-calculator-structured-data';
@@ -196,6 +230,13 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
         return () => { document.getElementById(scriptId)?.remove(); };
     }, []);
 
+    // Auto-calculate when inputs change if we already calculated once
+    useEffect(() => {
+        if (gpa !== null) {
+            calculateGPA(false);
+        }
+    }, [courses, scale, simpleGrade, mode]);
+
     const handleCourseChange = (id: number, field: 'name' | 'credits' | 'grade', value: string) => {
         setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
     };
@@ -208,115 +249,336 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
         setCourses(courses.filter(c => c.id !== id));
     };
 
-    const calculateGPA = () => {
-        let totalPoints = 0;
-        let totalCredits = 0;
+    const calculateGPA = (animate = true) => {
+        if (animate) setIsCalculating(true);
+        
+        setTimeout(() => {
+            if (mode === 'simple') {
+                const point = getGradePoint(simpleGrade, scale);
+                setGpa(point);
+            } else {
+                let totalPoints = 0;
+                let totalCredits = 0;
 
-        courses.forEach(course => {
-            const credits = parseFloat(course.credits);
-            const gradePoint = getGradePoint(course.grade, scale);
+                courses.forEach(course => {
+                    const credits = parseFloat(course.credits);
+                    const gradePoint = getGradePoint(course.grade, scale);
 
-            if (!isNaN(credits) && credits > 0 && gradePoint !== null) {
-                totalPoints += gradePoint * credits;
-                totalCredits += credits;
+                    if (!isNaN(credits) && credits > 0 && gradePoint !== null) {
+                        totalPoints += gradePoint * credits;
+                        totalCredits += credits;
+                    }
+                });
+
+                if (totalCredits === 0) {
+                    setGpa(null);
+                } else {
+                    const calculatedGpa = totalPoints / totalCredits;
+                    setGpa(parseFloat(calculatedGpa.toFixed(2)));
+                }
             }
-        });
-
-        if (totalCredits === 0) {
-            setGpa(null);
-            return;
-        }
-
-        const calculatedGpa = totalPoints / totalCredits;
-        setGpa(parseFloat(calculatedGpa.toFixed(2)));
+            if (animate) setIsCalculating(false);
+        }, animate ? 600 : 0);
     };
 
     return (
-        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
-            {/* Subtle background elements */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <section className="py-24 relative bg-[#0a0a0a] min-h-screen overflow-hidden font-sans text-white">
+            {/* Minimalist Background */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-500/5 blur-[100px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-pink-500/5 blur-[100px]"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+Cjwvc3ZnPg==')] opacity-50"></div>
+            </div>
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="mb-12">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                        <span className="font-medium">Back to Tools</span>
+            <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
+                    <button 
+                        onClick={onBack} 
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors w-fit group"
+                    >
+                        <div className="p-2 rounded-full bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">
+                            <ArrowLeft className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-sm tracking-wide uppercase">Back</span>
                     </button>
-                </div>
-                <div className="text-center mb-16">
-                    <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Academics</span>
+                    
+                    <div className="text-left md:text-right">
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-2">GPA Calculator</h1>
+                        <p className="text-gray-400 font-light max-w-md ml-auto">
+                            Convert your grades to the standard 4.0 scale used globally.
+                        </p>
                     </div>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>GPA Calculator</h1>
-                    <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
-                        Convert your Indian percentage or 10-point CGPA to the 4.0 scale used by international universities. Understand your academic standing with our easy tool.
-                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     {/* Input Section */}
-                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl space-y-8">
-                        <div>
-                            <label className="block text-xl font-bold text-white tracking-tight mb-4">1. Select Your Grading Scale</label>
-                            <GradeScaleSelector selected={scale} onSelect={setScale} />
-                        </div>
+                    <div className="lg:col-span-7 space-y-6">
                         
-                        <div className="pt-6 border-t border-white/5">
-                            <label className="block text-xl font-bold text-white tracking-tight mb-4">2. Enter Your Courses</label>
-                            <div className="space-y-4">
-                                {courses.map((course, index) => (
-                                    <div key={course.id} className="grid grid-cols-12 gap-3 items-center group">
-                                        <input type="text" placeholder={`Course ${index + 1}`} value={course.name} onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} className="col-span-5 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
-                                        <input type="number" placeholder="Credits" value={course.credits} onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} className="col-span-3 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
-                                        <input type="text" placeholder={scale === 'percentage' ? '0-100' : scale === '10-point' ? '0-10' : 'A-F'} value={course.grade} onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} className="col-span-3 w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm transition-all placeholder-gray-600" />
-                                        <button onClick={() => removeCourse(course.id)} className="col-span-1 text-gray-600 hover:text-red-500 transition-colors disabled:opacity-30 flex justify-center" disabled={courses.length <= 1}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                             <button onClick={addCourse} className="mt-6 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition-colors flex items-center space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" /></svg>
-                                <span>Add another course</span>
-                             </button>
-                        </div>
-
-                        <div className="pt-6 border-t border-white/5">
-                            <button onClick={calculateGPA} className="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-white/20 transform hover:-translate-y-0.5">
-                                Calculate My GPA
+                        {/* Mode Switcher */}
+                        <div className="flex bg-white/5 p-1 rounded-xl border border-white/10 relative overflow-hidden w-full max-w-md">
+                            <button 
+                                onClick={() => { setMode('simple'); setGpa(null); }} 
+                                className={`relative flex-1 text-center py-3 text-sm font-medium rounded-lg transition-colors z-10 ${mode === 'simple' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                {mode === 'simple' && (
+                                    <motion.div
+                                        layoutId="activeMode"
+                                        className="absolute inset-0 bg-white/10 rounded-lg -z-10"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                                Simple Conversion
+                            </button>
+                            <button 
+                                onClick={() => { setMode('advanced'); setGpa(null); }} 
+                                className={`relative flex-1 text-center py-3 text-sm font-medium rounded-lg transition-colors z-10 ${mode === 'advanced' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                {mode === 'advanced' && (
+                                    <motion.div
+                                        layoutId="activeMode"
+                                        className="absolute inset-0 bg-white/10 rounded-lg -z-10"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                                Advanced (Course-by-Course)
                             </button>
                         </div>
+
+                        {mode === 'simple' ? (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-8"
+                            >
+                                <div>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2 bg-orange-500/10 rounded-lg">
+                                            <Calculator className="w-5 h-5 text-orange-400" />
+                                        </div>
+                                        <h2 className="text-xl font-semibold tracking-tight">Grading Scale</h2>
+                                    </div>
+                                    <GradeScaleSelector selected={scale} onSelect={setScale} />
+                                </div>
+                                
+                                <div className="pt-6 border-t border-white/5">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2 bg-pink-500/10 rounded-lg">
+                                            <GraduationCap className="w-5 h-5 text-pink-400" />
+                                        </div>
+                                        <h2 className="text-xl font-semibold tracking-tight">Your Overall Grade</h2>
+                                    </div>
+                                    <div className="relative">
+                                        <input 
+                                            type="text" 
+                                            placeholder={scale === 'percentage' ? 'e.g. 85' : scale === '10-point' ? 'e.g. 8.5' : 'e.g. A'} 
+                                            value={simpleGrade} 
+                                            onChange={(e) => setSimpleGrade(e.target.value)} 
+                                            className="w-full px-6 py-4 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-white/30 focus:bg-white/5 text-white text-lg transition-all placeholder-gray-600 uppercase" 
+                                        />
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">
+                                            {scale === 'percentage' ? '%' : scale === '10-point' ? '/ 10' : 'Grade'}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="pt-6 border-t border-white/5">
+                                    <button 
+                                        onClick={() => calculateGPA(true)} 
+                                        disabled={isCalculating || !simpleGrade}
+                                        className="w-full bg-white text-black px-6 py-4 rounded-xl font-semibold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                                    >
+                                        {isCalculating ? (
+                                            <motion.div
+                                                animate={{ rotate: 360 }}
+                                                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                                                className="w-5 h-5 border-2 border-black border-t-transparent rounded-full"
+                                            />
+                                        ) : (
+                                            'Convert to 4.0 Scale'
+                                        )}
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="space-y-8"
+                            >
+                                {/* Scale Selector */}
+                                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2 bg-orange-500/10 rounded-lg">
+                                            <Calculator className="w-5 h-5 text-orange-400" />
+                                        </div>
+                                        <h2 className="text-xl font-semibold tracking-tight">Grading Scale</h2>
+                                    </div>
+                                    <GradeScaleSelector selected={scale} onSelect={setScale} />
+                                </div>
+                                
+                                {/* Course List */}
+                                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className="flex items-center gap-3">
+                                            <div className="p-2 bg-pink-500/10 rounded-lg">
+                                                <GraduationCap className="w-5 h-5 text-pink-400" />
+                                            </div>
+                                            <h2 className="text-xl font-semibold tracking-tight">Your Courses</h2>
+                                        </div>
+                                        <span className="text-xs font-medium px-3 py-1 bg-white/5 rounded-full text-gray-400 border border-white/10">
+                                            {courses.length} Courses
+                                        </span>
+                                    </div>
+                                    
+                                    {/* Table Headers */}
+                                    <div className="grid grid-cols-12 gap-4 px-4 mb-4 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <div className="col-span-12 sm:col-span-5">Course Name</div>
+                                        <div className="col-span-5 sm:col-span-3">Credits</div>
+                                        <div className="col-span-5 sm:col-span-3">Grade</div>
+                                        <div className="col-span-2 sm:col-span-1"></div>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        <AnimatePresence initial={false}>
+                                            {courses.map((course, index) => (
+                                                <motion.div 
+                                                    key={course.id}
+                                                    initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                                                    animate={{ opacity: 1, height: 'auto', marginBottom: 12 }}
+                                                    exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                    className="grid grid-cols-12 gap-3 sm:gap-4 items-center group relative"
+                                                >
+                                                    <div className="col-span-12 sm:col-span-5 relative">
+                                                        <input 
+                                                            type="text" 
+                                                            placeholder={`Course ${index + 1}`} 
+                                                            value={course.name} 
+                                                            onChange={(e) => handleCourseChange(course.id, 'name', e.target.value)} 
+                                                            className="w-full px-4 py-3.5 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-white/30 focus:bg-white/5 text-white text-sm transition-all placeholder-gray-600" 
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-5 sm:col-span-3">
+                                                        <input 
+                                                            type="number" 
+                                                            placeholder="Credits" 
+                                                            value={course.credits} 
+                                                            onChange={(e) => handleCourseChange(course.id, 'credits', e.target.value)} 
+                                                            className="w-full px-4 py-3.5 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-white/30 focus:bg-white/5 text-white text-sm transition-all placeholder-gray-600" 
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-5 sm:col-span-3">
+                                                        <input 
+                                                            type="text" 
+                                                            placeholder={scale === 'percentage' ? '0-100' : scale === '10-point' ? '0-10' : 'A-F'} 
+                                                            value={course.grade} 
+                                                            onChange={(e) => handleCourseChange(course.id, 'grade', e.target.value)} 
+                                                            className="w-full px-4 py-3.5 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:border-white/30 focus:bg-white/5 text-white text-sm transition-all placeholder-gray-600 uppercase" 
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-2 sm:col-span-1 flex justify-end sm:justify-center">
+                                                        <button 
+                                                            onClick={() => removeCourse(course.id)} 
+                                                            className="p-2.5 text-gray-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-30" 
+                                                            disabled={courses.length <= 1}
+                                                            aria-label="Remove course"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </AnimatePresence>
+                                    </div>
+                                    
+                                    <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 pt-6 border-t border-white/5">
+                                        <button 
+                                            onClick={addCourse} 
+                                            className="w-full sm:w-auto px-6 py-3 rounded-xl border border-white/10 text-sm font-medium hover:bg-white/5 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                            Add Course
+                                        </button>
+                                        
+                                        <button 
+                                            onClick={() => calculateGPA(true)} 
+                                            disabled={isCalculating}
+                                            className="w-full sm:w-auto flex-1 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                                        >
+                                            {isCalculating ? (
+                                                <motion.div
+                                                    animate={{ rotate: 360 }}
+                                                    transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                                                    className="w-5 h-5 border-2 border-black border-t-transparent rounded-full"
+                                                />
+                                            ) : (
+                                                'Calculate GPA'
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
                     </div>
 
                     {/* Output Section */}
-                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 text-center sticky top-24 shadow-2xl">
-                        <h2 className="text-2xl font-bold text-white tracking-tight mb-8">Your Estimated GPA</h2>
-                        {gpa !== null ? (
-                            <div className="animate-fade-in">
-                                <GPAGauge gpa={gpa} />
-                                <p className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 my-6 tracking-tight">{gpa.toFixed(2)} <span className="text-3xl text-gray-500 font-medium">/ 4.0</span></p>
-                                <GPABreakdown gpa={gpa} />
-                                 <button onClick={() => navigate('/college-finder')} className="mt-8 w-full bg-white/5 text-white border border-white/10 px-6 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white/20 transition-all duration-300 group flex items-center justify-center space-x-2">
-                                    <span>Find Universities with this GPA</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
-                                </button>
+                    <div className="lg:col-span-5">
+                        <div className="bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 p-8 sm:p-10 rounded-3xl text-center sticky top-24 backdrop-blur-xl">
+                            <h2 className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-10">Results</h2>
+                            
+                            <div className="min-h-[300px] flex flex-col justify-center">
+                                {gpa !== null ? (
+                                    <motion.div 
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.5, type: "spring" }}
+                                    >
+                                        <GPAGauge gpa={gpa} />
+                                        
+                                        <div className="flex items-baseline justify-center gap-2 mb-2">
+                                            <motion.span 
+                                                key={gpa}
+                                                initial={{ y: -20, opacity: 0 }}
+                                                animate={{ y: 0, opacity: 1 }}
+                                                className="text-7xl font-bold tracking-tighter"
+                                            >
+                                                {gpa.toFixed(2)}
+                                            </motion.span>
+                                            <span className="text-2xl text-gray-500 font-medium">/ 4.0</span>
+                                        </div>
+                                        
+                                        <GPABreakdown gpa={gpa} />
+                                        
+                                        <button 
+                                            onClick={() => navigate('/college-finder')} 
+                                            className="mt-8 w-full bg-white/5 border border-white/10 px-6 py-4 rounded-xl font-medium hover:bg-white/10 transition-all group flex items-center justify-between"
+                                        >
+                                            <span>Find matching universities</span>
+                                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <div className="text-gray-500 flex flex-col items-center justify-center space-y-4">
+                                        <div className="w-20 h-20 rounded-full bg-white/5 border border-white/5 flex items-center justify-center mb-2">
+                                            <Calculator className="w-8 h-8 text-gray-600" />
+                                        </div>
+                                        <p className="font-light text-lg">Enter your {mode === 'simple' ? 'grade' : 'courses'} to see your GPA</p>
+                                        <p className="text-sm text-gray-600 max-w-[200px]">Fill in the details on the left and hit calculate.</p>
+                                    </div>
+                                )}
                             </div>
-                        ) : (
-                            <div className="text-gray-500 py-16 flex flex-col items-center justify-center">
-                                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
-                                </div>
-                                <p className="font-light">Enter your courses and calculate to see your GPA.</p>
-                            </div>
-                        )}
+                        </div>
                     </div>
                 </div>
 
-                <div className="mt-24 max-w-4xl mx-auto">
-                    <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Understanding Your GPA</h2>
-                    <div className="space-y-4">
+                {/* FAQ Section */}
+                <div className="mt-32 max-w-3xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold tracking-tight mb-4">Understanding Your GPA</h2>
+                        <p className="text-gray-400 font-light">Common questions about grading scales and international admissions.</p>
+                    </div>
+                    <div className="space-y-3">
                         {faqData.map((faqItem, index) => (
                             <AccordionItem 
                                 key={index} 
@@ -327,9 +589,154 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
                         ))}
                     </div>
                 </div>
+
+                <GPASeoContent />
             </div>
         </section>
     );
 };
+
+const GPASeoContent: React.FC = () => (
+    <div className="mt-32 max-w-4xl mx-auto text-gray-400 space-y-16 border-t border-white/10 pt-16 pb-12">
+        <section>
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Comprehensive Guide to Converting Percentages to 4.0, 5.0, and 10.0 GPA Scales</h2>
+            <p className="leading-relaxed mb-6">Understanding how your percentage translates to a standard GPA scale is crucial for international university applications. Depending on whether your school uses weighted or unweighted grading, the exact conversion can vary. Below is a general reference chart mapping percentage scores to 4.0, 5.0, and 10.0 GPA scales:</p>
+            
+            <div className="overflow-x-auto mb-6 bg-white/[0.02] rounded-2xl border border-white/5">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="border-b border-white/10 text-white bg-white/5">
+                            <th className="py-4 px-6 font-semibold">Percentage Range</th>
+                            <th className="py-4 px-6 font-semibold">4.0 GPA Scale</th>
+                            <th className="py-4 px-6 font-semibold">5.0 GPA Scale</th>
+                            <th className="py-4 px-6 font-semibold">10.0 GPA Scale</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">90% – 100%</td><td className="py-3 px-6">4.0 (A+)</td><td className="py-3 px-6">5.0 (A+)</td><td className="py-3 px-6">9.0 – 10.0</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">85% – 89%</td><td className="py-3 px-6">3.7 – 3.9 (A)</td><td className="py-3 px-6">4.5 – 4.9 (A)</td><td className="py-3 px-6">8.5 – 8.9</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">80% – 84%</td><td className="py-3 px-6">3.3 – 3.6 (A-)</td><td className="py-3 px-6">4.0 – 4.4 (B+)</td><td className="py-3 px-6">8.0 – 8.4</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">75% – 79%</td><td className="py-3 px-6">3.0 – 3.2 (B+)</td><td className="py-3 px-6">3.5 – 3.9 (B)</td><td className="py-3 px-6">7.5 – 7.9</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">70% – 74%</td><td className="py-3 px-6">2.7 – 2.9 (B)</td><td className="py-3 px-6">3.0 – 3.4 (B-)</td><td className="py-3 px-6">7.0 – 7.4</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">65% – 69%</td><td className="py-3 px-6">2.3 – 2.6 (C+)</td><td className="py-3 px-6">2.5 – 2.9 (C+)</td><td className="py-3 px-6">6.5 – 6.9</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">60% – 64%</td><td className="py-3 px-6">2.0 – 2.2 (C)</td><td className="py-3 px-6">2.0 – 2.4 (C)</td><td className="py-3 px-6">6.0 – 6.4</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">55% – 59%</td><td className="py-3 px-6">1.7 – 1.9 (C-)</td><td className="py-3 px-6">1.5 – 1.9 (D)</td><td className="py-3 px-6">5.5 – 5.9</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">50% – 54%</td><td className="py-3 px-6">1.0 – 1.6 (D)</td><td className="py-3 px-6">1.0 – 1.4 (D)</td><td className="py-3 px-6">5.0 – 5.4</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">Below 50%</td><td className="py-3 px-6">0.0 (F)</td><td className="py-3 px-6">0.0 (F)</td><td className="py-3 px-6">&lt;5.0 (Fail)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p className="leading-relaxed">This table serves as a quick reference guide for converting your percentage to a GPA. In the following sections, we will break down exactly how these GPA calculations are computed.</p>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Step-by-Step Guide to Using Our GPA Converter</h3>
+            <p className="leading-relaxed">Our Percentage to GPA Converter is designed for speed and accuracy. Here is how you can determine your international academic standing in just a few clicks:</p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300">
+                <li>Choose between the <strong>Simple Conversion</strong> or <strong>Advanced (Course-by-Course)</strong> mode at the top of the calculator.</li>
+                <li>Select your current grading system (Percentage, 10-Point Scale, or Letter Grade).</li>
+                <li>Enter your overall percentage or individual course grades.</li>
+                <li>Click the calculate button to instantly view your equivalent GPA on a standard 4.0 scale.</li>
+            </ul>
+            <p className="leading-relaxed">It is a fast, reliable way to translate your academic performance for university admissions abroad.</p>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Who Benefits from This GPA Calculator?</h3>
+            <p className="leading-relaxed">This tool is incredibly useful for a wide range of individuals involved in the international education process. High school and college students applying for higher education abroad can use it to evaluate their semester or annual academic performance. Parents assisting their children with college applications can quickly understand their child's academic standing. Additionally, academic counselors and teachers can use the percentage to GPA converter to accurately assess student profiles when writing Letters of Recommendation (LORs).</p>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">The Math Behind Percentage to GPA Conversion</h3>
+            <p className="leading-relaxed">The standard formula for converting a percentage to any GPA scale is straightforward:</p>
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
+                <code className="text-xl text-orange-400 font-mono">GPA = (Percentage / 100) × Target Scale</code>
+            </div>
+            <p className="leading-relaxed text-sm italic">Note: While the 4.0 scale is the most common requirement for US universities, some institutions may request a 5.0 or 10.0 scale. The formula remains the same; simply swap the target scale multiplier.</p>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Calculating a 4.0 Scale GPA from a Percentage</h3>
+            <p className="leading-relaxed">To manually calculate your GPA on a standard 4.0 scale, simply divide your percentage by 100 and multiply by 4.</p>
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                <code className="text-white font-mono">Formula: GPA = (Percentage / 100) × 4</code>
+            </div>
+            <p className="leading-relaxed">For instance, if you achieved an 80% overall score, the calculation would look like this:</p>
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-2 font-mono text-gray-300">
+                <p>GPA = (80 / 100) × 4</p>
+                <p className="text-white font-bold">GPA = 3.2</p>
+            </div>
+            <p className="leading-relaxed">Alternatively, you can skip the manual math and use our automated GPA calculator above.</p>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Converting Percentages to a 10-Point CGPA</h3>
+            <p className="leading-relaxed">In many educational systems, particularly in India and parts of Europe, a 10-point Cumulative Grade Point Average (CGPA) is standard. A common method to estimate your CGPA from a percentage is to divide your score by 9.5.</p>
+            <p className="leading-relaxed">For example, an 80% translates to roughly an 8.4 CGPA. Here is how different CGPA ranges generally reflect academic performance:</p>
+            
+            <div className="overflow-x-auto mb-6 bg-white/[0.02] rounded-2xl border border-white/5">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="border-b border-white/10 text-white bg-white/5">
+                            <th className="py-4 px-6 font-semibold">CGPA Range</th>
+                            <th className="py-4 px-6 font-semibold">Academic Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">9.5 - 10.0 CGPA</td><td className="py-3 px-6 text-green-400">Outstanding</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">8.5 - 9.4 CGPA</td><td className="py-3 px-6 text-green-400">Excellent</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">7.5 - 8.4 CGPA</td><td className="py-3 px-6 text-yellow-400">Very Good</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">6.5 - 7.4 CGPA</td><td className="py-3 px-6 text-yellow-400">Good</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">5.5 - 6.4 CGPA</td><td className="py-3 px-6 text-orange-400">Average</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">Below 5.5 CGPA</td><td className="py-3 px-6 text-red-400">Below Average</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Quick Reference: Percentage Conversion Examples</h3>
+            <p className="leading-relaxed">Here are a few practical examples demonstrating how an 85% score translates across different international grading scales:</p>
+            
+            <div className="overflow-x-auto mb-6 bg-white/[0.02] rounded-2xl border border-white/5">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="border-b border-white/10 text-white bg-white/5">
+                            <th className="py-4 px-6 font-semibold">Target Scale</th>
+                            <th className="py-4 px-6 font-semibold">Formula Used</th>
+                            <th className="py-4 px-6 font-semibold">Example (85%)</th>
+                            <th className="py-4 px-6 font-semibold">Final GPA</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                        <tr className="hover:bg-white/5 transition-colors">
+                            <td className="py-3 px-6">4.0 Scale</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (Percentage / 100) × 4</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (85 / 100) × 4</td>
+                            <td className="py-3 px-6 font-bold text-white">3.40</td>
+                        </tr>
+                        <tr className="hover:bg-white/5 transition-colors">
+                            <td className="py-3 px-6">5.0 Scale</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (Percentage / 100) × 5</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (85 / 100) × 5</td>
+                            <td className="py-3 px-6 font-bold text-white">4.25</td>
+                        </tr>
+                        <tr className="hover:bg-white/5 transition-colors">
+                            <td className="py-3 px-6">10.0 Scale</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (Percentage / 100) × 10</td>
+                            <td className="py-3 px-6 font-mono text-sm">GPA = (85 / 100) × 10</td>
+                            <td className="py-3 px-6 font-bold text-white">8.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section className="space-y-6">
+            <h3 className="text-2xl font-bold text-white tracking-tight">Percentage vs. GPA vs. CGPA: What's the Difference?</h3>
+            <p className="leading-relaxed">Academic performance is typically measured in three distinct ways: Percentage, GPA, and CGPA. <strong className="text-white">Percentage</strong> reflects your raw academic score, showing the exact proportion of marks you earned out of the total possible marks. <strong className="text-white">GPA (Grade Point Average)</strong> evaluates your performance over a specific term or semester, often factoring in course credits to weigh core subjects more heavily than electives. <strong className="text-white">CGPA (Cumulative Grade Point Average)</strong> provides a holistic view of your entire academic journey by averaging your GPAs across all completed semesters. While percentages are great for precise local grading, CGPA and GPA are the preferred global standards for university admissions because they reward steady academic growth and consistency.</p>
+        </section>
+    </div>
+);
 
 export default GPACalculator;

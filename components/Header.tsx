@@ -1,5 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { FileText, GraduationCap, Map, Wallet, PlaneTakeoff, Calculator } from 'lucide-react';
 
 interface DropdownChild {
   label: string;
@@ -12,17 +13,17 @@ interface DropdownChild {
 }
 
 const getDestinationIcon = (code: string, flagCode: string) => (
-  <div className="w-full h-full relative flex items-center justify-center rounded-xl overflow-hidden shadow-inner border border-white/10 group-hover:border-white/30 transition-colors">
+  <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
     <div className="absolute inset-0 z-0">
       <img 
         src={`https://flagcdn.com/w320/${flagCode}.png`} 
         alt={`${code} flag`} 
-        className="w-full h-full object-cover blur-[2px] scale-125 opacity-60 group-hover:opacity-80 transition-all duration-300"
+        className="w-full h-full object-cover blur-[1px] scale-125 opacity-70 group-hover:opacity-100 transition-all duration-300"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/20 group-hover:from-black/40 group-hover:to-transparent transition-colors duration-300"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-transparent group-hover:from-black/20 transition-colors duration-300"></div>
     </div>
-    <span className="relative z-10 text-white font-bold text-[13px] tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{code}</span>
+    <span className="relative z-10 text-white font-bold text-[11px] tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{code}</span>
   </div>
 );
 
@@ -51,52 +52,40 @@ const navLinks: DropdownChild[] = [
     name: 'resources',
     children: [
       { 
-        label: 'Course Comparison', 
-        href: '/tools/course-comparison', 
-        description: 'Side-by-side analysis.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 10v4" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 14h-2" strokeLinecap="round" strokeLinejoin="round"/></svg> 
-      },
-      { 
         label: 'AI SOP Analyzer', 
         href: '/tools/sop-analyzer', 
         description: 'Instant essay feedback.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 13H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 17H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 9H8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="18" cy="18" r="3" className="text-white/50" fill="currentColor" fillOpacity="0.2" stroke="none"/></svg> 
+        icon: <FileText /> 
       },
       { 
         label: 'F1 Visa Prep', 
         href: '/tools/f1-visa-prep', 
         description: 'AI Mock Interviews.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="16" rx="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 8v8" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+        icon: <GraduationCap /> 
       },
       { 
         label: 'Visa Guides', 
         href: '/tools/visa-guides', 
         description: 'Step-by-step procedures.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 12h20" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" strokeLinecap="round" strokeLinejoin="round"/><path d="M15 12V7a3 3 0 0 0-6 0v5" strokeLinecap="round" strokeLinejoin="round"/></svg> 
-      },
-      { 
-        label: 'Community Forums', 
-        href: '/tools/community-forums', 
-        description: 'Connect with peers.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+        icon: <Map /> 
       },
       { 
         label: 'Living Costs', 
         href: '/tools/cost-of-living-calculator', 
         description: 'Budget estimator.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 18V6" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+        icon: <Wallet /> 
       },
       { 
         label: 'Pre-Departure', 
         href: '/tools/pre-departure-checklists', 
         description: 'Interactive checklists.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" strokeLinejoin="round"/><polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+        icon: <PlaneTakeoff /> 
       },
       { 
         label: 'GPA Calculator', 
         href: '/tools/gpa-calculator', 
         description: 'Grade conversion.', 
-        icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="6" width="20" height="12" rx="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 12h4" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 12h4" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 12v-4" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 12v4" strokeLinecap="round" strokeLinejoin="round"/></svg> 
+        icon: <Calculator /> 
       },
     ]
   },
@@ -159,79 +148,123 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
     if (link.name === 'destinations') {
       return (
         <div className={`fixed ${topClass} left-0 right-0 mx-auto w-[95vw] max-w-[800px] transition-all ease-out duration-300 z-50 ${openDropdown === link.name ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
-            <div className="bg-[#0a101f]/95 backdrop-blur-xl rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.7)] border border-white/10 p-6 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
-                
-                <div className="grid grid-cols-2 gap-4 relative z-10">
-                    {link.children?.map(child => (
-                    <a 
-                        key={child.label} 
+          <div className="bg-[#0a101f]/95 backdrop-blur-xl rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.7)] border border-white/10 p-2 relative overflow-hidden flex flex-col md:flex-row">
+             <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#F6520C]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+             {/* Left Sidebar - Featured */}
+             <div className="w-full md:w-[280px] bg-white/[0.02] rounded-2xl p-6 border border-white/5 flex flex-col justify-between relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 opacity-50"></div>
+                <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center border border-blue-500/20 mb-5 text-blue-400">
+                        <Map className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">Study in USA</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                        Home to Ivy League institutions and tech hubs. Discover top universities, scholarships, and visa guides for the United States.
+                    </p>
+                </div>
+                <div className="mt-8 relative z-10">
+                    <a href="/destinations/usa" onClick={(e) => handleNavClick(e, '/destinations/usa')} className="flex items-center justify-between w-full px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl text-white text-sm font-medium transition-all group/btn">
+                        Explore USA
+                        <svg className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    </a>
+                </div>
+             </div>
+
+             {/* Right Content - Grid */}
+             <div className="flex-1 p-4 md:p-6">
+                <div className="mb-4 px-2 flex items-center justify-between">
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Global Destinations</h4>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-1">
+                  {link.children?.filter(c => c.label !== 'United States').map((child) => (
+                    <a
+                        key={child.label}
                         href={child.href!}
                         onClick={(e) => handleNavClick(e, child.href!)}
-                        className="group flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
+                        className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200"
                     >
-                        <div className="relative w-12 h-12 flex-shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10 group-hover:ring-white/30 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
+                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 shadow-inner overflow-hidden transition-all duration-300">
+                            <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300 z-10 pointer-events-none"></div>
                             {child.icon}
                         </div>
-                        <div className="flex flex-col">
-                            <span className="font-bold text-gray-200 group-hover:text-white transition-colors mb-0.5 text-sm">{child.label}</span>
-                            <span className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors font-light">{child.description}</span>
+                        <div>
+                            <p className="font-semibold text-gray-200 group-hover:text-white transition-colors text-sm">
+                                {child.label}
+                            </p>
+                            <p className="text-[11px] text-gray-500 group-hover:text-gray-400 transition-colors line-clamp-1 mt-0.5">
+                                {child.description}
+                            </p>
                         </div>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ml-auto mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
                     </a>
-                    ))}
+                  ))}
                 </div>
-            </div>
+             </div>
+          </div>
         </div>
       );
     }
     if (link.name === 'resources') {
       return (
-        <div className={`fixed ${topClass} left-0 right-0 mx-auto w-[95vw] max-w-[900px] transition-all ease-out duration-300 z-50 ${openDropdown === link.name ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
-          <div className="bg-[#0a101f]/95 backdrop-blur-xl rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 p-6 relative overflow-hidden">
-             <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#F6520C]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-             <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div className={`fixed ${topClass} left-0 right-0 mx-auto w-[95vw] max-w-[800px] transition-all ease-out duration-300 z-50 ${openDropdown === link.name ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
+          <div className="bg-[#0a101f]/95 backdrop-blur-xl rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.7)] border border-white/10 p-2 relative overflow-hidden flex flex-col md:flex-row">
+             <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#F6520C]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
-              {link.children?.map((child, index) => {
-                 const gradients = [
-                    'from-blue-600 to-cyan-400', 
-                    'from-violet-600 to-fuchsia-400',
-                    'from-orange-500 to-red-500',
-                    'from-emerald-500 to-teal-400',
-                    'from-pink-500 to-rose-500',
-                    'from-amber-400 to-orange-500',
-                    'from-indigo-500 to-blue-500',
-                    'from-green-500 to-emerald-600',
-                    'from-red-500 to-pink-600',
-                 ];
-                 const gradient = gradients[index % gradients.length];
-
-                 return (
-                    <a
-                    key={child.label}
-                    href={child.href!}
-                    onClick={(e) => handleNavClick(e, child.href!)}
-                    className="group flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10 relative overflow-hidden"
-                    >
-                    <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-black/40 flex items-center justify-center border border-white/5 group-hover:border-transparent transition-all duration-300 relative overflow-hidden`}>
-                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                        <div className="relative z-10 text-gray-400 group-hover:text-white transition-colors duration-300">
-                             {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-6 h-6" }) : null}
-                        </div>
+             {/* Left Sidebar - Featured */}
+             <div className="w-full md:w-[280px] bg-white/[0.02] rounded-2xl p-6 border border-white/5 flex flex-col justify-between relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#F6520C] to-orange-400 opacity-50"></div>
+                <div>
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F6520C]/20 to-orange-500/10 flex items-center justify-center border border-[#F6520C]/20 mb-5 text-[#F6520C]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2v6h6" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 13H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 17H8" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 9H8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="18" cy="18" r="3" className="text-[#F6520C]/50" fill="currentColor" fillOpacity="0.2" stroke="none"/></svg>
                     </div>
-                    <div>
-                        <p className="font-bold text-gray-200 group-hover:text-white transition-colors mb-0.5 text-sm">
-                            {child.label}
-                        </p>
-                        <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors leading-tight font-light">{child.description}</p>
-                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">AI SOP Analyzer</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                        Get instant, AI-driven feedback on your Statement of Purpose. Improve structure, tone, and maximize your admission chances.
+                    </p>
+                </div>
+                <div className="mt-8">
+                    <a href="/tools/sop-analyzer" onClick={(e) => handleNavClick(e, '/tools/sop-analyzer')} className="flex items-center justify-between w-full px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl text-white text-sm font-medium transition-all group/btn">
+                        Try it for free
+                        <svg className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </a>
-              )})}
-            </div>
+                </div>
+             </div>
+
+             {/* Right Content - Grid */}
+             <div className="flex-1 p-4 md:p-6">
+                <div className="mb-4 px-2 flex items-center justify-between">
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest">More Tools & Resources</h4>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-1">
+                  {link.children?.filter(c => c.label !== 'AI SOP Analyzer').map((child) => (
+                    <a
+                        key={child.label}
+                        href={child.href!}
+                        onClick={(e) => handleNavClick(e, child.href!)}
+                        className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200"
+                    >
+                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#F6520C]/50 shadow-inner overflow-hidden transition-all duration-300">
+                            <div className="absolute inset-0 bg-[#F6520C]/0 group-hover:bg-[#F6520C]/10 transition-colors duration-300"></div>
+                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#F6520C]/20 blur-md rounded-full group-hover:bg-[#F6520C]/40 transition-all"></div>
+                            <div className="relative z-10 text-gray-400 group-hover:text-[#F6520C] transition-colors duration-300">
+                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 1.5 }) : null}
+                            </div>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-200 group-hover:text-white transition-colors text-sm">
+                                {child.label}
+                            </p>
+                            <p className="text-[11px] text-gray-500 group-hover:text-gray-400 transition-colors line-clamp-1 mt-0.5">
+                                {child.description}
+                            </p>
+                        </div>
+                    </a>
+                  ))}
+                </div>
+             </div>
           </div>
         </div>
       );
@@ -331,7 +364,8 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                              {navLinks.find(l => l.name === 'destinations')?.children?.map((child) => (
                                 <li key={child.label}>
                                      <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
-                                        <div className="flex-shrink-0 w-10 h-10 rounded-lg relative overflow-hidden ring-1 ring-white/10">
+                                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 shadow-inner overflow-hidden transition-all duration-300">
+                                            <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300 z-10 pointer-events-none"></div>
                                             {child.icon}
                                         </div>
                                         <div>
@@ -346,32 +380,23 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                     
                     <MobileAccordion title="Resources" isOpen={mobileNavOpen === 'resources'} onToggle={() => setMobileNavOpen(p => p === 'resources' ? null : 'resources')}>
                         <ul className="space-y-3 p-2">
-                             {navLinks.find(l => l.name === 'resources')?.children?.map((child, index) => {
-                                 const gradients = [
-                                    'from-blue-600 to-cyan-400', 
-                                    'from-violet-600 to-fuchsia-400',
-                                    'from-orange-500 to-red-500',
-                                    'from-emerald-500 to-teal-400',
-                                    'from-pink-500 to-rose-500',
-                                    'from-amber-400 to-orange-500',
-                                 ];
-                                 const gradient = gradients[index % gradients.length];
-                                 return (
+                             {navLinks.find(l => l.name === 'resources')?.children?.map((child) => (
                                 <li key={child.label}>
                                      <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
-                                        <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-black/40 flex items-center justify-center relative overflow-hidden`}>
-                                            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-30 group-hover:opacity-50 transition-opacity`}></div>
-                                            <div className="relative z-10 text-gray-300 group-hover:text-white">
-                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5" }) : null}
+                                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#F6520C]/50 shadow-inner overflow-hidden transition-all duration-300">
+                                            <div className="absolute inset-0 bg-[#F6520C]/0 group-hover:bg-[#F6520C]/10 transition-colors duration-300"></div>
+                                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#F6520C]/20 blur-md rounded-full group-hover:bg-[#F6520C]/40 transition-all"></div>
+                                            <div className="relative z-10 text-gray-400 group-hover:text-[#F6520C] transition-colors duration-300">
+                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 1.5 }) : null}
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-bold text-white text-base">{child.label}</p>
+                                            <p className="font-bold text-white text-base group-hover:text-[#F6520C] transition-colors">{child.label}</p>
                                             <p className="text-xs text-gray-400 mt-0.5 font-light">{child.description}</p>
                                         </div>
                                     </a>
                                 </li>
-                            )})}
+                            ))}
                         </ul>
                     </MobileAccordion>
                 </ul>
