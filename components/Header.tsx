@@ -1,29 +1,28 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { FileText, GraduationCap, Map, Wallet, PlaneTakeoff, Calculator } from 'lucide-react';
+import { FileText, GraduationCap, Map, Wallet, PlaneTakeoff, Calculator, PenTool } from 'lucide-react';
 
 interface DropdownChild {
   label: string;
   href?: string;
   description?: string;
   icon?: React.ReactElement;
+  color?: string;
   isDropdown?: boolean;
   name?: string;
   children?: DropdownChild[];
 }
 
 const getDestinationIcon = (code: string, flagCode: string) => (
-  <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
-    <div className="absolute inset-0 z-0">
-      <img 
-        src={`https://flagcdn.com/w320/${flagCode}.png`} 
-        alt={`${code} flag`} 
-        className="w-full h-full object-cover blur-[1px] scale-125 opacity-70 group-hover:opacity-100 transition-all duration-300"
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-transparent group-hover:from-black/20 transition-colors duration-300"></div>
-    </div>
-    <span className="relative z-10 text-white font-bold text-[11px] tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{code}</span>
+  <div className="w-full h-full relative flex items-center justify-center overflow-hidden rounded-xl">
+    <img 
+      src={`https://flagcdn.com/w320/${flagCode}.png`} 
+      alt={`${code} flag`} 
+      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+      referrerPolicy="no-referrer"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
+    <span className="absolute bottom-1 right-1.5 text-white font-bold text-[10px] tracking-wider drop-shadow-md">{code}</span>
   </div>
 );
 
@@ -33,14 +32,14 @@ const navLinks: DropdownChild[] = [
     isDropdown: true, 
     name: 'destinations',
     children: [
-      { label: 'United States', href: '/destinations/usa', description: 'Ivy League & Tech Hubs', icon: getDestinationIcon('US', 'us') },
-      { label: 'Canada', href: '/destinations/canada', description: 'Welcoming & High-Tech', icon: getDestinationIcon('CA', 'ca') },
-      { label: 'United Kingdom', href: '/destinations/uk', description: 'Historic Excellence', icon: getDestinationIcon('UK', 'gb') },
-      { label: 'Australia', href: '/destinations/australia', description: 'Innovation & Lifestyle', icon: getDestinationIcon('AU', 'au') },
-      { label: 'Germany', href: '/destinations/germany', description: 'Engineering Powerhouse', icon: getDestinationIcon('DE', 'de') },
-      { label: 'Ireland', href: '/destinations/ireland', description: 'Europe\'s Silicon Valley', icon: getDestinationIcon('IE', 'ie') },
-      { label: 'UAE', href: '/destinations/uae', description: 'Modern & Fast-Growing', icon: getDestinationIcon('AE', 'ae') },
-      { label: 'New Zealand', href: '/destinations/new-zealand', description: 'Research & Nature', icon: getDestinationIcon('NZ', 'nz') },
+      { label: 'United States', href: '/destinations/usa', description: 'Ivy League & Tech Hubs', icon: getDestinationIcon('US', 'us'), color: 'from-blue-500 to-indigo-500' },
+      { label: 'Canada', href: '/destinations/canada', description: 'Welcoming & High-Tech', icon: getDestinationIcon('CA', 'ca'), color: 'from-red-500 to-rose-500' },
+      { label: 'United Kingdom', href: '/destinations/uk', description: 'Historic Excellence', icon: getDestinationIcon('UK', 'gb'), color: 'from-blue-600 to-red-500' },
+      { label: 'Australia', href: '/destinations/australia', description: 'Innovation & Lifestyle', icon: getDestinationIcon('AU', 'au'), color: 'from-sky-500 to-blue-600' },
+      { label: 'Germany', href: '/destinations/germany', description: 'Engineering Powerhouse', icon: getDestinationIcon('DE', 'de'), color: 'from-amber-500 to-orange-500' },
+      { label: 'Ireland', href: '/destinations/ireland', description: 'Europe\'s Silicon Valley', icon: getDestinationIcon('IE', 'ie'), color: 'from-emerald-500 to-green-600' },
+      { label: 'UAE', href: '/destinations/uae', description: 'Modern & Fast-Growing', icon: getDestinationIcon('AE', 'ae'), color: 'from-teal-500 to-emerald-500' },
+      { label: 'New Zealand', href: '/destinations/new-zealand', description: 'Research & Nature', icon: getDestinationIcon('NZ', 'nz'), color: 'from-blue-400 to-indigo-500' },
     ]
   },
   { href: '/college-finder', label: 'College Finder' },
@@ -52,40 +51,53 @@ const navLinks: DropdownChild[] = [
     name: 'resources',
     children: [
       { 
+        label: 'Premium SOP Generator', 
+        href: '/tools/sop-generator', 
+        description: 'Counselor-grade essays.', 
+        icon: <PenTool />,
+        color: 'from-[#F6520C] to-orange-400'
+      },
+      { 
         label: 'AI SOP Analyzer', 
         href: '/tools/sop-analyzer', 
         description: 'Instant essay feedback.', 
-        icon: <FileText /> 
+        icon: <FileText />,
+        color: 'from-blue-500 to-cyan-400'
       },
       { 
         label: 'F1 Visa Prep', 
         href: '/tools/f1-visa-prep', 
         description: 'AI Mock Interviews.', 
-        icon: <GraduationCap /> 
+        icon: <GraduationCap />,
+        color: 'from-purple-500 to-pink-500'
       },
       { 
         label: 'Visa Guides', 
         href: '/tools/visa-guides', 
         description: 'Step-by-step procedures.', 
-        icon: <Map /> 
+        icon: <Map />,
+        color: 'from-emerald-500 to-teal-400'
       },
       { 
         label: 'Living Costs', 
         href: '/tools/cost-of-living-calculator', 
         description: 'Budget estimator.', 
-        icon: <Wallet /> 
+        icon: <Wallet />,
+        color: 'from-amber-500 to-yellow-400'
       },
       { 
         label: 'Pre-Departure', 
         href: '/tools/pre-departure-checklists', 
         description: 'Interactive checklists.', 
-        icon: <PlaneTakeoff /> 
+        icon: <PlaneTakeoff />,
+        color: 'from-indigo-500 to-blue-500'
       },
       { 
         label: 'GPA Calculator', 
         href: '/tools/gpa-calculator', 
         description: 'Grade conversion.', 
-        icon: <Calculator /> 
+        icon: <Calculator />,
+        color: 'from-rose-500 to-red-400'
       },
     ]
   },
@@ -186,9 +198,17 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                         onClick={(e) => handleNavClick(e, child.href!)}
                         className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200"
                     >
-                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 shadow-inner overflow-hidden transition-all duration-300">
-                            <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300 z-10 pointer-events-none"></div>
-                            {child.icon}
+                        <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${child.color || 'from-white/10 to-white/5'} p-[1px] group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300`}>
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                            <div className="w-full h-full bg-[#0a101f]/90 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden relative">
+                                {child.icon && React.isValidElement(child.icon) && child.icon.type === 'div' ? (
+                                    child.icon
+                                ) : (
+                                    <div className={`relative z-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                                        {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 2 }) : null}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <div>
                             <p className="font-semibold text-gray-200 group-hover:text-white transition-colors text-sm">
@@ -246,11 +266,12 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                         onClick={(e) => handleNavClick(e, child.href!)}
                         className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200"
                     >
-                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#F6520C]/50 shadow-inner overflow-hidden transition-all duration-300">
-                            <div className="absolute inset-0 bg-[#F6520C]/0 group-hover:bg-[#F6520C]/10 transition-colors duration-300"></div>
-                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#F6520C]/20 blur-md rounded-full group-hover:bg-[#F6520C]/40 transition-all"></div>
-                            <div className="relative z-10 text-gray-400 group-hover:text-[#F6520C] transition-colors duration-300">
-                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 1.5 }) : null}
+                        <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${child.color || 'from-white/10 to-white/5'} p-[1px] group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300`}>
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                            <div className="w-full h-full bg-[#0a101f]/90 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden relative">
+                                <div className={`relative z-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                                    {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 2 }) : null}
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -364,9 +385,16 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                              {navLinks.find(l => l.name === 'destinations')?.children?.map((child) => (
                                 <li key={child.label}>
                                      <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
-                                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 shadow-inner overflow-hidden transition-all duration-300">
-                                            <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300 z-10 pointer-events-none"></div>
-                                            {child.icon}
+                                        <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${child.color || 'from-white/10 to-white/5'} p-[1px] group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300`}>
+                                            <div className="w-full h-full bg-[#0a101f]/90 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden relative">
+                                                {child.icon && React.isValidElement(child.icon) && child.icon.type === 'div' ? (
+                                                    child.icon
+                                                ) : (
+                                                    <div className={`relative z-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                                                        {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 2 }) : null}
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                         <div>
                                             <p className="font-bold text-white text-base">{child.label}</p>
@@ -383,11 +411,11 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                              {navLinks.find(l => l.name === 'resources')?.children?.map((child) => (
                                 <li key={child.label}>
                                      <a href={child.href!} onClick={(e) => handleNavClick(e, child.href!)} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all w-full group active:scale-95">
-                                        <div className="relative flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-b from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#F6520C]/50 shadow-inner overflow-hidden transition-all duration-300">
-                                            <div className="absolute inset-0 bg-[#F6520C]/0 group-hover:bg-[#F6520C]/10 transition-colors duration-300"></div>
-                                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#F6520C]/20 blur-md rounded-full group-hover:bg-[#F6520C]/40 transition-all"></div>
-                                            <div className="relative z-10 text-gray-400 group-hover:text-[#F6520C] transition-colors duration-300">
-                                                {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 1.5 }) : null}
+                                        <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${child.color || 'from-white/10 to-white/5'} p-[1px] group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300`}>
+                                            <div className="w-full h-full bg-[#0a101f]/90 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden relative">
+                                                <div className={`relative z-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                                                    {child.icon && React.isValidElement(child.icon) ? React.cloneElement(child.icon as React.ReactElement<any>, { className: "w-5 h-5", strokeWidth: 2 }) : null}
+                                                </div>
                                             </div>
                                         </div>
                                         <div>

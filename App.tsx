@@ -17,6 +17,7 @@ import ToolsPage from './components/ToolsPage';
 import GPACalculator from './components/GPACalculator';
 import CourseComparison from './components/CourseComparison';
 import AISOPSnalyzer from './components/AISOPSnalyzer';
+import SOPGenerator from './components/SOPGenerator';
 import VisaGuides from './components/VisaGuides';
 import ScholarshipFinder from './components/ScholarshipFinder';
 import CommunityForums from './components/CommunityForums';
@@ -41,11 +42,12 @@ import BlogDetail from './components/BlogDetail';
 import { blogPosts } from './data/blogs';
 
 
-type ToolID = 'course-comparison' | 'sop-analyzer' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
+type ToolID = 'course-comparison' | 'sop-analyzer' | 'sop-generator' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
 
 const toolDetails: Record<ToolID, {name: string, description: string}> = {
     'course-comparison': { name: 'Course Comparison', description: 'Compare courses from different universities side-by-side to find your perfect fit.' },
     'sop-analyzer': { name: 'AI SOP Analyzer', description: 'Get instant, data-driven feedback on your Statement of Purpose to boost your application.' },
+    'sop-generator': { name: 'Premium SOP Generator', description: 'Generate a highly personalized, counselor-grade Statement of Purpose.' },
     'visa-guides': { name: 'Visa Application Guides', description: 'Access step-by-step guides for student visa applications for top study destinations.' },
     'scholarship-finder': { name: 'Scholarship Finder', description: 'Search our comprehensive database to find scholarships that match your profile and needs.' },
     'community-forums': { name: 'Community Forums', description: 'Connect with fellow students, ask questions, and share experiences in our dedicated forums.' },
@@ -75,6 +77,7 @@ const pageMetadata: Record<string, { title: string, description: string }> = {
     '/destinations/new-zealand': { title: 'Study in New Zealand | Top Universities & Guide | GradNiche', description: 'Discover a world-class education, stunning landscapes, and a high quality of life in New Zealand. Your complete guide with GradNiche.' },
     '/tools/course-comparison': { title: 'Course Comparison Tool | Compare Programs | GradNiche', description: 'Compare university courses side-by-side. Analyze tuition, duration, requirements, and more to find the perfect program for your study abroad journey.' },
     '/tools/sop-analyzer': { title: 'AI SOP Analyzer | Instant Essay Feedback | GradNiche', description: 'Improve your Statement of Purpose with our AI Analyzer. Get instant, data-driven feedback on clarity, storytelling, and impact to boost your application.' },
+    '/tools/sop-generator': { title: 'Premium SOP Generator | Counselor-Grade Essays | GradNiche', description: 'Generate a highly personalized, premium Statement of Purpose tailored for top universities globally.' },
     '/tools/f1-visa-prep': { title: 'F1 Visa Interview Prep | AI Mock Interview | GradNiche', description: 'Practice for your US F-1 student visa interview with a realistic AI tool. Get confident with common questions, tips, and sample answers from GradNiche.' },
     '/tools/visa-guides': { title: 'Student Visa Guides | Application Help | GradNiche', description: 'Access detailed, step-by-step student visa application guides for top destinations like the USA, UK, Canada, and more. Prepare with GradNiche.' },
     '/tools/scholarship-finder': { title: 'Scholarship Finder | Fund Your Studies Abroad | GradNiche', description: 'Find funding for your education. Search our comprehensive database for international scholarships that match your profile, country, and field of study.' },
@@ -347,6 +350,7 @@ const App: React.FC = () => {
         if (toolId === 'course-comparison') return <CourseComparison onBack={() => navigate('/')} navigate={navigate} />;
         if (toolId === 'gpa-calculator') return <GPACalculator onBack={() => navigate('/')} navigate={navigate} />;
         if (toolId === 'sop-analyzer') return <AISOPSnalyzer onBack={() => navigate('/')} />;
+        if (toolId === 'sop-generator') return <SOPGenerator />;
         if (toolId === 'f1-visa-prep') return <F1VisaPrep onBack={() => navigate('/')} />;
         if (toolId === 'visa-guides') return <VisaGuides onBack={() => navigate('/')} />;
         if (toolId === 'scholarship-finder') return <ScholarshipFinder onBack={() => navigate('/')} />;
