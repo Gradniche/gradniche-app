@@ -32,7 +32,6 @@ import CookiePolicy from './components/CookiePolicy';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import { University, Program, universities } from './data/universities';
 import { destinationData } from './data/destinations';
-import CommunityHighlights from './components/CommunityHighlights';
 import F1VisaPrep from './components/F1VisaPrep';
 import F1VisaPrepFeature from './components/F1VisaPrepFeature';
 import { User, users as forumUsers } from './data/forums';
@@ -272,10 +271,10 @@ const App: React.FC = () => {
           <Hero navigate={navigate} />
           <div className="scroll-animate"><PlatformFeatures /></div>
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
+          <div className="scroll-animate"><AIDestinationFinder /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
           <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
-          <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
         </>
       );
@@ -379,10 +378,10 @@ const App: React.FC = () => {
           <Hero navigate={navigate} />
           <div className="scroll-animate"><PlatformFeatures /></div>
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
+          <div className="scroll-animate"><AIDestinationFinder /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
           <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
-          <div className="scroll-animate"><CommunityHighlights navigate={navigate} /></div>
           <div className="scroll-animate"><F1VisaPrepFeature navigate={navigate} /></div>
         </>
       );

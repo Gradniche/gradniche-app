@@ -367,9 +367,9 @@ ${currentText}`;
       const opt = {
         margin:       1,
         filename:     `${formData.fullName ? formData.fullName.replace(/\s+/g, '_') : 'Student'}_SOP.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
+        image:        { type: 'jpeg' as const, quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
       };
       html2pdf().set(opt).from(element).save();
     }

@@ -1,87 +1,211 @@
-
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Search, PenTool, ArrowRight, Sparkles } from 'lucide-react';
 
 interface CoreToolsProps {
     navigate: (path: string) => void;
 }
 
-const toolsData = [
-  {
-    title: 'College Finder',
-    description: 'Search, filter, and compare thousands of universities. Your perfect match is just a few clicks away.',
-    icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-    ),
-    color: 'from-blue-500 to-cyan-500',
-    cta: 'Launch Finder',
-    action: '/college-finder',
-  },
-  {
-    title: 'Resource Hub',
-    description: 'In-depth articles and downloadable guides to navigate every aspect of studying abroad.',
-    icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-    ),
-    color: 'from-purple-500 to-pink-500',
-    cta: 'Explore Resources',
-    action: '/tools/visa-guides',
-  },
-  {
-    title: 'AI-Powered Tools',
-    description: 'Leverage artificial intelligence to find the right destination or get instant feedback on your application essays.',
-     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    color: 'from-orange-500 to-red-500',
-    cta: 'Discover AI Tools',
-    action: '/tools/sop-analyzer',
-  },
-];
-
 const CoreTools: React.FC<CoreToolsProps> = ({ navigate }) => {
   return (
-    <section id="college-finder" className="py-24 relative bg-[#0a101f] overflow-hidden">
-      {/* Subtle background elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+    <section id="core-tools" className="py-32 relative bg-[#020408] overflow-hidden">
+      {/* Cinematic Background Lines */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-900/10 blur-[150px] rounded-full mix-blend-screen"></div>
+        <div className="absolute bottom-[20%] left-[-10%] w-[50%] h-[50%] bg-orange-900/10 blur-[150px] rounded-full mix-blend-screen"></div>
+      </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-            <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Command Center</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Your Study Abroad Toolkit</h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
-            Everything you need to plan your education journey, all in one place.
-          </p>
-        </div>
+      <div className="container mx-auto px-6 relative z-10 space-y-40 max-w-7xl">
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {toolsData.map((tool) => (
-                <div key={tool.title} className="relative group overflow-hidden bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] text-center hover:bg-white/[0.04] transition-all duration-500 border border-white/5 hover:border-white/10 flex flex-col items-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5">
-                    {/* Gradient Glow */}
-                    <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${tool.color} opacity-10 blur-[80px] group-hover:opacity-20 transition-opacity duration-500`}></div>
-                    
-                    <div className="relative z-10 flex flex-col items-center h-full w-full">
-                        <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                            {tool.icon}
-                        </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{tool.title}</h3>
-                        <p className="text-gray-400 font-light flex-grow mb-10 leading-relaxed">{tool.description}</p>
-                        <a href={tool.action} onClick={(e) => { e.preventDefault(); navigate(tool.action); }} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3.5 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] font-semibold w-full sm:w-auto shadow-lg hover:shadow-[#F6520C]/30 flex items-center justify-center gap-2 group/btn">
-                          {tool.cta}
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
-                    </div>
+        {/* Tool 1: College Finder */}
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <motion.div 
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:w-1/2 order-2 lg:order-1"
+            >
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(255,255,255,0.02)_inset]">
+                    <Search className="w-4 h-4 text-blue-400" />
+                    <span className="text-xs font-medium tracking-[0.2em] text-gray-300 uppercase">Smart Discovery</span>
                 </div>
-            ))}
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tighter leading-[1.1]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Find the perfect <br/>
+                    <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200 pr-4">university match.</span>
+                </h2>
+                <p className="text-lg text-gray-400 mb-10 font-light leading-relaxed max-w-lg">
+                    Stop endlessly scrolling through outdated forums. Our AI-driven College Finder uses real-time global data to match your unique profile with thousands of programs instantly.
+                </p>
+                
+                <motion.button 
+                    onClick={() => navigate('/college-finder')}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.2)]"
+                >
+                    <span className="relative z-10 flex items-center gap-3 tracking-wide">
+                        Launch Finder
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
+            </motion.div>
+
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95, rotateY: 10 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:w-1/2 order-1 lg:order-2 relative perspective-1000 w-full"
+            >
+                {/* Cinematic Glow Behind Mockup */}
+                <div className="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full pointer-events-none"></div>
+                
+                <motion.div 
+                    whileHover={{ rotateY: -5, rotateX: 5, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="relative bg-[#0a0d14]/80 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl transform-gpu overflow-hidden"
+                >
+                    {/* Glass Reflection */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-50 pointer-events-none"></div>
+                    
+                    {/* Abstract UI Mockup */}
+                    <div className="flex items-center gap-3 mb-8 border-b border-white/5 pb-6">
+                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                    </div>
+                    <div className="space-y-6 relative z-10">
+                        <div className="h-14 bg-white/5 border border-white/5 rounded-2xl w-full flex items-center px-6 shadow-inner">
+                            <Search className="w-5 h-5 text-white/40 mr-4" />
+                            <div className="h-2 bg-white/20 rounded-full w-1/3"></div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-6">
+                            <motion.div 
+                                animate={{ y: [0, -8, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="h-40 bg-gradient-to-br from-blue-500/10 to-cyan-500/5 rounded-2xl border border-white/10 p-6 shadow-lg backdrop-blur-md"
+                            >
+                                <div className="w-10 h-10 rounded-full bg-blue-500/20 mb-4 flex items-center justify-center">
+                                    <div className="w-4 h-4 bg-blue-400 rounded-full"></div>
+                                </div>
+                                <div className="h-3 bg-white/20 rounded-full w-2/3 mb-3"></div>
+                                <div className="h-2 bg-white/10 rounded-full w-full mb-2"></div>
+                                <div className="h-2 bg-white/10 rounded-full w-4/5"></div>
+                            </motion.div>
+                            <motion.div 
+                                animate={{ y: [0, 8, 0] }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                                className="h-40 bg-gradient-to-br from-indigo-500/10 to-purple-500/5 rounded-2xl border border-white/10 p-6 shadow-lg backdrop-blur-md"
+                            >
+                                <div className="w-10 h-10 rounded-full bg-indigo-500/20 mb-4 flex items-center justify-center">
+                                    <div className="w-4 h-4 bg-indigo-400 rounded-full"></div>
+                                </div>
+                                <div className="h-3 bg-white/20 rounded-full w-3/4 mb-3"></div>
+                                <div className="h-2 bg-white/10 rounded-full w-full mb-2"></div>
+                                <div className="h-2 bg-white/10 rounded-full w-5/6"></div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </motion.div>
+            </motion.div>
         </div>
+
+        {/* Tool 2: SOP Generator */}
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95, rotateY: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:w-1/2 relative perspective-1000 w-full"
+            >
+                {/* Cinematic Glow Behind Mockup */}
+                <div className="absolute inset-0 bg-orange-500/20 blur-[120px] rounded-full pointer-events-none"></div>
+                
+                <motion.div 
+                    whileHover={{ rotateY: 5, rotateX: 5, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="relative bg-[#0a0d14]/80 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl transform-gpu overflow-hidden"
+                >
+                    {/* Glass Reflection */}
+                    <div className="absolute inset-0 bg-gradient-to-tl from-white/5 to-transparent opacity-50 pointer-events-none"></div>
+                    
+                    {/* Abstract UI Mockup */}
+                    <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                                <PenTool className="w-4 h-4 text-orange-400" />
+                            </div>
+                            <div className="h-3 bg-white/20 rounded-full w-24"></div>
+                        </div>
+                        <div className="w-20 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                            <div className="w-12 h-1.5 bg-white/20 rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <div className="space-y-4 relative z-10">
+                        <motion.div 
+                            initial={{ width: "0%" }}
+                            whileInView={{ width: "100%" }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                            className="h-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full mb-8 border border-white/5"
+                        ></motion.div>
+                        
+                        <div className="space-y-3">
+                            <div className="h-3 bg-white/10 rounded-full w-full"></div>
+                            <div className="h-3 bg-white/10 rounded-full w-11/12"></div>
+                            <div className="h-3 bg-white/10 rounded-full w-full"></div>
+                            <div className="h-3 bg-white/10 rounded-full w-4/5"></div>
+                            <div className="h-3 bg-white/10 rounded-full w-full"></div>
+                            <div className="h-3 bg-white/10 rounded-full w-3/4"></div>
+                        </div>
+                        
+                        <div className="mt-8 pt-6 border-t border-white/5 flex justify-end">
+                            <div className="w-24 h-8 rounded-lg bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
+                                <div className="w-12 h-2 bg-orange-400/50 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            </motion.div>
+
+            <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:w-1/2"
+            >
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(255,255,255,0.02)_inset]">
+                    <Sparkles className="w-4 h-4 text-orange-400" />
+                    <span className="text-xs font-medium tracking-[0.2em] text-gray-300 uppercase">AI Writing Assistant</span>
+                </div>
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tighter leading-[1.1]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Craft a winning <br/>
+                    <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-300 pr-4">Statement of Purpose.</span>
+                </h2>
+                <p className="text-lg text-gray-400 mb-10 font-light leading-relaxed max-w-lg">
+                    Your story deserves to be heard. Our Premium SOP Generator helps you articulate your ambitions, experiences, and goals into a compelling narrative that admissions committees love.
+                </p>
+                
+                <motion.button 
+                    onClick={() => navigate('/tools/sop-generator')}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(246,82,12,0.2)]"
+                >
+                    <span className="relative z-10 flex items-center gap-3 tracking-wide">
+                        Start Writing
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
+            </motion.div>
+        </div>
+
       </div>
     </section>
   );
