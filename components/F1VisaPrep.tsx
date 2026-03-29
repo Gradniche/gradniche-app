@@ -368,15 +368,15 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(prepData[0]?.id || null);
 
     return (
-        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+        <section className="py-24 relative bg-[#050a14] min-h-screen overflow-hidden">
             {/* Subtle background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="mb-12">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span className="font-medium">Back to Tools</span>
                     </button>
@@ -385,7 +385,7 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                 <div className="animate-fade-in">
                     <div className="text-center mb-16">
                         <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                            <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Visa Prep</span>
+                            <span className="text-xs font-semibold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase">Visa Prep</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Ace Your USA F-1 Visa Interview</h1>
                         <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
@@ -393,16 +393,16 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                         </p>
                     </div>
 
-                    <div className="bg-red-900/10 border border-red-500/20 backdrop-blur-md p-8 sm:p-10 rounded-3xl mb-16 shadow-2xl">
+                    <div className="bg-purple-900/10 border border-purple-500/20 backdrop-blur-md p-8 sm:p-10 rounded-[32px] mb-16 shadow-2xl">
                         <h2 className="text-2xl font-bold text-white mb-8 tracking-tight flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                             Key Things to Avoid
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {whatToAvoidData.map((item, index) => (
-                                <div key={item.title} className="bg-black/20 p-6 rounded-2xl border border-red-500/10 hover:border-red-500/30 transition-colors">
-                                    <h3 className="font-bold text-red-400 text-lg mb-2 flex items-center gap-2">
-                                        <span className="bg-red-500/20 text-red-400 w-6 h-6 rounded-full flex items-center justify-center text-sm">{index + 1}</span>
+                                <div key={item.title} className="bg-black/20 p-6 rounded-[24px] border border-purple-500/10 hover:border-purple-500/30 transition-colors">
+                                    <h3 className="font-bold text-purple-400 text-lg mb-2 flex items-center gap-2">
+                                        <span className="bg-purple-500/20 text-purple-400 w-6 h-6 rounded-full flex items-center justify-center text-sm">{index + 1}</span>
                                         {item.title}
                                     </h3>
                                     <p className="text-gray-400 font-light leading-relaxed">{item.description}</p>
@@ -411,44 +411,44 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                         </div>
                     </div>
 
-                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl mb-16">
+                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl mb-16">
                         <h2 className="text-3xl font-bold text-white mb-8 text-center tracking-tight">What to Wear: Your Interview Attire</h2>
                         <p className="text-gray-400 text-center mb-10 max-w-3xl mx-auto font-light">First impressions matter. Dressing professionally shows respect for the process and the consular officer. Aim for formal or business-formal attire. Comfort is important, but neatness and professionalism are key.</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {/* For Men */}
-                            <div className="bg-black/20 p-8 rounded-2xl border border-white/5 hover:bg-white/[0.04] transition-colors">
+                            <div className="bg-black/20 p-8 rounded-[24px] border border-white/5 hover:bg-white/[0.04] transition-colors">
                                 <div className="flex items-center space-x-4 mb-6">
-                                    <div className="bg-[#F6520C]/10 p-3 rounded-xl border border-[#F6520C]/20">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <div className="bg-blue-500/10 p-3 rounded-xl border border-blue-500/20">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                     </div>
                                     <h3 className="text-2xl font-bold text-white tracking-tight">For Men / Boys</h3>
                                 </div>
                                 <ul className="space-y-4 text-gray-400 font-light">
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Top:</strong> A light-colored, full-sleeved formal shirt (white, light blue).</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Bottom:</strong> Dark formal trousers (black, navy, dark grey). No jeans.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Tie (Recommended):</strong> A simple, conservative tie.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Footwear:</strong> Polished formal leather shoes (black/brown) with dark socks.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Grooming:</strong> Neat hair and clean-shaven or a well-groomed beard. Avoid strong cologne.</span></li>
+                                    <li className="flex items-start"><span className="text-blue-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Top:</strong> A light-colored, full-sleeved formal shirt (white, light blue).</span></li>
+                                    <li className="flex items-start"><span className="text-blue-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Bottom:</strong> Dark formal trousers (black, navy, dark grey). No jeans.</span></li>
+                                    <li className="flex items-start"><span className="text-blue-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Tie (Recommended):</strong> A simple, conservative tie.</span></li>
+                                    <li className="flex items-start"><span className="text-blue-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Footwear:</strong> Polished formal leather shoes (black/brown) with dark socks.</span></li>
+                                    <li className="flex items-start"><span className="text-blue-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Grooming:</strong> Neat hair and clean-shaven or a well-groomed beard. Avoid strong cologne.</span></li>
                                 </ul>
                             </div>
                             {/* For Women */}
-                            <div className="bg-black/20 p-8 rounded-2xl border border-white/5 hover:bg-white/[0.04] transition-colors">
+                            <div className="bg-black/20 p-8 rounded-[24px] border border-white/5 hover:bg-white/[0.04] transition-colors">
                                 <div className="flex items-center space-x-4 mb-6">
-                                    <div className="bg-[#F6520C]/10 p-3 rounded-xl border border-[#F6520C]/20">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <div className="bg-purple-500/10 p-3 rounded-xl border border-purple-500/20">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                            <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                     </div>
                                     <h3 className="text-2xl font-bold text-white tracking-tight">For Women / Girls</h3>
                                 </div>
                                 <ul className="space-y-4 text-gray-400 font-light">
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Western Formals:</strong> A conservative blouse with formal trousers or a knee-length skirt. A business suit is excellent.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Indian Formals:</strong> A simple, elegant Salwar Kameez or a formal Kurti in sober colors. Avoid flashy embroidery or patterns.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Footwear:</strong> Formal flats or low heels. Avoid stilettos or casual sandals.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Accessories:</strong> Minimal and simple jewelry.</span></li>
-                                    <li className="flex items-start"><span className="text-[#F6520C] mr-3 mt-1">•</span><span><strong className="text-white font-medium">Makeup & Hair:</strong> Light, natural makeup and neatly tied/styled hair.</span></li>
+                                    <li className="flex items-start"><span className="text-purple-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Western Formals:</strong> A conservative blouse with formal trousers or a knee-length skirt. A business suit is excellent.</span></li>
+                                    <li className="flex items-start"><span className="text-purple-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Indian Formals:</strong> A simple, elegant Salwar Kameez or a formal Kurti in sober colors. Avoid flashy embroidery or patterns.</span></li>
+                                    <li className="flex items-start"><span className="text-purple-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Footwear:</strong> Formal flats or low heels. Avoid stilettos or casual sandals.</span></li>
+                                    <li className="flex items-start"><span className="text-purple-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Accessories:</strong> Minimal and simple jewelry.</span></li>
+                                    <li className="flex items-start"><span className="text-purple-400 mr-3 mt-1">•</span><span><strong className="text-white font-medium">Makeup & Hair:</strong> Light, natural makeup and neatly tied/styled hair.</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -457,14 +457,14 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                     <h2 className="text-4xl font-bold text-white text-center mb-12 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Common Interview Questions</h2>
                     <div className="lg:grid lg:grid-cols-12 lg:gap-10">
                         <aside className="lg:col-span-4 flex-shrink-0 mb-8 lg:mb-0 lg:sticky top-24 h-max">
-                            <div className="bg-white/[0.02] backdrop-blur-md p-6 rounded-3xl border border-white/5 shadow-2xl">
+                            <div className="bg-white/[0.02] backdrop-blur-md p-6 rounded-[32px] border border-white/5 shadow-2xl">
                                 <h3 className="text-xl font-bold text-white mb-6 tracking-tight">Question Categories</h3>
                                 <ul className="space-y-2">
                                     {prepData.map(category => (
                                         <li key={category.id}>
                                             <button
                                             onClick={() => setSelectedCategory(category.id)}
-                                            className={`w-full text-left flex items-center space-x-3 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ${selectedCategory === category.id ? 'bg-[#F6520C] text-white shadow-lg shadow-orange-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'}`}
+                                            className={`w-full text-left flex items-center space-x-3 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ${selectedCategory === category.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'}`}
                                             >
                                                 <span className={`${selectedCategory === category.id ? 'text-white' : 'text-gray-500'}`}>{category.icon}</span>
                                                 <span>{category.category}</span>
@@ -479,32 +479,32 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                                 selectedCategory === category.id && (
                                     <div key={category.id} className="space-y-6 animate-fade-in">
                                         {category.questions.map(q => (
-                                            <div key={q.id} className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl border border-white/5 shadow-xl hover:bg-white/[0.04] transition-colors">
+                                            <div key={q.id} className="bg-white/[0.02] backdrop-blur-md p-8 rounded-[32px] border border-white/5 shadow-xl hover:bg-white/[0.04] transition-colors">
                                                 <h4 className="text-2xl font-bold text-white mb-6 tracking-tight">{q.question}</h4>
                                                 <div className="space-y-6">
-                                                    <div className="bg-black/20 p-5 rounded-2xl border border-white/5">
-                                                        <h5 className="text-sm font-bold text-[#F6520C] mb-2 flex items-center gap-2 uppercase tracking-wider">
+                                                    <div className="bg-black/20 p-5 rounded-[24px] border border-white/5">
+                                                        <h5 className="text-sm font-bold text-blue-400 mb-2 flex items-center gap-2 uppercase tracking-wider">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                                                             Officer's Intent
                                                         </h5>
                                                         <p className="text-gray-300 font-light leading-relaxed">{q.intent}</p>
                                                     </div>
-                                                    <div className="bg-black/20 p-5 rounded-2xl border border-white/5">
-                                                        <h5 className="text-sm font-bold text-[#F6520C] mb-3 flex items-center gap-2 uppercase tracking-wider">
+                                                    <div className="bg-black/20 p-5 rounded-[24px] border border-white/5">
+                                                        <h5 className="text-sm font-bold text-blue-400 mb-3 flex items-center gap-2 uppercase tracking-wider">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                             Tips
                                                         </h5>
                                                         <ul className="space-y-2 text-gray-300 font-light">
                                                             {q.tips.map((tip, i) => (
                                                                 <li key={i} className="flex items-start">
-                                                                    <span className="text-[#F6520C] mr-3 mt-1">•</span>
+                                                                    <span className="text-blue-400 mr-3 mt-1">•</span>
                                                                     <span>{tip}</span>
                                                                 </li>
                                                             ))}
                                                         </ul>
                                                     </div>
-                                                    <div className="bg-gradient-to-br from-orange-500/10 to-pink-600/10 p-6 rounded-2xl border border-orange-500/20">
-                                                        <h5 className="text-sm font-bold text-[#F6520C] mb-3 flex items-center gap-2 uppercase tracking-wider">
+                                                    <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6 rounded-[24px] border border-blue-500/20">
+                                                        <h5 className="text-sm font-bold text-blue-400 mb-3 flex items-center gap-2 uppercase tracking-wider">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                                                             Sample Answer
                                                         </h5>
@@ -520,11 +520,11 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                     </div>
 
                     <div className="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl">
+                        <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl">
                             <h2 className="text-3xl font-bold text-white mb-8 tracking-tight">U.S. Consulates in India</h2>
                             <div className="space-y-4">
                                 {consulatesData.map(consulate => (
-                                    <div key={consulate.name} className="bg-black/20 p-5 rounded-2xl border border-white/5 hover:bg-white/[0.04] transition-colors">
+                                    <div key={consulate.name} className="bg-black/20 p-5 rounded-[24px] border border-white/5 hover:bg-white/[0.04] transition-colors">
                                         <h3 className="font-bold text-white text-lg">{consulate.name}</h3>
                                         <p className="text-gray-400 font-light mt-1">{consulate.address}</p>
                                     </div>
@@ -532,12 +532,12 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                             </div>
                         </div>
 
-                        <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl">
+                        <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl">
                             <h2 className="text-3xl font-bold text-white mb-8 tracking-tight">Common Rejection Reasons</h2>
                             <div className="space-y-6">
                                 {rejectionReasons.map(reason => (
-                                    <div key={reason.title} className="flex items-start space-x-5 bg-black/20 p-5 rounded-2xl border border-white/5 hover:bg-white/[0.04] transition-colors">
-                                        <div className="flex-shrink-0 text-[#F6520C] bg-[#F6520C]/10 p-3 rounded-xl border border-[#F6520C]/20">{reason.icon}</div>
+                                    <div key={reason.title} className="flex items-start space-x-5 bg-black/20 p-5 rounded-[24px] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                                        <div className="flex-shrink-0 text-blue-400 bg-blue-500/10 p-3 rounded-xl border border-blue-500/20">{reason.icon}</div>
                                         <div>
                                             <h3 className="font-bold text-white text-lg mb-1">{reason.title}</h3>
                                             <p className="text-gray-400 font-light leading-relaxed">{reason.description}</p>
@@ -549,9 +549,9 @@ const F1VisaPrep: React.FC<F1VisaPrepProps> = ({ onBack }) => {
                     </div>
 
                     <div className="mt-16 max-w-4xl mx-auto text-center">
-                        <div className="bg-yellow-500/5 border border-yellow-500/20 rounded-2xl p-8 backdrop-blur-sm">
-                            <h4 className="font-bold text-xl text-yellow-500 mb-3 tracking-tight">Disclaimer</h4>
-                            <p className="text-yellow-500/70 font-light leading-relaxed">
+                        <div className="bg-blue-500/5 border border-blue-500/20 rounded-[24px] p-8 backdrop-blur-sm">
+                            <h4 className="font-bold text-xl text-blue-500 mb-3 tracking-tight">Disclaimer</h4>
+                            <p className="text-blue-500/70 font-light leading-relaxed">
                                 This preparation tool is for practice purposes only. Actual questions and interview experiences may vary. Always refer to official U.S. government sources for the most accurate and up-to-date visa information.
                             </p>
                         </div>

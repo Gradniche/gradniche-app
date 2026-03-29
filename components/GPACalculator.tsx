@@ -70,7 +70,7 @@ const GradeScaleSelector: React.FC<{ selected: GradeScale; onSelect: (scale: Gra
                     {selected === scale.id && (
                         <motion.div
                             layoutId="activeScale"
-                            className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg -z-10"
+                            className="absolute inset-0 bg-gradient-to-r from-blue-500 to-pink-600 rounded-lg -z-10"
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         />
                     )}
@@ -137,11 +137,11 @@ const GPABreakdown: React.FC<{ gpa: number }> = ({ gpa }) => {
     if (gpa >= 3.7) {
         breakdown = { title: "Excellent", description: "Highly competitive for top-tier universities worldwide.", color: "text-green-400", icon: <Sparkles className="w-5 h-5 text-green-400" /> };
     } else if (gpa >= 3.3) {
-        breakdown = { title: "Good", description: "A strong GPA. Competitive for many excellent universities.", color: "text-yellow-400", icon: <GraduationCap className="w-5 h-5 text-yellow-400" /> };
+        breakdown = { title: "Good", description: "A strong GPA. Competitive for many excellent universities.", color: "text-blue-400", icon: <GraduationCap className="w-5 h-5 text-blue-400" /> };
     } else if (gpa >= 2.7) {
-        breakdown = { title: "Average", description: "Acceptable for many good universities. Highlight other strengths.", color: "text-orange-400", icon: <Info className="w-5 h-5 text-orange-400" /> };
+        breakdown = { title: "Average", description: "Acceptable for many good universities. Highlight other strengths.", color: "text-blue-400", icon: <Info className="w-5 h-5 text-blue-400" /> };
     } else {
-        breakdown = { title: "Needs Improvement", description: "May be below minimum requirements. Consider retaking exams.", color: "text-red-400", icon: <Info className="w-5 h-5 text-red-400" /> };
+        breakdown = { title: "Needs Improvement", description: "May be below minimum requirements. Consider retaking exams.", color: "text-purple-400", icon: <Info className="w-5 h-5 text-purple-400" /> };
     }
 
     return (
@@ -285,7 +285,7 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
         <section className="py-24 relative bg-[#0a0a0a] min-h-screen overflow-hidden font-sans text-white">
             {/* Minimalist Background */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-500/5 blur-[100px]"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/5 blur-[100px]"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-pink-500/5 blur-[100px]"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+Cjwvc3ZnPg==')] opacity-50"></div>
             </div>
@@ -353,8 +353,8 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
                             >
                                 <div>
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="p-2 bg-orange-500/10 rounded-lg">
-                                            <Calculator className="w-5 h-5 text-orange-400" />
+                                        <div className="p-2 bg-blue-500/10 rounded-lg">
+                                            <Calculator className="w-5 h-5 text-blue-400" />
                                         </div>
                                         <h2 className="text-xl font-semibold tracking-tight">Grading Scale</h2>
                                     </div>
@@ -409,8 +409,8 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
                                 {/* Scale Selector */}
                                 <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="p-2 bg-orange-500/10 rounded-lg">
-                                            <Calculator className="w-5 h-5 text-orange-400" />
+                                        <div className="p-2 bg-blue-500/10 rounded-lg">
+                                            <Calculator className="w-5 h-5 text-blue-400" />
                                         </div>
                                         <h2 className="text-xl font-semibold tracking-tight">Grading Scale</h2>
                                     </div>
@@ -480,7 +480,7 @@ const GPACalculator: React.FC<GPACalculatorProps> = ({ onBack, navigate }) => {
                                                     <div className="col-span-2 sm:col-span-1 flex justify-end sm:justify-center">
                                                         <button 
                                                             onClick={() => removeCourse(course.id)} 
-                                                            className="p-2.5 text-gray-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-30" 
+                                                            className="p-2.5 text-gray-500 hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-colors disabled:opacity-30" 
                                                             disabled={courses.length <= 1}
                                                             aria-label="Remove course"
                                                         >
@@ -650,7 +650,7 @@ const GPASeoContent: React.FC = () => (
             <h3 className="text-2xl font-bold text-white tracking-tight">The Math Behind Percentage to GPA Conversion</h3>
             <p className="leading-relaxed">The standard formula for converting a percentage to any GPA scale is straightforward:</p>
             <div className="bg-white/5 p-6 rounded-xl border border-white/10 text-center">
-                <code className="text-xl text-orange-400 font-mono">GPA = (Percentage / 100) × Target Scale</code>
+                <code className="text-xl text-blue-400 font-mono">GPA = (Percentage / 100) × Target Scale</code>
             </div>
             <p className="leading-relaxed text-sm italic">Note: While the 4.0 scale is the most common requirement for US universities, some institutions may request a 5.0 or 10.0 scale. The formula remains the same; simply swap the target scale multiplier.</p>
         </section>
@@ -685,10 +685,10 @@ const GPASeoContent: React.FC = () => (
                     <tbody className="divide-y divide-white/5">
                         <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">9.5 - 10.0 CGPA</td><td className="py-3 px-6 text-green-400">Outstanding</td></tr>
                         <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">8.5 - 9.4 CGPA</td><td className="py-3 px-6 text-green-400">Excellent</td></tr>
-                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">7.5 - 8.4 CGPA</td><td className="py-3 px-6 text-yellow-400">Very Good</td></tr>
-                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">6.5 - 7.4 CGPA</td><td className="py-3 px-6 text-yellow-400">Good</td></tr>
-                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">5.5 - 6.4 CGPA</td><td className="py-3 px-6 text-orange-400">Average</td></tr>
-                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">Below 5.5 CGPA</td><td className="py-3 px-6 text-red-400">Below Average</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">7.5 - 8.4 CGPA</td><td className="py-3 px-6 text-blue-400">Very Good</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">6.5 - 7.4 CGPA</td><td className="py-3 px-6 text-blue-400">Good</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">5.5 - 6.4 CGPA</td><td className="py-3 px-6 text-blue-400">Average</td></tr>
+                        <tr className="hover:bg-white/5 transition-colors"><td className="py-3 px-6">Below 5.5 CGPA</td><td className="py-3 px-6 text-purple-400">Below Average</td></tr>
                     </tbody>
                 </table>
             </div>

@@ -15,22 +15,22 @@ const ContactForm: React.FC = () => {
             </div>
           </div>
           <div className="lg:w-2/5">
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-xl border border-[#F6520C]/20">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-xl border border-blue-500/20">
               <h3 className="text-2xl font-semibold mb-6 text-center text-white">Send Us a Message</h3>
               <form className="space-y-4">
                 <div>
                   <label htmlFor="name" className="sr-only">Name</label>
-                  <input type="text" id="name" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                  <input type="text" id="name" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                 <div>
                   <label htmlFor="email" className="sr-only">Email</label>
-                  <input type="email" id="email" placeholder="Your Email" className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                  <input type="email" id="email" placeholder="Your Email" className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                 <div>
                   <label htmlFor="message" className="sr-only">Message</label>
-                  <textarea id="message" placeholder="Your Message" rows={4} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white"></textarea>
+                  <textarea id="message" placeholder="Your Message" rows={4} className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"></textarea>
                 </div>
-                <button type="submit" className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]">
+                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-700">
                   Send Message
                 </button>
               </form>

@@ -20,7 +20,7 @@ const platformFeatures = [
         description: 'Gain a competitive edge with our AI tools. Get instant feedback on your Statement of Purpose with our SOP Analyzer, or find your ideal study destination.', 
         icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.67-2.67L11.25 18l1.938-.648a3.375 3.375 0 002.67-2.67L16.75 13.5l.648 1.938a3.375 3.375 0 002.67 2.67L21.75 18l-1.938.648a3.375 3.375 0 00-2.67 2.67z" /></svg>,
         page: '/tools/sop-analyzer',
-        color: 'from-orange-500 to-red-500'
+        color: 'from-blue-500 to-purple-500'
     },
      { 
         title: 'Comprehensive Resource Hub', 
@@ -39,7 +39,7 @@ const platformFeatures = [
 ];
 
 const values = [
-    { title: 'Student-Centric', description: 'Our students are at the heart of everything we do. Their success is our success.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>, color: 'from-amber-500 to-orange-500' },
+    { title: 'Student-Centric', description: 'Our students are at the heart of everything we do. Their success is our success.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>, color: 'from-amber-500 to-purple-500' },
     { title: 'Data-Driven', description: 'We leverage technology and data to provide the most accurate and personalized guidance.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>, color: 'from-blue-500 to-indigo-500' },
     { title: 'Integrity', description: 'We believe in transparent, honest, and ethical guidance throughout the entire process.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>, color: 'from-green-500 to-emerald-500' },
     { title: 'Innovation', description: 'We are constantly evolving and building new tools to make the study abroad journey seamless.', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>, color: 'from-purple-500 to-pink-500' },
@@ -58,17 +58,17 @@ const avatar3Config: AvatarConfig = { style: 'adventurer', options: { seed: 'abo
 
 const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
     return (
-        <div className="bg-[#050810] text-gray-300 min-h-screen">
+        <div className="bg-[#050a14] text-gray-300 min-h-screen">
             <section
                 className="relative h-[60vh] min-h-[450px] text-white flex items-center justify-center text-center bg-center bg-cover overflow-hidden"
                 style={{ backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')` }}
             >
-                <div className="absolute inset-0 bg-gradient-to-b from-[#050810]/80 via-[#050810]/60 to-[#050810] z-10"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F6520C]/10 rounded-full blur-[150px] pointer-events-none z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#050a14]/80 via-[#050a14]/60 to-[#050a14] z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none z-10"></div>
                 
                 <div className="relative z-20 container mx-auto px-6">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Our Mission</span>
+                        <span className="text-xs font-semibold tracking-widest text-blue-400 uppercase">Our Mission</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Democratizing Global Education
@@ -81,7 +81,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
 
             <main className="py-20">
                 <div className="container mx-auto px-6 max-w-5xl">
-                    <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 flex items-center space-x-2 mb-12 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
+                    <button onClick={onBack} className="text-blue-400 hover:text-blue-300 flex items-center space-x-2 mb-12 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-1">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span>Back to Home</span>
                     </button>
@@ -92,7 +92,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                                 <img src={generateAvatarUrl(avatar1Config)} alt="Student Avatar 1" className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-700 bg-gray-800 animate-wave-hello" style={{ animationDelay: '0.6s' }} />
                             </div>
                             <div className="transform transition-transform hover:scale-110 duration-300 z-20 scale-110">
-                                <img src={generateAvatarUrl(avatar2Config)} alt="Student Avatar 2" className="w-28 h-28 md:w-40 md:h-40 rounded-full border-4 border-[#F6520C] bg-gray-800 animate-wave-hello" style={{ animationDelay: '0.3s' }} />
+                                <img src={generateAvatarUrl(avatar2Config)} alt="Student Avatar 2" className="w-28 h-28 md:w-40 md:h-40 rounded-full border-4 border-blue-500 bg-gray-800 animate-wave-hello" style={{ animationDelay: '0.3s' }} />
                             </div>
                             <div className="transform transition-transform hover:scale-110 duration-300 z-10">
                                 <img src={generateAvatarUrl(avatar3Config)} alt="Student Avatar 3" className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-700 bg-gray-800 animate-wave-hello" style={{ animationDelay: '0.9s' }} />
@@ -100,7 +100,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                         <div className="max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
                             <h2 className="text-3xl font-bold text-white mb-4">Our Mission & Story</h2>
-                            <p className="text-[#F6520C] text-xl font-medium mb-6">
+                            <p className="text-blue-400 text-xl font-medium mb-6">
                                 To empower every student with the clarity, confidence, and tools to navigate their global education journey successfully.
                             </p>
                             <p className="text-gray-400 mb-4 leading-relaxed">
@@ -131,7 +131,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                                         </div>
                                         <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{feature.title}</h3>
                                         <p className="text-gray-400 mb-8 flex-grow font-light leading-relaxed">{feature.description}</p>
-                                        <button onClick={() => navigate(feature.page)} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-colors duration-300 self-start font-medium">
+                                        <button onClick={() => navigate(feature.page)} className="mt-auto bg-white/5 text-white border border-white/10 px-8 py-3 rounded-full hover:bg-blue-600 hover:border-blue-500 transition-colors duration-300 self-start font-medium">
                                             Explore Feature
                                         </button>
                                     </div>
@@ -181,7 +181,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                         </div>
                         <div className="flex justify-center space-x-6 sm:space-x-8">
                             {socialIcons.map(social => (
-                                <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#F6520C] transition transform hover:scale-125 duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-[#F6520C] rounded-full">
+                                <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-400 transition transform hover:scale-125 duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-blue-500 rounded-full">
                                     {social.icon}
                                 </a>
                             ))}
@@ -189,7 +189,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                     </section>
 
                      <section className="bg-white/[0.02] backdrop-blur-md p-12 md:p-16 rounded-3xl text-center border border-white/10 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F6520C]/10 rounded-full blur-3xl"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
                         
                         <div className="relative z-10">
@@ -197,7 +197,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, navigate }) => {
                             <p className="text-lg md:text-xl text-gray-400 mt-6 mb-10 max-w-2xl mx-auto font-light">
                                 Our tools and resources are designed to guide you every step of the way. Explore top universities and find your perfect fit today.
                             </p>
-                            <button onClick={() => navigate('/college-finder')} className="bg-[#F6520C] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#d44306] transition-all duration-300 shadow-[0_0_20px_rgba(246,82,12,0.3)] transform hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C]/80">
+                            <button onClick={() => navigate('/college-finder')} className="bg-blue-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.3)] transform hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-[#050a14] focus:ring-blue-500/80">
                                 Launch College Finder
                             </button>
                         </div>

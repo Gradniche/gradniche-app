@@ -64,14 +64,14 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in" onClick={onClose}>
             <div
-                className="bg-gray-900/80 backdrop-blur-xl border border-[#F6520C]/30 w-full h-full rounded-none md:max-w-lg md:h-[90vh] md:max-h-[700px] md:rounded-2xl shadow-2xl flex flex-col transform transition-all duration-300 scale-95 opacity-0 animate-scale-in"
+                className="bg-gray-900/80 backdrop-blur-xl border border-blue-500/30 w-full h-full rounded-none md:max-w-lg md:h-[90vh] md:max-h-[700px] md:rounded-2xl shadow-2xl flex flex-col transform transition-all duration-300 scale-95 opacity-0 animate-scale-in"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between p-3 border-b border-gray-700/50">
                     <div className="flex items-center space-x-3">
-                         <div className="p-2 bg-gray-800 rounded-full ring-2 ring-[#F6520C]/50">
-                           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                         <div className="p-2 bg-gray-800 rounded-full ring-2 ring-blue-500/50">
+                           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
                         </div>
                         <div>
                             <h2 className="text-base font-bold text-white">AI Study Abroad Assistant</h2>
@@ -87,7 +87,7 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                            {msg.role === 'model' && <img src={aiAvatarUrl} alt="AI Assistant" className="w-8 h-8 rounded-full bg-gray-700" />}
-                            <div className={`max-w-xs md:max-w-md p-3 rounded-2xl ${msg.role === 'user' ? 'bg-[#F6520C] text-white rounded-br-none' : 'bg-gray-700/50 backdrop-blur-sm text-gray-300 rounded-bl-none'}`}>
+                            <div className={`max-w-xs md:max-w-md p-3 rounded-2xl ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-700/50 backdrop-blur-sm text-gray-300 rounded-bl-none'}`}>
                                 <p className="text-sm" dangerouslySetInnerHTML={{__html: msg.parts[0].text.replace(/\n/g, '<br />')}}></p>
                             </div>
                             {msg.role === 'user' && (
@@ -119,10 +119,10 @@ const AIStudyAbroadAssistant: React.FC<AIStudyAbroadAssistantProps> = ({ isOpen,
                             value={userInput}
                             onChange={(e) => setUserInput(e.target.value)}
                             placeholder="Ask about universities, destinations..."
-                            className="flex-1 px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white text-sm"
+                            className="flex-1 px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm"
                             disabled={isLoading}
                         />
-                        <button type="submit" className="bg-[#F6520C] text-white p-3 rounded-full hover:bg-opacity-90 transition-transform transform hover:scale-110 disabled:bg-gray-600 disabled:scale-100" disabled={isLoading || !userInput.trim()}>
+                        <button type="submit" className="bg-blue-600 text-white p-3 rounded-full hover:bg-opacity-90 transition-transform transform hover:scale-110 disabled:bg-gray-600 disabled:scale-100" disabled={isLoading || !userInput.trim()}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg>
                         </button>
                     </form>

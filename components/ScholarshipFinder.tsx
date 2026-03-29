@@ -18,9 +18,9 @@ const AccordionItem: React.FC<{ faq: { question: string; answer: string }; isOpe
             className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-blue-400' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-blue-400 transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -38,24 +38,24 @@ const ScholarshipCard: React.FC<{ scholarship: Scholarship; isExpanded: boolean;
     const providerInitial = scholarship.provider.charAt(0);
 
     return (
-        <div className="bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5">
+        <div className="bg-white/[0.02] backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/5">
             <button onClick={onToggle} className="w-full text-left p-6 sm:p-8 focus:outline-none" aria-expanded={isExpanded}>
                 <div className="flex items-start space-x-6">
-                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-orange-500 to-pink-600 rounded-2xl flex items-center justify-center font-bold text-2xl text-white shadow-lg">
+                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 to-pink-600 rounded-2xl flex items-center justify-center font-bold text-2xl text-white shadow-lg">
                         {providerInitial}
                     </div>
                     <div className="flex-1">
                         <div className="flex justify-between items-start">
                              <div>
-                                <h3 className="text-xl font-bold text-white tracking-tight transition-colors group-hover:text-[#F6520C]">{scholarship.name}</h3>
+                                <h3 className="text-xl font-bold text-white tracking-tight transition-colors group-hover:text-blue-400">{scholarship.name}</h3>
                                 <p className="text-sm text-gray-400 font-light mt-1">{scholarship.provider}</p>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-gray-500 transition-transform duration-500 flex-shrink-0 ml-4 ${isExpanded ? 'rotate-180 text-[#F6520C]' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-gray-500 transition-transform duration-500 flex-shrink-0 ml-4 ${isExpanded ? 'rotate-180 text-blue-400' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                         </div>
                         <div className="flex flex-wrap gap-3 mt-4 text-xs">
-                            {scholarship.isFullFunding && <span className="font-semibold px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>Full Funding</span>}
+                            {scholarship.isFullFunding && <span className="font-semibold px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>Full Funding</span>}
                             <span className="font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300">{scholarship.country}</span>
                             {scholarship.levelOfStudy.map(l => <span key={l} className="font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300">{l}</span>)}
                         </div>
@@ -75,10 +75,10 @@ const ScholarshipCard: React.FC<{ scholarship: Scholarship; isExpanded: boolean;
             <div className={`transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="bg-black/20 px-6 sm:px-8 pb-8 pt-4 border-t border-white/5">
                     <h4 className="font-bold text-white mb-4 tracking-tight">Eligibility Requirements:</h4>
-                    <ul className="list-disc list-outside pl-5 text-gray-400 space-y-2 text-sm mb-8 font-light marker:text-[#F6520C]">
+                    <ul className="list-disc list-outside pl-5 text-gray-400 space-y-2 text-sm mb-8 font-light marker:text-blue-400">
                         {scholarship.eligibility.map((req, i) => <li key={i}>{req}</li>)}
                     </ul>
-                    <a href={scholarship.applyLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/30 group">
+                    <a href={scholarship.applyLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/30 group">
                         Visit Official Site
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </a>
@@ -170,12 +170,12 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
         <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
             {/* Subtle background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="mb-12">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span className="font-medium">Back to Tools</span>
                     </button>
@@ -183,7 +183,7 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
 
                 <div className="text-center mb-16">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Financial Aid</span>
+                        <span className="text-xs font-semibold tracking-widest text-blue-400 uppercase">Financial Aid</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Scholarship Finder</h1>
                     <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
@@ -200,18 +200,18 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
                             <div className="space-y-6">
                                 <div>
                                     <label htmlFor="search" className="block text-sm font-medium text-gray-400 mb-2">Scholarship Name</label>
-                                    <input type="text" id="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="e.g., Chevening..." className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all placeholder-gray-600" />
+                                    <input type="text" id="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="e.g., Chevening..." className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition-all placeholder-gray-600" />
                                 </div>
                                 <div>
                                     <label htmlFor="country" className="block text-sm font-medium text-gray-400 mb-2">Country</label>
-                                    <select id="country" value={countryFilter} onChange={e => setCountryFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                    <select id="country" value={countryFilter} onChange={e => setCountryFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition-all appearance-none">
                                         <option value="all">All Countries</option>
                                         {uniqueCountries.map(c => <option key={c} value={c}>{c}</option>)}
                                     </select>
                                 </div>
                                 <div>
                                     <label htmlFor="level" className="block text-sm font-medium text-gray-400 mb-2">Level of Study</label>
-                                    <select id="level" value={levelFilter} onChange={e => setLevelFilter(e.target.value as any)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                    <select id="level" value={levelFilter} onChange={e => setLevelFilter(e.target.value as any)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition-all appearance-none">
                                         <option value="all">All Levels</option>
                                         <option value="Masters">Masters</option>
                                         <option value="PhD">PhD</option>
@@ -219,7 +219,7 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
                                 </div>
                                 <div>
                                     <label htmlFor="field" className="block text-sm font-medium text-gray-400 mb-2">Field of Study</label>
-                                    <select id="field" value={fieldFilter} onChange={e => setFieldFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white transition-all appearance-none">
+                                    <select id="field" value={fieldFilter} onChange={e => setFieldFilter(e.target.value)} className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition-all appearance-none">
                                         <option value="all">All Fields</option>
                                         {uniqueFields.map(f => <option key={f} value={f}>{f}</option>)}
                                     </select>
@@ -229,19 +229,19 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
                                     <label className="flex items-center cursor-pointer group">
                                         <div className="relative">
                                             <input type="checkbox" checked={isFullFunding} onChange={handleFullFundingToggle} className="sr-only" />
-                                            <div className={`block w-12 h-6 rounded-full transition-colors duration-300 ${isFullFunding ? 'bg-[#F6520C]' : 'bg-white/10'}`}></div>
+                                            <div className={`block w-12 h-6 rounded-full transition-colors duration-300 ${isFullFunding ? 'bg-blue-600' : 'bg-white/10'}`}></div>
                                             <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm ${isFullFunding ? 'translate-x-6' : ''}`}></div>
                                         </div>
-                                        <div className="ml-4 text-white text-sm font-medium group-hover:text-[#F6520C] transition-colors">Full Funding Only</div>
+                                        <div className="ml-4 text-white text-sm font-medium group-hover:text-blue-400 transition-colors">Full Funding Only</div>
                                     </label>
                                 </div>
                                 
                                  <div className={`pt-4 border-t border-white/5 transition-opacity duration-300 ${isFullFunding ? 'opacity-40 pointer-events-none' : 'opacity-100'}`}>
                                     <div className="flex justify-between items-center mb-4">
                                         <label htmlFor="amount" className="block text-sm font-medium text-gray-400">Min. Amount</label>
-                                        <span className="text-[#F6520C] font-bold">${amountFilter.toLocaleString()}</span>
+                                        <span className="text-blue-400 font-bold">${amountFilter.toLocaleString()}</span>
                                     </div>
-                                    <input type="range" id="amount" min="0" max="150000" step="5000" value={amountFilter} onChange={handleAmountSliderChange} disabled={isFullFunding} className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#F6520C]" />
+                                    <input type="range" id="amount" min="0" max="150000" step="5000" value={amountFilter} onChange={handleAmountSliderChange} disabled={isFullFunding} className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500" />
                                 </div>
                                 
                                 <button onClick={resetFilters} className="w-full py-3 text-sm font-semibold text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all duration-300 border border-white/5 hover:border-white/10 mt-6">
@@ -255,7 +255,7 @@ const ScholarshipFinder: React.FC<ScholarshipFinderProps> = ({ onBack }) => {
                     <main className="lg:col-span-3">
                         <div className="mb-8 flex items-center justify-between">
                             <h2 className="text-2xl font-bold text-white tracking-tight">
-                                Showing <span className="text-[#F6520C]">{filteredScholarships.length}</span> Scholarships
+                                Showing <span className="text-blue-400">{filteredScholarships.length}</span> Scholarships
                             </h2>
                         </div>
                         <div className="space-y-6">

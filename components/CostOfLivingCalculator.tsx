@@ -15,15 +15,15 @@ const faqData = [
 
 
 const AccordionItem: React.FC<{ faq: { question: string, answer: string }, isOpen: boolean, onClick: () => void }> = ({ faq, isOpen, onClick }) => (
-    <div className="border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
+    <div className="border border-white/5 rounded-[24px] overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
         <button
             onClick={onClick}
             className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-blue-400' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-blue-400 transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -75,26 +75,26 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
     };
 
     const costCategories: (keyof CityCost['costs'])[] = ['accommodation', 'food', 'transport', 'utilities', 'entertainment'];
-    const COLORS = ['#F6520C', '#FF7B40', '#FFA580', '#FFC2A6', '#FFE8DD'];
+    const COLORS = ['#3b82f6', '#8b5cf6', '#6366f1', '#a855f7', '#ec4899'];
 
     
     return (
-        <section className="py-24 relative bg-[#0a101f] min-h-screen overflow-hidden">
+        <section className="py-24 relative bg-[#050a14] min-h-screen overflow-hidden">
             {/* Subtle background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="mb-12">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span className="font-medium">Back to Tools</span>
                     </button>
                 </div>
                 <div className="text-center mb-16">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Finance</span>
+                        <span className="text-xs font-semibold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase">Finance</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Cost of Living Comparison</h1>
                     <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light">
@@ -103,7 +103,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                 </div>
 
                 {/* Refined Selection Panel */}
-                <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl mb-16">
+                <div className="bg-white/[0.02] backdrop-blur-2xl p-8 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl mb-16">
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-white tracking-tight mb-6">Your Comparison List ({selectedCities.length}/3)</h2>
                         <div className="bg-black/20 border border-white/5 p-5 rounded-2xl min-h-[72px] flex flex-wrap items-center gap-3">
@@ -111,7 +111,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                 <p className="text-gray-500 font-light">Select cities from the list below to start comparing.</p>
                             ) : (
                                 selectedCities.map(city => (
-                                    <div key={city.name} className="flex items-center bg-gradient-to-r from-orange-500 to-pink-600 text-white font-semibold py-1.5 pl-4 pr-1.5 rounded-full text-sm shadow-lg animate-fade-in">
+                                    <div key={city.name} className="flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-1.5 pl-4 pr-1.5 rounded-full text-sm shadow-lg animate-fade-in">
                                         <span>{city.name}</span>
                                         <button onClick={() => handleCitySelect(city)} className="ml-3 text-white/80 hover:text-white hover:bg-black/20 rounded-full p-1 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
@@ -135,7 +135,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                                 key={city.name} 
                                                 onClick={() => handleCitySelect(city)}
                                                 disabled={isMaxed}
-                                                className={`px-5 py-2.5 text-sm font-medium rounded-full border transition-all duration-300 ${isSelected ? 'bg-[#F6520C] text-white border-[#F6520C] shadow-lg shadow-orange-500/20' : 'bg-white/5 border-white/10 text-gray-300 hover:border-white/30 hover:bg-white/10'} ${isMaxed ? 'opacity-40 cursor-not-allowed' : ''}`}
+                                                className={`px-5 py-2.5 text-sm font-medium rounded-full border transition-all duration-300 ${isSelected ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-lg shadow-blue-500/20' : 'bg-white/5 border-white/10 text-gray-300 hover:border-white/30 hover:bg-white/10'} ${isMaxed ? 'opacity-40 cursor-not-allowed' : ''}`}
                                             >
                                                 {city.name}
                                             </button>
@@ -149,7 +149,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
 
                 {/* Pie Chart Visualization */}
                 {selectedCities.length > 0 && (
-                    <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl mb-16 animate-fade-in">
+                    <div className="bg-white/[0.02] backdrop-blur-2xl p-8 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl mb-16 animate-fade-in">
                         <h2 className="text-3xl font-bold text-white text-center tracking-tight mb-12">Visual Cost Breakdown</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                             {selectedCities.map(city => {
@@ -160,9 +160,9 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                 const total = chartData.reduce((sum, entry) => sum + entry.value, 0);
 
                                 return (
-                                    <div key={city.name} className="flex flex-col items-center bg-black/20 p-6 rounded-2xl border border-white/5">
+                                    <div key={city.name} className="flex flex-col items-center bg-black/20 p-6 rounded-3xl border border-white/5">
                                         <h3 className="text-2xl font-bold text-white tracking-tight mb-2">{city.name}</h3>
-                                        <p className="text-xl font-bold text-[#F6520C] mb-6">{city.currencySymbol}{total.toLocaleString()}<span className="text-sm font-light text-gray-400"> / month</span></p>
+                                        <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-6">{city.currencySymbol}{total.toLocaleString()}<span className="text-sm font-light text-gray-400"> / month</span></p>
                                         <div style={{ width: '100%', height: 280 }}>
                                             <ResponsiveContainer>
                                                 <PieChart>
@@ -186,7 +186,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                                     </Pie>
                                                     <Tooltip
                                                         formatter={(value: number) => `${city.currencySymbol}${value.toLocaleString()}`}
-                                                        contentStyle={{ backgroundColor: 'rgba(10, 16, 31, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', backdropFilter: 'blur(8px)', color: '#fff' }}
+                                                        contentStyle={{ backgroundColor: 'rgba(5, 10, 20, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', backdropFilter: 'blur(8px)', color: '#fff' }}
                                                         itemStyle={{ color: '#fff' }}
                                                     />
                                                 </PieChart>
@@ -209,13 +209,13 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                 
                 {/* Responsive Comparison Table */}
                 {selectedCities.length > 0 && (
-                    <div className="bg-white/[0.02] backdrop-blur-md p-0 sm:p-10 rounded-3xl border border-white/5 shadow-2xl animate-fade-in overflow-hidden">
+                    <div className="bg-white/[0.02] backdrop-blur-2xl p-0 sm:p-10 rounded-[32px] border border-white/5 shadow-2xl animate-fade-in overflow-hidden">
                         <h2 className="text-3xl font-bold text-white tracking-tight mb-8 px-6 sm:px-0 pt-8 sm:pt-0">Detailed Comparison Table</h2>
                         <div className="overflow-x-auto modern-scrollbar pb-4">
                             <table className="w-full min-w-[700px] border-collapse">
                                 <thead>
                                     <tr className="border-b border-white/10">
-                                        <th className="p-5 text-left text-lg font-bold text-white tracking-tight sticky left-0 bg-[#0a101f]/90 backdrop-blur-md z-10">Expense Category</th>
+                                        <th className="p-5 text-left text-lg font-bold text-white tracking-tight sticky left-0 bg-[#050a14]/90 backdrop-blur-md z-10">Expense Category</th>
                                         {selectedCities.map(city => (
                                             <th key={city.name} className="p-5 text-center text-lg font-bold text-white tracking-tight">
                                                 {city.name}
@@ -226,7 +226,7 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                 <tbody>
                                     {costCategories.map(category => (
                                         <tr key={category} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                                            <td className="p-5 text-gray-300 capitalize sticky left-0 bg-[#0a101f]/90 backdrop-blur-md z-10 font-medium">{category}</td>
+                                            <td className="p-5 text-gray-300 capitalize sticky left-0 bg-[#050a14]/90 backdrop-blur-md z-10 font-medium">{category}</td>
                                             {selectedCities.map(city => (
                                                 <td key={city.name} className="p-5 text-center">
                                                     <div className="font-bold text-white text-lg">{city.currencySymbol}{city.costs[category].toLocaleString()}</div>
@@ -236,13 +236,13 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                                         </tr>
                                     ))}
                                     <tr className="bg-black/20">
-                                        <td className="p-6 text-xl font-bold text-[#F6520C] sticky left-0 bg-[#0a101f]/95 backdrop-blur-md z-10 tracking-tight">Total (Monthly)</td>
+                                        <td className="p-6 text-xl font-bold text-blue-400 sticky left-0 bg-[#050a14]/95 backdrop-blur-md z-10 tracking-tight">Total (Monthly)</td>
                                         {selectedCities.map(city => {
                                             const totalLocal = (Object.values(city.costs) as number[]).reduce((sum: number, cost: number) => sum + cost, 0);
                                             const totalInr = totalLocal * conversionRates[city.currency];
                                             return (
                                                 <td key={city.name} className="p-6 text-center">
-                                                    <div className="text-2xl font-bold text-[#F6520C]">{city.currencySymbol}{totalLocal.toLocaleString()}</div>
+                                                    <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{city.currencySymbol}{totalLocal.toLocaleString()}</div>
                                                     <div className="text-sm text-gray-400 font-medium mt-1">₹ {totalInr.toLocaleString()}</div>
                                                 </td>
                                             );
@@ -269,9 +269,9 @@ const CostOfLivingCalculator: React.FC<CostOfLivingCalculatorProps> = ({ onBack 
                 </div>
                 
                 <div className="mt-20 max-w-4xl mx-auto text-center">
-                    <div className="bg-yellow-500/5 border border-yellow-500/20 rounded-2xl p-8 backdrop-blur-sm">
-                        <h4 className="font-bold text-xl text-yellow-500 mb-3 tracking-tight">Disclaimer</h4>
-                        <p className="text-yellow-500/70 font-light leading-relaxed">
+                    <div className="bg-blue-500/5 border border-blue-500/20 rounded-3xl p-8 backdrop-blur-sm">
+                        <h4 className="font-bold text-xl text-blue-500 mb-3 tracking-tight">Disclaimer</h4>
+                        <p className="text-blue-500/70 font-light leading-relaxed">
                             The figures provided are estimates for a single student and are for informational purposes only. Actual costs can vary significantly based on individual lifestyle, accommodation choices, and spending habits. This tool should be used as a starting point for your financial planning.
                         </p>
                     </div>

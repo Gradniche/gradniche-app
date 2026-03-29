@@ -67,7 +67,7 @@ const AICounsellor: React.FC = () => {
             <div className="bg-[#0a101f] rounded-lg p-6 min-h-[300px] border border-teal-500/30 shadow-inner">
               <h3 className="font-semibold text-lg mb-4 text-white">AI Recommendation:</h3>
               {loading && !recommendation && <p className="text-gray-400 animate-pulse">Our AI is crafting your personalized recommendation...</p>}
-              {error && <p className="text-red-400">{error}</p>}
+              {error && <p className="text-purple-400">{error}</p>}
               {recommendation && <div className="text-gray-300 whitespace-pre-wrap font-mono">{recommendation}<span className="inline-block w-2 h-4 bg-teal-400 animate-pulse ml-1"></span></div>}
             </div>
           </div>

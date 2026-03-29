@@ -33,8 +33,8 @@ const faqData = [
 const ScoreGauge: React.FC<{ score: number, title: string }> = ({ score, title }) => {
     const percentage = score;
     let colorClass = 'text-green-400';
-    if (percentage < 75) colorClass = 'text-yellow-400';
-    if (percentage < 50) colorClass = 'text-red-400';
+    if (percentage < 75) colorClass = 'text-blue-400';
+    if (percentage < 50) colorClass = 'text-purple-400';
 
     return (
         <div className="relative w-48 h-24 mx-auto">
@@ -61,13 +61,13 @@ const ScoreGauge: React.FC<{ score: number, title: string }> = ({ score, title }
 
 const FeedbackCard: React.FC<{ title: string; score: number; feedback: string; }> = ({ title, score, feedback }) => {
      let colorClass = 'border-green-500/50';
-    if (score < 8) colorClass = 'border-yellow-500/50';
-    if (score < 5) colorClass = 'border-red-500/50';
+    if (score < 8) colorClass = 'border-blue-500/50';
+    if (score < 5) colorClass = 'border-purple-500/50';
     return(
         <div className={`bg-gray-800/50 p-4 rounded-lg border-l-4 ${colorClass}`}>
             <div className="flex justify-between items-center mb-2">
                 <h4 className="text-lg font-semibold text-white">{title}</h4>
-                <span className={`text-xl font-bold ${score >= 8 ? 'text-green-400' : score >= 5 ? 'text-yellow-400' : 'text-red-400'}`}>{score}/10</span>
+                <span className={`text-xl font-bold ${score >= 8 ? 'text-green-400' : score >= 5 ? 'text-blue-400' : 'text-purple-400'}`}>{score}/10</span>
             </div>
             <p className="text-gray-400 text-sm">{feedback}</p>
         </div>
@@ -80,12 +80,12 @@ const OriginalityMeter: React.FC<{ score: number, title: string }> = ({ score, t
     const offset = circumference - (score / 100) * circumference;
 
     let colorClass = 'stroke-green-500';
-    if (score > 30) colorClass = 'stroke-yellow-500';
-    if (score > 60) colorClass = 'stroke-red-500';
+    if (score > 30) colorClass = 'stroke-blue-500';
+    if (score > 60) colorClass = 'stroke-purple-500';
 
     let textColorClass = 'text-green-400';
-    if (score > 30) textColorClass = 'text-yellow-400';
-    if (score > 60) textColorClass = 'text-red-400';
+    if (score > 30) textColorClass = 'text-blue-400';
+    if (score > 60) textColorClass = 'text-purple-400';
 
     return (
         <div className="flex flex-col items-center text-center">
@@ -182,11 +182,11 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
             {/* Subtle background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="mb-12">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group w-fit">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                         <span className="font-medium">Back to Tools</span>
                     </button>
@@ -194,7 +194,7 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                 
                 <div className="text-center mb-16">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">AI Tool</span>
+                        <span className="text-xs font-semibold tracking-widest text-blue-400 uppercase">AI Tool</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>AI SOP Analyzer</h1>
                     <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto font-light leading-relaxed">
@@ -211,7 +211,7 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                                 value={sopText}
                                 onChange={(e) => setSopText(e.target.value)}
                                 placeholder="Paste your Statement of Purpose here..."
-                                className="w-full flex-grow min-h-[400px] bg-black/20 p-6 rounded-2xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#F6520C]/50 focus:border-[#F6520C]/50 text-gray-300 resize-none font-light leading-relaxed modern-scrollbar transition-all duration-300"
+                                className="w-full flex-grow min-h-[400px] bg-black/20 p-6 rounded-2xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-300 resize-none font-light leading-relaxed modern-scrollbar transition-all duration-300"
                                 aria-label="Statement of Purpose Text Area"
                             />
                             <div className="absolute bottom-4 right-4 text-sm text-gray-400 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
@@ -221,7 +221,7 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                         <button
                             onClick={handleAnalyze}
                             disabled={isLoading || wordCount < 100}
-                            className="w-full mt-8 bg-gradient-to-r from-orange-500 to-pink-600 text-white py-4 rounded-full font-bold hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                            className="w-full mt-8 bg-gradient-to-r from-blue-500 to-pink-600 text-white py-4 rounded-full font-bold hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
                         >
                             {isLoading ? (
                                 <span className="flex items-center justify-center space-x-2">
@@ -235,18 +235,18 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                     <div className="bg-white/[0.02] backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl min-h-[500px] flex flex-col">
                         {isLoading && (
                             <div className="flex-grow flex flex-col items-center justify-center text-center text-gray-400 animate-pulse">
-                                <div className="w-20 h-20 bg-[#F6520C]/10 rounded-full flex items-center justify-center mb-6 border border-[#F6520C]/20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                                <div className="w-20 h-20 bg-blue-600/10 rounded-full flex items-center justify-center mb-6 border border-blue-500/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846-.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
                                 </div>
                                 <p className="text-lg font-light max-w-sm">Our AI is reading your SOP and preparing detailed feedback. This may take a moment...</p>
                             </div>
                         )}
                         {error && !isLoading && (
                             <div className="flex-grow flex flex-col items-center justify-center text-center">
-                                <div className="bg-red-500/10 border border-red-500/20 p-8 rounded-2xl max-w-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <div className="bg-purple-500/10 border border-purple-500/20 p-8 rounded-2xl max-w-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-purple-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     <h3 className="font-bold text-white text-xl mb-2">Analysis Failed</h3>
-                                    <p className="text-red-400/80 font-light">{error}</p>
+                                    <p className="text-purple-400/80 font-light">{error}</p>
                                 </div>
                             </div>
                         )}
@@ -268,7 +268,7 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                                     <ScoreGauge score={analysis.overallScore} title="Overall Score" />
                                     <div className="bg-white/5 p-6 rounded-xl mt-8 border border-white/5">
                                         <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#F6520C]" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
                                             Key Takeaways
                                         </h4>
                                         <p className="text-gray-300 font-light leading-relaxed">{analysis.summary}</p>
@@ -305,9 +305,9 @@ const AISOPSnalyzer: React.FC<AISOPSnalyzerProps> = ({ onBack }) => {
                                 
                                 {/* Section 4: Writing Suggestions */}
                                 {analysis.paraphraseInsights && analysis.paraphraseInsights.length > 0 && (
-                                    <div className="bg-gradient-to-br from-orange-500/10 to-pink-600/10 p-8 rounded-2xl border border-orange-500/20">
+                                    <div className="bg-gradient-to-br from-blue-500/10 to-pink-600/10 p-8 rounded-2xl border border-blue-500/20">
                                         <h3 className="text-xl font-bold text-white text-center mb-6 tracking-tight flex items-center justify-center gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#F6520C]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                                             AI Writing Suggestions
                                         </h3>
                                         <div className="space-y-6">

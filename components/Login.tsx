@@ -97,17 +97,17 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-1">Username</label>
-                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                 <div>
                     <div className="flex justify-between items-center">
                         <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">Password</label>
-                        <button type="button" onClick={() => switchView('forgot')} className="text-sm text-gray-400 hover:text-[#F6520C] transition focus:outline-none focus:ring-1 focus:ring-[#F6520C] rounded-sm">Forgot Password?</button>
+                        <button type="button" onClick={() => switchView('forgot')} className="text-sm text-gray-400 hover:text-blue-400 transition focus:outline-none focus:ring-1 focus:ring-blue-500 rounded-sm">Forgot Password?</button>
                     </div>
-                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
-                {error && <p className="text-sm text-red-400 bg-red-900/30 p-3 rounded-md text-center">{error}</p>}
-                <button type="submit" className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]">Login</button>
+                {error && <p className="text-sm text-purple-400 bg-purple-900/30 p-3 rounded-md text-center">{error}</p>}
+                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-700">Login</button>
             </form>
 
              <div className="flex items-center my-6">
@@ -124,14 +124,14 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
             <div className="mt-6 border-t border-gray-700 pt-4">
                 <h3 className="text-center text-sm font-semibold text-gray-300 mb-2">Demo Credentials</h3>
                 <div className="text-xs text-gray-400 space-y-1 text-center bg-gray-800/50 p-3 rounded-md">
-                    <p><strong className="font-semibold text-yellow-400">Admin:</strong> admin / adminpassword</p>
+                    <p><strong className="font-semibold text-blue-400">Admin:</strong> admin / adminpassword</p>
                     <p><strong className="font-semibold text-cyan-400">User:</strong> rohan / password123</p>
                 </div>
             </div>
 
             <p className="text-sm text-gray-400 mt-6 text-center">
                 Don't have an account?
-                <button onClick={() => switchView('signup')} className="font-semibold text-[#F6520C] hover:text-orange-400 ml-1">Sign Up</button>
+                <button onClick={() => switchView('signup')} className="font-semibold text-blue-400 hover:text-blue-300 ml-1">Sign Up</button>
             </p>
         </>
     );
@@ -143,26 +143,26 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
-                    <input type="text" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g., Rohan Mehta" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="text" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g., Rohan Mehta" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                 <div>
                     <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-1">Username</label>
-                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                 <div>
                     <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">Password</label>
-                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="8+ characters, with symbols" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="8+ characters, with symbols" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
                  <div>
                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-1">Confirm Password</label>
-                    <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Re-enter your password" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                    <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Re-enter your password" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                 </div>
-                {error && <p className="text-sm text-red-400 bg-red-900/30 p-3 rounded-md text-center">{error}</p>}
-                <button type="submit" className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-[#E84A00]">Sign Up</button>
+                {error && <p className="text-sm text-purple-400 bg-purple-900/30 p-3 rounded-md text-center">{error}</p>}
+                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-700">Sign Up</button>
             </form>
              <p className="text-sm text-gray-400 mt-6 text-center">
                 Already have an account?
-                <button onClick={() => switchView('login')} className="font-semibold text-[#F6520C] hover:text-orange-400 ml-1">Login</button>
+                <button onClick={() => switchView('login')} className="font-semibold text-blue-400 hover:text-blue-300 ml-1">Login</button>
             </p>
         </>
     );
@@ -181,16 +181,16 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label htmlFor="reset-email" className="block text-sm font-medium text-gray-300 mb-1">Username</label>
-                            <input type="text" id="reset-email" value={resetEmail} onChange={(e) => setResetEmail(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F6520C] text-white" />
+                            <input type="text" id="reset-email" value={resetEmail} onChange={(e) => setResetEmail(e.target.value)} placeholder="e.g., rohan" required className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" />
                         </div>
-                        {error && <p className="text-sm text-red-400 bg-red-900/30 p-3 rounded-md text-center">{error}</p>}
-                        <button type="submit" className="w-full bg-[#F6520C] text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Send Reset Link</button>
+                        {error && <p className="text-sm text-purple-400 bg-purple-900/30 p-3 rounded-md text-center">{error}</p>}
+                        <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Send Reset Link</button>
                     </form>
                 </>
             )}
             <p className="text-sm text-gray-400 mt-6 text-center">
                 Remember your password?
-                <button onClick={() => switchView('login')} className="font-semibold text-[#F6520C] hover:text-orange-400 ml-1">Back to Login</button>
+                <button onClick={() => switchView('login')} className="font-semibold text-blue-400 hover:text-blue-300 ml-1">Back to Login</button>
             </p>
         </>
     );
@@ -204,15 +204,15 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSignup, onBack, users }) => {
     }
 
     return (
-        <section className="py-24 bg-[#050810] min-h-screen flex items-center justify-center relative overflow-hidden">
+        <section className="py-24 bg-[#050a14] min-h-screen flex items-center justify-center relative overflow-hidden">
             {/* Subtle background elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
             <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 max-w-md relative z-10">
                  <div className="mb-8 text-center">
-                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group mx-auto w-fit">
+                    <button onClick={onBack} className="bg-white/5 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group mx-auto w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>

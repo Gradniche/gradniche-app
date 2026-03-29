@@ -12,7 +12,7 @@ const CommunityHighlights: React.FC<CommunityHighlightsProps> = ({ navigate }) =
     const highlightedThreads = allThreads.slice(0, 3);
 
     return (
-        <section id="community-highlights" className="py-24 relative bg-[#050810] overflow-hidden">
+        <section id="community-highlights" className="py-24 relative bg-[#050a14] overflow-hidden">
             {/* Subtle background elements */}
             <motion.div 
                 initial={{ opacity: 0 }}
@@ -37,7 +37,7 @@ const CommunityHighlights: React.FC<CommunityHighlightsProps> = ({ navigate }) =
                         viewport={{ once: true }}
                         className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6"
                     >
-                        <span className="text-xs font-semibold tracking-widest text-[#F6520C] uppercase">Student Network</span>
+                        <span className="text-xs font-semibold tracking-widest text-blue-400 uppercase">Student Network</span>
                     </motion.div>
                     <motion.h2 
                         initial={{ opacity: 0, y: 20 }}
@@ -71,10 +71,10 @@ const CommunityHighlights: React.FC<CommunityHighlightsProps> = ({ navigate }) =
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
                                 whileHover={{ y: -10 }}
-                                className="bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-[#F6520C]/5 group"
+                                className="bg-white/[0.02] backdrop-blur-sm p-8 rounded-3xl border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-blue-500/5 group"
                             >
                                 <div className="flex-grow">
-                                    <h3 className="text-xl font-bold text-white mb-4 h-14 tracking-tight group-hover:text-[#F6520C] transition-colors">{thread.title}</h3>
+                                    <h3 className="text-xl font-bold text-white mb-4 h-14 tracking-tight group-hover:text-blue-400 transition-colors">{thread.title}</h3>
                                     <p className="text-gray-400 text-sm line-clamp-3 font-light leading-relaxed">
                                         {thread.content}
                                     </p>
@@ -116,7 +116,7 @@ const CommunityHighlights: React.FC<CommunityHighlightsProps> = ({ navigate }) =
                         onClick={(e) => { e.preventDefault(); navigate('/tools/community-forums'); }} 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-block bg-[#F6520C] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-[#F6520C]/80"
+                        className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg glow-border focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-black/50 focus:ring-blue-500/80"
                     >
                         Join the Conversation
                     </motion.a>

@@ -385,8 +385,8 @@ ${currentText}`;
         
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-orange-500/20 to-[#F6520C]/10 rounded-2xl border border-[#F6520C]/20 mb-6">
-            <Sparkles className="w-8 h-8 text-[#F6520C]" />
+          <div className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-blue-500/20 to-purple-500/10 rounded-2xl border border-blue-500/20 mb-6">
+            <Sparkles className="w-8 h-8 text-blue-400" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Premium SOP Generator</h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
@@ -396,7 +396,7 @@ ${currentText}`;
           {/* Trust Indicators */}
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
             <div className="flex items-center gap-2 text-sm text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-full">
-              <Award className="w-4 h-4 text-orange-400" />
+              <Award className="w-4 h-4 text-blue-400" />
               <span>Built by Study Abroad Experts</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-full">
@@ -417,12 +417,12 @@ ${currentText}`;
               <div className="flex items-center justify-between relative px-4">
                 <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-1 bg-white/5 rounded-full z-0"></div>
                 <div 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-[#F6520C] to-orange-400 rounded-full z-0 transition-all duration-500"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-blue-500 to-purple-400 rounded-full z-0 transition-all duration-500"
                   style={{ width: `calc(${((step - 1) / (totalSteps - 1)) * 100}% - ${((step - 1) / (totalSteps - 1)) * 32}px)` }}
                 ></div>
                 
                 {[1, 2, 3, 4, 5, 6].map((s) => (
-                  <div key={s} className={`relative z-10 flex flex-col items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-300 ${step >= s ? 'bg-[#0a101f] border-[#F6520C] text-[#F6520C]' : 'bg-[#0a101f] border-white/10 text-gray-500'}`}>
+                  <div key={s} className={`relative z-10 flex flex-col items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-300 ${step >= s ? 'bg-[#0a101f] border-blue-500 text-blue-400' : 'bg-[#0a101f] border-white/10 text-gray-500'}`}>
                     {step > s ? <CheckCircle className="w-5 h-5" /> : <span className="font-bold">{s}</span>}
                   </div>
                 ))}
@@ -441,10 +441,10 @@ ${currentText}`;
 
         {/* Form Container */}
         <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#F6520C] to-orange-400 opacity-50"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-400 opacity-50"></div>
           
           {error && (
-            <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3 text-red-400">
+            <div className="mb-8 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-start gap-3 text-purple-400">
               <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
               <p className="text-sm">{error}</p>
             </div>
@@ -454,7 +454,7 @@ ${currentText}`;
           {step === 1 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <User className="text-[#F6520C]" /> Basic Details
+                <User className="text-blue-400" /> Basic Details
               </h2>
               
               <div className="space-y-4">
@@ -466,7 +466,7 @@ ${currentText}`;
                     value={formData.fullName} 
                     onChange={handleInputChange}
                     placeholder="e.g., John Doe"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -476,7 +476,7 @@ ${currentText}`;
                     name="targetCountry" 
                     value={formData.targetCountry} 
                     onChange={handleInputChange}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors appearance-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors appearance-none"
                   >
                     <option value="">Select a country...</option>
                     <option value="USA">United States</option>
@@ -498,7 +498,7 @@ ${currentText}`;
                     value={formData.targetUniversity} 
                     onChange={handleInputChange}
                     placeholder="e.g., Stanford University, Imperial College London"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -510,7 +510,7 @@ ${currentText}`;
                     value={formData.targetProgram} 
                     onChange={handleInputChange}
                     placeholder="e.g., MS in Computer Science, MBA"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
               </div>
@@ -521,7 +521,7 @@ ${currentText}`;
           {step === 2 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <BookOpen className="text-[#F6520C]" /> Academic Background
+                <BookOpen className="text-blue-400" /> Academic Background
               </h2>
               
               <div className="space-y-4">
@@ -533,7 +533,7 @@ ${currentText}`;
                     value={formData.academicDegree} 
                     onChange={handleInputChange}
                     placeholder="e.g., Bachelor of Technology in Computer Science"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -545,7 +545,7 @@ ${currentText}`;
                     value={formData.academicUniversity} 
                     onChange={handleInputChange}
                     placeholder="e.g., Indian Institute of Technology"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -557,7 +557,7 @@ ${currentText}`;
                     value={formData.academicGPA} 
                     onChange={handleInputChange}
                     placeholder="e.g., 3.8/4.0 or 85%"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -569,7 +569,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="e.g., Data Structures, Machine Learning, Operating Systems"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -580,7 +580,7 @@ ${currentText}`;
           {step === 3 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <Briefcase className="text-[#F6520C]" /> Work Experience
+                <Briefcase className="text-blue-400" /> Work Experience
               </h2>
               
               <div className="space-y-4">
@@ -592,7 +592,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="e.g., Software Engineer at Google (2021-Present)"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
@@ -604,7 +604,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={4}
                     placeholder="Describe your main tasks, projects you led, and impact..."
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
@@ -616,7 +616,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="e.g., Python, Team Leadership, Agile Methodologies"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -627,7 +627,7 @@ ${currentText}`;
           {step === 4 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <Target className="text-[#F6520C]" /> Personal Questions
+                <Target className="text-blue-400" /> Personal Questions
               </h2>
               
               <div className="space-y-4">
@@ -639,7 +639,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="What specific aspects of the curriculum appeal to you?"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
@@ -651,7 +651,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="Why study here instead of your home country?"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
@@ -664,7 +664,7 @@ ${currentText}`;
                       onChange={handleInputChange}
                       rows={3}
                       placeholder="Goals immediately after graduation"
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                     />
                   </div>
                   <div>
@@ -675,7 +675,7 @@ ${currentText}`;
                       onChange={handleInputChange}
                       rows={3}
                       placeholder="Where do you see yourself in 5-10 years?"
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                     />
                   </div>
                 </div>
@@ -688,7 +688,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="Awards, publications, or significant milestones"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
@@ -700,7 +700,7 @@ ${currentText}`;
                     onChange={handleInputChange}
                     rows={3}
                     placeholder="Explain any academic gaps or challenges you've overcome"
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F6520C] transition-colors resize-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -711,7 +711,7 @@ ${currentText}`;
           {step === 5 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <FileText className="text-[#F6520C]" /> Resume Upload
+                <FileText className="text-blue-400" /> Resume Upload
               </h2>
               
               <div className="space-y-6">
@@ -726,13 +726,13 @@ ${currentText}`;
                     onChange={handleFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   />
-                  <div className={`w-full border-2 border-dashed ${fileName ? 'border-[#F6520C]/50 bg-[#F6520C]/5' : 'border-white/20 bg-black/20 group-hover:border-white/40'} rounded-xl p-12 text-center transition-colors`}>
-                    <Upload className={`w-12 h-12 mx-auto mb-4 ${fileName ? 'text-[#F6520C]' : 'text-gray-500'}`} />
+                  <div className={`w-full border-2 border-dashed ${fileName ? 'border-blue-500/50 bg-blue-600/5' : 'border-white/20 bg-black/20 group-hover:border-white/40'} rounded-xl p-12 text-center transition-colors`}>
+                    <Upload className={`w-12 h-12 mx-auto mb-4 ${fileName ? 'text-blue-400' : 'text-gray-500'}`} />
                     <p className="text-lg text-gray-200 font-medium mb-2">
                       {fileName ? fileName : 'Click or drag file to upload'}
                     </p>
                     {!fileName && <p className="text-sm text-gray-500">PDF, DOCX, or TXT (Max 5MB)</p>}
-                    {fileName && <p className="text-sm text-[#F6520C]">File selected successfully</p>}
+                    {fileName && <p className="text-sm text-blue-400">File selected successfully</p>}
                   </div>
                 </div>
               </div>
@@ -743,7 +743,7 @@ ${currentText}`;
           {step === 6 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold flex items-center gap-3 mb-8">
-                <CheckCircle className="text-[#F6520C]" /> Review Details
+                <CheckCircle className="text-blue-400" /> Review Details
               </h2>
               
               <div className="bg-black/40 rounded-2xl p-6 border border-white/5 space-y-6 text-sm max-h-[60vh] overflow-y-auto modern-scrollbar">
@@ -809,7 +809,7 @@ ${currentText}`;
 
                 {/* Resume */}
                 {fileName && (
-                  <div className="pt-2 flex items-center gap-2 text-[#F6520C]">
+                  <div className="pt-2 flex items-center gap-2 text-blue-400">
                     <FileText className="w-4 h-4" />
                     <span className="font-medium">Resume attached: {fileName}</span>
                   </div>
@@ -824,7 +824,7 @@ ${currentText}`;
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
                 <div>
                   <h2 className="text-2xl font-bold flex items-center gap-3">
-                    <Sparkles className="text-[#F6520C]" /> Your Premium SOP
+                    <Sparkles className="text-blue-400" /> Your Premium SOP
                   </h2>
                   <p className="text-gray-400 mt-1 flex items-center gap-2 text-sm">
                     <ShieldCheck className="w-4 h-4 text-green-400" />
@@ -849,7 +849,7 @@ ${currentText}`;
                   </button>
                   <button 
                     onClick={downloadPDF}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#F6520C] hover:bg-orange-600 text-white rounded-lg transition-colors text-sm font-medium shadow-lg shadow-orange-500/20"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium shadow-lg shadow-blue-500/20"
                   >
                     <Download className="w-4 h-4" /> Download PDF
                   </button>
@@ -888,19 +888,19 @@ ${currentText}`;
                           }
                         }}
                         disabled={isRewriting}
-                        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${versions[currentVersionIndex]?.tone === tone ? 'bg-[#F6520C] text-white font-medium' : 'text-gray-400 hover:text-white hover:bg-white/10'} ${tone === 'Original' ? 'pointer-events-none' : ''}`}
+                        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${versions[currentVersionIndex]?.tone === tone ? 'bg-blue-600 text-white font-medium' : 'text-gray-400 hover:text-white hover:bg-white/10'} ${tone === 'Original' ? 'pointer-events-none' : ''}`}
                       >
                         {tone}
                       </button>
                     ))}
                   </div>
-                  {isRewriting && <span className="text-xs text-orange-400 animate-pulse">{rewriteStatus}</span>}
+                  {isRewriting && <span className="text-xs text-blue-400 animate-pulse">{rewriteStatus}</span>}
                 </div>
                 
                 <div className="flex items-center gap-3">
                   <span className="text-sm text-gray-400 flex items-center gap-2"><History className="w-4 h-4"/> Version:</span>
                   <select 
-                    className="bg-black/40 border border-white/10 text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-[#F6520C]"
+                    className="bg-black/40 border border-white/10 text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-blue-500"
                     value={currentVersionIndex}
                     onChange={(e) => {
                       const idx = parseInt(e.target.value);
@@ -924,18 +924,18 @@ ${currentText}`;
                   <button 
                     onClick={handleSuggestImprovements}
                     disabled={isGettingSuggestions || isRewriting}
-                    className="w-full py-4 border border-dashed border-white/20 rounded-xl text-gray-400 hover:text-white hover:border-[#F6520C]/50 hover:bg-[#F6520C]/5 flex items-center justify-center gap-2 transition-all"
+                    className="w-full py-4 border border-dashed border-white/20 rounded-xl text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-blue-600/5 flex items-center justify-center gap-2 transition-all"
                   >
                     {isGettingSuggestions ? (
                       <><div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div> Analyzing SOP...</>
                     ) : (
-                      <><Lightbulb className="w-5 h-5 text-yellow-500" /> Get Expert Suggestions to Improve</>
+                      <><Lightbulb className="w-5 h-5 text-blue-500" /> Get Expert Suggestions to Improve</>
                     )}
                   </button>
                 ) : (
-                  <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/20 rounded-xl p-6">
+                  <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/5 border border-blue-500/20 rounded-xl p-6">
                     <h3 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
-                      <Lightbulb className="w-5 h-5 text-yellow-500" /> Expert Suggestions
+                      <Lightbulb className="w-5 h-5 text-blue-500" /> Expert Suggestions
                     </h3>
                     <div className="prose prose-invert prose-sm max-w-none text-gray-300">
                       {suggestions.split('\n').map((line, i) => (
@@ -949,7 +949,7 @@ ${currentText}`;
               {/* Document Container */}
               <div className="relative bg-white rounded-xl shadow-2xl overflow-hidden">
                 {/* Top decorative bar */}
-                <div className="h-2 w-full bg-gradient-to-r from-[#F6520C] to-orange-400"></div>
+                <div className="h-2 w-full bg-gradient-to-r from-blue-500 to-purple-400"></div>
                 
                 {/* Toolbar inside document */}
                 <div className="flex items-center justify-between px-8 py-4 border-b border-gray-100 bg-gray-50/50">
@@ -1021,7 +1021,7 @@ ${currentText}`;
                 <button
                   onClick={handleGenerate}
                   disabled={isGenerating}
-                  className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#F6520C] to-orange-500 hover:from-orange-500 hover:to-[#F6520C] text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(246,82,12,0.4)] disabled:opacity-70"
+                  className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-500 hover:to-purple-500 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)] disabled:opacity-70"
                 >
                   {isGenerating ? (
                     <>

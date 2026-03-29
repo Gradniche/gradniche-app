@@ -16,9 +16,9 @@ interface UniversityDetailProps {
 const KeyFact: React.FC<{ label: string; value: string | number | undefined }> = ({ label, value }) => {
     if (!value) return null;
     return (
-        <div className="bg-white/[0.02] p-5 rounded-2xl text-center border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 shadow-lg">
-            <p className="text-xs text-gray-500 uppercase tracking-widest font-medium mb-2">{label}</p>
-            <p className="text-2xl font-bold text-white tracking-tight">{value}</p>
+        <div className="bg-white/5 backdrop-blur-md p-4 md:p-5 rounded-2xl text-center border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-sm">
+            <p className="text-[11px] md:text-xs text-gray-400 uppercase tracking-wider font-medium mb-1 md:mb-2">{label}</p>
+            <p className="text-lg md:text-2xl font-semibold text-white tracking-tight">{value}</p>
         </div>
     )
 };
@@ -31,19 +31,19 @@ interface AccordionItemProps {
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, onClick }) => (
-    <div className="border border-white/5 rounded-2xl mb-4 bg-white/[0.02] overflow-hidden">
+    <div className="border-b border-white/10 last:border-b-0 bg-transparent overflow-hidden">
         <button
             onClick={onClick}
-            className="w-full flex justify-between items-center text-left p-6 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F6520C] hover:bg-white/[0.02] transition-colors"
+            className="w-full flex justify-between items-center text-left py-4 md:py-5 focus:outline-none hover:bg-white/[0.02] transition-colors"
             aria-expanded={isOpen}
         >
-            <span className="font-bold text-white text-lg">{title}</span>
-            <div className={`w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#F6520C]/20 text-[#F6520C]' : 'text-gray-400'}`}>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"></path></svg>
+            <span className="font-semibold text-white text-base md:text-lg">{title}</span>
+            <div className={`flex items-center justify-center flex-shrink-0 ml-3 md:ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-blue-400' : 'text-gray-500'}`}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7"></path></svg>
             </div>
         </button>
         <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
-            <div className="p-6 pt-0 text-gray-400 leading-relaxed font-light">{children}</div>
+            <div className="pb-5 pt-1 text-gray-400 leading-relaxed font-light text-sm md:text-base">{children}</div>
         </div>
     </div>
 );
@@ -130,42 +130,42 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
 
 
   return (
-    <section className="py-24 bg-[#050810] min-h-screen relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#050a14] min-h-screen relative overflow-hidden">
       {/* Subtle background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-blue-500/5 rounded-full blur-[100px] md:blur-[150px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="mb-8">
-            <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="mb-6 md:mb-8">
+            <button onClick={onBack} className="text-blue-400 hover:text-blue-300 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-1 text-sm md:text-base">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 <span>Back to University List</span>
             </button>
         </div>
         
-        <div className="relative bg-white/[0.02] backdrop-blur-xl p-8 md:p-12 rounded-3xl mb-12 border border-white/5 shadow-2xl overflow-hidden">
-            <div className="absolute -top-1/4 -right-1/4 w-1/2 h-full bg-gradient-to-tr from-[#F6520C]/20 via-transparent to-transparent rounded-full opacity-50 blur-3xl pointer-events-none"></div>
+        <div className="relative bg-white/[0.02] backdrop-blur-xl p-6 md:p-12 rounded-2xl md:rounded-3xl mb-8 md:mb-12 border border-white/5 shadow-2xl overflow-hidden">
+            <div className="absolute -top-1/4 -right-1/4 w-1/2 h-full bg-gradient-to-tr from-blue-500/20 via-transparent to-transparent rounded-full opacity-50 blur-3xl pointer-events-none"></div>
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
             
             <div className="relative z-10">
                 <div className="flex flex-col md:flex-row items-center md:space-x-10">
-                    <div className="w-32 h-32 rounded-2xl mb-8 md:mb-0 bg-white/5 p-3 flex-shrink-0 border border-white/10 shadow-xl overflow-hidden flex items-center justify-center">
+                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl md:rounded-2xl mb-6 md:mb-0 bg-white/5 p-2 md:p-3 flex-shrink-0 border border-white/10 shadow-xl overflow-hidden flex items-center justify-center">
                         <UniversityLogo src={university.logo} alt={university.name} className="w-full h-full object-contain" />
                     </div>
                     <div className="text-center md:text-left flex-1">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{university.name}</h1>
-                        <p className="text-xl md:text-2xl text-gray-400 font-light">{university.location} <span className="text-gray-600 mx-2">&middot;</span> {university.setting}</p>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-2 md:mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{university.name}</h1>
+                        <p className="text-lg md:text-2xl text-gray-400 font-light">{university.location} <span className="text-gray-600 mx-2">&middot;</span> {university.setting}</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div className="bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 lg:hidden mb-12 shadow-2xl">
-            <h2 className="text-2xl font-bold text-white mb-6 tracking-tight">Key Facts</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="bg-white/[0.02] backdrop-blur-xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 lg:hidden mb-8 md:mb-12 shadow-2xl">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 tracking-tight">Key Facts</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
                 <KeyFact label="QS Ranking" value={university.qsRanking ? `#${university.qsRanking}` : 'N/A'} />
                 <KeyFact label="US News Global" value={university.otherRankings?.usNewsGlobal ? `#${university.otherRankings.usNewsGlobal}` : undefined} />
                 <KeyFact label="National Rank" value={university.otherRankings?.national ? `#${university.otherRankings.national}` : undefined} />
@@ -178,104 +178,104 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
             </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            <div className="lg:col-span-2 bg-white/[0.02] backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
+            <div className="lg:col-span-2 bg-white/[0.02] backdrop-blur-xl p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
                 {/* Inner glow */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
                 
                 <div className="relative z-10">
-                    <section id="overview" ref={overviewRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>About University</h2>
-                        <p className="text-gray-400 leading-relaxed whitespace-pre-line font-light text-lg">{enhancedAbout}</p>
+                    <section id="overview" ref={overviewRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>About University</h2>
+                        <p className="text-gray-400 leading-relaxed whitespace-pre-line font-light text-base md:text-lg">{enhancedAbout}</p>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
 
-                    <section id="programs" ref={programsRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Graduate Programs Offered</h2>
-                        <div className="space-y-4">
-                            {university.programs.length > 0 ? university.programs.map(program => (
+                    <section id="programs" ref={programsRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Graduate Programs Offered</h2>
+                        <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden">
+                            {university.programs.length > 0 ? university.programs.map((program, index) => (
                                 <button 
                                     key={program.id} 
                                     onClick={() => onProgramSelect(program)} 
-                                    className="w-full text-left bg-black/20 p-6 rounded-2xl shadow-lg border border-white/5 hover:border-[#F6520C]/50 hover:bg-white/[0.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#F6520C] group"
+                                    className={`w-full text-left p-4 md:p-6 hover:bg-white/[0.02] transition-all duration-300 focus:outline-none focus:bg-white/[0.05] group ${index !== university.programs.length - 1 ? 'border-b border-white/10' : ''}`}
                                 >
-                                    <div className="flex justify-between items-start">
-                                        <div className="pr-4">
-                                            <h4 className="text-xl font-bold text-white mb-2 group-hover:text-[#F6520C] transition-colors">{program.name}</h4>
-                                            <p className="text-sm text-gray-400 font-light">{program.level} <span className="text-gray-600 mx-2">&middot;</span> {program.duration}</p>
+                                    <div className="flex justify-between items-center">
+                                        <div className="pr-3 md:pr-4">
+                                            <h4 className="text-lg md:text-xl font-semibold text-white mb-1 md:mb-2 group-hover:text-blue-400 transition-colors">{program.name}</h4>
+                                            <p className="text-xs md:text-sm text-gray-400 font-light">{program.level} <span className="text-gray-600 mx-1 md:mx-2">&middot;</span> {program.duration}</p>
                                             {program.rankings && (
-                                                <div className="mt-4 flex items-center flex-wrap gap-3 text-xs">
+                                                <div className="mt-3 md:mt-4 flex items-center flex-wrap gap-2 md:gap-3 text-[10px] md:text-xs">
                                                     {program.rankings.qsSubject && (
-                                                        <span className="bg-[#F6520C]/10 text-[#F6520C] border border-[#F6520C]/20 font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <span className="bg-blue-600/10 text-blue-400 border border-blue-500/20 font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-full flex items-center gap-1 md:gap-1.5">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-3.5 md:w-3.5" viewBox="0 0 20 20" fill="currentColor">
                                                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                                             </svg>
                                                             QS Subject: #{program.rankings.qsSubject}
                                                         </span>
                                                     )}
                                                     {program.rankings.usNewsSubject && (
-                                                        <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold px-3 py-1.5 rounded-full">US News Subject: #{program.rankings.usNewsSubject}</span>
+                                                        <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-full">US News Subject: #{program.rankings.usNewsSubject}</span>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className="flex-shrink-0 text-gray-500 group-hover:text-[#F6520C] transition-colors group-hover:translate-x-1 transform duration-300">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <div className="flex-shrink-0 text-gray-500 group-hover:text-blue-400 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                     </div>
                                 </button>
                             )) : (
-                                <p className="text-gray-500 text-center py-8 bg-black/20 rounded-2xl border border-white/5">No graduate programs listed for this university.</p>
+                                <p className="text-gray-500 text-center py-6 md:py-8 text-sm md:text-base">No graduate programs listed for this university.</p>
                             )}
                         </div>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
                     
-                    <section id="scholarships" ref={scholarshipsRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Scholarships & Funding</h2>
-                        <p className="text-gray-400 leading-relaxed mb-8 font-light text-lg">{university.scholarships}</p>
-                         <button onClick={() => navigate('/tools/scholarship-finder')} className="bg-white/5 text-white border border-white/10 px-8 py-3 rounded-xl hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C] font-medium shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)]">
+                    <section id="scholarships" ref={scholarshipsRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Scholarships & Funding</h2>
+                        <p className="text-gray-400 leading-relaxed mb-6 md:mb-8 font-light text-base md:text-lg">{university.scholarships}</p>
+                         <button onClick={() => navigate('/tools/scholarship-finder')} className="w-full md:w-auto bg-white/5 text-white border border-white/10 px-6 md:px-8 py-3 rounded-xl hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050a14] focus:ring-blue-500 font-medium shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] text-sm md:text-base">
                           Find Relevant Scholarships
                         </button>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
                     
-                    <section id="admissions" ref={admissionsRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Admission Insights</h2>
-                        <div className="grid grid-cols-2 gap-6">
+                    <section id="admissions" ref={admissionsRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Admission Insights</h2>
+                        <div className="grid grid-cols-2 gap-4 md:gap-6">
                             <KeyFact label="Acceptance Rate" value={university.acceptanceRate} />
                             <KeyFact label="Application Fee" value={university.applicationFee} />
                         </div>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
 
-                    <section id="student-life" ref={studentLifeRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Student Life</h2>
-                        <div className="grid grid-cols-2 gap-6">
+                    <section id="student-life" ref={studentLifeRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Student Life</h2>
+                        <div className="grid grid-cols-2 gap-4 md:gap-6">
                             <KeyFact label="Int'l Students" value={university.internationalStudents} />
                             <KeyFact label="Student:Faculty Ratio" value={university.studentFacultyRatio} />
                         </div>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
                     
-                     <section id="reviews" ref={reviewsRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Community Discussions</h2>
+                     <section id="reviews" ref={reviewsRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Community Discussions</h2>
                         {relevantThreads.length > 0 ? (
-                            <div className="space-y-4">
+                            <div className="space-y-3 md:space-y-4">
                                 {relevantThreads.map(thread => {
                                     const author = users.find(u => u.id === thread.authorId);
                                     return (
-                                    <button key={thread.id} onClick={() => onThreadSelect(thread.id)} className="w-full text-left bg-black/20 p-6 rounded-2xl border border-white/5 hover:border-white/20 hover:bg-white/[0.02] transition-all duration-300 group">
-                                        <p className="font-bold text-white truncate text-lg mb-3 group-hover:text-[#F6520C] transition-colors">{thread.title}</p>
-                                        <div className="flex items-center space-x-3 text-sm text-gray-400">
-                                            <img src={generateAvatarUrl(author!.avatarConfig)} alt={author!.name} className="w-6 h-6 rounded-full border border-gray-700" />
+                                    <button key={thread.id} onClick={() => onThreadSelect(thread.id)} className="w-full text-left bg-black/20 p-4 md:p-6 rounded-xl md:rounded-2xl border border-white/5 hover:border-white/20 hover:bg-white/[0.02] transition-all duration-300 group">
+                                        <p className="font-bold text-white truncate text-base md:text-lg mb-2 md:mb-3 group-hover:text-blue-400 transition-colors">{thread.title}</p>
+                                        <div className="flex items-center space-x-2 md:space-x-3 text-xs md:text-sm text-gray-400">
+                                            <img src={generateAvatarUrl(author!.avatarConfig)} alt={author!.name} className="w-5 h-5 md:w-6 md:h-6 rounded-full border border-gray-700" />
                                             <span className="font-medium">{author!.name}</span>
                                             <span className="text-gray-600">&middot;</span>
                                             <span>{thread.replies.length} replies</span>
@@ -284,9 +284,9 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                                 )})}
                             </div>
                         ) : (
-                            <p className="text-gray-500 py-8 text-center bg-black/20 rounded-2xl border border-white/5">No community discussions found for this university yet.</p>
+                            <p className="text-gray-500 py-6 md:py-8 text-center bg-black/20 rounded-xl md:rounded-2xl border border-white/5 text-sm md:text-base">No community discussions found for this university yet.</p>
                         )}
-                        <button onClick={() => navigate('/tools/community-forums')} className="mt-8 text-sm font-semibold text-[#F6520C] hover:text-orange-400 transition-colors flex items-center gap-2">
+                        <button onClick={() => navigate('/tools/community-forums')} className="mt-6 md:mt-8 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2">
                             View All Discussions 
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -294,11 +294,11 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                         </button>
                     </section>
                     
-                    <hr className="my-12 border-white/5" />
+                    <hr className="my-8 md:my-12 border-white/5" />
                     
-                    <section id="faq" ref={faqRef} className="scroll-mt-32">
-                        <h2 className="text-3xl font-bold text-white mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Frequently Asked Questions</h2>
-                        <div className="space-y-4">
+                    <section id="faq" ref={faqRef} className="scroll-mt-24 md:scroll-mt-32">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Frequently Asked Questions</h2>
+                        <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 px-4 md:px-6">
                             {faqs.map((faq, index) => (
                                 <AccordionItem
                                     key={index}
@@ -338,9 +338,9 @@ const UniversityDetail: React.FC<UniversityDetailProps> = ({ university, onProgr
                                 {navLinks.map(link => (
                                     <li key={link.id}>
                                         <a href={`#${link.id}`}
-                                          className={`flex items-center justify-between text-sm px-4 py-3 rounded-xl transition-all duration-300 ${activeSection === link.id ? 'bg-[#F6520C]/10 text-[#F6520C] font-semibold border border-[#F6520C]/20 shadow-sm' : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'}`}>
+                                          className={`flex items-center justify-between text-sm px-4 py-3 rounded-xl transition-all duration-300 ${activeSection === link.id ? 'bg-blue-600/10 text-blue-400 font-semibold border border-blue-500/20 shadow-sm' : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'}`}>
                                             {link.label}
-                                            {link.count !== undefined && <span className={`ml-2 text-xs font-bold px-2.5 py-1 rounded-full ${activeSection === link.id ? 'bg-[#F6520C]/20 text-[#F6520C]' : 'bg-white/5 text-gray-400'}`}>{link.count}</span>}
+                                            {link.count !== undefined && <span className={`ml-2 text-xs font-bold px-2.5 py-1 rounded-full ${activeSection === link.id ? 'bg-blue-600/20 text-blue-400' : 'bg-white/5 text-gray-400'}`}>{link.count}</span>}
                                         </a>
                                     </li>
                                 ))}

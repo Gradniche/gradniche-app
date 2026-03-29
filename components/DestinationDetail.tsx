@@ -11,14 +11,14 @@ interface DestinationDetailProps {
 
 // --- Helper Components ---
 
-const PremiumIcon = ({ icon, color = 'from-orange-500 to-pink-500' }: { icon: React.ReactNode, color?: string }) => (
-    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg shadow-orange-500/10 text-white transform group-hover:scale-110 transition-transform duration-300`}>
+const PremiumIcon = ({ icon, color = 'from-blue-500 to-pink-500' }: { icon: React.ReactNode, color?: string }) => (
+    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg shadow-blue-500/10 text-white transform group-hover:scale-110 transition-transform duration-300`}>
         {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { className: "w-7 h-7" }) : icon}
     </div>
 );
 
 const SectionWrapper: React.FC<{id: string, title: string, children: React.ReactNode, icon?: React.ReactNode, className?: string}> = ({ id, title, children, icon, className = "" }) => (
-    <div id={id} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 h-full scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5 ${className}`}>
+    <div id={id} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 h-full scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/5 ${className}`}>
         <div className="flex items-center space-x-4 mb-8">
             {icon && <div className="flex-shrink-0">{icon}</div>}
             <h3 className="text-2xl font-bold text-white tracking-tight">{title}</h3>
@@ -35,7 +35,7 @@ const CostCard: React.FC<{ title: string; content: string; id: string }> = ({ ti
     const livingContent = livingMatch ? livingMatch[1].trim() : '';
 
     const parseAndHighlight = (text: string) => {
-        const highlighted = text.replace(/(\$[\d,]+|£[\d,]+|€[\d,]+|₹[\d,]+)/g, '<strong class="text-[#F6520C] font-extrabold text-xl">$1</strong>');
+        const highlighted = text.replace(/(\$[\d,]+|£[\d,]+|€[\d,]+|₹[\d,]+)/g, '<strong class="text-blue-400 font-extrabold text-xl">$1</strong>');
         return <p className="text-gray-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: highlighted }} />;
     };
 
@@ -55,9 +55,9 @@ const CostCard: React.FC<{ title: string; content: string; id: string }> = ({ ti
                     </h4>
                     {parseAndHighlight(tuitionContent)}
                 </div>
-                 <div className="bg-black/20 p-6 rounded-2xl border border-white/5 hover:border-orange-500/30 transition-colors">
+                 <div className="bg-black/20 p-6 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-colors">
                     <h4 className="font-bold text-lg text-white mb-3 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-orange-500 rounded-full"></span> Living Costs
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span> Living Costs
                     </h4>
                     {parseAndHighlight(livingContent)}
                 </div>
@@ -109,7 +109,7 @@ const PopularCoursesCard: React.FC<{ title: string; content: string; id: string 
         }>
             <div className="flex flex-wrap gap-3 mt-4">
                 {courses.map(course => (
-                    <span key={course} className="bg-gray-800/80 border border-gray-700 text-gray-300 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#F6520C] hover:text-white hover:border-[#F6520C] transition-all duration-300 cursor-default shadow-sm">
+                    <span key={course} className="bg-gray-800/80 border border-gray-700 text-gray-300 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all duration-300 cursor-default shadow-sm">
                         {course}
                     </span>
                 ))}
@@ -121,7 +121,7 @@ const PopularCoursesCard: React.FC<{ title: string; content: string; id: string 
 const GenericInfoCard: React.FC<{ title: string, content: string, id: string, icon: React.ReactNode, cta?: { text: string, action: () => void }, color?: string }> = ({ title, content, id, icon, cta, color }) => {
     const highlightContent = (text: string) => {
         const highlighted = text
-            .replace(/(Optional Practical Training \(OPT\)|STEM OPT Extension)/g, '<strong class="text-white underline decoration-[#F6520C] decoration-2">$1</strong>')
+            .replace(/(Optional Practical Training \(OPT\)|STEM OPT Extension)/g, '<strong class="text-white underline decoration-blue-500 decoration-2">$1</strong>')
             .replace(/(University Scholarships|Assistantships|External Scholarships|Fulbright-Nehru Fellowships|Tata Scholarship)/g, '<strong class="text-white underline decoration-green-500 decoration-2">$1</strong>')
             .replace(/(Bachelor's|Master's|doctoral degrees \(PhD\))/g, '<strong class="text-white">$1</strong>');
         return <div className="text-gray-400 leading-relaxed whitespace-pre-line space-y-4 text-base" dangerouslySetInnerHTML={{ __html: highlighted }} />;
@@ -132,7 +132,7 @@ const GenericInfoCard: React.FC<{ title: string, content: string, id: string, ic
             {highlightContent(content)}
             {cta && (
                  <div className="mt-8">
-                    <button onClick={cta.action} className="w-full sm:w-auto bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full hover:bg-[#F6520C] hover:border-[#F6520C] transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/30 flex items-center justify-center gap-2 group">
+                    <button onClick={cta.action} className="w-full sm:w-auto bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 font-semibold shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2 group">
                       {cta.text}
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </button>
@@ -144,7 +144,7 @@ const GenericInfoCard: React.FC<{ title: string, content: string, id: string, ic
 
 const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id: string }> = ({ visaGuide, countryName, id }) => {
     return (
-        <div id={id} className="bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5">
+        <div id={id} className="bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 scroll-mt-36 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/5">
             <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{countryName} Student Visa Guide</h3>
                 <p className="text-gray-400 leading-relaxed max-w-3xl mx-auto text-lg font-light">{visaGuide.overview}</p>
@@ -152,13 +152,13 @@ const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id
             
             <div className="space-y-12">
                 <div>
-                    <h4 className="text-xl font-bold text-[#F6520C] mb-6 uppercase tracking-wider flex items-center gap-3">
-                        <span className="h-px w-8 bg-[#F6520C]"></span> Document Checklist
+                    <h4 className="text-xl font-bold text-blue-400 mb-6 uppercase tracking-wider flex items-center gap-3">
+                        <span className="h-px w-8 bg-blue-600"></span> Document Checklist
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {visaGuide.documents.map((doc, index) => (
                             <div key={index} className="bg-black/30 p-4 rounded-xl flex items-center space-x-4 border border-white/5 hover:border-white/20 transition-all hover:bg-black/40">
-                                <div className="text-[#F6520C] flex-shrink-0 bg-white/5 p-2 rounded-lg">{React.cloneElement(doc.icon as React.ReactElement<any>, { className: "w-6 h-6" })}</div>
+                                <div className="text-blue-400 flex-shrink-0 bg-white/5 p-2 rounded-lg">{React.cloneElement(doc.icon as React.ReactElement<any>, { className: "w-6 h-6" })}</div>
                                 <p className="font-medium text-gray-200 text-sm">{doc.item}</p>
                             </div>
                         ))}
@@ -166,14 +166,14 @@ const VisaGuideSection: React.FC<{ visaGuide: VisaGuide; countryName: string; id
                 </div>
                 
                 <div>
-                    <h4 className="text-xl font-bold text-[#F6520C] mb-8 uppercase tracking-wider flex items-center gap-3">
-                        <span className="h-px w-8 bg-[#F6520C]"></span> Application Steps
+                    <h4 className="text-xl font-bold text-blue-400 mb-8 uppercase tracking-wider flex items-center gap-3">
+                        <span className="h-px w-8 bg-blue-600"></span> Application Steps
                     </h4>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 relative">
                         {/* Timeline line for large screens if needed, but here using cards */}
                         {visaGuide.steps.map((step, index) => (
                              <div key={index} className="relative flex gap-6 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">{index + 1}</div>
+                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">{index + 1}</div>
                                 <div>
                                     <h5 className="font-bold text-white text-lg mb-2">{step.title}</h5>
                                     <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
@@ -226,9 +226,9 @@ const AccordionItem: React.FC<{ faq: FAQ, isOpen: boolean, onClick: () => void }
             className="w-full flex justify-between items-center text-left p-6 focus:outline-none"
             aria-expanded={isOpen}
         >
-            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-[#F6520C]' : 'text-white'}`}>{faq.question}</span>
+            <span className={`text-lg font-medium tracking-tight ${isOpen ? 'text-blue-400' : 'text-white'}`}>{faq.question}</span>
             <svg
-                className={`w-6 h-6 text-[#F6520C] transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                className={`w-6 h-6 text-blue-400 transform transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -329,14 +329,14 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
   };
 
   const gradients = [
-    'from-orange-500 to-pink-500',
+    'from-blue-500 to-pink-500',
     'from-blue-500 to-cyan-500',
     'from-emerald-500 to-teal-500',
     'from-purple-500 to-indigo-500',
   ];
 
   return (
-    <div className="bg-[#0a101f] text-gray-300 font-sans selection:bg-[#F6520C] selection:text-white">
+    <div className="bg-[#0a101f] text-gray-300 font-sans selection:bg-blue-600 selection:text-white">
       {/* Cinematic Hero Section */}
       <section className="relative h-[75vh] min-h-[550px] text-white flex items-center justify-center text-center overflow-hidden -mt-20">
         <div 
@@ -351,7 +351,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
         
         <div className="relative z-20 container mx-auto px-6 flex flex-col items-center animate-fade-in">
             <div className="relative mb-8 group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-pink-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
                 <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-105">
                     <div className="absolute inset-0 z-0">
                         <img 
@@ -364,13 +364,13 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     </div>
                     <span className="relative z-10 text-white font-bold text-5xl md:text-6xl tracking-widest drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{country.code}</span>
                 </div>
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-[#F6520C] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-20">
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-20">
                     Guide
                 </div>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 drop-shadow-2xl">
-                Study in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F6520C] to-orange-300">{country.name}</span>
+                Study in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-300">{country.name}</span>
             </h1>
             <p className="text-lg md:text-2xl font-light max-w-3xl mx-auto text-gray-200 leading-relaxed">
                {country.intro}
@@ -389,7 +389,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
             <main className="py-12">
                 {/* Back Button */}
                 <div className="mb-8 absolute top-[-80px] left-4 md:left-8 z-40">
-                    <button onClick={onBack} className="bg-black/40 backdrop-blur-md text-white hover:text-[#F6520C] transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-full py-2 px-5 border border-white/10 hover:border-[#F6520C]/50 group">
+                    <button onClick={onBack} className="bg-black/40 backdrop-blur-md text-white hover:text-blue-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full py-2 px-5 border border-white/10 hover:border-blue-500/50 group">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
@@ -403,7 +403,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                         <div ref={tabContainerRef} className="flex space-x-1">
                             {navLinks.map(link => (
                                  <a key={link.id} href={`#${link.id}`}
-                                    className={`whitespace-nowrap px-5 py-2.5 text-sm font-bold rounded-full transition-all duration-300 ${activeSection === link.id ? 'bg-[#F6520C] text-white shadow-lg shadow-orange-500/25' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
+                                    className={`whitespace-nowrap px-5 py-2.5 text-sm font-bold rounded-full transition-all duration-300 ${activeSection === link.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
                                     {link.label}
                                 </a>
                             ))}
@@ -419,12 +419,12 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                             // Create an asymmetrical bento grid layout
                             const colSpan = (index === 0 || index === 3) ? "md:col-span-2" : "md:col-span-1";
                             return (
-                                <div key={reason.title} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col justify-between ${colSpan} hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#F6520C]/5`}>
+                                <div key={reason.title} className={`bg-white/[0.02] backdrop-blur-md p-10 rounded-[2rem] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col justify-between ${colSpan} hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/5`}>
                                     <div>
                                         <div className="mb-8">
                                             <PremiumIcon icon={reason.icon} color={gradients[index % gradients.length]} />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{reason.title}</h3>
+                                        <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-blue-400 transition-colors duration-300">{reason.title}</h3>
                                         <p className="text-gray-400 text-lg leading-relaxed font-light">{reason.point}</p>
                                     </div>
                                     {/* Decorative faint background number */}
@@ -458,7 +458,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                         content={country.scholarshipsInfo} 
                         icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>}
                         cta={{ text: "Search Scholarships", action: () => navigate('/tools/scholarship-finder') }}
-                        color="from-yellow-500 to-amber-600"
+                        color="from-blue-500 to-amber-600"
                     />
                     
                     <GenericInfoCard 
@@ -479,7 +479,7 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                             <h2 className="text-4xl font-bold text-white mb-2 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Top Universities</h2>
                             <p className="text-gray-400 font-light">Prestigious institutions in {country.name}</p>
                         </div>
-                        <button onClick={() => navigate('/college-finder')} className="text-[#F6520C] font-semibold hover:text-white transition-colors flex items-center group mt-4 md:mt-0">
+                        <button onClick={() => navigate('/college-finder')} className="text-blue-400 font-semibold hover:text-white transition-colors flex items-center group mt-4 md:mt-0">
                             View All in Finder
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </button>
@@ -487,13 +487,13 @@ const DestinationDetail: React.FC<DestinationDetailProps> = ({ country, onBack, 
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {country.topUniversities.map(uni => (
-                            <div key={uni.name} className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F6520C]/5">
+                            <div key={uni.name} className="bg-white/[0.02] backdrop-blur-md p-8 rounded-3xl border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/5">
                                 <div className="w-24 h-24 bg-white rounded-2xl p-2 mb-6 shadow-lg shadow-white/5 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center overflow-hidden">
                                     <UniversityLogo src={uni.logo} alt={uni.name} className="w-full h-full object-contain" />
                                 </div>
-                                <h4 className="font-bold text-white text-lg mb-2 leading-tight tracking-tight group-hover:text-[#F6520C] transition-colors duration-300">{uni.name}</h4>
+                                <h4 className="font-bold text-white text-lg mb-2 leading-tight tracking-tight group-hover:text-blue-400 transition-colors duration-300">{uni.name}</h4>
                                 <div className="mt-auto pt-4 w-full border-t border-white/5">
-                                    <p className="text-[#F6520C] font-semibold text-sm uppercase tracking-wider">QS Rank #{uni.qsRanking}</p>
+                                    <p className="text-blue-400 font-semibold text-sm uppercase tracking-wider">QS Rank #{uni.qsRanking}</p>
                                 </div>
                             </div>
                         ))}

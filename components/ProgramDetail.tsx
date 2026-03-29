@@ -32,16 +32,16 @@ interface ProgramDetailProps {
 const TestScoreRequirement: React.FC<{ label: string; score: string | undefined }> = ({ label, score }) => {
     if (!score) return null;
     return (
-        <div className="bg-black/20 p-5 rounded-2xl text-center border border-white/5 hover:bg-white/[0.02] hover:border-white/10 transition-all duration-300">
-            <p className="text-xs text-[#F6520C] uppercase tracking-widest font-medium mb-2">{label}</p>
-            <p className="text-2xl font-bold text-white tracking-tight">{score}</p>
+        <div className="bg-white/5 backdrop-blur-md p-4 sm:p-5 rounded-2xl text-center border border-white/10 hover:bg-white/10 transition-all duration-300 shadow-sm">
+            <p className="text-[11px] sm:text-xs text-gray-400 uppercase tracking-wider font-medium mb-1 sm:mb-2">{label}</p>
+            <p className="text-lg sm:text-2xl font-semibold text-white tracking-tight">{score}</p>
         </div>
     )
 };
 
 const Disclaimer: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <div className="flex items-start space-x-3 text-sm text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 flex-shrink-0 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 flex-shrink-0 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M8.257 3.099c.636-1.21 2.252-1.21 2.888 0l6.294 12.022c.636 1.21-.247 2.629-1.444 2.629H3.407c-1.197 0-2.08-1.419-1.444-2.629L8.257 3.099zM10 6a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 6zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
         </svg>
         <span>{children}</span>
@@ -151,7 +151,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
   const enhancedAbout = `${program.about}\n\nBeyond the core curriculum, this program is designed to be a launchpad for your career. The school maintains strong ties with industry leaders, facilitating exclusive networking events, career fairs, and guest lectures from prominent professionals. Graduates from this program are highly sought after and go on to secure roles in top global firms, innovative startups, and influential research institutions. The dedicated career services team provides personalized support, from resume workshops to mock interviews, ensuring you are fully prepared to enter the competitive job market.\n\nYou will be learning from and collaborating with faculty who are not just teachers, but pioneers and leading researchers in their field. The program offers numerous opportunities to engage in cutting-edge research projects, contributing to work that has a real-world impact. This hands-on research experience, combined with a supportive, collaborative academic environment, will equip you with the critical thinking and problem-solving skills necessary to excel in your future endeavors.`;
   
   const countrySpecificInfo = useMemo(() => {
-    const listStyles = 'class="list-disc list-outside pl-5 text-gray-400 space-y-2 mt-2 marker:text-[#F6520C]"';
+    const listStyles = 'class="list-disc list-outside pl-5 text-gray-400 space-y-2 mt-2 marker:text-blue-400"';
     const baseInfo = {
         outcomes: (isSTEM: boolean) => `Post-graduation opportunities vary. Please check the official government immigration website for the most current post-study work visa information.`,
         roi: 'Return on investment depends on many factors including career path, location, and personal financial management.'
@@ -296,15 +296,15 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
   const info = countrySpecificInfo;
 
   return (
-    <section className="py-24 bg-[#050810] min-h-screen relative overflow-hidden">
+    <section className="py-24 bg-[#050a14] min-h-screen relative overflow-hidden">
       {/* Subtle background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-8">
-            <button onClick={onBack} className="text-[#F6520C] hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-[#F6520C] rounded-md p-1">
+            <button onClick={onBack} className="text-blue-400 hover:text-blue-300 transition-colors duration-300 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
@@ -322,27 +322,27 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
 
         <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-12">
             <div className="lg:col-span-2 space-y-10 flex flex-col order-2 lg:order-1">
-                <div className="lg:hidden bg-white/[0.02] backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl space-y-6">
-                    <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
-                        <span className="text-gray-400 font-medium tracking-wide">Tuition Fee</span>
-                        <span className="text-2xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+                <div className="lg:hidden bg-white/5 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl space-y-5">
+                    <div className="flex justify-between items-baseline border-b border-white/10 pb-4">
+                        <span className="text-gray-400 font-medium tracking-wide text-sm sm:text-base">Tuition Fee</span>
+                        <span className="text-xl sm:text-2xl font-semibold text-white">${program.tuition.toLocaleString()} <span className="text-xs sm:text-sm font-normal text-gray-500">/ year</span></span>
                     </div>
-                    <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
-                        <span className="text-gray-400 font-medium tracking-wide">Duration</span>
-                        <span className="font-semibold text-white text-lg">{program.duration}</span>
+                    <div className="flex justify-between items-baseline border-b border-white/10 pb-4">
+                        <span className="text-gray-400 font-medium tracking-wide text-sm sm:text-base">Duration</span>
+                        <span className="font-semibold text-white text-base sm:text-lg">{program.duration}</span>
                     </div>
-                     <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
-                       <span className="text-gray-400 font-medium tracking-wide">School</span>
-                       <span className="font-semibold text-white text-right text-lg">{program.school}</span>
+                     <div className="flex justify-between items-baseline border-b border-white/10 pb-4">
+                       <span className="text-gray-400 font-medium tracking-wide text-sm sm:text-base">School</span>
+                       <span className="font-semibold text-white text-right text-base sm:text-lg">{program.school}</span>
                     </div>
                      {program.isSTEM && (
                        <div className="flex justify-center pt-2">
-                           <span className="bg-[#F6520C]/10 text-[#F6520C] border border-[#F6520C]/20 text-sm font-bold px-5 py-2 rounded-full tracking-wide">STEM Designated</span>
+                           <span className="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full tracking-wide">STEM Designated</span>
                        </div>
                     )}
-                    <div className="pt-4 flex flex-col sm:flex-row gap-4">
-                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-white/5 text-white border border-white/10 px-6 py-3.5 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 shadow-lg">Course Link</a>
-                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-[#F6520C] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#E84A00] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)]">Apply Now</a>
+                    <div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-white/10 text-white border border-white/20 px-6 py-3.5 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 shadow-sm text-sm sm:text-base">Course Link</a>
+                        <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-blue-600 text-white px-6 py-3.5 rounded-2xl font-semibold hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] text-sm sm:text-base">Apply Now</a>
                     </div>
                 </div>
 
@@ -353,13 +353,13 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                         <p className="text-gray-400 leading-relaxed whitespace-pre-line font-light text-lg">{enhancedAbout}</p>
                         
                         {program.sellingPoints && program.sellingPoints.length > 0 && (
-                            <div className="mt-8 bg-[#F6520C]/5 p-6 sm:p-8 rounded-2xl border border-[#F6520C]/20">
+                            <div className="mt-8 bg-blue-600/5 p-6 sm:p-8 rounded-2xl border border-blue-500/20">
                                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Why Choose This Program at {university.name}?</h3>
                                 <ul className="space-y-4">
                                     {program.sellingPoints.map((point, index) => (
                                         <li key={index} className="flex items-start">
-                                            <div className="bg-[#F6520C]/20 p-1 rounded-full mr-4 mt-1 flex-shrink-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#F6520C]" viewBox="0 0 20 20" fill="currentColor">
+                                            <div className="bg-blue-600/20 p-1 rounded-full mr-4 mt-1 flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
                                             </div>
@@ -387,7 +387,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                         <ul className="space-y-3">
                             {program.requirements.map((req, index) => (
                                 <li key={index} className="flex items-start text-gray-400">
-                                    <span className="text-[#F6520C] mr-3 mt-1.5 text-xl leading-none">&bull;</span>
+                                    <span className="text-blue-400 mr-3 mt-1.5 text-xl leading-none">&bull;</span>
                                     <span className="leading-relaxed">{req}</span>
                                 </li>
                             ))}
@@ -450,8 +450,8 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                 )}
                 
                 {program.insights && (
-                     <div className="bg-[#F6520C]/5 p-8 sm:p-10 rounded-3xl border border-[#F6520C]/20 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F6520C]/5 to-transparent pointer-events-none"></div>
+                     <div className="bg-blue-600/5 p-8 sm:p-10 rounded-3xl border border-blue-500/20 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none"></div>
                         <div className="relative z-10">
                             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Extra Insights</h2>
                             <p className="text-gray-300 leading-relaxed font-light text-lg">{program.insights}</p>
@@ -467,7 +467,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                             <div className="space-y-6">
                                 <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
                                    <span className="text-gray-400 font-medium tracking-wide">Tuition Fee</span>
-                                   <span className="text-3xl font-bold text-[#F6520C]">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
+                                   <span className="text-3xl font-bold text-blue-400">${program.tuition.toLocaleString()} <span className="text-sm font-normal text-gray-500">/ year</span></span>
                                 </div>
                                 <div className="flex justify-between items-baseline border-b border-white/5 pb-4">
                                    <span className="text-gray-400 font-medium tracking-wide">Duration</span>
@@ -479,17 +479,17 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                                 </div>
                                  {program.isSTEM && (
                                    <div className="flex justify-center pt-2">
-                                       <span className="bg-[#F6520C]/10 text-[#F6520C] border border-[#F6520C]/20 text-sm font-bold px-5 py-2 rounded-full tracking-wide">
+                                       <span className="bg-blue-600/10 text-blue-400 border border-blue-500/20 text-sm font-bold px-5 py-2 rounded-full tracking-wide">
                                            STEM Designated
                                        </span>
                                    </div>
                                 )}
                             </div>
                             <div className="mt-8 flex flex-col gap-4">
-                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-[#F6520C] text-white px-6 py-4 rounded-xl font-semibold hover:bg-[#E84A00] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C]">
+                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050a14] focus:ring-blue-500">
                                   Apply Now
                                 </a>
-                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-white/5 text-white border border-white/10 px-6 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-white/20">
+                                <a href={program.applyLink} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-white/5 text-white border border-white/10 px-6 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050a14] focus:ring-white/20">
                                     Course Link
                                 </a>
                             </div>
@@ -505,13 +505,13 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                                         <button
                                             key={`${simUni.id}-${simProg.id}`}
                                             onClick={() => onNavigateToProgram(simUni, simProg)}
-                                            className="w-full text-left p-5 rounded-2xl bg-black/20 hover:bg-white/[0.02] border border-white/5 hover:border-[#F6520C]/30 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050810] focus:ring-[#F6520C] flex items-center space-x-4"
+                                            className="w-full text-left p-5 rounded-2xl bg-black/20 hover:bg-white/[0.02] border border-white/5 hover:border-blue-500/30 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#050a14] focus:ring-blue-500 flex items-center space-x-4"
                                         >
                                             <div className="w-14 h-14 rounded-xl bg-white/5 p-2 flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/10">
                                                 <UniversityLogo src={simUni.logo} alt={simUni.name} className="w-full h-full object-contain" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="font-bold text-white truncate group-hover:text-[#F6520C] transition-colors">{simProg.name}</p>
+                                                <p className="font-bold text-white truncate group-hover:text-blue-400 transition-colors">{simProg.name}</p>
                                                 <p className="text-sm text-gray-400 truncate mt-1">{simUni.name}</p>
                                             </div>
                                             <div className="text-right flex-shrink-0 ml-2">
@@ -539,7 +539,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
         </div>
 
         <div className="mt-12 text-center">
-            <button onClick={() => setIsModalOpen(true)} className="text-sm text-gray-500 hover:text-[#F6520C] transition-colors font-medium">
+            <button onClick={() => setIsModalOpen(true)} className="text-sm text-gray-500 hover:text-blue-400 transition-colors font-medium">
                 Something doesn't look right? Let us know.
             </button>
         </div>
@@ -554,11 +554,11 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ program, university, onBa
                         <textarea 
                             rows={5} 
                             placeholder="e.g., The tuition fee seems outdated, the new fee is..." 
-                            className="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F6520C] focus:border-transparent text-white placeholder-gray-600 resize-none"
+                            className="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-600 resize-none"
                         ></textarea>
                         <div className="mt-8 flex justify-end space-x-4">
                             <button onClick={() => setIsModalOpen(false)} className="px-6 py-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition-colors font-medium">Cancel</button>
-                            <button onClick={() => { alert('Thank you for your feedback!'); setIsModalOpen(false); }} className="px-6 py-3 rounded-xl bg-[#F6520C] text-white hover:bg-[#E84A00] transition-colors font-medium shadow-lg hover:shadow-[0_0_20px_rgba(246,82,12,0.3)]">Submit Feedback</button>
+                            <button onClick={() => { alert('Thank you for your feedback!'); setIsModalOpen(false); }} className="px-6 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">Submit Feedback</button>
                         </div>
                     </div>
                 </div>
