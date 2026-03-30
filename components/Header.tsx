@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { FileText, GraduationCap, Map, Wallet, PlaneTakeoff, Calculator, PenTool } from 'lucide-react';
+import Logo from './Logo';
 
 interface DropdownChild {
   label: string;
@@ -327,8 +328,8 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
   return (
     <header className={`bg-black/80 backdrop-blur-xl sticky z-50 md:mx-6 md:rounded-3xl transition-all duration-300 ${isScrolled ? 'top-0 md:top-4 shadow-[0_8px_30px_rgb(0,0,0,0.5)] border-b md:border border-white/10' : 'top-0 md:top-6 shadow-lg border-b md:border border-white/5'}`}>
       <div className={`container mx-auto px-6 md:px-8 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 md:py-3' : 'py-5 md:py-5'}`}>
-        <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-2xl font-bold text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm tracking-tight relative z-[110]">
-          Grad<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Niche</span>
+        <a href="/" onClick={(e) => handleNavClick(e, '/')} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm relative z-[110]">
+          <Logo />
         </a>
         
         <nav className="hidden md:flex space-x-1 items-center" ref={navRef}>

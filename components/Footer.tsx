@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
 interface FooterProps {
     navigate: (path: string) => void;
@@ -59,8 +60,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
         <div className="container mx-auto px-6 md:px-10 py-12 md:py-20 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16">
                 <div className="lg:col-span-1 space-y-6 md:space-y-8">
-                    <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-3xl md:text-4xl font-bold text-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm tracking-tight">
-                        Grad<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Niche.</span>
+                    <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm inline-block">
+                        <Logo className="text-3xl md:text-4xl" iconSize="w-10 h-10 md:w-12 md:h-12" />
                     </a>
                     <p className="text-sm text-gray-400 leading-relaxed font-normal">Empowering your global education journey with data-driven tools and expert insights.</p>
                     <div className="mt-6 md:mt-8">

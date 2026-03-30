@@ -39,6 +39,9 @@ import BlogHighlights from './components/BlogHighlights';
 import BlogsArchive from './components/BlogsArchive';
 import BlogDetail from './components/BlogDetail';
 import { blogPosts } from './data/blogs';
+import Services from './components/Services';
+import Process from './components/Process';
+import WhyChooseUs from './components/WhyChooseUs';
 
 
 type ToolID = 'course-comparison' | 'sop-analyzer' | 'sop-generator' | 'visa-guides' | 'scholarship-finder' | 'community-forums' | 'cost-of-living-calculator' | 'pre-departure-checklists' | 'gpa-calculator' | 'f1-visa-prep';
@@ -270,8 +273,11 @@ const App: React.FC = () => {
         <>
           <Hero navigate={navigate} />
           <div className="scroll-animate"><PlatformFeatures /></div>
+          <div className="scroll-animate"><Services /></div>
+          <div className="scroll-animate"><WhyChooseUs /></div>
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
           <div className="scroll-animate"><AIDestinationFinder /></div>
+          <div className="scroll-animate"><Process /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
           <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
@@ -377,8 +383,11 @@ const App: React.FC = () => {
         <>
           <Hero navigate={navigate} />
           <div className="scroll-animate"><PlatformFeatures /></div>
+          <div className="scroll-animate"><Services /></div>
+          <div className="scroll-animate"><WhyChooseUs /></div>
           <div className="scroll-animate"><Destinations navigate={navigate} /></div>
           <div className="scroll-animate"><AIDestinationFinder /></div>
+          <div className="scroll-animate"><Process /></div>
           <div className="scroll-animate"><CoreTools navigate={navigate} /></div>
           <div className="scroll-animate"><Tools navigate={navigate} /></div>
           <div className="scroll-animate"><BlogHighlights navigate={navigate} /></div>
