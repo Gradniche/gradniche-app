@@ -3,7 +3,7 @@ https://gradniche.com/* https://www.gradniche.com/:splat 301!
 
 # Let Netlify serve these SEO files directly.
 /robots.txt /robots.txt 200
-/sitemap.xml /sitemap.xml 200
+/sitemap.xml /gradniche-sitemap.xml 200!
 
 # Known SPA routes. This prevents fake URLs from becoming soft-404 200s.
 /about /index.html 200
