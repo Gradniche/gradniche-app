@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "University",
+  "type": "OBJECT",
+  "properties": {
+    "id": {
+      "type": "STRING",
+      "description": "Unique URL-friendly slug for the university, e.g. boston-university"
+    },
+    "name": {
+      "type": "STRING",
+      "description": "The official name of the university"
+    },
+    "country": {
+      "type": "STRING",
+      "description": "Country where the university is located, e.g. USA, UK, Canada"
+    },
+    "location": {
+      "type": "STRING",
+      "description": "City and state/region of the university, e.g. Boston, MA"
+    },
+    "setting": {
+      "type": "STRING",
+      "enum": ["Urban", "Suburban", "Rural", "City"],
+      "description": "The campus environment classification"
+    },
+    "logo": {
+      "type": "STRING",
+      "format": "uri",
+      "description": "URL to the university's logo image"
+    },
+    "about": {
+      "type": "STRING",
+      "description": "A detailed, counselor-grade paragraph about the university, its reputation, and suitability for international students"
+    },
+    "qsRanking": {
+      "type": "INTEGER",
+      "description": "Global QS World University Ranking"
+    },
+    "otherRankings": {
+      "type": "OBJECT",
+      "properties": {
+        "usNewsGlobal": {
+          "type": "INTEGER",
+          "description": "U.S. News Global University Ranking"
+        },
+        "national": {
+          "type": "INTEGER",
+          "description": "National ranking in the home country"
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptanceRate": {
+      "type": "STRING",
+      "description": "Admission acceptance percentage, e.g. 14%"
+    },
+    "studentFacultyRatio": {
+      "type": "STRING",
+      "description": "The ratio of students to faculty members, e.g. 10:1"
+    },
+    "internationalStudents": {
+      "type": "STRING",
+      "description": "Percentage of international students in the student body, e.g. 24%"
+    },
+    "type": {
+      "type": "STRING",
+      "enum": ["Public", "Private"],
+      "description": "Whether the university is a Public or Private institution"
+    },
+    "foundedYear": {
+      "type": "INTEGER",
+      "description": "The year the university was established"
+    },
+    "applicationFee": {
+      "type": "STRING",
+      "description": "Cost to apply for admission, e.g. $95 USD"
+    },
+    "scholarships": {
+      "type": "STRING",
+      "description": "Details about funding, merit-based scholarships, and assistantships available to international students"
+    },
+    "avgTuition": {
+      "type": "INTEGER",
+      "description": "Average tuition fee in USD per year for international students, e.g. 66000"
+    },
+    "popularCourses": {
+      "type": "ARRAY",
+      "items": { "type": "STRING" },
+      "description": "Key fields of study the university is famous for"
+    },
+    "programs": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "id": {
+            "type": "STRING",
+            "description": "Unique identifier for the program, e.g. bu-cs-ms"
+          },
+          "name": {
+            "type": "STRING",
+            "description": "Official name of the degree program"
+          },
+          "level": {
+            "type": "STRING",
+            "enum": ["Masters", "MBA"],
+            "description": "Degree type"
+          },
+          "duration": {
+            "type": "STRING",
+            "description": "Standard duration of the course, e.g. 2 years, 1-2 years"
+          },
+          "tuition": {
+            "type": "INTEGER",
+            "description": "Program-specific tuition fee in USD per year"
+          },
+          "about": {
+            "type": "STRING",
+            "description": "Brief description of the program and its highlights"
+          },
+          "school": {
+            "type": "STRING",
+            "description": "The specific graduate school offering the program, e.g. Ira A. Fulton Schools of Engineering"
+          },
+          "isSTEM": {
+            "type": "BOOLEAN",
+            "description": "Indicates whether the program qualifies for the STEM OPT extension"
+          },
+          "requirements": {
+            "type": "ARRAY",
+            "items": { "type": "STRING" },
+            "description": "Academic entry requirements and prerequisites"
+          },
+          "applyLink": {
+            "type": "STRING",
+            "format": "uri",
+            "description": "Direct URL to the official program application page"
+          },
+          "ieltsScore": {
+            "type": "STRING",
+            "description": "Minimum required IELTS score, e.g. 6.5+"
+          },
+          "toeflScore": {
+            "type": "STRING",
+            "description": "Minimum required TOEFL score, e.g. 90+ iBT"
+          },
+          "greScore": {
+            "type": "STRING",
+            "description": "Required GRE criteria or status, e.g. Not Required, Required"
+          },
+          "gmatScore": {
+            "type": "STRING",
+            "description": "Required GMAT criteria or status, e.g. Not Required, 710+"
+          },
+          "duolingoScore": {
+            "type": "STRING",
+            "description": "Minimum required Duolingo English Test score, e.g. 120+"
+          },
+          "pteScore": {
+            "type": "STRING",
+            "description": "Minimum required Pearson Test of English score, e.g. 60+"
+          },
+          "gpa": {
+            "type": "STRING",
+            "description": "Recommended or minimum GPA required, e.g. 3.0+"
+          },
+          "insights": {
+            "type": "STRING",
+            "description": "Admissions counselor insights or competitive tips for applicants"
+          },
+          "rankings": {
+            "type": "OBJECT",
+            "properties": {
+              "qsSubject": {
+                "type": "INTEGER",
+                "description": "QS World University Subject Ranking"
+              },
+              "usNewsSubject": {
+                "type": "INTEGER",
+                "description": "U.S. News Subject Ranking"
+              }
+            },
+            "additionalProperties": false
+          },
+          "sellingPoints": {
+            "type": "ARRAY",
+            "items": { "type": "STRING" },
+            "description": "Key bullet points emphasizing benefits of studying this program"
+          }
+        },
+        "required": ["id", "name", "level", "duration", "tuition", "about", "school", "isSTEM", "requirements", "applyLink"],
+        "additionalProperties": false
+      },
+      "description": "List of postgraduate programs offered by the university"
+    }
+  },
+  "required": ["id", "name", "country", "location", "setting", "logo", "about", "type", "avgTuition", "popularCourses", "programs"],
+  "additionalProperties": false
+}

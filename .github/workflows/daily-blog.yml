@@ -1,0 +1,95 @@
+name: Daily AI Blog Generation & Publishing
+
+on:
+  schedule:
+    # Run every day at 6:00 AM UTC to research and publish trending articles
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Allow manual triggering of the daily blog research
+    inputs:
+      topic:
+        description: 'Force a specific topic (Leave blank for automated daily research)'
+        required: false
+        type: string
+
+jobs:
+  research-and-blog:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Checkout codebase
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 2. Get today's date for branch naming
+      - name: Get Date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d-%H%M')" >> $GITHUB_OUTPUT
+
+      # 3. Setup Python 3.11
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 4. Install Google GenAI SDK
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai
+
+      # 5. Run AI Blog Research Agent
+      - name: Run AI Blog Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            # If a topic was manually specified, force it
+            python -c "
+import os, sys, json
+from google import genai
+client = genai.Client()
+from agents.blog_agent import generate_blog_article
+generate_blog_article(client, '${{ github.event.inputs.topic }}', 'prompts/blog_generation.txt', 'data/blogs')
+            "
+          else
+            # Run automated daily trending research loop
+            python agents/blog_agent.py
+          fi
+
+      # 6. Validate and Sync Blogs into Frontend Database
+      - name: Sync and Compile Blogs
+        run: |
+          python scripts/sync_blogs.py --production
+
+      # 7. Check for changes
+      - name: Check for Changes
+        id: git-check
+        run: |
+          git status
+          git diff --quiet || echo "changes=true" >> $GITHUB_OUTPUT
+
+      # 8. Safe Git / PR Publishing Loop
+      # Creates an isolated branch and opens a Pull Request instead of editing main directly
+      - name: Create Pull Request
+        if: steps.git-check.outputs.changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="ai/daily-blog-${{ steps.date.outputs.date }}"
+          git config --global user.name "GradNiche AI Blog Editor"
+          git config --global user.email "ai-editor@gradniche.com"
+          
+          git checkout -b "$BRANCH_NAME"
+          git add .
+          git commit -m "feat(ai): automated research and publishing of daily trending blog post"
+          git push origin "$BRANCH_NAME"
+          
+          # Automatically create a Pull Request on GitHub
+          gh pr create \
+            --title "✍️ AI Daily Blog: Automated Curation - ${{ steps.date.outputs.date }}" \
+            --body "This PR was automatically opened by the **GradNiche Daily Blog Agent**.\n\n### Accomplished:\n- Researched today's top trending global education news.\n- Created a premium, validated blog post under `/data/blogs/`.\n- Compiled and synced changes directly into your frontend database `data/blogs.ts`.\n\n*Please review this PR. Merging will trigger your Netlify deploy pipeline and push this article live to the blog feed!*" \
+            --head "$BRANCH_NAME" \
+            --base main

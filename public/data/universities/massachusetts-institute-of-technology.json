@@ -1,0 +1,133 @@
+{
+  "id": "massachusetts-institute-of-technology",
+  "name": "Massachusetts Institute of Technology",
+  "country": "USA",
+  "location": "Cambridge, MA",
+  "setting": "Urban",
+  "logo": "https://logo.clearbit.com/mit.edu",
+  "about": "Established in 1861, the Massachusetts Institute of Technology (MIT) is a premier private research university renowned globally for its pioneering achievements in science, engineering, and technology. Located along the Charles River in Cambridge, Massachusetts, MIT fosters a culture of intense curiosity, rigorous hands-on learning, and bold innovation. International graduate students thrive in its highly collaborative, resource-rich research environment, which is designed to translate academic discoveries into real-world applications and global solutions.",
+  "qsRanking": 1,
+  "otherRankings": {
+    "usNewsGlobal": 2,
+    "national": 2
+  },
+  "acceptanceRate": "11%",
+  "studentFacultyRatio": "3:1",
+  "internationalStudents": "41%",
+  "type": "Private",
+  "foundedYear": 1861,
+  "applicationFee": "$90 USD",
+  "scholarships": "MIT offers merit-based fellowships, teaching assistantships, and research assistantships. Many PhD candidates receive full funding, and limited need- or merit-based support is available for Master's programs through individual departments.",
+  "avgTuition": 66720,
+  "popularCourses": [
+    "Computer Science",
+    "Artificial Intelligence",
+    "Mechanical Engineering",
+    "Business Administration (MBA)",
+    "Data Science",
+    "Physics"
+  ],
+  "programs": [
+    {
+      "id": "mit-sloan-mba",
+      "name": "Master of Business Administration (MBA)",
+      "level": "MBA",
+      "duration": "2 years",
+      "tuition": 91892,
+      "school": "MIT Sloan School of Management",
+      "isSTEM": true,
+      "about": "The MIT Sloan MBA program is a rigorous, two-year course of study that challenges students to find innovative solutions to real-world business and societal challenges. Known for its 'Action Learning' approach and strong focus on entrepreneurship and technological innovation, it is STEM-designated and prepares graduates to lead in a tech-driven world.",
+      "requirements": [
+        "Four-year undergraduate degree or equivalent",
+        "GMAT or GRE score",
+        "Professional resume",
+        "Cover letter (300 words) and brief essay",
+        "One professional letter of recommendation (plus contacts for two others)",
+        "60-second video introduction",
+        "Organizational chart"
+      ],
+      "applyLink": "https://mitsloan.mit.edu/mba/admissions",
+      "ieltsScore": "Waived (assessed via interview)",
+      "toeflScore": "Waived (assessed via interview)",
+      "greScore": "Required",
+      "gmatScore": "Required",
+      "gpa": "3.69 (Class Median)",
+      "insights": "MIT Sloan values intellectual capability, leadership potential, and the ability to collaborate. The video essay is a critical component where admissions officers look for authenticity and communication skills. GMAT/GRE is required, so aim for a high score (median GMAT is typically around 720, and GMAT Focus median is 675).",
+      "rankings": {
+        "qsSubject": 3,
+        "usNewsSubject": 5
+      },
+      "sellingPoints": [
+        "Action Learning Labs: Gain hands-on experience solving real business problems for global companies.",
+        "STEM Designation: The MBA is STEM-designated, allowing international students to apply for the 24-month OPT extension.",
+        "Entrepreneurship Ecosystem: Leverage the MIT Martin Trust Center for Entrepreneurship to launch your own venture."
+      ]
+    },
+    {
+      "id": "mit-sloan-mfin",
+      "name": "Master of Finance (MFin)",
+      "level": "Masters",
+      "duration": "12-18 months",
+      "tuition": 93834,
+      "school": "MIT Sloan School of Management",
+      "isSTEM": true,
+      "about": "The Master of Finance (MFin) program at MIT Sloan features a rigorous, hands-on curriculum that prepares students for careers in finance. Offering both 12-month and 18-month paths, the program is STEM-designated and focuses on the quantitative foundations of modern financial markets.",
+      "requirements": [
+        "Four-year undergraduate degree or equivalent",
+        "Strong background in mathematics and programming (linear algebra, calculus, probability)",
+        "GMAT or GRE (Optional)",
+        "Professional resume",
+        "Essays and video questions",
+        "Three letters of recommendation"
+      ],
+      "applyLink": "https://mitsloan.mit.edu/mfin/admissions",
+      "ieltsScore": "Waived (assessed via interview)",
+      "toeflScore": "Waived (assessed via interview)",
+      "greScore": "Optional",
+      "gmatScore": "Optional",
+      "gpa": "3.88 (Class Average)",
+      "insights": "MIT Sloan MFin is extremely selective, looking for candidates with exceptional quantitative abilities. While GMAT/GRE is optional, submitting a high quantitative score can strengthen your application, especially if your academic background is not in a highly quantitative field.",
+      "rankings": {
+        "qsSubject": 3,
+        "usNewsSubject": 5
+      },
+      "sellingPoints": [
+        "Curriculum Flexibility: Choose between a 12-month intensive path or an 18-month path that includes a summer internship.",
+        "Quantitative Focus: Build deep expertise in financial engineering, quantitative methods, and data-driven analysis.",
+        "Career Access: Recruit with top investment banks, hedge funds, asset management firms, and tech companies."
+      ]
+    },
+    {
+      "id": "mit-meche-ms",
+      "name": "Master of Science in Mechanical Engineering (MSME)",
+      "level": "Masters",
+      "duration": "1.5-2 years",
+      "tuition": 66720,
+      "school": "Department of Mechanical Engineering",
+      "isSTEM": true,
+      "about": "The MS program in Mechanical Engineering at MIT is a research-oriented degree that combines advanced coursework with a thesis. Students work closely with leading faculty on cutting-edge research in areas such as robotics, energy systems, manufacturing, and mechanics.",
+      "requirements": [
+        "Bachelor's degree in engineering, science, or mathematics",
+        "GRE General Test is required",
+        "Statement of Objectives",
+        "Three letters of recommendation",
+        "English proficiency exam"
+      ],
+      "applyLink": "https://apply.mit.edu/apply/",
+      "ieltsScore": "7.0+",
+      "toeflScore": "100+ iBT",
+      "greScore": "Required",
+      "gpa": "3.8+",
+      "insights": "MIT Mechanical Engineering is highly competitive and places a strong emphasis on research potential. Applicants should identify faculty members whose research aligns with their interests and reach out to them. High GRE scores (especially Quantitative in the 165+ range) and a strong GPA are recommended.",
+      "rankings": {
+        "qsSubject": 1,
+        "usNewsSubject": 1
+      },
+      "sellingPoints": [
+        "World-Class Research Facilities: Access to state-of-the-art labs like the Pappalardo Micro-Robotics Lab and the d'Arbeloff Laboratory.",
+        "Renowned Faculty: Work alongside pioneers in robotics, nanotechnology, biomechanics, and thermal-fluid sciences.",
+        "Industrial Partnerships: Benefit from MIT's close connections with leading aerospace, automotive, energy, and biomedical companies."
+      ]
+    }
+  ]
+}
