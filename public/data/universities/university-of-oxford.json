@@ -1,0 +1,55 @@
+{
+  "id": "university-of-oxford",
+  "name": "University of Oxford",
+  "country": "UK",
+  "location": "Oxford, Oxfordshire",
+  "setting": "City",
+  "logo": "https://logo.clearbit.com/ox.ac.uk",
+  "about": "The oldest university in the English-speaking world, the University of Oxford is an iconic collegiate research institution in the United Kingdom. Oxford is renowned globally for its unparalleled academic heritage, world-leading research output, and unique tutorial-based learning environment. Its rich intellectual community, distributed across 39 self-governing colleges, offers international graduate students a truly historic and highly prestigious academic experience.",
+  "qsRanking": 3,
+  "otherRankings": {
+    "usNewsGlobal": 5,
+    "national": 1
+  },
+  "acceptanceRate": "15%",
+  "studentFacultyRatio": "4:1",
+  "internationalStudents": "43%",
+  "type": "Public",
+  "foundedYear": 1096,
+  "applicationFee": "£75 GBP",
+  "scholarships": "Oxford offers highly competitive funding schemes like the Clarendon Fund and Rhodes Scholarships. Most scholarships cover full tuition fees and provide a generous living stipend for the duration of the course.",
+  "avgTuition": 56000,
+  "popularCourses": ["Advanced Computer Science", "Mathematics", "Humanities", "Public Policy", "MBA"],
+  "programs": [
+    {
+      "id": "oxford-cs-msc",
+      "name": "MSc in Advanced Computer Science",
+      "level": "Masters",
+      "duration": "1 year",
+      "tuition": 56000,
+      "school": "Department of Computer Science",
+      "isSTEM": true,
+      "about": "An intensive, elite postgraduate program designed to equip students with deep theoretical foundations and practical skills in advanced computer science, combining mathematical rigor with cutting-edge software theory.",
+      "requirements": [
+        "First-class undergraduate degree with honors in Computer Science or Mathematics",
+        "Strong programming experience and discrete mathematics background",
+        "Three academic reference letters",
+        "Statement of purpose"
+      ],
+      "applyLink": "https://www.ox.ac.uk/admissions/graduate/courses/msc-advanced-computer-science",
+      "ieltsScore": "7.5 (minimum 7.0 in each section)",
+      "toeflScore": "110+ iBT",
+      "greScore": "Not Required",
+      "gpa": "3.85+",
+      "rankings": {
+        "qsSubject": 4,
+        "usNewsSubject": 3
+      },
+      "sellingPoints": [
+        "Historic Collegiate System: Live and study inside Oxford's famous colleges, becoming part of a tight-knit intellectual community of scholars.",
+        "Renowned Oxford Tutorials: Engage directly with leading researchers in intimate, high-impact tutorial discussions.",
+        "Europe's AI Powerhouse: Study at the forefront of AI, machine learning, and quantum computing alongside award-winning computer science faculty."
+      ]
+    }
+  ]
+}

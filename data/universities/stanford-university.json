@@ -1,0 +1,55 @@
+{
+  "id": "stanford-university",
+  "name": "Stanford University",
+  "country": "USA",
+  "location": "Stanford, CA",
+  "setting": "Suburban",
+  "logo": "https://logo.clearbit.com/stanford.edu",
+  "about": "Located in the heart of Silicon Valley, Stanford University is a world-renowned private research institution. It is celebrated for its academic rigor, entrepreneurial culture, and close ties to the global technology sector. Its expansive, picturesque campus provides an inspiring backdrop for pioneering graduate research, making it a dream destination for students aiming to lead in science, engineering, and business.",
+  "qsRanking": 6,
+  "otherRankings": {
+    "usNewsGlobal": 3,
+    "national": 3
+  },
+  "acceptanceRate": "4%",
+  "studentFacultyRatio": "5:1",
+  "internationalStudents": "25%",
+  "type": "Private",
+  "foundedYear": 1885,
+  "applicationFee": "$125 USD",
+  "scholarships": "Stanford offers competitive fellowships, teaching assistantships, and research assistantships. Many PhD candidates receive full funding, and limited need- or merit-based support is available for Master's programs through individual departments.",
+  "avgTuition": 65820,
+  "popularCourses": ["Computer Science", "Electrical Engineering", "Business (MBA)", "Data Science", "Medicine"],
+  "programs": [
+    {
+      "id": "stanford-cs-ms",
+      "name": "MS in Computer Science",
+      "level": "Masters",
+      "duration": "1.5-2 years",
+      "tuition": 65820,
+      "school": "School of Engineering",
+      "isSTEM": true,
+      "about": "A premier research-centric graduate program offering deep specialization tracks including Artificial Intelligence, Biocomputation, Software Theory, and Human-Computer Interaction.",
+      "requirements": [
+        "Bachelor's degree in engineering or quantitative sciences",
+        "Strong mathematical and programming foundations",
+        "Three letters of recommendation",
+        "Statement of Purpose"
+      ],
+      "applyLink": "https://cs.stanford.edu/admissions/graduate-admissions",
+      "ieltsScore": "7.0+",
+      "toeflScore": "100+ iBT",
+      "greScore": "Not Required",
+      "gpa": "3.8+",
+      "rankings": {
+        "qsSubject": 2,
+        "usNewsSubject": 1
+      },
+      "sellingPoints": [
+        "Silicon Valley Hub: Unmatched access to startups, venture capital, and tech giants for networking and internships.",
+        "World-Class Specialization: Take advanced, cutting-edge courses from global leaders in artificial intelligence and robotics.",
+        "Pioneering Research: Join state-of-the-art labs like the Stanford AI Lab (SAIL) or the Center for the Study of Language and Information."
+      ]
+    }
+  ]
+}

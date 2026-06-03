@@ -1,0 +1,80 @@
+{
+  "id": "boston-university",
+  "name": "Boston University",
+  "country": "USA",
+  "location": "Boston, MA",
+  "setting": "Urban",
+  "logo": "https://logo.clearbit.com/bu.edu",
+  "about": "A major private research university located in the heart of Boston, a vibrant hub of academia and innovation. BU offers a wide range of programs and is known for its strengths in medicine, law, and engineering. It has a large, diverse international student community.",
+  "qsRanking": 93,
+  "otherRankings": {
+    "national": 43
+  },
+  "acceptanceRate": "14%",
+  "studentFacultyRatio": "10:1",
+  "internationalStudents": "24%",
+  "type": "Private",
+  "foundedYear": 1839,
+  "applicationFee": "$95 USD",
+  "scholarships": "Boston University offers a limited number of merit-based scholarships for international graduate students. Funding is competitive and primarily administered by individual schools and departments.",
+  "avgTuition": 66000,
+  "popularCourses": ["Business", "Communications", "Engineering", "Computer Science", "Health Sciences", "Cyber Security"],
+  "programs": [
+    {
+      "id": "bu-cs-ms",
+      "name": "MS in Computer Science",
+      "level": "Masters",
+      "duration": "1-2 years",
+      "tuition": 66670,
+      "school": "Graduate School of Arts & Sciences",
+      "isSTEM": true,
+      "about": "A flexible program offering general computer science studies or specializations in areas like Cybersecurity and Data-Centric Computing. It is designed for students with a strong CS background.",
+      "requirements": [
+        "B.S. in Computer Science or equivalent",
+        "Strong academic record",
+        "Letters of recommendation"
+      ],
+      "applyLink": "https://www.bu.edu/cs/academics/graduate/ms-in-cs/",
+      "ieltsScore": "6.5+",
+      "toeflScore": "90+ iBT",
+      "greScore": "Not Required",
+      "gpa": "3.3+",
+      "rankings": {
+        "usNewsSubject": 48
+      },
+      "sellingPoints": [
+        "Study in a Top Tech City: Immerse yourself in Boston's vibrant tech and biotech ecosystem with extensive networking opportunities.",
+        "Flexible Specializations: Choose a general track or specialize in high-demand fields like Cybersecurity or Data-Centric Computing.",
+        "Collaborate with Leading Faculty: Engage with renowned faculty in a program that balances strong theoretical foundations with practical application."
+      ]
+    },
+    {
+      "id": "bu-cs-ms-cyber",
+      "name": "MS in Computer Science - Cyber Security",
+      "level": "Masters",
+      "duration": "1-2 years",
+      "tuition": 66670,
+      "school": "Graduate School of Arts & Sciences",
+      "isSTEM": true,
+      "about": "A specialized track within the MS in CS program, focusing on the principles and practices of cybersecurity. Students delve into areas like cryptography, network security, and secure software development.",
+      "requirements": [
+        "B.S. in Computer Science or equivalent",
+        "Strong academic record",
+        "Demonstrated interest in security"
+      ],
+      "applyLink": "https://www.bu.edu/cs/academics/graduate/ms-in-cs/",
+      "ieltsScore": "6.5+",
+      "toeflScore": "90+ iBT",
+      "greScore": "Not Required",
+      "gpa": "3.3+",
+      "rankings": {
+        "usNewsSubject": 48
+      },
+      "sellingPoints": [
+        "Deep Dive into Cybersecurity: A dedicated specialization to build expertise in one of tech's most critical fields.",
+        "Access to Security Research: Learn from faculty involved in cutting-edge cybersecurity research.",
+        "Boston Tech Hub: Benefit from Boston's strong ecosystem of security-focused companies for internships and careers."
+      ]
+    }
+  ]
+}

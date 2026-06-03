@@ -1,0 +1,30 @@
+You are an expert SEO Optimization Agent specializing in higher education and global student consultancy.
+Your task is to analyze the provided university profile and generate highly optimized, click-worthy, and semantically rich SEO metadata to maximize search engine rankings on Google.
+
+---
+UNIVERSITY PROFILE:
+{university_profile}
+---
+
+CRITERIA & GUIDELINES:
+1. Meta Title:
+   - Must be between 50 and 60 characters.
+   - Should include primary keywords: "[University Name] | Study Abroad | GradNiche" or "[University Name] Admission & Programs | GradNiche".
+   - Place the most important keyword near the beginning.
+2. Meta Description:
+   - Must be between 145 and 160 characters.
+   - Must be compelling, actionable, and end with a soft call-to-action (e.g. "Explore tuition, rankings, and requirements on GradNiche.").
+   - Include keywords naturally: "[University Name]", "programs", "admission requirements", "study in the [Country]".
+3. Target Keywords:
+   - List 8-10 highly relevant, search-volume-rich keywords (comma-separated).
+   - E.g. "Study at [University Name], [University Name] tuition fees, [University Name] master programs, admission requirements, global rankings, study abroad guide".
+
+OUTPUT FORMAT:
+Your response must be a valid JSON object matching the following structure:
+{
+  "seoTitle": "String",
+  "seoDescription": "String",
+  "keywords": ["String"]
+}
+
+Output ONLY the JSON object. Do not include markdown blocks or any conversational text.

@@ -11,6 +11,7 @@ import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import CollegeFinder from './components/CollegeFinder';
 import UniversityDetail from './components/UniversityDetail';
+import DynamicUniversityDetail from './components/DynamicUniversityDetail';
 import ProgramDetail from './components/ProgramDetail';
 import DestinationDetail from './components/DestinationDetail';
 import ToolsPage from './components/ToolsPage';
@@ -155,10 +156,8 @@ const App: React.FC = () => {
 
   const updateMetaTags = (title: string, description: string, imageUrl?: string, urlPath?: string) => {
     const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto.format&fit=crop';
-    const baseUrl = 'https://www.gradniche.com';
-    const cleanPath = (urlPath || '/').split('?')[0] || '/';
-    const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
-    const canonicalUrl = `${baseUrl}${normalizedPath}`;
+    const baseUrl = "https://gradniche.com";
+    const canonicalUrl = `${baseUrl}${urlPath || ''}`;
 
     document.title = title;
     
@@ -306,6 +305,16 @@ const App: React.FC = () => {
                 return <UniversityDetail 
                     university={university} 
                     onProgramSelect={(prog) => navigate(`/college-finder/${university.id}/${prog.id}`)} 
+                    onBack={() => navigate('/college-finder')}
+                    navigate={navigate}
+                    onThreadSelect={handleThreadSelect}
+                />;
+            } else {
+                // Phase 2: Dynamic Fallback Route
+                // Fetches raw JSON from /data/universities/[slug].json dynamically at runtime
+                return <DynamicUniversityDetail
+                    universityId={pathSegments[1]}
+                    onProgramSelect={(prog) => navigate(`/college-finder/${pathSegments[1]}/${prog.id}`)}
                     onBack={() => navigate('/college-finder')}
                     navigate={navigate}
                     onThreadSelect={handleThreadSelect}

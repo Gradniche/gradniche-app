@@ -1,0 +1,25 @@
+name: Data Validation & Integration CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Validate that all raw JSON data conforms strictly to the schema before allowing merge
+      - name: Validate University Profiles Schema
+        run: |
+          python scripts/sync_data.py

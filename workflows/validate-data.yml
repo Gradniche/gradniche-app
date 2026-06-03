@@ -1,0 +1,37 @@
+name: Data Validation & Integration CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Validate that all raw JSON data conforms strictly to the schema before allowing merge
+      - name: Validate University Profiles Schema
+        run: |
+          python scripts/sync_data.py
+          
+      # Run a build check to ensure that the TypeScript files compile without error
+      # In high-scale repos, this prevents bad merges that break Vite compilation.
+      # (Optionally uncomment when local Node/npm is active on the CI runner)
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+      # - name: Install Dependencies
+      #   run: npm install
+      # - name: Build Verification
+      #   run: npm run build
