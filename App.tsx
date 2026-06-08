@@ -156,8 +156,10 @@ const App: React.FC = () => {
 
   const updateMetaTags = (title: string, description: string, imageUrl?: string, urlPath?: string) => {
     const defaultImage = 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto.format&fit=crop';
-    const baseUrl = "https://gradniche.com";
-    const canonicalUrl = `${baseUrl}${urlPath || ''}`;
+    const baseUrl = 'https://www.gradniche.com';
+    const cleanPath = (urlPath || '/').split('?')[0] || '/';
+    const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
+    const canonicalUrl = `${baseUrl}${normalizedPath}`;
 
     document.title = title;
     
